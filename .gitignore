@@ -1,0 +1,29 @@
+# Dependencies and builds
+node_modules/
+dist/
+build/
+.coverage/
+playwright-report/
+test-results/
+
+# Local environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+*.pem
+*.key
+
+# Runtime and local data
+.local-data/
+.tmp/
+.cache/
+
+# Evidence may contain local paths and transient URLs
+docs/evidence/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
