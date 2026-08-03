@@ -3,24 +3,38 @@ node_modules/
 dist/
 build/
 .coverage/
+coverage/
 playwright-report/
 test-results/
 
 # Local environment and secrets
 .env
 .env.local
-.env.*.local
+.env.*
 !.env.example
 *.pem
 *.key
+
+# ChatGPT Sites local generated state
+.openai/local/
 
 # Runtime and local data
 .local-data/
 .tmp/
 .cache/
+local-output/
+artifacts/
+evidence/**/tmp/
+evidence/**/raw-live/
 
-# Evidence may contain local paths and transient URLs
-docs/evidence/
+# Python tooling, if the collector uses Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Logs
+*.log
 
 # OS/editor
 .DS_Store
