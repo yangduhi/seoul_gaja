@@ -1,0 +1,1 @@
+{"kind":"unbounded_retry","retry_attempts":2,"expected_verdict":"FAIL"}
