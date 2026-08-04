@@ -3,7 +3,7 @@
   "command_id": "task-03-failure",
   "verdict": "PASS",
   "actual_exit": 0,
-  "candidate_commit": "f5637476a683991a2f7cea8d22ccd6afc529afe7",
-  "candidate_tree": "2613415875f65883ece04655e067c689ffad4d87",
+  "candidate_commit": "b794b34986bbc8e4ba5898a6d3da053f96db95bd",
+  "candidate_tree": "94d7d687b059b8a693f497b7d3377da237a30550",
   "evidence_detail": ".omo/evidence/seoul-gaja-v4-plan-review/task-3-receipt-negative.json"
 }
