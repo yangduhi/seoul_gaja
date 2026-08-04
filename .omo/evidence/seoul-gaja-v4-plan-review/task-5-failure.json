@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task": "Todo 5 stale-main and pre-merge failure gate",
+  "code_commit": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
+  "code_tree": "7836ac090953e72204e8ad454ad594ba430afab5",
+  "command_id": "task-05-failure",
+  "argv": ["node", "--test", "tests/gates/task-05-failure.test.mjs"],
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "scope": "Local negative fixture evaluation only; each unsafe identity condition is returned as NOT_RUN_BLOCKED rather than PASS.",
+  "stale_main_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-stale-main-blocked.json",
+  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-seoul-gaja-v4-plan-review.json",
+  "owner_gate": "The aggregate record remains NOT_RUN_BLOCKED until owner-approved default-branch execution is available."
+}
