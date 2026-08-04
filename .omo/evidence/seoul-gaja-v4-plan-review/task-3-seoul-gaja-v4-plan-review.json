@@ -4,11 +4,11 @@
   "observed_at": "2026-08-04T11:31:00+09:00",
   "verdict": "PASS",
   "base_commit": "313ba34350b2e9fb130971a09b368d8b5c13aee2",
-  "candidate_commit": "aaf745aef30b5dac34dbe02faf5d399de53b440e",
-  "candidate_tree": "e0b0f3bca93102bbbce15617bacd3c90ac165166",
+  "candidate_commit": "f5637476a683991a2f7cea8d22ccd6afc529afe7",
+  "candidate_tree": "2613415875f65883ece04655e067c689ffad4d87",
   "changed_contracts": [
-    "docs/codex-pack-v4/contracts/phase-receipt.schema.json",
-    "docs/codex-pack-v4/codex/phase-receipt-template.json",
+    "docs/execution/contracts/phase-receipt.schema.json",
+    "docs/execution/contracts/phase-receipt-template.json",
     "docs/execution/scripts/validate_phase_receipts.py"
   ],
   "commands": [
@@ -38,5 +38,8 @@
     "phase_08": "Requires the nested release object with saved version, deployment, deployed identity, workflow runs/head SHA, approval, migration, and rollback identifiers.",
     "secrets": "Receipt text rejects common raw credential forms and every fixture records secret_status=REDACTED."
   },
+  "packet_immutability": "docs/codex-pack-v4 is restored byte-for-byte to prep base 313ba34; active v4.1 receipt schema and template are sidecar files under docs/execution/contracts.",
+  "packet_validator": "FAIL_BASELINE: docs/codex-pack-v4/scripts/validate_packet.py reports the pre-existing MANIFEST.sha256 mismatch for 00_overview/00_final_decision.md. The Todo 3 packet paths compare byte-identically to 313ba34 and were not changed to mask this failure.",
+  "authority_read_only_check": "NOT_APPLICABLE_TO_MEMBER_BRANCH: validate_authority_lock.py correctly rejects team/team-5e8b1c22/B because it pins the preparation branch/base and frozen authority hashes, not an implementation member candidate.",
   "runner_note": "The shared command-map runner returned PASS/exit 0 for both IDs. Its Windows CP949 capture emitted a UnicodeDecodeError while reading Node's Unicode reporter output; direct Node gate runs completed 1/1 and 8/8 passing tests."
 }
