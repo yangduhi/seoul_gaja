@@ -5,7 +5,7 @@ import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 
 const root = process.cwd();
-const schema = resolve(root, 'docs/codex-pack-v4/contracts/phase-receipt.schema.json');
+const schema = resolve(root, 'docs/execution/contracts/phase-receipt.schema.json');
 const validator = resolve(root, 'docs/execution/scripts/validate_phase_receipts.py');
 const positive = resolve(root, 'tests/fixtures/phase-receipts/positive');
 
