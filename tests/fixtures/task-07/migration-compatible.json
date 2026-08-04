@@ -1,0 +1,8 @@
+{
+  "migration_id": "0003_snapshot_revision_and_provenance",
+  "existing_migration_ids": ["0001_initial", "0002_phase02_storage"],
+  "read_old_before_write_new": true,
+  "fixture_backfill_verified": true,
+  "rollback": "forward_only_restore_application_compatibility_without_schema_drop",
+  "phase_08_release_migration_id": "0003_snapshot_revision_and_provenance"
+}

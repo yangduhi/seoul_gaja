@@ -1,0 +1,4 @@
+{
+  "run_id": "run-replay", "attempt_no": 1, "revision_id": "revision-1", "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "existing_revisions": [{ "run_id": "run-replay", "attempt_no": 1, "revision_id": "revision-existing", "payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "receipt_id": "receipt-existing", "status": "complete" }]
+}
