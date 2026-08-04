@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "task": "Todo 3 negative receipt validation",
-  "candidate_commit": "aaf745aef30b5dac34dbe02faf5d399de53b440e",
-  "candidate_tree": "e0b0f3bca93102bbbce15617bacd3c90ac165166",
+  "candidate_commit": "f5637476a683991a2f7cea8d22ccd6afc529afe7",
+  "candidate_tree": "2613415875f65883ece04655e067c689ffad4d87",
   "command_id": "task-03-failure",
   "verdict": "PASS",
   "actual_exit": 0,

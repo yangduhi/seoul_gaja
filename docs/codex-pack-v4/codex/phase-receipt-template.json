@@ -3,12 +3,8 @@
   "verdict": "NOT_RUN_BLOCKED",
   "commit": null,
   "tree": null,
-  "base_commit": null,
-  "base_tree": null,
   "tests": [],
   "evidence": [],
-  "blockers": ["Owner has not approved the external capability probe."],
-  "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
-  "limitations": [],
-  "secret_status": "REDACTED"
+  "blockers": [],
+  "limitations": []
 }

@@ -152,7 +152,10 @@
         0
       ],
       "required_paths": [
-        "tests/gates/task-03-happy.test.mjs"
+        "tests/gates/task-03-happy.test.mjs",
+        "docs/execution/contracts/phase-receipt.schema.json",
+        "docs/execution/contracts/phase-receipt-template.json",
+        "docs/execution/scripts/validate_phase_receipts.py"
       ],
       "assertions": [
         "verdict-safe phase receipt positive and negative fixtures pass",
@@ -172,7 +175,10 @@
         0
       ],
       "required_paths": [
-        "tests/gates/task-03-failure.test.mjs"
+        "tests/gates/task-03-failure.test.mjs",
+        "docs/execution/contracts/phase-receipt.schema.json",
+        "docs/execution/contracts/phase-receipt-template.json",
+        "docs/execution/scripts/validate_phase_receipts.py"
       ],
       "assertions": [
         "verdict-safe phase receipt positive and negative fixtures pass",
