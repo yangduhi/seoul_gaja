@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task": "Todo 5 stale-main and pre-merge failure gate",
+  "observed_at": "2026-08-04T20:55:00+09:00",
+  "code_commit": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
+  "code_tree": "7836ac090953e72204e8ad454ad594ba430afab5",
+  "command_id": "task-05-failure",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "blocked_fixtures": [
+    {
+      "path": "tests/fixtures/task-05/pre-merge-blocked.json",
+      "blocker_code": "OWNER_APPROVED_MERGE_REQUIRED"
+    },
+    {
+      "path": "tests/fixtures/task-05/stale-main-blocked.json",
+      "blocker_code": "WORKFLOW_HEAD_SHA_MISMATCH"
+    },
+    {
+      "path": "tests/fixtures/task-05/receipt-mismatch-blocked.json",
+      "blocker_code": "RECEIPT_CANDIDATE_MISMATCH"
+    }
+  ],
+  "additional_blocked_conditions": [
+    "WORKFLOW_NOT_ON_DEFAULT_BRANCH",
+    "NON_PRODUCTION_ENDPOINT_REQUIRED",
+    "CANONICAL_INGEST_TARGET_REQUIRED"
+  ],
+  "meaning": "The failure gate passes only because stale-main, pre-merge, missing default-branch workflow, missing non-production endpoint, receipt mismatch, and non-canonical target conditions are returned as NOT_RUN_BLOCKED rather than PASS."
+}

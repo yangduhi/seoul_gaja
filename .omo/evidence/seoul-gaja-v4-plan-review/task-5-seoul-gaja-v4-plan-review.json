@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "task": "Todo 5 - candidate-bound Phase 02 automation gate",
+  "observed_at": "2026-08-04T20:55:00+09:00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "branch": "team/team-5e8b1c22/E",
+    "base_commit": "381d4f9af880efbb2b0ef8da622461e8e80952ce",
+    "candidate_commit": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
+    "candidate_tree": "7836ac090953e72204e8ad454ad594ba430afab5"
+  },
+  "branch_local": {
+    "verdict": "PASS",
+    "reviewed_candidate_sha": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
+    "candidate_tests": ["task-05-happy", "task-05-failure"],
+    "result": "The evaluator requires branch-local tests to be recorded at the reviewed candidate SHA before a default-branch smoke can be accepted."
+  },
+  "default_branch_smoke": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "required_bindings": {
+      "owner_approved_merge": true,
+      "approved_merge_sha": "must identify the owner-approved merge on main",
+      "workflow_run.head_sha": "must equal approved_merge_sha",
+      "workflow_run.ingest_target": "POST /api/internal/ingest/snapshot",
+      "workflow_run.non_production_endpoint_available": true,
+      "receipt.candidate_sha": "must equal the reviewed candidate SHA"
+    },
+    "blocker": "No owner-approved merge to main or default-branch workflow execution is authorized for this local Todo.",
+    "owner_action": "Approve the merge to main, complete that merge, then authorize and run the recorded default-branch workflow against a non-production endpoint and capture its workflow_run.head_sha plus candidate-bound receipt."
+  },
+  "commands": [
+    {
+      "id": "task-05-happy",
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "id": "task-05-failure",
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "command": "node --test tests/gates/task-05-happy.test.mjs tests/gates/task-05-failure.test.mjs",
+      "actual_exit": 0,
+      "result": "PASS: 6/6"
+    },
+    {
+      "command": "git diff --check HEAD~1 HEAD",
+      "actual_exit": 0,
+      "result": "PASS"
+    }
+  ],
+  "limitations": [
+    "The happy fixture proves the evaluator accepts a fully owner-approved, same-candidate default-branch identity chain; it is not a live workflow result.",
+    "No push, merge, workflow dispatch, live API call, deployment, or secret operation was performed."
+  ]
+}
