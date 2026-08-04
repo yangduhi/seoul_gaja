@@ -1,0 +1,121 @@
+{
+  "now": "2026-08-04T09:00:00Z",
+  "activeSnapshot": {
+    "id": "snapshot-20260804-0900",
+    "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+  },
+  "historyMaturity": {
+    "elapsedDays": 7,
+    "coverage": 0.7
+  },
+  "places": [
+    {
+      "areaCode": "alpha",
+      "currentCrowd": {
+        "status": "available",
+        "percentile": 0.2,
+        "snapshotId": "snapshot-20260804-0900",
+        "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+      },
+      "officialForecasts": [
+        {
+          "status": "available",
+          "authority": "official",
+          "snapshotId": "snapshot-20260804-0900",
+          "timestamp": "2026-08-04T09:20:00Z",
+          "horizonBucket": "2026-08-04T09:00:00Z",
+          "percentile": 0.5,
+          "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+        },
+        {
+          "status": "available",
+          "authority": "official",
+          "snapshotId": "snapshot-20260804-0900",
+          "timestamp": "2026-08-04T10:30:00Z",
+          "horizonBucket": "2026-08-04T10:00:00Z",
+          "percentile": 0.1,
+          "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+        }
+      ],
+      "historyDeviation": {
+        "status": "available",
+        "percentile": 0.6,
+        "weekday": "Tue",
+        "localTimeBucket": "18:00",
+        "computedAt": "2026-08-04T08:55:00Z"
+      }
+    },
+    {
+      "areaCode": "beta",
+      "currentCrowd": {
+        "status": "available",
+        "percentile": 0.2,
+        "snapshotId": "snapshot-20260804-0900",
+        "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+      },
+      "officialForecasts": [
+        {
+          "status": "available",
+          "authority": "official",
+          "snapshotId": "snapshot-20260804-0900",
+          "timestamp": "2026-08-04T09:20:00Z",
+          "horizonBucket": "2026-08-04T09:00:00Z",
+          "percentile": 0.5,
+          "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+        },
+        {
+          "status": "available",
+          "authority": "official",
+          "snapshotId": "snapshot-20260804-0900",
+          "timestamp": "2026-08-04T10:00:00Z",
+          "horizonBucket": "2026-08-04T10:00:00Z",
+          "percentile": 0.1,
+          "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+        }
+      ],
+      "historyDeviation": {
+        "status": "available",
+        "percentile": 0.6,
+        "weekday": "Tue",
+        "localTimeBucket": "18:00",
+        "computedAt": "2026-08-04T08:55:00Z"
+      }
+    },
+    {
+      "areaCode": "aardvark",
+      "currentCrowd": {
+        "status": "available",
+        "percentile": 0.2,
+        "snapshotId": "snapshot-20260804-0900",
+        "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+      },
+      "officialForecasts": [
+        {
+          "status": "available",
+          "authority": "official",
+          "snapshotId": "snapshot-20260804-0900",
+          "timestamp": "2026-08-04T09:20:00Z",
+          "horizonBucket": "2026-08-04T09:00:00Z",
+          "percentile": 0.5,
+          "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+        },
+        {
+          "status": "available",
+          "authority": "official",
+          "snapshotId": "snapshot-20260804-0900",
+          "timestamp": "2026-08-04T10:00:00Z",
+          "horizonBucket": "2026-08-04T10:00:00Z",
+          "percentile": 0.1,
+          "sourceUpdatedAt": "2026-08-04T08:55:00Z"
+        }
+      ],
+      "historyDeviation": {
+        "status": "available",
+        "percentile": 0.6,
+        "weekday": "Tue",
+        "localTimeBucket": "18:00",
+        "computedAt": "2026-08-04T08:55:00Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "aedacc4ae359a63d5815dd8257e8b9a88d14091a",
+    "tested_tree": "78406a950e00c945c691565eb96ef6f36977fc48"
+  },
+  "local_gates": [
+    {"command_id": "task-09-happy", "actual_exit": 0, "verdict": "PASS"},
+    {"command_id": "task-09-failure", "actual_exit": 0, "verdict": "PASS"},
+    {"command": "npm run lint", "actual_exit": 0, "verdict": "PASS"},
+    {"command": "npm run build", "actual_exit": 0, "verdict": "PASS"}
+  ],
+  "implementation": "server/recommendations.mjs",
+  "limitations": [
+    "No secret, live API call, migration execution, Sites Save/Deploy, push, or merge was performed.",
+    "The local deterministic contract proves fail-closed recommendation behavior only; it does not establish live source availability."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "aedacc4ae359a63d5815dd8257e8b9a88d14091a",
+    "tested_tree": "78406a950e00c945c691565eb96ef6f36977fc48"
+  },
+  "result": "ZERO_ELIGIBLE",
+  "scope": "Missing, UNKNOWN, expired, unsupported, or non-authoritative required inputs suppress the affected recommendation and preserve browse availability without a fabricated result."
+}
