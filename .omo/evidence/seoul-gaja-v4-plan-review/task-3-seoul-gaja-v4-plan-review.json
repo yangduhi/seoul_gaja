@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "task": "Todo 3 - Harden verdict-safe phase receipts",
+  "observed_at": "2026-08-04T11:31:00+09:00",
+  "verdict": "PASS",
+  "base_commit": "313ba34350b2e9fb130971a09b368d8b5c13aee2",
+  "candidate_commit": "aaf745aef30b5dac34dbe02faf5d399de53b440e",
+  "candidate_tree": "e0b0f3bca93102bbbce15617bacd3c90ac165166",
+  "changed_contracts": [
+    "docs/codex-pack-v4/contracts/phase-receipt.schema.json",
+    "docs/codex-pack-v4/codex/phase-receipt-template.json",
+    "docs/execution/scripts/validate_phase_receipts.py"
+  ],
+  "commands": [
+    {
+      "id": "task-03-happy",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-03-happy"],
+      "actual_exit": 0,
+      "result": "PASS: accepted PASS Phase 01/00/08, FAIL, and NOT_RUN_BLOCKED positive fixtures"
+    },
+    {
+      "id": "task-03-failure",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-03-failure"],
+      "actual_exit": 0,
+      "result": "PASS: rejected null PASS identity, empty PASS evidence, PASS blockers, missing Phase 00 cleanup, missing Phase 08 release, missing owner action, missing FAIL evidence, and unredacted Bearer token fixtures"
+    },
+    {
+      "argv": ["git", "diff", "HEAD~1", "--check"],
+      "actual_exit": 0,
+      "result": "PASS"
+    }
+  ],
+  "contract_coverage": {
+    "pass": "Requires non-null commit/tree/base identity, at least one zero-exit test, hashed evidence, no blockers, and phase proof.",
+    "not_run_blocked": "Requires non-empty blockers and an explicit owner_action.",
+    "fail": "Requires at least one hashed failure_evidence artifact.",
+    "phase_00": "Requires probe and cleanup commit/tree/saved-version/deployment bindings.",
+    "phase_08": "Requires the nested release object with saved version, deployment, deployed identity, workflow runs/head SHA, approval, migration, and rollback identifiers.",
+    "secrets": "Receipt text rejects common raw credential forms and every fixture records secret_status=REDACTED."
+  },
+  "runner_note": "The shared command-map runner returned PASS/exit 0 for both IDs. Its Windows CP949 capture emitted a UnicodeDecodeError while reading Node's Unicode reporter output; direct Node gate runs completed 1/1 and 8/8 passing tests."
+}

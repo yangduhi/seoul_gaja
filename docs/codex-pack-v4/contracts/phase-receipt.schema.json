@@ -1,82 +1,183 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.local/schemas/phase-receipt.schema.json",
-  "title": "Phase Receipt",
+  "title": "Verdict-safe phase receipt",
   "type": "object",
   "required": [
     "phase",
     "verdict",
     "commit",
     "tree",
+    "base_commit",
+    "base_tree",
     "tests",
     "evidence",
-    "blockers"
+    "blockers",
+    "secret_status"
   ],
   "properties": {
-    "phase": {
-      "type": "string",
-      "pattern": "^0[0-8]$"
-    },
-    "verdict": {
-      "enum": [
-        "PASS",
-        "FAIL",
-        "NOT_RUN_BLOCKED"
-      ]
-    },
-    "commit": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^[a-f0-9]{40}$"
-    },
-    "tree": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "pattern": "^[a-f0-9]{40}$"
-    },
+    "phase": { "type": "string", "pattern": "^0[0-8]$" },
+    "verdict": { "enum": ["PASS", "FAIL", "NOT_RUN_BLOCKED"] },
+    "commit": { "$ref": "#/$defs/nullableSha" },
+    "tree": { "$ref": "#/$defs/nullableSha" },
+    "base_commit": { "$ref": "#/$defs/nullableSha" },
+    "base_tree": { "$ref": "#/$defs/nullableSha" },
     "tests": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "required": [
-          "command",
-          "exitCode"
-        ],
+      "items": { "$ref": "#/$defs/testResult" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/redactedText" }
+    },
+    "owner_action": { "$ref": "#/$defs/redactedText" },
+    "failure_evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "phase_proof": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "release": { "$ref": "#/$defs/release" },
+    "limitations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/redactedText" }
+    },
+    "secret_status": { "const": "REDACTED" }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": { "properties": { "verdict": { "const": "PASS" } }, "required": ["verdict"] },
+      "then": {
+        "required": ["phase_proof"],
         "properties": {
-          "command": {
-            "type": "string"
-          },
-          "exitCode": {
-            "type": "integer"
-          },
-          "summary": {
-            "type": "string"
+          "commit": { "$ref": "#/$defs/sha" },
+          "tree": { "$ref": "#/$defs/sha" },
+          "base_commit": { "$ref": "#/$defs/sha" },
+          "base_tree": { "$ref": "#/$defs/sha" },
+          "tests": { "minItems": 1, "items": { "properties": { "exitCode": { "const": 0 } } } },
+          "evidence": { "minItems": 1 },
+          "blockers": { "maxItems": 0 }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "verdict": { "const": "NOT_RUN_BLOCKED" } }, "required": ["verdict"] },
+      "then": {
+        "required": ["owner_action"],
+        "properties": { "blockers": { "minItems": 1 } }
+      }
+    },
+    {
+      "if": { "properties": { "verdict": { "const": "FAIL" } }, "required": ["verdict"] },
+      "then": {
+        "required": ["failure_evidence"],
+        "properties": { "failure_evidence": { "minItems": 1 } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "phase": { "const": "00" }, "verdict": { "const": "PASS" } },
+        "required": ["phase", "verdict"]
+      },
+      "then": {
+        "properties": {
+          "phase_proof": {
+            "type": "object",
+            "required": ["probe", "cleanup"],
+            "properties": {
+              "probe": { "$ref": "#/$defs/deploymentBinding" },
+              "cleanup": { "$ref": "#/$defs/deploymentBinding" }
+            },
+            "additionalProperties": false
           }
         }
       }
     },
-    "evidence": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "blockers": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "limitations": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+    {
+      "if": {
+        "properties": { "phase": { "const": "08" }, "verdict": { "const": "PASS" } },
+        "required": ["phase", "verdict"]
+      },
+      "then": { "required": ["release"] }
     }
-  },
-  "additionalProperties": false
+  ],
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "nullableSha": { "anyOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }] },
+    "redactedText": {
+      "type": "string",
+      "minLength": 1,
+      "not": { "pattern": "(?i)(bearer\\s+[^\\s]+|site_ingest_token\\s*=|sk-[a-z0-9_-]{8,}|api[_-]?key\\s*=)" }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/redactedText" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "testResult": {
+      "type": "object",
+      "required": ["command", "exitCode"],
+      "properties": {
+        "command": { "$ref": "#/$defs/redactedText" },
+        "exitCode": { "type": "integer" },
+        "summary": { "$ref": "#/$defs/redactedText" }
+      },
+      "additionalProperties": false
+    },
+    "deploymentBinding": {
+      "type": "object",
+      "required": ["commit", "tree", "saved_version_id", "deployment_url"],
+      "properties": {
+        "commit": { "$ref": "#/$defs/sha" },
+        "tree": { "$ref": "#/$defs/sha" },
+        "saved_version_id": { "$ref": "#/$defs/redactedText" },
+        "deployment_url": { "type": "string", "format": "uri", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "release": {
+      "type": "object",
+      "required": [
+        "saved_version_id",
+        "deployment_url",
+        "deployment_time",
+        "deployed_commit",
+        "deployed_tree",
+        "workflow_run_ids",
+        "workflow_head_sha",
+        "approval_reference",
+        "migration_id",
+        "rollback_version_id"
+      ],
+      "properties": {
+        "saved_version_id": { "$ref": "#/$defs/redactedText" },
+        "deployment_url": { "type": "string", "format": "uri", "minLength": 1 },
+        "deployment_time": { "type": "string", "format": "date-time" },
+        "deployed_commit": { "$ref": "#/$defs/sha" },
+        "deployed_tree": { "$ref": "#/$defs/sha" },
+        "workflow_run_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/redactedText" }
+        },
+        "workflow_head_sha": { "$ref": "#/$defs/sha" },
+        "approval_reference": { "$ref": "#/$defs/redactedText" },
+        "migration_id": { "$ref": "#/$defs/redactedText" },
+        "rollback_version_id": { "$ref": "#/$defs/redactedText" }
+      },
+      "additionalProperties": false
+    }
+  }
 }
