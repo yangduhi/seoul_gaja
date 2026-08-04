@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "task": "Todo 6 workflow-security failure gate",
+  "observed_at": "2026-08-04T21:09:00+09:00",
+  "candidate_commit": "6cd11152de2fd7847591de01ac6bb33c7659c1d5",
+  "candidate_tree": "d92e1e6714545a54fca8a9efd9c2fe2b4e093c9a",
+  "command": {
+    "id": "task-06-failure",
+    "argv": ["node", "--test", "tests/gates/task-06-failure.test.mjs"],
+    "actual_exit": 0,
+    "verdict": "PASS"
+  },
+  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-seoul-gaja-v4-plan-review.json",
+  "supplemental_checks": {
+    "actionlint": "NOT_RUN_BLOCKED: unavailable in the local Windows worktree; source-backed equivalent gate and PyYAML parsing passed."
+  }
+}
