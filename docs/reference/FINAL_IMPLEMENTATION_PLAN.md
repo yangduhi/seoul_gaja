@@ -74,8 +74,16 @@ ChatGPT Sites UI
 - `KT 기지국 기반`으로 고정하지 않고 서울시 최신 계약의 통신사 비교·가중 융합 설명을 사용한다.
 - 절대적 안전 판정, 정확한 현장 인원, 특정 시각의 확정적 한산함을 말하지 않는다.
 - UI/API에는 `sourceUpdatedAt`(서울시 기준 시각)과 `fetchedAt`(수집 시각)을 분리해 표시한다. D1 persistence columns use the database snake_case convention.
+- D1 persistence columns are `source_updated_at` and `fetched_at`; those names do not cross the UI/API boundary.
 - 원천 지연 시 `현재 원천 데이터 갱신이 지연되고 있습니다`를 표시한다.
 - 공식 12시간 예측은 자체 예측보다 우선한다.
+
+### 3.1.1 v4.1 route and evidence terminology
+
+- The only production ingest route is `POST /api/internal/ingest/snapshot`.
+- The disposable Phase 00 capability is named `phase-00-capability-probe` and uses `POST /api/internal/capability-probe/ingest`. It cannot prove Phase 02 production behavior.
+- Phase evidence is `docs/evidence/phase-XX/phase-receipt.json`; Phase 08 release identifiers belong only in the nested `release` object of `docs/evidence/phase-08/phase-receipt.json`.
+- Design tokens are referenced as `design/design-tokens.json`.
 
 ### 3.2 수집·보존
 
