@@ -7,6 +7,7 @@ import test from 'node:test';
 import { validateSemanticCloseout } from '../../docs/execution/scripts/validate_semantic_closeout.mjs';
 
 const execFileAsync = promisify(execFile);
+const finalArtifactPath = /(?:tests\/(?:gates\/final-f[1-4]\.test\.mjs|fixtures\/final\/)|\.omo\/(?:evidence\/seoul-gaja-v4-plan-review\/final-F[1-4]\.json|teams\/))/;
 
 test('Given the integrated candidate, When release scope is audited, Then local scope passes and owner-bound release proof remains blocked', async () => {
   const [semantic, blockersText, status] = await Promise.all([
@@ -19,8 +20,10 @@ test('Given the integrated candidate, When release scope is audited, Then local 
   assert.equal(semantic.verdict, 'PASS');
   assert.equal(blockers.verdict, 'NOT_RUN_BLOCKED');
   for (const line of status.stdout.split(/\r?\n/).filter(Boolean)) {
-    assert.match(line.replaceAll('\\', '/'), /(?:tests\/(?:gates\/final-f[1-4]\.test\.mjs|fixtures\/final\/)|\.omo\/evidence\/seoul-gaja-v4-plan-review\/final-F[1-4]\.json)/);
+    assert.match(line.replaceAll('\\', '/'), finalArtifactPath);
   }
+  assert.match('?? .omo/teams/team-5e8b1c22/team.json', finalArtifactPath);
+  assert.doesNotMatch('?? app/page.tsx', finalArtifactPath);
   const { stdout: head } = await execFileAsync('git', ['rev-parse', 'HEAD']);
   const { stdout: tree } = await execFileAsync('git', ['rev-parse', 'HEAD^{tree}']);
   assert.match(head.trim(), /^[a-f0-9]{40}$/);
