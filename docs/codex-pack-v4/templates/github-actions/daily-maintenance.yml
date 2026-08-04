@@ -1,0 +1,33 @@
+name: maintain-seoul-crowd-history
+
+on:
+  schedule:
+    - cron: "27 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seoul-crowd-daily-maintenance
+  cancel-in-progress: false
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r collector/requirements.txt
+      - name: Daily compaction and retention
+        env:
+          SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
+          SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+        run: >-
+          python -m collector.cli maintenance
+          --base-url "$SITE_INGEST_URL"
+          --token-env SITE_INGEST_TOKEN
+          --operation daily

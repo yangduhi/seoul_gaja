@@ -1,0 +1,44 @@
+contract_version: 1.0.0
+presets:
+  child_outing:
+    label: 아이와 나들이
+    weights:
+      currentCrowd: 35
+      officialForecastStability: 20
+      historyConfidence: 15
+      noIncident: 10
+      transportAndParking: 10
+      purposeFit: 10
+  date:
+    label: 데이트
+    weights:
+      currentCrowd: 25
+      officialForecastStability: 20
+      historyConfidence: 15
+      noIncident: 10
+      cultureEvent: 20
+      purposeFit: 10
+  trending_now:
+    label: 지금 핫플
+    weights:
+      currentMomentum: 20
+      currentCrowd: 20
+      officialForecastStability: 15
+      historyDeviation: 15
+      cultureEvent: 20
+      noIncident: 10
+rules:
+  deterministic: true
+  llm_numeric_scoring: forbidden
+  maximum_reasons_shown: 3
+  score_range: [0, 100]
+  unavailable_input:
+    renormalize_available_weights: true
+    minimum_coverage_to_rank: 0.60
+  history:
+    use_only_when_maturity_at_least: PROVISIONAL
+  explanation_required: true
+  safety_wording_forbidden:
+    - 안전함
+    - 반드시 한산
+    - 정확한 인파

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:54:27+09:00",
+  "command_id": "task-01-authority",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "authority_lock": ".omo/authority-lock.json",
+  "authority_lock_sha256": "2db06cf33be43f90bc4c13b2507dda4087aee37c211d3907a9eb5fced031b987",
+  "observed": {
+    "remote": "https://github.com/yangduhi/seoul_gaja",
+    "branch": "codex/prep-v4-1",
+    "head": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
+    "tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
+    "hash_failures": []
+  }
+}

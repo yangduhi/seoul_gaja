@@ -1,0 +1,38 @@
+contract_version: 1.0.0
+application_states:
+  - loading
+  - ready
+  - partial
+  - delayed
+  - unavailable
+snapshot_row_states:
+  available:
+    show_population: true
+    show_forecast_when_valid: true
+  carried_forward:
+    show_population: true
+    warning_required: true
+  unavailable:
+    show_population: false
+    place_identity_required: true
+  expired:
+    show_population: false
+    show_forecast: false
+map_states:
+  ready:
+    list_available: true
+  unavailable:
+    list_available: true
+    banner_required: true
+    retry_action_required: true
+geolocation_states:
+  idle: no_permission_request
+  requesting: user_action_required
+  granted: browser_memory_only
+  denied: distance_sort_disabled
+  timeout: retry_allowed
+history_states:
+  ACCUMULATING: heatmap_hidden_or_limited
+  PROVISIONAL: heatmap_visible_with_warning
+  STABLE: heatmap_visible
+  MATURE: heatmap_visible_with_high_confidence_label

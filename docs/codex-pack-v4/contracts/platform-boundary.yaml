@@ -1,0 +1,59 @@
+version: 1
+project:
+  repository: yangduhi/seoul_gaja
+  product_slug: seoul_gaja
+  display_name: 서울 가자
+  feature_name: 인파 레이더
+hosting:
+  only_allowed_application_host: chatgpt_sites
+  deployment_surface: chatgpt_web_or_desktop_sites
+  source_project: compatible_local_git_project
+  save_version_before_deploy: true
+  exact_git_commit_binding_required: true
+  automatic_deploy_from_github_actions: false
+storage:
+  structured_data:
+    provider: chatgpt_sites_d1
+    binding: DB
+    required: true
+  object_storage:
+    provider: chatgpt_sites_r2
+    default: disabled
+  external_database_fallback: forbidden
+supporting_systems:
+  github_repository:
+    purposes: [source_control, pull_requests, contracts, migrations, fixtures, design_assets, review_evidence]
+  github_actions:
+    purposes: [continuous_integration, scheduled_collection, deterministic_aggregation, manual_replay]
+    forbidden_purposes: [host_application, deploy_chatgpt_site, change_site_sharing, commit_runtime_history]
+  external_apis:
+    allowed: [seoul_open_data, kakao_maps_javascript, kakao_local_rest_optional]
+forbidden:
+  application_hosts: [vercel, netlify, github_pages, cloudflare_pages, cloudflare_workers, firebase_hosting, standalone_server]
+  databases: [supabase, firebase, neon, planetscale, external_postgres]
+  shortcuts: [browser_direct_121_place_collection, continuous_runtime_data_commits_to_git, codex_as_production_scheduler, chatgpt_conversation_as_production_scheduler]
+phase_00_required_capabilities:
+  - compatible_local_project
+  - server_side_route
+  - d1_write_read_transaction
+  - hosted_secret_server_only
+  - external_protected_ingest
+  - saved_version_exact_commit
+  - usable_family_sharing_mode
+failure_policy:
+  missing_required_sites_capability: NOT_RUN_BLOCKED
+  introduce_external_fallback_without_user_change: forbidden
+  allowed_verdicts: [PASS, FAIL, NOT_RUN_BLOCKED]
+privacy:
+  login_required: false
+  user_profiles: forbidden
+  server_side_favorites: forbidden
+  precise_location_storage: forbidden
+  search_history_storage: forbidden
+  browser_geolocation:
+    explicit_user_action_required: true
+    storage: memory_only
+secrets:
+  github_actions: [SEOUL_OPEN_DATA_KEY, SITE_INGEST_URL, SITE_INGEST_TOKEN]
+  chatgpt_sites: [SITE_INGEST_TOKEN, PUBLIC_KAKAO_JAVASCRIPT_KEY, KAKAO_REST_API_KEY_OPTIONAL]
+  secret_values_in_repository: forbidden

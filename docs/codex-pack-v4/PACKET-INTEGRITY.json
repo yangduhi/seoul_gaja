@@ -1,0 +1,17 @@
+{
+  "packet_name": "seoul-gaja-chatgpt-sites-only-v4.0.0",
+  "version": "4.0.0-sites-only",
+  "created_at": "2026-08-03T20:45:00+09:00",
+  "content_root_sha256": "9d70c004be12e2f5da5685074714bcb48c8dc1bef1560c035d31a4ea99ad34e6",
+  "content_file_count": 105,
+  "manifest_file_count": 106,
+  "phase_count": 9,
+  "deterministic_mockup_count": 5,
+  "ai_concept_board_count": 4,
+  "design_authority": "design/design.md",
+  "repository": "yangduhi/seoul_gaja",
+  "platform_boundary": "chatgpt_sites_only",
+  "structured_storage": "chatgpt_sites_d1",
+  "planning_branch": "plan/chatgpt-sites-only-v1",
+  "draft_pr": 1
+}

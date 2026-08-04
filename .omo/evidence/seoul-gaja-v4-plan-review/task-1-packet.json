@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:45:22+09:00",
+  "command_id": "task-01-packet",
+  "verdict": "PASS",
+  "scope": "STRUCTURAL_ONLY",
+  "actual_exit": 0,
+  "verified_files": 106,
+  "phases": 9,
+  "ai_boards": 4,
+  "deterministic_mockups": 5,
+  "semantic_pass": false,
+  "live_capability_pass": false
+}

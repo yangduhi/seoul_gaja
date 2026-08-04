@@ -1,0 +1,65 @@
+contract_version: 1.0.0
+status_enum: [PASS, FAIL, NOT_RUN_BLOCKED]
+phases:
+  "00":
+    name: owner-setup-and-capability
+    prerequisites: []
+    outputs:
+      - sites-runtime-adr
+      - sites-capability-matrix
+      - design-baseline
+  "01":
+    name: data-source-foundation
+    prerequisites: ["00:PASS"]
+    outputs:
+      - catalog-121
+      - parser-tests
+      - quota-probe
+  "02":
+    name: automation-and-storage
+    prerequisites: ["01:PASS"]
+    outputs:
+      - migrations
+      - ingest-api
+      - scheduled-workflows
+  "03":
+    name: core-map-and-list
+    prerequisites: ["02:PASS"]
+    outputs:
+      - snapshot-first-read
+      - map-list-search-filter
+  "04":
+    name: detail-and-forecast
+    prerequisites: ["03:PASS"]
+    outputs:
+      - detail-ui
+      - official-forecast
+      - integrated-sections
+  "05":
+    name: history-and-family-presets
+    prerequisites: ["04:PASS"]
+    outputs:
+      - maturity
+      - heatmap
+      - deterministic-presets
+  "06":
+    name: calm-glass-design
+    prerequisites: ["05:PASS"]
+    outputs:
+      - token-parity
+      - responsive-screenshot-parity
+  "07":
+    name: quality-gate
+    prerequisites: ["06:PASS"]
+    outputs:
+      - full-test-receipt
+      - browser-ledger
+      - secret-scan
+  "08":
+    name: sites-release-and-operations
+    prerequisites: ["07:PASS", "user-approval"]
+    outputs:
+      - saved-version
+      - deployment-url
+      - scheduler-production-smoke
+      - rollback-runbook

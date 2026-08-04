@@ -1,0 +1,33 @@
+name: materialize-seoul-crowd-hourly
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seoul-crowd-hourly
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r collector/requirements.txt
+      - name: Materialize all missing completed hours
+        env:
+          SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
+          SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+        run: >-
+          python -m collector.cli maintenance
+          --base-url "$SITE_INGEST_URL"
+          --token-env SITE_INGEST_TOKEN
+          --operation hourly

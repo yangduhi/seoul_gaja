@@ -1,0 +1,38 @@
+name: review-seoul-crowd-data-quality
+
+on:
+  schedule:
+    - cron: "37 19 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seoul-crowd-weekly-quality
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r collector/requirements.txt
+      - name: Produce deterministic quality report
+        env:
+          SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
+          SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+        run: >-
+          python -m collector.cli quality-report
+          --base-url "$SITE_INGEST_URL"
+          --token-env SITE_INGEST_TOKEN
+          --output "$RUNNER_TEMP/weekly-quality.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: weekly-quality-${{ github.run_id }}
+          path: ${{ runner.temp }}/weekly-quality.json
+          retention-days: 30

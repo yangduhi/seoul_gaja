@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:45:22+09:00",
+  "command_id": "task-01-reference-only",
+  "verdict": "PASS",
+  "fixture_path": "D:\\vscode\\seoul_gaja",
+  "observed": "blocked",
+  "git": "NOT_A_GIT_WORKTREE",
+  "manifests": [],
+  "lockfiles": [],
+  "mutation": "none"
+}

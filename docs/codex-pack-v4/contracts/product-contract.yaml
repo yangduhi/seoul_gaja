@@ -1,0 +1,43 @@
+contract_version: 1.1.0
+project:
+  id: seoul_gaja
+  repository: yangduhi/seoul_gaja
+  name: 서울 가자
+  feature_name: 인파 레이더
+  audience: adult_family_planners_and_close_friends
+  direct_child_audience: prohibited
+  only_application_host: chatgpt_sites
+  structured_storage: chatgpt_sites_d1
+  design_concept: calm_glass
+scope:
+  official_place_count: 121
+  required_features:
+    - map_and_list
+    - official_place_search
+    - congestion_filter_and_sort
+    - browser_only_near_me
+    - place_detail
+    - official_12h_forecast
+    - integrated_city_information
+    - history_maturity
+    - deterministic_family_presets
+    - link_sharing
+  excluded_features:
+    - login
+    - user_profile
+    - server_side_location_history
+    - payment
+    - advertisement
+    - comments
+    - custom_population_prediction_v1
+    - external_application_host
+    - external_application_database
+sharing:
+  preferred: selected_users_when_supported
+  alternative: anyone_on_the_internet
+  robots: noindex_nofollow_when_supported
+  warning: public_link_is_not_access_control
+automation:
+  scheduler: github_actions
+  deploy_from_actions: forbidden
+  runtime_data_commits: forbidden

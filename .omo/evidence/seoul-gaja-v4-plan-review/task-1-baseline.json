@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:45:22+09:00",
+  "command_id": "task-01-baseline",
+  "verdict": "PASS",
+  "manifest_sha256": "b88f1577e9e3acd6e49b0b4351401344c574b11f15d0ac019cbfcca4311ccf3b",
+  "lockfile_sha256": "e991413abfdf76b3f95990c11837a3942abca069ced94220ceb9f1d6f6162c1a",
+  "commands": [
+    {
+      "argv": ["npm", "test"],
+      "result": "PASS: build plus 2 Node tests, 0 failures"
+    },
+    {
+      "argv": ["npm", "run", "lint"],
+      "result": "PASS"
+    }
+  ],
+  "reuse_basis": "package.json and package-lock.json are unchanged since the green baseline in this preparation session"
+}

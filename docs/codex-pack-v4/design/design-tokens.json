@@ -1,0 +1,85 @@
+{
+  "version": "1.0.0",
+  "concept": "Calm Glass",
+  "colors": {
+    "background": {
+      "light": "#EEF3FB",
+      "lightSecondary": "#F8F2FF",
+      "dark": "#07101D",
+      "darkElevated": "#111B2D"
+    },
+    "text": {
+      "lightPrimary": "#0D1726",
+      "lightSecondary": "#657387",
+      "darkPrimary": "#F7F9FC",
+      "darkSecondary": "#9BA9BD"
+    },
+    "brand": {
+      "blue": "#0A84FF",
+      "indigo": "#5E5CE6",
+      "purple": "#8E7DFF"
+    },
+    "crowd": {
+      "relaxed": "#34C759",
+      "normal": "#5AC8FA",
+      "busy": "#FF9F0A",
+      "crowded": "#FF453A",
+      "unknown": "#8E99A8"
+    }
+  },
+  "glass": {
+    "floating": {
+      "lightBackground": "rgba(255,255,255,0.62)",
+      "darkBackground": "rgba(18,27,43,0.58)",
+      "blurPx": 26,
+      "saturationPercent": 145
+    },
+    "content": {
+      "lightBackground": "rgba(255,255,255,0.82)",
+      "darkBackground": "rgba(20,29,45,0.84)",
+      "blurPx": 30,
+      "saturationPercent": 150
+    }
+  },
+  "radiusPx": {
+    "sm": 14,
+    "control": 18,
+    "card": 22,
+    "sheet": 30,
+    "hero": 36
+  },
+  "spacingPx": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 18,
+    "xl": 24,
+    "xxl": 32
+  },
+  "touchTargetPx": 44,
+  "motionMs": {
+    "fast": 160,
+    "standard": 240,
+    "emphasis": 360
+  },
+  "viewport": {
+    "mobilePrimary": [
+      430,
+      932
+    ],
+    "mobileMinimum": [
+      390,
+      844
+    ],
+    "desktop": [
+      1616,
+      923
+    ]
+  },
+  "desktop": {
+    "explorerWidthPx": 390,
+    "detailWidthPx": 410,
+    "gapPx": 14,
+    "minimumMapWidthPx": 620
+  }
+}

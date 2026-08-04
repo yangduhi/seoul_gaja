@@ -1,0 +1,45 @@
+contract_version: 1.0.0
+security_profile: family_minimal
+public_read:
+  authentication: none
+  allowed_data:
+    - public_seoul_data
+    - deterministic_aggregates
+    - non_personal_app_configuration
+internal_write:
+  method: POST
+  authentication: bearer_token
+  token_minimum_random_bytes: 32
+  transport: HTTPS
+  maximum_payload_bytes: 5242880
+  json_schema_validation: required
+  snapshot_id_unique: true
+  idempotent_replay: required
+personal_data:
+  storage: prohibited
+  prohibited_fields:
+    - precise_user_location
+    - user_name
+    - email
+    - phone
+    - family_profile
+    - search_history
+    - location_history
+geolocation:
+  request_only_after_explicit_action: true
+  compute_distance_in_browser: true
+  send_to_server: false
+  persist_local_storage: false
+analytics:
+  third_party: disabled
+sharing:
+  public_link_warning_required: true
+  noindex_is_access_control: false
+logging:
+  secrets: forbidden
+  raw_upstream_key_url: forbidden
+  precise_coordinates: forbidden
+
+audience:
+  intended: adult_family_planners
+  direct_child_targeting: prohibited
