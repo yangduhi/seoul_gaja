@@ -66,8 +66,9 @@
     "team_id": "team-5e8b1c22",
     "leader": "main operating task",
     "required_members": [
-      "todo_02_route_contract",
-      "todo_03_receipt_contract"
+      "todo_04_phase00_capability",
+      "todo_05_candidate_gate",
+      "todo_06_workflow_security"
     ],
     "note": "MultiAgentV2 team initialized after explicit implementation approval; members are isolated and bound to the current prep snapshot.",
     "standing_bootstrap_authority": true,
@@ -78,6 +79,15 @@
       "p0_p1_blockers": 0,
       "durable_team_member": false
     }
+  },
+  "external_gates": {
+    "sites_phase00_capability": {
+      "verdict": "NOT_RUN_BLOCKED",
+      "reason": "Owner-controlled secret entry, Sites Save/Deploy, and live capability proof are not authorized in this task.",
+      "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+      "next_allowed_phase": "none"
+    },
+    "secrets_deploy_push": "FORBIDDEN_UNTIL_SEPARATE_OWNER_APPROVAL"
   },
   "remaining_preimplementation_gates": [],
   "preimplementation_results": {
