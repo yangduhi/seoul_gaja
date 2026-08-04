@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "observed_at": "2026-08-04T21:05:00+09:00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "branch": "team/team-5e8b1c22/D",
+    "base_head": "381d4f9af880efbb2b0ef8da622461e8e80952ce",
+    "base_tree": "4284f47c7e7e96d9857781cf4fcb18dc1589fa60",
+    "code_commit": "029e50a6d0f6c3bc98051a2b711ab2060c24e8a0",
+    "code_tree": "fcad26ef3e8079df989a94504e56100975504af9"
+  },
+  "checks": [
+    {
+      "command_id": "task-04-happy",
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "command_id": "task-04-failure",
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-failure",
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "command": "npm run build",
+      "actual_exit": 0,
+      "verdict": "PASS",
+      "detail": "vinext built both Phase 00 API routes."
+    },
+    {
+      "command": "npm run lint",
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "actual_exit": 0,
+      "verdict": "PASS"
+    }
+  ],
+  "local_contract": {
+    "probe": "phase-00-capability-probe",
+    "route": "POST /api/internal/capability-probe/ingest",
+    "coverage": ["health", "D1 write/read/update/rollback/cleanup", "missing/invalid/unavailable token rejection", "server-only secret boundary"]
+  },
+  "external_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+    "reason": "No owner-approved Sites secret, Save version, deployment, or cleanup deployment proof is available."
+  },
+  "limitations": [
+    "No secret value, live API, D1 migration execution, Sites Save, Sites Deploy, sharing change, push, or merge was performed.",
+    "The v4.0.0 packet was not modified."
+  ]
+}

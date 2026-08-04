@@ -1,0 +1,28 @@
+{
+  "phase": "00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "commit": "029e50a6d0f6c3bc98051a2b711ab2060c24e8a0",
+  "tree": "fcad26ef3e8079df989a94504e56100975504af9",
+  "base_commit": "381d4f9af880efbb2b0ef8da622461e8e80952ce",
+  "base_tree": "4284f47c7e7e96d9857781cf4fcb18dc1589fa60",
+  "tests": [
+    {
+      "command": "phase capability happy command map",
+      "exitCode": 0,
+      "summary": "PASS: 1 local lifecycle test"
+    },
+    {
+      "command": "phase capability negative command map",
+      "exitCode": 0,
+      "summary": "PASS: 3 fail-closed tests"
+    }
+  ],
+  "evidence": [],
+  "blockers": ["Owner has not approved the external capability probe in ChatGPT Sites."],
+  "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+  "limitations": [
+    "No secret value, live API, D1 migration execution, Sites Save, Sites Deploy, sharing change, push, or merge was performed.",
+    "The local capability contract does not prove a live Sites deployment or Phase 02 production ingestion."
+  ],
+  "secret_status": "REDACTED"
+}
