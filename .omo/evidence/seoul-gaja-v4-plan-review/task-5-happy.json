@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "task": "Todo 5 branch-local candidate gate",
+  "code_commit": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
+  "code_tree": "7836ac090953e72204e8ad454ad594ba430afab5",
+  "command_id": "task-05-happy",
+  "argv": ["node", "--test", "tests/gates/task-05-happy.test.mjs"],
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "scope": "Branch-local fixture evaluation only; it binds the reviewed candidate to an owner-approved default-branch identity chain without executing that chain.",
+  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-seoul-gaja-v4-plan-review.json",
+  "owner_gate": "The aggregate record remains NOT_RUN_BLOCKED until an owner approves and completes the main merge, then authorizes a default-branch workflow smoke against a non-production endpoint."
+}
