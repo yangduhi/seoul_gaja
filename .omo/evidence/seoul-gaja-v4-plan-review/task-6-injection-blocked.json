@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "task": "Todo 6 negative workflow-security fixtures",
+  "observed_at": "2026-08-04T21:00:30+09:00",
+  "candidate_commit": "c8e227b1edd46d901de28bf97a978583761b7d05",
+  "candidate_tree": "0617399f653180f0af3ffe9a2b446bbe7f8a4783",
+  "verdict": "PASS",
+  "command": {
+    "id": "task-06-failure",
+    "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-06-failure"],
+    "actual_exit": 0
+  },
+  "rejected_before_secret_bearing_step": [
+    "invalid-date.json",
+    "oversized-range.json",
+    "shell-metacharacters.json"
+  ],
+  "policy_rejections": [
+    "unauthorized-environment.json",
+    "unauthorized-branch.json",
+    "old-token.json",
+    "expired-token.json",
+    "replay.json",
+    "payload-conflict.json"
+  ],
+  "redaction": "Every fixture has secret_status=REDACTED and contains identifiers only; no token value was recorded.",
+  "runner_note": "The command-map runner emitted a Windows CP949 decoder thread traceback while Node wrote Unicode reporter characters, but returned PASS with actual_exit 0. Direct Node failure tests passed 9 of 9."
+}
