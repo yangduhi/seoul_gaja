@@ -42,7 +42,7 @@
 
 ### Task 2: Current observation parser
 
-**Produces:** `normalize_current(raw: Mapping[str, Any], fetchedAt: datetime) -> CurrentObservation`.
+**Produces:** `normalize_current(raw: Mapping[str, Any], fetched_at: datetime) -> CurrentObservation`.
 
 - [ ] Write failing tests for valid, missing, malformed, negative range, reversed range, unknown crowd text, and identity mismatch cases.
 - [ ] Implement strict parsing into `populationMin`, `populationMax`, `crowdLevel`, `sourceUpdatedAt`, and provenance.
