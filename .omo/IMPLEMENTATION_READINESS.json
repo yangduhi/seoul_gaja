@@ -61,13 +61,15 @@
     "local_preview_status": "PASS: HTTP 200 for / and /__debug"
   },
   "threading": {
-    "desired_transport": "codex_app",
-    "status": "THREAD_TOOL_UNAVAILABLE",
+    "desired_transport": "multi_agent_v2",
+    "status": "ACTIVE",
+    "team_id": "team-5e8b1c22",
+    "leader": "main operating task",
     "required_members": [
-      "authority-bootstrap",
-      "readiness-gate"
+      "todo_02_route_contract",
+      "todo_03_receipt_contract"
     ],
-    "note": "Codex App tools were listed but returned No handler registered before team initialization; no team state was fabricated.",
+    "note": "MultiAgentV2 team initialized after explicit implementation approval; members are isolated and bound to the current prep snapshot.",
     "standing_bootstrap_authority": true,
     "retry_policy": "Probe once at the start of a later operating turn; create authority-bootstrap and readiness-gate immediately if the complete durable-task transport works, without another user prompt.",
     "fallback_readiness_audit": {
