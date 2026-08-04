@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "gate": "F4",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "tested_commit": "1ed685a3921f0f96a9e41b3b314bf61e97fe0d8a",
+    "tested_tree": "34985a89666d171bad91e088209385d81d21b8ed"
+  },
+  "command": "final-f4",
+  "actual_exit": 0,
+  "local_checks": [
+    "semantic packet and authority Git-blob verification passed",
+    "scope contains only final verification artifacts",
+    "candidate identifiers are valid full SHA-1 values",
+    "git diff --check passed"
+  ],
+  "blockers": [
+    "Sites Phase00 owner approval",
+    "D1 migration execution/sequence collision authority",
+    "account/service quota plus four full 121-place cadence receipts",
+    "actionlint authoritative lint",
+    "protected default-branch workflow",
+    "browser/visual QA",
+    "baseline Cloudflare ambient TypeScript errors"
+  ],
+  "owner_action": "Provide authorized release, migration, rollback, protected-workflow, and external capability identifiers bound to the final candidate."
+}

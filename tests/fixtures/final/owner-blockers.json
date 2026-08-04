@@ -1,0 +1,12 @@
+{
+  "verdict": "NOT_RUN_BLOCKED",
+  "blockers": [
+    "Sites Phase00 owner approval",
+    "D1 migration execution/sequence collision authority",
+    "account/service quota plus four full 121-place cadence receipts",
+    "actionlint authoritative lint",
+    "protected default-branch workflow",
+    "browser/visual QA",
+    "baseline Cloudflare ambient TypeScript errors"
+  ]
+}
