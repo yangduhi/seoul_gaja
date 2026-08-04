@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "task": "Todo 6 - Close workflow injection and supply-chain boundaries",
-  "observed_at": "2026-08-04T21:00:30+09:00",
+  "observed_at": "2026-08-04T21:05:42+09:00",
   "verdict": "PASS",
-  "candidate_commit": "c8e227b1edd46d901de28bf97a978583761b7d05",
-  "candidate_tree": "0617399f653180f0af3ffe9a2b446bbe7f8a4783",
+  "candidate_commit": "6cd11152de2fd7847591de01ac6bb33c7659c1d5",
+  "candidate_tree": "d92e1e6714545a54fca8a9efd9c2fe2b4e093c9a",
   "changed_paths": [
     ".github/workflows/collect-seoul-crowd-live.yml",
     ".github/workflows/manual-backfill.yml",
@@ -63,6 +63,7 @@
     "rotation": "install next, verify, cut over, revoke prior; overlap maximum 30 minutes; receipts retain token_id and timestamps only",
     "negative_coverage": "malformed date, oversized range, shell metacharacters, unauthorized environment or branch, old or expired token, replay, and payload conflict fixtures are redacted and rejected"
   },
+  "correction": "The workflow permissions assertion now accepts both LF and CRLF source text; security semantics are unchanged and the direct happy gate is portable on this Windows worktree.",
   "limitations": [
     "actionlint is not installed on this worktree. The equivalent local gate consists of source-backed Node assertions plus PyYAML parsing; both passed.",
     "No secret value, live API, external workflow run, push, deployment, merge, or Sites action was performed."

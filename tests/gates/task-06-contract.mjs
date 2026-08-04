@@ -26,7 +26,7 @@ export async function assertWorkflowSecurityBoundary() {
 
   const workflows = await Promise.all(workflowPaths.map(async (filePath) => readFile(filePath, 'utf8')));
   for (const workflow of workflows) {
-    assert.match(workflow, /^permissions:\n  contents: read$/m);
+    assert.match(workflow, /^permissions:\r?\n  contents: read$/m);
     assert.match(workflow, /python-version: "3\.11\.11"/);
     assert.match(workflow, /pip install --require-hashes --only-binary=:all: -r collector\/requirements\.lock/);
     assert.doesNotMatch(workflow, /\b(?:contents|actions|id-token|packages|pull-requests):\s*write\b/);

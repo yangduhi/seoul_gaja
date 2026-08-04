@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "task": "Todo 6 negative workflow-security fixtures",
-  "observed_at": "2026-08-04T21:00:30+09:00",
-  "candidate_commit": "c8e227b1edd46d901de28bf97a978583761b7d05",
-  "candidate_tree": "0617399f653180f0af3ffe9a2b446bbe7f8a4783",
+  "observed_at": "2026-08-04T21:05:42+09:00",
+  "candidate_commit": "6cd11152de2fd7847591de01ac6bb33c7659c1d5",
+  "candidate_tree": "d92e1e6714545a54fca8a9efd9c2fe2b4e093c9a",
   "verdict": "PASS",
   "command": {
     "id": "task-06-failure",
@@ -24,5 +24,5 @@
     "payload-conflict.json"
   ],
   "redaction": "Every fixture has secret_status=REDACTED and contains identifiers only; no token value was recorded.",
-  "runner_note": "The command-map runner emitted a Windows CP949 decoder thread traceback while Node wrote Unicode reporter characters, but returned PASS with actual_exit 0. Direct Node failure tests passed 9 of 9."
+  "runner_note": "The command-map runner emitted a Windows CP949 decoder thread traceback while Node wrote Unicode reporter characters, but returned PASS with actual_exit 0. Direct Node happy and failure tests passed 12 of 12 after the CRLF-safe assertion correction."
 }
