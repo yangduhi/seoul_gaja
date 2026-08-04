@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task": "Todo 3 negative receipt validation",
+  "candidate_commit": "aaf745aef30b5dac34dbe02faf5d399de53b440e",
+  "candidate_tree": "e0b0f3bca93102bbbce15617bacd3c90ac165166",
+  "command_id": "task-03-failure",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "fixtures_rejected": [
+    "blocked-missing-owner-action.json",
+    "fail-missing-failure-evidence.json",
+    "pass-empty-evidence.json",
+    "pass-null-identity.json",
+    "pass-with-blocker.json",
+    "phase-00-missing-cleanup.json",
+    "phase-08-missing-release-binding.json",
+    "raw-secret.json"
+  ],
+  "failure_mode": "Each invalid receipt caused jsonschema Draft 2020-12 validation to exit non-zero; the gate asserts that rejection."
+}
