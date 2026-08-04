@@ -1,0 +1,12 @@
+{
+  "catalog": [
+    { "areaCode": "alpha", "areaName": "Alpha Plaza" },
+    { "areaCode": "beta", "areaName": "Beta Station" }
+  ],
+  "origin": "https://family.example",
+  "restore": {
+    "selection": "beta",
+    "scrollY": 286,
+    "focusTarget": "place-beta"
+  }
+}
