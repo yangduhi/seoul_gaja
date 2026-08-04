@@ -16,7 +16,7 @@ Browser
               ▼
 ChatGPT Sites runtime
  ├─ public read routes
- ├─ protected POST /api/internal/ingest
+ ├─ protected POST /api/internal/ingest/snapshot
  ├─ deterministic materialization routes/jobs supported by the starter
  ├─ hosted environment values/secrets
  └─ D1 binding `DB`
@@ -69,7 +69,7 @@ scheduled slot
 → same bytes hashed, decoded, parsed
 → schema and semantic validation
 → normalized generation payload
-→ POST /api/internal/ingest
+→ POST /api/internal/ingest/snapshot
 → D1 transaction
 → current last-known-good + raw history + run receipt
 ```
