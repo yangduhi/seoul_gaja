@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "canonical_ingest": {
+    "method": "POST",
+    "path": "/api/internal/ingest/snapshot",
+    "accepted_status": "accepted"
+  },
+  "provenance_receipt": {
+    "storage": "D1",
+    "append_only": true,
+    "redacted": true,
+    "required_fields": [
+      "receipt_id",
+      "receipt_version",
+      "workflow_run_id",
+      "collector_version",
+      "parser_version",
+      "catalog_version",
+      "raw_response_sha256",
+      "per_place_outcome_counts",
+      "source_times",
+      "fetch_times",
+      "canonical_payload_sha256"
+    ],
+    "forbidden_fields": ["authorization", "token", "api_key", "raw_response_body"],
+    "retention_days": 90,
+    "minimum_raw_data_retention_days": 7
+  },
+  "source_bindings": {
+    "materialization_rows": ["source_receipt_id", "source_receipt_version"],
+    "profile_rows": ["source_receipt_id", "source_receipt_version"]
+  },
+  "capacity": {
+    "selected_cadence_minutes": 15,
+    "catalog_place_count": 121,
+    "max_attempts_per_place": 2,
+    "max_concurrent_requests": 4,
+    "retryable_conditions": ["network_error", "timeout", "5xx"],
+    "non_retryable_conditions": ["4xx", "quota_exhausted"],
+    "worst_case": {
+      "scheduled_runs_per_day": 96,
+      "requests_per_run": 242,
+      "requests_per_day": 23232
+    },
+    "required_owner_quota_evidence": ["owner", "account", "service", "documented_limit", "evidence_reference"],
+    "required_live_cadence_runs": 4,
+    "required_scenarios": ["bounded_retry", "scheduled_overlap", "manual_backfill_overlap"]
+  },
+  "verdicts": {
+    "sample_or_single_canary": "FAIL",
+    "missing_owner_bound_quota": "NOT_RUN_BLOCKED",
+    "missing_live_scheduled_runs": "NOT_RUN_BLOCKED"
+  }
+}

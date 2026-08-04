@@ -1,0 +1,36 @@
+{
+  "provenance_receipt": {
+    "receipt_id": "receipt-2026-08-04T00:00:00Z",
+    "receipt_version": 1,
+    "workflow_run_id": "workflow-run-redacted-id",
+    "collector_version": "collector-v1",
+    "parser_version": "parser-v1",
+    "catalog_version": "catalog-v1",
+    "raw_response_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "per_place_outcome_counts": {"refreshed": 121, "carried_forward": 0, "unavailable": 0},
+    "source_times": ["2026-08-04T00:00:00Z"],
+    "fetch_times": ["2026-08-04T00:00:05Z"],
+    "canonical_payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "source_bindings": {
+    "materialization_row": {"source_receipt_id": "receipt-2026-08-04T00:00:00Z", "source_receipt_version": 1},
+    "profile_row": {"source_receipt_id": "receipt-2026-08-04T00:00:00Z", "source_receipt_version": 1}
+  },
+  "quota_evidence": {
+    "owner": "OWNER_APPROVED_REFERENCE",
+    "account": "ACCOUNT_REDACTED_ID",
+    "service": "Seoul Open Data API",
+    "documented_limit": 24000,
+    "evidence_reference": "OWNER_QUOTA_RECEIPT_REQUIRED"
+  },
+  "cadence_runs": [
+    {"scheduled_at": "2026-08-04T00:00:00Z", "run_id": "run-1", "status": "accepted", "attempted_count": 121, "retry_attempts": 0},
+    {"scheduled_at": "2026-08-04T00:15:00Z", "run_id": "run-2", "status": "accepted", "attempted_count": 121, "retry_attempts": 1},
+    {"scheduled_at": "2026-08-04T00:30:00Z", "run_id": "run-3", "status": "accepted", "attempted_count": 121, "retry_attempts": 0},
+    {"scheduled_at": "2026-08-04T00:45:00Z", "run_id": "run-4", "status": "accepted", "attempted_count": 121, "retry_attempts": 0}
+  ],
+  "overlap_scenarios": [
+    {"kind": "scheduled_overlap", "result": "REJECTED_OVERLAP"},
+    {"kind": "manual_backfill_overlap", "result": "REJECTED_OVERLAP"}
+  ]
+}
