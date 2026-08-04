@@ -1,0 +1,5 @@
+{
+  "phase": "08", "verdict": "PASS", "commit": "1111111111111111111111111111111111111111",
+  "tree": "2222222222222222222222222222222222222222", "base_commit": "3333333333333333333333333333333333333333", "base_tree": "4444444444444444444444444444444444444444",
+  "tests": [{ "command": "npm test", "exitCode": 0 }], "evidence": [{ "path": "docs/evidence/check.json", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }], "blockers": [], "phase_proof": { "release_checklist": "completed" }, "secret_status": "REDACTED"
+}

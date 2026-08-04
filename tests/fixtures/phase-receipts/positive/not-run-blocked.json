@@ -1,0 +1,13 @@
+{
+  "phase": "08",
+  "verdict": "NOT_RUN_BLOCKED",
+  "commit": null,
+  "tree": null,
+  "base_commit": null,
+  "base_tree": null,
+  "tests": [],
+  "evidence": [],
+  "blockers": ["Owner has not approved the Sites deployment."],
+  "owner_action": "Approve the Sites deployment in the product UI.",
+  "secret_status": "REDACTED"
+}

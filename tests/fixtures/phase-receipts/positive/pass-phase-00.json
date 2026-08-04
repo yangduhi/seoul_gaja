@@ -1,0 +1,26 @@
+{
+  "phase": "00",
+  "verdict": "PASS",
+  "commit": "1111111111111111111111111111111111111111",
+  "tree": "2222222222222222222222222222222222222222",
+  "base_commit": "3333333333333333333333333333333333333333",
+  "base_tree": "4444444444444444444444444444444444444444",
+  "tests": [{ "command": "npm test", "exitCode": 0 }],
+  "evidence": [{ "path": "docs/evidence/phase-00/check.json", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }],
+  "blockers": [],
+  "phase_proof": {
+    "probe": {
+      "commit": "1111111111111111111111111111111111111111",
+      "tree": "2222222222222222222222222222222222222222",
+      "saved_version_id": "sites-version-probe-redacted",
+      "deployment_url": "https://preview.example.test/probe"
+    },
+    "cleanup": {
+      "commit": "5555555555555555555555555555555555555555",
+      "tree": "6666666666666666666666666666666666666666",
+      "saved_version_id": "sites-version-cleanup-redacted",
+      "deployment_url": "https://preview.example.test/cleanup"
+    }
+  },
+  "secret_status": "REDACTED"
+}

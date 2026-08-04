@@ -1,0 +1,5 @@
+{
+  "phase": "02", "verdict": "FAIL", "commit": "1111111111111111111111111111111111111111",
+  "tree": "2222222222222222222222222222222222222222", "base_commit": "3333333333333333333333333333333333333333", "base_tree": "4444444444444444444444444444444444444444",
+  "tests": [{ "command": "npm test", "exitCode": 1 }], "evidence": [], "blockers": ["Contract assertion failed."], "secret_status": "REDACTED"
+}

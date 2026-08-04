@@ -1,0 +1,13 @@
+{
+  "phase": "01",
+  "verdict": "PASS",
+  "commit": "1111111111111111111111111111111111111111",
+  "tree": "2222222222222222222222222222222222222222",
+  "base_commit": "3333333333333333333333333333333333333333",
+  "base_tree": "4444444444444444444444444444444444444444",
+  "tests": [{ "command": "npm test", "exitCode": 0, "summary": "2 passed" }],
+  "evidence": [{ "path": "docs/evidence/phase-01/check.json", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }],
+  "blockers": [],
+  "phase_proof": { "catalog": "121 official place identities checked" },
+  "secret_status": "REDACTED"
+}
