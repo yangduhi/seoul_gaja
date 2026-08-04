@@ -1,0 +1,55 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+
+const root = new URL("../../", import.meta.url);
+
+function fromRoot(path) {
+  return new URL(path, root);
+}
+
+async function text(path) {
+  return readFile(fromRoot(path), "utf8");
+}
+
+test("Calm Glass tokens and primitives precede screen parity checks", async () => {
+  const [tokensText, contractText, css, panel, navigation, sheet, chart, phase03, fixtureText] = await Promise.all([
+    text("design/design-tokens.json"),
+    text("docs/execution/contracts/design-system-contract.json"),
+    text("app/globals.css"),
+    text("app/_design/GlassPanel.tsx"),
+    text("app/_design/Navigation.tsx"),
+    text("app/_design/PlaceDetailSheet.tsx"),
+    text("app/_design/ChartAlternatives.tsx"),
+    text("app/_design/Phase03CatalogSurface.tsx"),
+    text("tests/fixtures/task-11/screens.json"),
+  ]);
+  const tokens = JSON.parse(tokensText);
+  const contract = JSON.parse(contractText);
+  const fixture = JSON.parse(fixtureText);
+
+  assert.equal(tokens.name, "Calm Glass");
+  assert.equal(tokens.emphasis.gradient, "current-decision-cta-only");
+  assert.equal(tokens.emphasis.maximum_glass_depths, 3);
+  assert.equal(contract.authoritative_token_file, "design/design-tokens.json");
+  assert.equal(contract.screens.length, 5);
+  assert.deepEqual(fixture.viewports.map(({ width }) => width), [390, 430, 768, 1616]);
+  assert.match(panel, /glassDepths = \["content", "floating", "strong"\]/);
+  assert.match(panel, /emphasis === "current-decision"/);
+  assert.match(navigation, /<nav aria-label=\{label\}/);
+  assert.match(navigation, /aria-current=/);
+  assert.match(navigation, /type="button"/);
+  assert.doesNotMatch(navigation, /href=|next\/link|router\./i);
+  assert.match(sheet, /role="dialog"/);
+  assert.match(sheet, /aria-modal="true"/);
+  assert.match(sheet, /event\.key === "Escape"/);
+  assert.match(sheet, /sheetRef\.current\?\.focus\(\)/);
+  assert.match(chart, /<table>/);
+  assert.match(chart, /<caption>/);
+  assert.match(phase03, /aria-live="polite"/);
+  assert.match(phase03, /<GlassPanel/);
+  assert.match(css, /\.sg-glass-panel--decision, \.sg-current-decision-cta \{ background: linear-gradient/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(css, /min-height: 44px/);
+  assert.match(css, /outline-offset: 2px/);
+});

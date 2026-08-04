@@ -1,0 +1,10 @@
+{
+  "fixtures": [
+    { "id": "forced-reduced-motion", "expect": "motion-suppressed" },
+    { "id": "keyboard-only", "expect": "focus-visible-and-escape-close" },
+    { "id": "narrow-390", "expect": "primary-action-visible" },
+    { "id": "map-chart-failure", "expect": "text-table-alternative" },
+    { "id": "overflow", "expect": "no-clipped-primary-action" },
+    { "id": "unauthorized-navigation", "expect": "rejected" }
+  ]
+}
