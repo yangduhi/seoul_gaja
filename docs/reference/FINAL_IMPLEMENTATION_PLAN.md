@@ -6,7 +6,7 @@
 
 원본 대화 URL: `https://chatgpt.com/c/6a6f7659-f0ac-83e8-a1ed-1e0c3a3da2a9`
 
-이 문서는 대화에서 확정된 구현 계약을 실행 가능한 형태로 정리한 것이다. 세부 문구와 프롬프트 전문은 `transcript/chat-current-main.txt`에서 확인한다.
+이 문서는 대화에서 확정된 구현 계약을 실행 가능한 형태로 정리한 것이다. 실행자는 `.omo/authority-lock.json`에 고정된 문서만 사용한다.
 
 ## 1. 최종 경계
 
@@ -73,7 +73,7 @@ ChatGPT Sites UI
 - 서울시 혼잡도는 실제 현장 인구가 아닌 추정 지표다.
 - `KT 기지국 기반`으로 고정하지 않고 서울시 최신 계약의 통신사 비교·가중 융합 설명을 사용한다.
 - 절대적 안전 판정, 정확한 현장 인원, 특정 시각의 확정적 한산함을 말하지 않는다.
-- UI에는 `source_updated_at`(서울시 기준 시각)과 `fetched_at`(수집 시각)을 분리해 표시한다.
+- UI/API에는 `sourceUpdatedAt`(서울시 기준 시각)과 `fetchedAt`(수집 시각)을 분리해 표시한다. D1 persistence columns use the database snake_case convention.
 - 원천 지연 시 `현재 원천 데이터 갱신이 지연되고 있습니다`를 표시한다.
 - 공식 12시간 예측은 자체 예측보다 우선한다.
 
@@ -180,7 +180,7 @@ PASS/FAIL/NOT_RUN_BLOCKED만 허용한다. 실제 secret 입력, Deploy, sharing
 필수 evidence:
 
 ```text
-docs/evidence/phase-00/receipt.json
+docs/evidence/phase-00/phase-receipt.json
 docs/evidence/phase-00/commands.txt
 docs/evidence/phase-00/test-results.txt
 docs/evidence/phase-00/browser-checks.json
@@ -238,7 +238,7 @@ Phase 00 receipt가 `PASS`이고 main에 병합된 뒤에만 `<01~08>`을 한 �
 
 ```text
 design/design.md
-→ design/tokens.json
+→ design/design-tokens.json
 → component/screen contracts
 → deterministic mockup
 → AI concept board
@@ -248,11 +248,9 @@ PNG 내부 문구·숫자·지도·장소명은 fixture일 수 있으며 데이�
 
 ## 10. 현재 보존 상태와 미해결 자산
 
-- 원문 캡처와 DOM snapshot은 `transcript/`에 저장했다.
-- 최신 재확인에서 main 캡처는 `22,769 chars`, SHA-256 `8f5ebfcac32e72af565c2688133d2a32968e01847b27ab7f2ca6d58f702f7835`이며, 이전 `17,224 chars` 캡처도 별도 보존했다.
-- 공개 공유 URL HTML shell은 `source/shared-chat.html`에 저장했다. shell만으로는 로그인 대화 원문이 재현되지 않으므로 브라우저 캡처를 함께 보존한다.
+- Active execution authority is `.omo/authority-lock.json`, `docs/execution/AMENDMENT-v4.1.md`, and the bound approved plan. Legacy capture paths are audit-only and are not executor inputs.
 - Design Pack ZIP은 실제 다운로드·추출·manifest 검증 완료다.
 - 최신 답변의 `seoul-gaja-chatgpt-sites-only-v4.0.0.zip`은 실제 다운로드·추출했다. ZIP SHA-256은 `af2ea053fe540e62e886ffb107434bc89f370e6242210afa25cc73f24d470e83`, 크기는 `8,575,163 bytes`, content-root SHA-256은 `9d70c004be12e2f5da5685074714bcb48c8dc1bef1560c035d31a4ea99ad34e6`, `MANIFEST.sha256`는 `106/106` 일치한다. 추출 경로는 `assets/codex-pack-v4/seoul-gaja-chatgpt-sites-only-v4.0.0/`이다.
 - 생성 컨셉 이미지는 AI concept board `4장`과 deterministic mockup `5장`, 총 `9 PNG`를 `assets/generated-concept-images/`에 별도 보관하고 `INVENTORY.json`에 파일 크기·SHA-256을 기록했다.
 - 구버전 `seoul-crowd-radar-family-final-v3.0.0.zip`과 SHA-256 `3f2116f1453e1e8f34e3743bd641cff0b6169f4d79e4793e07c6448d8f6789b1`은 최신 v4로 교체된 대화상 구버전이며, 별도 파일은 보존하지 않는다.
-- 사용자 입력 `1000023624.png`, `1000023627.png`은 사용자가 저장 불필요로 지정했으므로 보관 범위에서 제외했다. 기존 signed URL 오류 응답은 provenance 참고용으로만 `transcript/source-image-download-errors/`에 남아 있다.
+- 사용자 입력 `1000023624.png`, `1000023627.png`은 사용자가 저장 불필요로 지정했으므로 보관 범위에서 제외했다. Historical signed-URL error material remains audit-only and is not an execution input.

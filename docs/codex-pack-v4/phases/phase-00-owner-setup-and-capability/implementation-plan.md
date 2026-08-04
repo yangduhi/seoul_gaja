@@ -25,7 +25,7 @@ Exact runtime paths are selected from the Sites starter and documented in the re
 - Create: one server health route
 - Create: one D1 probe migration/table
 - Create: one server-only hosted-secret probe
-- Create: one temporary protected synthetic ingest route
+- Create: one disposable `phase-00-capability-probe` route at `POST /api/internal/capability-probe/ingest`
 - Test: unit/contract tests for all probes
 - Test: real-browser preview checks
 - Create: `docs/adr/0001-chatgpt-sites-runtime.md`
@@ -63,7 +63,8 @@ Exact runtime paths are selected from the Sites starter and documented in the re
 
 - [ ] Add temporary `SITE_INGEST_TOKEN` through Site Settings; never record its value.
 - [ ] Write tests for missing, wrong and matching Bearer token.
-- [ ] Implement a bounded synthetic JSON ingest route.
+- [ ] Implement the bounded synthetic JSON `phase-00-capability-probe` route at `POST /api/internal/capability-probe/ingest`.
+- [ ] The disposable capability probe is not the production ingest route and cannot prove Phase 02 production behavior; production ingest is exclusively `POST /api/internal/ingest/snapshot`.
 - [ ] Verify hosted secret is available server-side and absent client-side.
 - [ ] Keep the route inaccessible from a deployment until the owner approves the deployment step.
 
@@ -80,7 +81,7 @@ Exact runtime paths are selected from the Sites starter and documented in the re
 - [ ] After approval, Deploy the saved version through ChatGPT web/desktop only.
 - [ ] POST one synthetic record from local curl or manually triggered GitHub Action.
 - [ ] Read it back from D1, verify response-body hashes, then delete the synthetic row.
-- [ ] Disable or convert the temporary route before Phase 01.
+- [ ] Disable or remove the disposable `phase-00-capability-probe` route before Phase 01.
 
 ### Task 7: Gate and receipt
 

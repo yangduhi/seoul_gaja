@@ -22,7 +22,7 @@
 - Create: `docs/runbook/scheduler.md`
 - Create: `docs/runbook/rollback.md`
 - Create: `docs/runbook/family-sharing.md`
-- Create: `docs/evidence/phase-08/release-receipt.json`
+- Create: `docs/evidence/phase-08/phase-receipt.json` with Phase 08 release identifiers in its nested `release` object
 - Modify: GitHub Actions production secrets
 - Modify: Kakao JavaScript SDK domains
 
@@ -71,7 +71,7 @@
 - [ ] Document how to rotate token, change interval, inspect health, and re-enable a disabled schedule.
 - [ ] Document Sites version rollback.
 - [ ] Document Kakao domain update after URL change.
-- [ ] Record production URL, deployment time, commit/tree, saved version ID, and workflow run IDs.
+- [ ] Record production URL, deployment time, commit/tree, saved version ID, and workflow run IDs in the nested `release` object of `docs/evidence/phase-08/phase-receipt.json`.
 
 
 ## Required Commands
