@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "task": 8,
+  "command_id": "task-08-failure",
+  "argv": ["node", "--test", "tests/gates/task-08-failure.test.mjs"],
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "7a1f6099934d81f71e0403a516de2420c7c4e2e1",
+    "tested_tree": "ff219bba7a758a582fbcf5627b9267835e8a5016"
+  },
+  "scope": "Local negative fixtures reject samples, missing provenance, unsafe retry, and overlap while returning NOT_RUN_BLOCKED for owner/live evidence gaps.",
+  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-cadence-blocked.json"
+}

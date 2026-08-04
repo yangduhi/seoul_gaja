@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "task": 8,
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "tested_commit": "7a1f6099934d81f71e0403a516de2420c7c4e2e1",
+    "tested_tree": "ff219bba7a758a582fbcf5627b9267835e8a5016"
+  },
+  "blockers": [
+    "No owner/account/service-bound quota evidence is available in this local worktree.",
+    "No four-consecutive whole-catalog scheduled-run receipts are available in this local worktree."
+  ],
+  "owner_action": "The owner must provide a redacted quota receipt bound to the selected service and account, then authorize and retain four consecutive 121-place scheduled-run receipts at the selected cadence, including bounded-retry and overlap/manual-backfill outcomes.",
+  "next_allowed_phase": "none",
+  "secret_status": "REDACTED"
+}

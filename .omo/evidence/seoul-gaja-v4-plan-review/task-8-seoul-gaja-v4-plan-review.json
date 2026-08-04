@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "task": 8,
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "tested_commit": "7a1f6099934d81f71e0403a516de2420c7c4e2e1",
+    "tested_tree": "ff219bba7a758a582fbcf5627b9267835e8a5016"
+  },
+  "local_gates": [
+    {"command_id": "task-08-happy", "actual_exit": 0, "verdict": "PASS"},
+    {"command_id": "task-08-failure", "actual_exit": 0, "verdict": "PASS"}
+  ],
+  "provenance_contract": "docs/execution/contracts/provenance-cadence-contract.json",
+  "blockers": [
+    "Owner/account/service quota evidence is unavailable.",
+    "Live evidence of four consecutive whole-catalog scheduled runs is unavailable."
+  ],
+  "owner_action": "Provide redacted owner/account/service quota evidence and four consecutive retained 121-place scheduled-run receipts at the selected cadence; do not treat a sample or one canary as capacity proof.",
+  "limitations": [
+    "No secret, live API call, migration execution, backfill, workflow trigger, Sites Save/Deploy, push, or merge was performed.",
+    "Local fixtures prove the fail-closed contract only and do not prove production capacity."
+  ],
+  "secret_status": "REDACTED"
+}
