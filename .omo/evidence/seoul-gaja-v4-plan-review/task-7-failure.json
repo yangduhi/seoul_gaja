@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "task": "Todo 7 snapshot-truth failure gate",
+  "observed_at": "2026-08-04T21:37:00+09:00",
+  "candidate_commit": "79b74ceec2013a96af179cd833d7e02a993a0682",
+  "candidate_tree": "9e6d2c3cf1bcad1d77a9c7515cb5c6f1991ef728",
+  "command": {
+    "id": "task-07-failure",
+    "argv": ["node", "--test", "tests/gates/task-07-failure.test.mjs"],
+    "actual_exit": 0,
+    "verdict": "PASS"
+  },
+  "coverage": [
+    "same-attempt hash conflict returns 409",
+    "identical replay returns existing receipt",
+    "recovery rejects non-partial supersession and skipped attempts",
+    "more-than-five-minute future skew rejects and smaller skew clamps",
+    "counter mismatch rejects, 96 first activation retains LKG, all-unavailable remains audit-only",
+    "0003 sequence collision is NOT_RUN_BLOCKED pending v4.1 authority amendment"
+  ],
+  "supplemental_checks": {
+    "migration_execution": "NOT_RUN_BLOCKED: owner must authorize execution of migrations/0003_snapshot_revision_and_provenance.sql against the approved Sites D1 binding after candidate integration. No migration was executed."
+  }
+}

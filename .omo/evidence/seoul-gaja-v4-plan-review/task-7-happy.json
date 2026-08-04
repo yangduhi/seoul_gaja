@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "task": "Todo 7 snapshot-truth happy gate",
+  "observed_at": "2026-08-04T21:37:00+09:00",
+  "candidate_commit": "79b74ceec2013a96af179cd833d7e02a993a0682",
+  "candidate_tree": "9e6d2c3cf1bcad1d77a9c7515cb5c6f1991ef728",
+  "command": {
+    "id": "task-07-happy",
+    "argv": ["node", "--test", "tests/gates/task-07-happy.test.mjs"],
+    "actual_exit": 0,
+    "verdict": "PASS"
+  },
+  "coverage": [
+    "121 unique identities and reconciled counters",
+    "first activation at 97 refreshed-fresh places",
+    "replacement at one refreshed plus 96 non-expired carried places",
+    "partial recovery with explicit supersession",
+    "UTC freshness boundaries and fetchedAt degraded provenance",
+    "forward-only 0003 migration compatibility fixture"
+  ],
+  "supplemental_checks": {
+    "lint": "PASS: npm run lint",
+    "build": "PASS: npm run build",
+    "migration_execution": "NOT_RUN_BLOCKED: owner must authorize execution of migrations/0003_snapshot_revision_and_provenance.sql against the approved Sites D1 binding after candidate integration. No migration was executed."
+  }
+}
