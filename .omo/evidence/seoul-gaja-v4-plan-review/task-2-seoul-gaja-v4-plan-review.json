@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
   "task": 2,
-  "observed_at": "2026-08-04T20:24:02+09:00",
+  "observed_at": "2026-08-04T20:38:00+09:00",
   "verdict": "PASS",
   "binding": {
     "branch": "team/team-5e8b1c22/A",
     "base_head": "313ba34350b2e9fb130971a09b368d8b5c13aee2",
     "base_tree": "9414c9d075a42212192e9bbfc0e8b45ce290b604",
-    "candidate_state": "local Todo 2 worktree changes; final commit and tree are reported by the member handoff"
+    "candidate_state": "corrective Todo 2 code commit",
+    "code_commit": "d81630c9293d2a3f1dd82f8b1617122b143e0c77",
+    "code_tree": "f0e7c24c60c6d26e48e03d25b5c195fb3b8e08be"
   },
   "checks": [
     {
@@ -28,6 +30,12 @@
       "command": "git diff --check",
       "actual_exit": 0,
       "verdict": "PASS"
+    },
+    {
+      "command": "python docs/codex-pack-v4/scripts/validate_packet.py docs/codex-pack-v4",
+      "actual_exit": 1,
+      "verdict": "INHERITED_FAIL",
+      "detail": "The immutable prep-base packet fails only at unchanged 00_overview/00_final_decision.md. Todo 2 restored its four prior packet changes; its docs/codex-pack-v4 diff against 313ba34 is empty."
     }
   ],
   "contract": {
@@ -40,6 +48,7 @@
     "design_tokens": "design/design-tokens.json"
   },
   "limitations": [
+    "docs/codex-pack-v4 is immutable audit evidence. The active terminology gate reads docs/execution/AMENDMENT-v4.1.md and docs/reference/FINAL_IMPLEMENTATION_PLAN.md instead of changing packet files.",
     "The command-map runner prints a Windows cp949 UnicodeDecodeError from its output-reader thread for Node's Unicode reporter glyphs, while both subprocesses return exit 0 and the runner reports PASS.",
     "No live API, secret, migration, Sites Save/Deploy, push, merge, or external action was performed."
   ]
