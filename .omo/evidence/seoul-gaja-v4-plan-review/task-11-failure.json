@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "todo": 11,
+  "verdict": "PASS_WITH_VISUAL_NOT_RUN_BLOCKED",
+  "candidate": {
+    "commit": "f506d513c2e2ac2361bbbe865e463c8b078d1143",
+    "tree": "d70660ec9bd6352ed5f261659fe90af4ba05c922"
+  },
+  "local_gate": "task-11-failure",
+  "visual_browser": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "No browser or screenshot capability was available in the assigned worktree; failure fixtures only prove the source contract."
+  }
+}

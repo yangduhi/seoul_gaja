@@ -1,0 +1,16 @@
+{
+  "screens": [
+    { "id": "home-map", "variants": ["ready", "map-unavailable"] },
+    { "id": "place-detail", "variants": ["sheet", "direct-route", "expired"] },
+    { "id": "family-recommendations", "variants": ["eligible", "no-recommendation"] },
+    { "id": "history-insight", "variants": ["provisional", "missing-data"] },
+    { "id": "desktop-dashboard", "variants": ["ready", "narrow-overflow"] }
+  ],
+  "viewports": [
+    { "name": "narrow", "width": 390, "height": 844 },
+    { "name": "mobile", "width": 430, "height": 932 },
+    { "name": "intermediate", "width": 768, "height": 1024 },
+    { "name": "desktop", "width": 1616, "height": 923 }
+  ],
+  "required": ["focus", "keyboard", "aria-live", "reduced-motion", "contrast", "chart-alternative", "no-clipped-primary-action", "no-unauthorized-navigation"]
+}

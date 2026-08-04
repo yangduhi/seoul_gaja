@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "scope": "Todo 11 design baseline and deterministic accessibility parity",
+  "authoritative_token_file": "design/design-tokens.json",
+  "primitive_files": [
+    "app/_design/GlassPanel.tsx",
+    "app/_design/Navigation.tsx",
+    "app/_design/PlaceDetailSheet.tsx",
+    "app/_design/ChartAlternatives.tsx",
+    "app/_design/Phase03CatalogSurface.tsx"
+  ],
+  "screens": ["home-map", "place-detail", "family-recommendations", "history-insight", "desktop-dashboard"],
+  "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+  "required_accessibility": [
+    "keyboard-operable navigation and sheet close",
+    "visible focus ring with 2px offset",
+    "polite aria-live status",
+    "reduced-motion override",
+    "chart text summary and table alternative",
+    "44px minimum interactive target",
+    "no clipped primary action"
+  ],
+  "visual_receipt_policy": {
+    "mockups_are_not_pass": true,
+    "browser_or_screenshot_unavailable_verdict": "NOT_RUN_BLOCKED",
+    "forbidden": ["unauthorized-navigation", "concept-board-pixel-authority", "gradient-on-every-card"]
+  }
+}

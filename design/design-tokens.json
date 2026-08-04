@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "name": "Calm Glass",
+  "source_of_truth": "docs/codex-pack-v4/design/design.md",
+  "color": {
+    "surface": { "base": "#EEF3FB", "elevated": "#FFFFFF", "dark": "#07101D" },
+    "text": { "primary": "#0D1726", "secondary": "#657387", "inverse": "#F7F9FC" },
+    "brand": { "blue": "#0A84FF", "indigo": "#5E5CE6", "purple": "#8E7DFF" },
+    "status": { "relaxed": "#34C759", "normal": "#5AC8FA", "busy": "#FF9F0A", "crowded": "#FF453A", "unknown": "#657387" }
+  },
+  "space": { "xs": "8px", "sm": "10px", "md": "14px", "lg": "18px", "xl": "28px" },
+  "radius": { "panel": "22px", "sheet": "28px", "pill": "999px" },
+  "motion": { "fast": "160ms", "standard": "240ms", "slow": "360ms", "easing": "cubic-bezier(.2,.8,.2,1)" },
+  "glass": {
+    "content": { "background": "rgba(255,255,255,.82)", "border": "rgba(255,255,255,.72)", "blur": "30px" },
+    "floating": { "background": "rgba(255,255,255,.62)", "border": "rgba(255,255,255,.68)", "blur": "26px" },
+    "strong": { "background": "rgba(255,255,255,.9)", "border": "rgba(255,255,255,.84)", "blur": "30px" }
+  },
+  "accessibility": { "body_contrast_minimum": "4.5:1", "large_text_contrast_minimum": "3:1", "focus_ring": "2px #0A84FF", "touch_target_minimum": "44px" },
+  "emphasis": { "gradient": "current-decision-cta-only", "elevated_glass": "current-decision-cta-only", "maximum_glass_depths": 3 }
+}
