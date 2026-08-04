@@ -1,0 +1,7 @@
+{
+  "kind": "unauthorized_environment",
+  "environment": "unreviewed-ingest",
+  "secret_status": "REDACTED",
+  "expected_result": "REJECTED",
+  "reason": "environment is not the required reviewed environment"
+}

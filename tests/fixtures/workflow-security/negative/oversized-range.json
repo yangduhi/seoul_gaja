@@ -1,0 +1,6 @@
+{
+  "kind": "invalid_date_range",
+  "start_date": "2026-01-01",
+  "end_date": "2026-02-02",
+  "secret_status": "REDACTED"
+}

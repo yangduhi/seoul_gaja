@@ -1,0 +1,7 @@
+{
+  "kind": "expired_token",
+  "token_id": "ingest-token-expired-redacted",
+  "secret_status": "REDACTED",
+  "expected_result": "REJECTED",
+  "reason": "token expiry is enforced before ingest"
+}

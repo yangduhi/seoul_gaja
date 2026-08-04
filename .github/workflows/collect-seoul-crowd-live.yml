@@ -1,0 +1,47 @@
+name: collect-seoul-crowd-live
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seoul-crowd-live-collection
+  cancel-in-progress: false
+
+jobs:
+  collect-and-ingest:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    environment: production-ingest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.11.11"
+      - name: Install hash-locked collector dependencies
+        run: "python -m pip install --require-hashes --only-binary=:all: -r collector/requirements.lock"
+      - name: Collect and validate 121-place snapshot
+        env:
+          SEOUL_OPEN_DATA_KEY: ${{ secrets.SEOUL_OPEN_DATA_KEY }}
+          APP_TIMEZONE: Asia/Seoul
+        run: >-
+          python -m collector.cli collect
+          --catalog data/seoul-places.json
+          --output "$RUNNER_TEMP/snapshot.json"
+          --receipt "$RUNNER_TEMP/collect-receipt.json"
+      - name: Ingest validated snapshot
+        env:
+          SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
+          SITE_INGEST_PATH: /api/internal/ingest/snapshot
+          SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+        run: >-
+          python -m collector.cli push
+          --input "$RUNNER_TEMP/snapshot.json"
+          --url "$SITE_INGEST_URL"
+          --path "$SITE_INGEST_PATH"
+          --token-env SITE_INGEST_TOKEN

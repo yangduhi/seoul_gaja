@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "task": "Todo 6 - Close workflow injection and supply-chain boundaries",
+  "observed_at": "2026-08-04T21:00:30+09:00",
+  "verdict": "PASS",
+  "candidate_commit": "c8e227b1edd46d901de28bf97a978583761b7d05",
+  "candidate_tree": "0617399f653180f0af3ffe9a2b446bbe7f8a4783",
+  "changed_paths": [
+    ".github/workflows/collect-seoul-crowd-live.yml",
+    ".github/workflows/manual-backfill.yml",
+    "collector/requirements.lock",
+    "docs/execution/contracts/workflow-security-policy.json",
+    "scripts/validate_backfill_inputs.mjs",
+    "tests/fixtures/workflow-security/",
+    "tests/gates/task-06-contract.mjs",
+    "tests/gates/task-06-happy.test.mjs",
+    "tests/gates/task-06-failure.test.mjs"
+  ],
+  "checks": [
+    {
+      "id": "task-06-happy",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-06-happy"],
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "id": "task-06-failure",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-06-failure"],
+      "actual_exit": 0,
+      "verdict": "PASS"
+    },
+    {
+      "id": "direct-node-gates",
+      "argv": ["node", "--test", "tests/gates/task-06-happy.test.mjs", "tests/gates/task-06-failure.test.mjs"],
+      "actual_exit": 0,
+      "result": "PASS: 12 tests"
+    },
+    {
+      "id": "yaml-parse-equivalent",
+      "argv": ["python", "-c", "PyYAML safe_load on both .github/workflows files"],
+      "actual_exit": 0,
+      "result": "PASS: YAML parsed"
+    },
+    {
+      "id": "hash-locked-install",
+      "argv": ["python", "-m", "pip", "install", "--require-hashes", "--only-binary=:all:", "-r", "collector/requirements.lock"],
+      "actual_exit": 0,
+      "result": "PASS: stdlib-only collector lock accepted"
+    },
+    {
+      "id": "diff-and-packet-boundary",
+      "argv": ["git", "diff", "--check"],
+      "actual_exit": 0,
+      "result": "PASS: no whitespace errors; docs/codex-pack-v4 byte-identical to prep HEAD 381d4f9af880efbb2b0ef8da622461e8e80952ce"
+    }
+  ],
+  "security_contract": {
+    "manual_input": "strict YYYY-MM-DD real-calendar parser, end date not before start date, maximum 31-day span",
+    "secret_handoff": "input expressions appear only in the no-secret validation job; secret-bearing jobs consume validated outputs through environment variables and quoted argv",
+    "supply_chain": "all workflow actions use 40-character commit SHAs; Node 22.13.0 and Python 3.11.11 are fixed; pip uses --require-hashes",
+    "least_privilege": "contents: read only; production-ingest environment and refs/heads/main job condition",
+    "ingest_scope": "POST /api/internal/ingest/snapshot only, ingest:snapshot only, no admin or public-read scope",
+    "rotation": "install next, verify, cut over, revoke prior; overlap maximum 30 minutes; receipts retain token_id and timestamps only",
+    "negative_coverage": "malformed date, oversized range, shell metacharacters, unauthorized environment or branch, old or expired token, replay, and payload conflict fixtures are redacted and rejected"
+  },
+  "limitations": [
+    "actionlint is not installed on this worktree. The equivalent local gate consists of source-backed Node assertions plus PyYAML parsing; both passed.",
+    "No secret value, live API, external workflow run, push, deployment, merge, or Sites action was performed."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "injection_attempt",
+  "input": "2026-08-01;curl invalid.example",
+  "secret_status": "REDACTED",
+  "expected_result": "REJECTED",
+  "reason": "injection input is rejected before the secret-bearing job"
+}
