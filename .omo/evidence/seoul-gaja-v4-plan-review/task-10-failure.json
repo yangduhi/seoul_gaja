@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "task": 10,
+  "command_id": "task-10-failure",
+  "argv": ["node", "--test", "tests/gates/task-10-failure.test.mjs"],
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "f506d513c2e2ac2361bbbe865e463c8b078d1143",
+    "tested_tree": "d70660ec9bd6352ed5f261659fe90af4ba05c922"
+  },
+  "scope": "Local negative contract: invalid or removed place fallback with noindex, close through one Back restoration command, and unavailable or expired data without forecast or better-time actions.",
+  "browser_capability": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "Visual/browser approval is withheld pending the separately owned design surface and resolution of inherited app/layout.tsx local font-load errors."
+  }
+}
