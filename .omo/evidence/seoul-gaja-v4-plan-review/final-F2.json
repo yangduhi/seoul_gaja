@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "gate": "F2",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "tested_commit": "1ed685a3921f0f96a9e41b3b314bf61e97fe0d8a",
+    "tested_tree": "34985a89666d171bad91e088209385d81d21b8ed"
+  },
+  "command": "final-f2",
+  "actual_exit": 0,
+  "local_checks": [
+    "Todo 4 through Todo 9 happy/failure gates passed",
+    "phase receipt schema validation passed",
+    "workflow security source scan passed",
+    "121-place and four-run cadence contract fixtures passed"
+  ],
+  "blockers": [
+    "Sites Phase00 owner approval",
+    "D1 migration execution/sequence collision authority",
+    "account/service quota plus four full 121-place cadence receipts",
+    "actionlint authoritative lint",
+    "protected default-branch workflow",
+    "browser/visual QA",
+    "baseline Cloudflare ambient TypeScript errors"
+  ],
+  "owner_action": "Provide the named owner-controlled capability, migration, quota/cadence, actionlint, and protected-workflow evidence bound to this candidate or its approved successor."
+}

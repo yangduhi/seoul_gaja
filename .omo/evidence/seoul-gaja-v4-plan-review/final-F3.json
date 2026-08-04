@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "gate": "F3",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "tested_commit": "1ed685a3921f0f96a9e41b3b314bf61e97fe0d8a",
+    "tested_tree": "34985a89666d171bad91e088209385d81d21b8ed"
+  },
+  "command": "final-f3",
+  "actual_exit": 0,
+  "local_observation": "The local production server responded HTTP 200 at http://localhost:3000/.",
+  "blocker": "No browser is attached to the available browser runtime, so real local product and accessibility interaction cannot be observed.",
+  "not_evidence": [
+    "deterministic mockup",
+    "screenshot-only",
+    "source fixture"
+  ],
+  "owner_action": "Attach an actual browser capability and rerun the family-planning journey at the required viewports."
+}

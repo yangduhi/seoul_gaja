@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "gate": "F1",
+  "verdict": "APPROVE",
+  "binding": {
+    "tested_commit": "1ed685a3921f0f96a9e41b3b314bf61e97fe0d8a",
+    "tested_tree": "34985a89666d171bad91e088209385d81d21b8ed"
+  },
+  "command": "final-f1",
+  "actual_exit": 0,
+  "checks": [
+    "semantic authority and immutable packet Git-blob verification passed",
+    "canonical production route and phase receipt schema checks passed",
+    "Todo 2 and Todo 3 happy/failure contradiction gates passed",
+    "command map includes the four final gates"
+  ],
+  "limitations": [
+    "This is a local authority/coherence approval and does not approve external capability or release actions."
+  ]
+}
