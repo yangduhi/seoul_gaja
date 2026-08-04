@@ -1,0 +1,23 @@
+{
+  "branch_local": {
+    "candidate_sha": "1111111111111111111111111111111111111111",
+    "reviewed_candidate_sha": "1111111111111111111111111111111111111111",
+    "tests": [{ "id": "task-05-happy", "exit_code": 0 }]
+  },
+  "default_branch_smoke": {
+    "owner_approved_merge": true,
+    "approved_merge_sha": "2222222222222222222222222222222222222222",
+    "merged_candidate_sha": "1111111111111111111111111111111111111111",
+    "workflow_run": {
+      "workflow_present_on_default_branch": true,
+      "non_production_endpoint_available": true,
+      "head_sha": "2222222222222222222222222222222222222222",
+      "ingest_target": "POST /api/internal/ingest/snapshot"
+    },
+    "receipt": {
+      "candidate_sha": "3333333333333333333333333333333333333333",
+      "approved_merge_sha": "2222222222222222222222222222222222222222",
+      "workflow_head_sha": "2222222222222222222222222222222222222222"
+    }
+  }
+}

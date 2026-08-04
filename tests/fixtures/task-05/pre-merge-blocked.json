@@ -1,0 +1,10 @@
+{
+  "branch_local": {
+    "candidate_sha": "1111111111111111111111111111111111111111",
+    "reviewed_candidate_sha": "1111111111111111111111111111111111111111",
+    "tests": [{ "id": "task-05-happy", "exit_code": 0 }]
+  },
+  "default_branch_smoke": {
+    "owner_approved_merge": false
+  }
+}
