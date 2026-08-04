@@ -1,0 +1,2 @@
+# The collector security boundary currently uses only Python's standard library.
+# Future third-party additions must use exact versions and SHA-256 hashes here.

@@ -1,0 +1,9 @@
+{
+  "start_date": "2026-08-01",
+  "end_date": "2026-08-31",
+  "environment": "production-ingest",
+  "branch": "main",
+  "token_id": "ingest-token-current-redacted",
+  "secret_status": "REDACTED",
+  "expected_result": "ACCEPTED"
+}

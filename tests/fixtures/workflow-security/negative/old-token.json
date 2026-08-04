@@ -1,0 +1,7 @@
+{
+  "kind": "old_token",
+  "token_id": "ingest-token-prior-redacted",
+  "secret_status": "REDACTED",
+  "expected_result": "REJECTED",
+  "reason": "token was revoked after the 30-minute rotation overlap"
+}
