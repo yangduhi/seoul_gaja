@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "task": 12,
+  "command_id": "task-12-happy",
+  "argv": ["node", "--test", "tests/gates/task-12-happy.test.mjs"],
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "1628ba7971fcffbafe3931108a006a2dc3522684",
+    "tested_tree": "5407d72d7c791cbe0a0392bf4ebbdadf207e9204"
+  },
+  "local_closeout": {
+    "semantic_validator": "PASS: v4.1 plan/amendment Git-blob hashes, packet ZIP/content-root/manifest, phase receipt schema, workflow security, stale-literal, and scope checks",
+    "packet_scope": "AUDIT_ONLY",
+    "workflow_security": "PASS: source-backed scan",
+    "lint": "PASS: npm run lint",
+    "build": "PASS: npm run build",
+    "diff_check": "PASS: git diff --check"
+  },
+  "owner_only_blockers": [
+    "Sites Phase00 owner approval",
+    "D1 migration execution/sequence collision authority",
+    "account/service quota plus four full 121-place cadence receipts",
+    "actionlint authoritative lint",
+    "protected default-branch workflow",
+    "browser/visual QA",
+    "baseline Cloudflare ambient TypeScript errors"
+  ],
+  "limitations": [
+    "The frozen authority-lock validator rejects the team candidate identity and Windows working-tree CRLF bytes; semantic closeout therefore verifies its bound immutable authority and packet contents from Git blobs.",
+    "The packet-native validator is also CRLF-sensitive in this worktree; its structural scope remains audit-only.",
+    "No secret, live API, migration, external workflow action, release action, sharing change, or default-branch action was attempted."
+  ]
+}
