@@ -93,6 +93,10 @@ function validateScope() {
     'tests/gates/task-12-failure.test.mjs',
     'tests/fixtures/task-12/',
     '.omo/evidence/seoul-gaja-v4-plan-review/task-12-',
+    '.omo/evidence/seoul-gaja-v4-plan-review/final-F1.json',
+    '.omo/evidence/seoul-gaja-v4-plan-review/final-F2.json',
+    '.omo/evidence/seoul-gaja-v4-plan-review/final-F3.json',
+    '.omo/evidence/seoul-gaja-v4-plan-review/final-F4.json',
   ];
   return changed.filter((path) => !allowed.some((prefix) => path === prefix || path.startsWith(prefix)))
     .map((path) => `out-of-scope change: ${path}`);
