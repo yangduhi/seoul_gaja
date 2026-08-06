@@ -76,6 +76,9 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   assert.match(sheet, /aria-modal="true"/);
   assert.match(sheet, /event\.key === "Escape"/);
   assert.match(sheet, /sheetRef\.current\?\.focus\(\)/);
+  assert.match(sheet, /const previouslyFocusedElement =\s*document\.activeElement instanceof HTMLElement/);
+  assert.match(sheet, /previouslyFocusedElement\?\.isConnected/);
+  assert.match(sheet, /previouslyFocusedElement\.focus\(\)/);
   assert.match(chart, /<table>/);
   assert.match(chart, /<caption>/);
   assert.match(phase03, /aria-live="polite"/);

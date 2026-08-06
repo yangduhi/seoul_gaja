@@ -14,7 +14,16 @@ export function PlaceDetailSheet({ children, label, onRequestClose }: PlaceDetai
   const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const previouslyFocusedElement = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     sheetRef.current?.focus();
+
+    return () => {
+      if (previouslyFocusedElement?.isConnected) {
+        previouslyFocusedElement.focus();
+      }
+    };
   }, []);
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
