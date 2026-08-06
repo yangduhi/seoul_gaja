@@ -53,8 +53,8 @@ test("Given the Phase 00 owner checklist, when activation is reviewed, then stat
 
 test("Given a matching candidate receipt, when its identity is checked, then it binds the current exact commit and tree", async () => {
   const receipt = JSON.parse(await readFile(new URL("../../docs/evidence/phase-00/phase-receipt.json", import.meta.url), "utf8"));
-  const commit = "2ee3e43559c3cac19036c35644dce030688c9a7a";
-  const tree = "11cfaffcdbcd1219bbb3b48e8df76a452882be7e";
+  const commit = "2a8815643a7cd780b1ac80567e6ebad14fce53f5";
+  const tree = "6b2f95b946dab3ae8de1a19a9af414a314bb5151";
   assert.equal(receipt.commit, commit);
   assert.equal(receipt.tree, tree);
 });

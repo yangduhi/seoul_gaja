@@ -131,6 +131,6 @@ test("Given cleanup state, when health and POST are handled, then both routes ar
 
 test("Given the parent integration identity, when the canonical receipt is checked, then it must be regenerated instead of using HEAD^", async () => {
   const receipt = JSON.parse(await readFile(new URL("../../docs/evidence/phase-00/phase-receipt.json", import.meta.url), "utf8"));
-  assert.equal(receipt.commit, "2ee3e43559c3cac19036c35644dce030688c9a7a");
-  assert.equal(receipt.tree, "11cfaffcdbcd1219bbb3b48e8df76a452882be7e");
+  assert.equal(receipt.commit, "2a8815643a7cd780b1ac80567e6ebad14fce53f5");
+  assert.equal(receipt.tree, "6b2f95b946dab3ae8de1a19a9af414a314bb5151");
 });

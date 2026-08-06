@@ -4,11 +4,11 @@
   "observed_at": "2026-08-07T00:00:00+09:00",
   "verdict": "NOT_RUN_BLOCKED",
   "binding": {
-    "branch": "codex/todo4-phase00",
+    "branch": "codex/prep-v4-1",
     "base_head": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
     "base_tree": "d876c8389e82b9b772ae637731102923babb9d07",
-    "candidate_commit": "2ee3e43559c3cac19036c35644dce030688c9a7a",
-    "candidate_tree": "11cfaffcdbcd1219bbb3b48e8df76a452882be7e",
+    "candidate_commit": "2a8815643a7cd780b1ac80567e6ebad14fce53f5",
+    "candidate_tree": "6b2f95b946dab3ae8de1a19a9af414a314bb5151",
     "reason": "Candidate identity binds the implementation commit; evidence commit is separate so receipt identity is not self-referential. Parent integration must regenerate this binding if cherry-pick remaps the commit."
   },
   "baseline": {
