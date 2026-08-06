@@ -30,7 +30,8 @@
       "provenance": "refreshed",
       "crowd_level": "NORMAL",
       "population_min": 10,
-      "population_max": 20
+      "population_max": 20,
+      "raw_hash": "sha256-alpha"
     },
     {
       "area_code": "beta",
@@ -44,7 +45,8 @@
       "provenance": "carried_forward",
       "crowd_level": "BUSY",
       "population_min": 30,
-      "population_max": 40
+      "population_max": 40,
+      "raw_hash": "sha256-beta"
     }
   ],
   "forecast": [
