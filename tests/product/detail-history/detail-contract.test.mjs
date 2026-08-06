@@ -15,4 +15,10 @@ test("detail surface exposes source-backed forecast, history, and recovery contr
   for (const token of ["공식 예측", "히스토리 인사이트", "가족과 공유", "최근 데이터가 만료", "결측값은 0으로 대체하지 않습니다", "Escape"]) assert.match(route, new RegExp(token));
   assert.match(route, /forecast\.length >= 6/);
   assert.match(route, /window\.history\.back/);
+  assert.match(route, /seoul-gaja:detail-restored/);
+});
+
+test("invalid or removed places are excluded from indexing", () => {
+  assert.match(page, /robots: \{ index: isOfficialPlace, follow: isOfficialPlace \}/);
+  assert.match(page, /catalog\.some\(\(place\) => place\.areaCode === areaCode\)/);
 });

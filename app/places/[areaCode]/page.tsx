@@ -5,15 +5,19 @@ import { PlaceDetailClient } from "./PlaceDetailClient";
 import type { DetailPayload } from "./PlaceDetailClient";
 import { readProductViewModel } from "../../../server/product-read-model";
 
+const safeAreaCode = /^[A-Za-z0-9_-]+$/;
+
 type PlacePageProps = Readonly<{
   params: Promise<Readonly<{ areaCode: string }>>;
 }>;
 
 export async function generateMetadata({ params }: PlacePageProps): Promise<Metadata> {
   const { areaCode } = await params;
+  const result = safeAreaCode.test(areaCode) ? await readProductViewModel(env?.DB, { expectedCatalogCount: 121 }) : null;
+  const isOfficialPlace = result?.status === "READY" && result.data.catalog.some((place) => place.areaCode === areaCode);
   return {
     title: `Place detail: ${areaCode}`,
-    robots: { index: true, follow: true },
+    robots: { index: isOfficialPlace, follow: isOfficialPlace },
   };
 }
 
