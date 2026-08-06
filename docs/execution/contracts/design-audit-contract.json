@@ -1,9 +1,81 @@
 {
-  "schema_version": 1,
-  "contract_id": "seoul-gaja-design-audit-v1",
+  "schema_version": 2,
+  "contract_id": "seoul-gaja-design-audit-v2",
   "status": "ACTIVE",
   "scope": "All local UI and frontend implementation slices in v4.1",
-  "purpose": "Make design auditing and bounded visual improvement autonomous while preserving the existing execution and design authority chain.",
+  "purpose": "Make design auditing and unbounded score-driven visual improvement autonomous while preserving the existing execution and design authority chain.",
+  "quality_target": {
+    "target_score": 100,
+    "scale": "10 components x 10 points",
+    "score_formula": "Sum 10 points for every component whose status is PASS.",
+    "component_rule": "A component earns 10 points only when every listed check has candidate-bound evidence and no applicable DEVIATION, OMISSION, or UNVERIFIED remains.",
+    "components": [
+      {
+        "id": "C01_SOURCE_FIDELITY",
+        "points": 10,
+        "checks": ["authority source mapping", "token and component contract fidelity"]
+      },
+      {
+        "id": "C02_LAYOUT_GEOMETRY",
+        "points": 10,
+        "checks": ["frame and grid alignment", "container hierarchy", "spacing and border scale"]
+      },
+      {
+        "id": "C03_RESPONSIVE_VIEWPORTS",
+        "points": 10,
+        "checks": ["390x844", "430x932", "768x1024", "1616x923", "no clipping or unintended overflow"]
+      },
+      {
+        "id": "C04_TYPOGRAPHY_CJK",
+        "points": 10,
+        "checks": ["authoritative font and fallbacks", "Korean CJK wrapping", "readable hierarchy"]
+      },
+      {
+        "id": "C05_SURFACE_TOKENS",
+        "points": 10,
+        "checks": ["token usage", "surface depth", "contrast", "decoration restraint"]
+      },
+      {
+        "id": "C06_INTERACTION_STATES",
+        "points": 10,
+        "checks": ["hover", "active", "disabled", "loading", "empty", "error", "sheet and direct entry behavior"]
+      },
+      {
+        "id": "C07_ACCESSIBILITY",
+        "points": 10,
+        "checks": ["keyboard operation", "focus ring", "aria-live", "reduced motion", "chart alternatives", "44px targets"]
+      },
+      {
+        "id": "C08_CONTENT_HIERARCHY",
+        "points": 10,
+        "checks": ["primary action clarity", "decision-oriented information hierarchy", "state and fallback comprehension"]
+      },
+      {
+        "id": "C09_SYSTEM_CONSISTENCY",
+        "points": 10,
+        "checks": ["primitive reuse", "component consistency", "icon meaning", "desktop map/list/detail balance"]
+      },
+      {
+        "id": "C10_EVIDENCE_COMPLETENESS",
+        "points": 10,
+        "checks": ["real-surface evidence", "exact HEAD/tree binding", "MengTo recommendation", "scorecard and recheck ledger"]
+      }
+    ],
+    "score_states": {
+      "score_less_than_target": "BELOW_TARGET",
+      "score_equals_target": "PASS_100",
+      "required_evidence_missing": "NOT_RUN_BLOCKED"
+    },
+    "loop_states": [
+      "AUDIT_REQUIRED",
+      "BELOW_TARGET",
+      "IMPROVEMENT_PLAN_REQUIRED",
+      "APPLYING_IMPROVEMENTS",
+      "RECHECK_REQUIRED",
+      "PASS_100",
+      "HARD_BLOCKED"
+    ]
+  },
   "authority": {
     "mode": "ADDITIVE_PROCESS_CONTRACT",
     "execution_authority_order": [
@@ -131,29 +203,44 @@
       "id": "D4_CLASSIFY",
       "name": "finding classification",
       "required_statuses": ["MATCH", "DEVIATION", "OMISSION", "UNVERIFIED"],
-      "success": "Every observed difference has source, evidence, impact, severity, and owner.",
-      "failure": "The audit remains FAIL until ambiguous findings are resolved or explicitly marked UNVERIFIED."
+      "success": "Every observed difference has source, evidence, impact, severity, owner, and iteration identity.",
+      "failure": "The audit remains BELOW_TARGET until ambiguous findings are resolved or explicitly marked UNVERIFIED."
     },
     {
-      "id": "D5_REMEDIATE",
-      "name": "bounded autonomous improvement",
-      "required_action": "The implementation executor fixes safe local P0-P2 findings in the same bounded UI slice without asking the user for routine approval.",
-      "success": "A focused change reduces the finding set without changing authority or scope.",
+      "id": "D5_SCORE",
+      "name": "100-point scorecard",
+      "required_action": "Run all ten quality components and write scorecard.json with component status, points, evidence, baseline score, and target score.",
+      "success": "The score is reproducible and equals the sum of component points.",
+      "failure": "Any score below 100 enters BELOW_TARGET and can never produce PASS."
+    },
+    {
+      "id": "D6_PLAN",
+      "name": "mandatory improvement plan",
+      "required_when": "score < target_score",
+      "required_action": "Create improvement-plan.json before changing code. It must list every in-scope finding, ordered improvements, expected score delta, changed paths, acceptance criteria, and recheck evidence required.",
+      "success": "A concrete plan exists for every unmet score component.",
+      "failure": "No improvement plan means FAIL_NON_TERMINAL; the implementation may not claim progress or PASS."
+    },
+    {
+      "id": "D7_APPLY",
+      "name": "autonomous improvement application",
+      "required_action": "Apply the improvement plan's safe local actions without routine user approval. There is no cycle-count limit; continue while score < 100 and no hard blocker exists.",
+      "success": "Applied changes and actual changed paths are recorded against the plan.",
       "failure": "Escalate authority, dependency, route, external-action, or scope changes to the existing owner gate."
     },
     {
-      "id": "D6_RECHECK",
-      "name": "post-change re-audit",
-      "required_action": "Repeat D0 through D4 after every remediation commit or integration.",
-      "success": "Evidence is bound to the new candidate and no stale receipt is reused.",
-      "failure": "FAIL or NOT_RUN_BLOCKED remains explicit."
+      "id": "D8_RECHECK",
+      "name": "full re-audit and rescore",
+      "required_action": "Repeat D0 through D5 after every improvement batch or integration, then return to D6 whenever score < 100.",
+      "success": "A new score and score delta are bound to the new candidate; score 100 transitions to PASS_100.",
+      "failure": "Score below 100 remains FAIL_NON_TERMINAL; missing browser/source/owner capability becomes HARD_BLOCKED and NOT_RUN_BLOCKED."
     },
     {
-      "id": "D7_CLOSE",
-      "name": "design gate closeout",
+      "id": "D9_CLOSE",
+      "name": "100-point design gate closeout",
       "required_gate": "PASS",
-      "success": "No unresolved P0/P1 findings, all required viewports and accessibility checks are proven, and no NOT_RUN_BLOCKED remains.",
-      "failure": "Keep the slice open or block the applicable F3/final gate."
+      "success": "Score is exactly 100, all in-scope findings are resolved, all required viewport and accessibility evidence is current, and no hard blocker remains.",
+      "failure": "Score below 100 is never a closeout. Keep the loop open or record NOT_RUN_BLOCKED for a named hard blocker."
     }
   ],
   "checks": {
@@ -183,9 +270,14 @@
   },
   "remediation": {
     "autonomous_for_safe_local_changes": true,
-    "max_cycles_per_slice": 2,
+    "cycle_policy": "UNBOUNDED_UNTIL_SCORE_100_OR_HARD_BLOCKER",
+    "max_cycles_per_slice": null,
+    "target_score": 100,
+    "improvement_plan_required_below_target": true,
+    "full_recheck_required_after_each_plan": true,
     "auto_fix_severities": ["P0", "P1", "P2"],
-    "report_only_severities": ["P3"],
+    "plan_required_severities": ["P0", "P1", "P2", "P3"],
+    "report_only_severities": [],
     "approval_required_for": [
       "authority or design contract changes",
       "new dependency or package",
@@ -193,7 +285,9 @@
       "external API, secret, migration, deploy, push, merge, sharing, or destructive action",
       "scope expansion beyond the assigned UI slice"
     ],
-    "on_cycle_exhausted": "FAIL with the remaining findings and exact recheck condition",
+    "on_score_target": "PASS with score 100 and a complete recheck ledger",
+    "on_score_stall": "FAIL_NON_TERMINAL; keep the loop open and record the missing improvement or design decision",
+    "on_hard_blocker": "NOT_RUN_BLOCKED with the missing capability, owner action, and next allowed action",
     "on_browser_unavailable": "NOT_RUN_BLOCKED with the missing capability and next allowed action"
   },
   "evidence": {
@@ -202,6 +296,9 @@
       "audit-manifest.json",
       "mengto-recommendation.json",
       "contract-matrix.json",
+      "scorecard.json",
+      "improvement-plan.json",
+      "loop-ledger.json",
       "browser-captures or an explicit NOT_RUN_BLOCKED record",
       "findings.json",
       "verdict.json"
@@ -216,20 +313,49 @@
       "impact",
       "owner",
       "recheck_condition",
+      "iteration",
+      "expected_score_delta",
+      "improvement_plan_id",
       "head_sha",
       "tree_sha"
+    ],
+    "required_verdict_fields": [
+      "score",
+      "target_score",
+      "loop_state",
+      "baseline_score",
+      "score_delta",
+      "improvements_applied",
+      "recheck_evidence",
+      "head_sha",
+      "tree_sha"
+    ],
+    "required_loop_fields": [
+      "iteration",
+      "baseline_score",
+      "target_score",
+      "improvement_plan_id",
+      "applied_changes",
+      "score_after",
+      "score_delta",
+      "recheck_verdict",
+      "head_sha",
+      "tree_sha",
+      "next_loop_state"
     ],
     "gate_verdicts": ["PASS", "FAIL", "NOT_RUN_BLOCKED"],
     "forbidden_claims": [
       "mockup-only PASS",
       "fixture-only semantic PASS",
       "stale-HEAD PASS",
-      "browser PASS without real route evidence"
+      "browser PASS without real route evidence",
+      "PASS below score 100",
+      "improvement applied without a subsequent full recheck"
     ]
   },
   "handoff": {
-    "audit_to_implementation": "Send only bounded findings with source, evidence, severity, and recheck condition.",
-    "implementation_to_audit": "Return the new exact HEAD/tree and changed-path list before re-audit.",
+    "audit_to_implementation": "Send an improvement plan for every score below 100 with source, evidence, expected score delta, changed paths, and acceptance criteria.",
+    "implementation_to_audit": "Return the new exact HEAD/tree, changed-path list, applied plan ID, and actual score delta before full re-audit.",
     "recheck_required_after": "Any change that can affect layout, tokens, components, routes, accessibility, renderer, or responsive behavior.",
     "user_prompt_policy": "Do not ask the user for routine local audit, fix, recheck, or Wave progression. Preserve the existing explicit owner gates."
   },
@@ -237,6 +363,6 @@
     "P0": "Core action inaccessible, severe route break, or accessibility blocker.",
     "P1": "Major source-contract, responsive, interaction, or state deviation.",
     "P2": "Material visual hierarchy, spacing, typography, surface, or consistency deviation.",
-    "P3": "Optional taste or future polish that does not affect contract or usability."
+    "P3": "In-scope visual polish gap that contributes to the 100-point target; it is not report-only."
   }
 }
