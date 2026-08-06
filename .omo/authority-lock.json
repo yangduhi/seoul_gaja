@@ -9,8 +9,8 @@
     "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
     "preparation_branch": "codex/prep-v4-1",
     "implementation_candidate": {
-      "preparation_head": "6450006a2e07d20b77bd24aaa3fe75053e89ae02",
-      "preparation_tree": "7eae482176e5d6586505e7d9dee8585d7560dd03"
+      "preparation_head": "0e7c47b9a61f3d2e01c82929ce5152d8926c5541",
+      "preparation_tree": "9232f63d000d1d47dd4bdba5e40b3b37ff3018bb"
     },
     "plan": {
       "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
@@ -49,7 +49,7 @@
   },
   "starter": {
     "manifest": "package.json",
-    "manifest_sha256": "410e6f7b0dbf0fdc332306559dc3375f718bae8211662c4c539eee4272add2e3",
+    "manifest_sha256": "409bb6e4714c4952f5799d9a7628c041f0b3b4c7d699c37ae3e604c3218e5203",
     "lockfile": "package-lock.json",
     "lockfile_sha256": "508e5e494cb77250db352459ed25e92614886e7f38c5739334649616976d9439",
     "hosting_config": ".openai/hosting.json",
