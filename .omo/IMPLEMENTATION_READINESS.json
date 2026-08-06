@@ -26,7 +26,7 @@
     "command_map_path": "docs/execution/contracts/execution-command-map.json",
     "command_map_sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
     "authority_lock_path": ".omo/authority-lock.json",
-    "authority_lock_sha256": "970b906e3599e2c77323f4c7dfc3008c14344edf7db90f0468ff8174733c53ef",
+    "authority_lock_sha256": "54f382382ef82ecd44501af36c180c916c5279e85f4b5aa1b3c87cbfb80d64ad",
     "validator": "PASS"
   },
   "approval_scope": {

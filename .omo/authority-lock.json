@@ -31,7 +31,7 @@
     "command_map": {
       "path": "docs/execution/contracts/execution-command-map.json",
       "sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
-      "authority_validator_sha256": "1c257ba191267af5e530e7f60c1b5d6839e03b9b93d81a3395e750c3a8cd51c0",
+      "authority_validator_sha256": "e62841522e70e3cea874917033e30c370b325a3cf1d2f3641404f2d92f973030",
       "validator_sha256": "6cadd5886383462e1b0f01c404a04a04f96080e3f3f4bf17c34034e784a778d1",
       "runner_sha256": "fc13d3ec7df9373e867ddfb2643e52817d165e7148bb775349e9ec940b8984a3",
       "checkout_checker_sha256": "fbe441e6394153271a4c5992acfa786b7cb907facdd86bbc256ad9162688b947",

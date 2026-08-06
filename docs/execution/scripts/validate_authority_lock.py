@@ -131,7 +131,7 @@ def main() -> None:
         {"path": starter["manifest"], "sha256": starter["manifest_sha256"]},
         {"path": starter["lockfile"], "sha256": starter["lockfile_sha256"]},
         {"path": starter["hosting_config"], "sha256": starter["hosting_config_sha256"]},
-        {"path": "docs/codex-pack-v4/manifest.sha256", "sha256": packet["extracted_manifest_sha256"]},
+        {"path": "docs/codex-pack-v4/MANIFEST.sha256", "sha256": packet["extracted_manifest_sha256"]},
     ]
     for artifact in artifacts:
         path = REPOSITORY_ROOT / artifact["path"]
