@@ -137,7 +137,7 @@
 .mapMarker[data-index="3"] { top: 30%; left: 72%; }
 .mapMarker[data-index="4"] { top: 74%; left: 75%; }
 .mapMarker[data-index="5"] { top: 46%; left: 48%; }
-.mapContent { position: relative; z-index: 1; display: grid; align-content: space-between; height: 100%; min-height: 312px; }
+.mapContent { position: relative; z-index: 3; display: grid; align-content: space-between; height: 100%; min-height: 312px; }
 .mapHeading { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
 .mapHeading h2 { margin: 0; color: var(--sg-text-primary); font-size: var(--sg-type-screen-title); letter-spacing: -.04em; }
 .mapHeading p { max-width: 260px; margin: 7px 0 0; color: var(--sg-text-secondary); font-size: var(--sg-type-caption); line-height: 1.5; }
