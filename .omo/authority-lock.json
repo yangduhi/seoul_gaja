@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "locked_at": "2026-08-06T12:03:50+09:00",
+  "locked_at": "2026-08-07T03:17:39+09:00",
   "authority": {
     "approval_basis": "User explicitly approved safe local implementation in isolated worktrees while retaining all owner-controlled external-action gates.",
     "repository_url": "https://github.com/yangduhi/seoul_gaja",
@@ -9,12 +9,12 @@
     "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
     "preparation_branch": "codex/prep-v4-1",
     "implementation_candidate": {
-      "preparation_head": "2b3b3361c53d6947046c7b979fa58ded14bfb506",
-      "preparation_tree": "a85177b2b35726328ceebaa02c558ebefd1ec62d"
+      "preparation_head": "e094f534de5b25c4098159cb26d2eb4525758fec",
+      "preparation_tree": "dda59e145381663cd385753eac77d497f9ff2bd8"
     },
     "plan": {
       "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
-      "sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98"
+      "sha256": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1"
     },
     "amendment": {
       "path": "docs/execution/AMENDMENT-v4.1.md",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-04T20:13:08+09:00",
+  "updated_at": "2026-08-07T03:17:39+09:00",
   "state": "IMPLEMENTING_LOCAL",
   "implementation_allowed": true,
   "implementation_approval": {
@@ -20,13 +20,13 @@
   },
   "authority": {
     "plan_path": ".omo/plans/seoul-gaja-v4-plan-review.md",
-    "plan_sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98",
+    "plan_sha256": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
     "amendment_path": "docs/execution/AMENDMENT-v4.1.md",
     "amendment_sha256": "b0da4eb07ddfe8a8be341a636085751cebc6967d57db726d7ff9219fa5592be1",
     "command_map_path": "docs/execution/contracts/execution-command-map.json",
     "command_map_sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
     "authority_lock_path": ".omo/authority-lock.json",
-    "authority_lock_sha256": "f6ec30e956d9aa5d6e2063d51bf97108e756e3834b2d76964cf8241eeb8eb4ca",
+    "authority_lock_sha256": "872f345ec7938189453fcb5627668d3c38fdd60c2e9bc73cd127f9ad5e7ec363",
     "validator": "PASS"
   },
   "approval_scope": {
