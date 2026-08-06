@@ -1,1 +1,1 @@
-{"kind":"sample_or_single_canary","place_count":3,"cadence_runs":1,"expected_verdict":"FAIL"}
+{"expected_verdict":"FAIL","expected_code":"WHOLE_CATALOG_REQUIRED","capacity_proof":{"catalog_place_count":3,"runs":[],"overlap":{"scheduled":"REJECTED_OVERLAP","manual_backfill":"REJECTED_OVERLAP"}}}
