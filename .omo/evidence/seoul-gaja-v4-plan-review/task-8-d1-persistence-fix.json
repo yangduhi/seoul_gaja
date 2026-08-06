@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "task": "Todo 8 D1 provenance persistence fix",
+  "verdict": "PASS",
+  "release_verdict": "NOT_RUN_BLOCKED",
+  "authority": {
+    "base_head": "54b4a8247e31e6f7dbb811b99666ecb2aac14117",
+    "base_tree": "86952b22345638d1493ebddfa4fc0b6d4d2419e8",
+    "plan_sha256_lf_normalized": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
+    "authority_validator": "PASS"
+  },
+  "implementation": {
+    "branch": "codex/todo8-d1-persistence-fix",
+    "commit": "5406649c7c55117ffc19d07806631ad270b5459c",
+    "tree": "1ff5c6e4f4f7c58e2a5414b91e75b8536425e38a",
+    "behavior": [
+      "accepted canonical ingest persists one redacted provenance_receipts row through env.DB before returning 202",
+      "identical receipt content is idempotent and conflicting content fails closed",
+      "materialization source binding persists source_receipt_id and source_receipt_version",
+      "missing D1 binding returns 503 provenance_storage_unavailable",
+      "migration 0003 additively creates append-only receipt and dedicated derived-source binding tables"
+    ]
+  },
+  "verification": [
+    {
+      "scenario": "RED boundary before implementation",
+      "invocation": "node --test tests/gates/task-08-happy.test.mjs",
+      "exit": 1,
+      "observable": "accepted ingest returned 202 but provenance_receipts INSERT count was 0, expected 1",
+      "artifact": ".omo/evidence/task-8-d1-persistence-red.txt"
+    },
+    {
+      "scenario": "command-map happy",
+      "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-08-happy",
+      "exit": 0,
+      "observable": "5 tests passed; command-map verdict PASS and actual_exit 0",
+      "artifact": ".omo/evidence/task-8-d1-command-happy.txt"
+    },
+    {
+      "scenario": "command-map failure matrix",
+      "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-08-failure",
+      "exit": 0,
+      "observable": "14 tests passed; malformed, forbidden-field, stale-retention, overlap, retry, immutable-D1, and missing-DB paths failed closed",
+      "artifact": ".omo/evidence/task-8-d1-command-failure.txt"
+    },
+    {
+      "scenario": "focused D1 mock suite run 1",
+      "invocation": "node --test tests/gates/task-08-contract.mjs tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+      "exit": 0,
+      "observable": "20 tests passed, 0 failed; one redacted INSERT row, readback, 90-day retention, idempotency, conflict rejection, source binding, and migration assertions passed",
+      "artifact": ".omo/evidence/task-8-d1-focused-run-1.txt"
+    },
+    {
+      "scenario": "focused D1 mock suite run 2",
+      "invocation": "node --test tests/gates/task-08-contract.mjs tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+      "exit": 0,
+      "observable": "20 tests passed, 0 failed on immediate repeat",
+      "artifact": ".omo/evidence/task-8-d1-focused-run-2.txt"
+    },
+    {
+      "scenario": "static syntax, JSON, diff, forbidden-storage, and source-consumer checks",
+      "invocation": "node --check changed MJS files; parse Task 8 JSON; git diff --check; rg source bindings and forbidden storage keys",
+      "exit": 0,
+      "observable": "STATIC_CHECKS=PASS, 18 JSON files parsed, source binding has production consumer, no server/temp DB was started",
+      "artifact": ".omo/evidence/task-8-d1-static-checks.txt"
+    }
+  ],
+  "tooling": {
+    "eslint": {
+      "verdict": "NOT_RUN_BLOCKED",
+      "invocation": "npx eslint server/provenance-cadence.mjs server/ingest-snapshot-request.mjs app/api/internal/ingest/snapshot/route.js tests/gates/task-08-d1-mock.mjs tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+      "blocker": "isolated worktree has no installed eslint package; ERR_MODULE_NOT_FOUND from eslint.config.mjs"
+    }
+  },
+  "external_gates": [
+    {
+      "gate": "D1 migration execution",
+      "verdict": "NOT_RUN_BLOCKED",
+      "blocker": "owner authorization for a live D1 migration was not granted"
+    },
+    {
+      "gate": "owner/account/service quota evidence",
+      "verdict": "NOT_RUN_BLOCKED",
+      "blocker": "OWNER_BOUND_QUOTA_EVIDENCE_REQUIRED"
+    },
+    {
+      "gate": "four consecutive 121-place live scheduled receipts",
+      "verdict": "NOT_RUN_BLOCKED",
+      "blocker": "FOUR_LIVE_SCHEDULED_RUN_RECEIPTS_REQUIRED"
+    }
+  ],
+  "cleanup": {
+    "implementation_worktree_clean_before_evidence_receipt": true,
+    "servers_started": 0,
+    "temporary_databases_created": 0,
+    "secret_values_recorded": 0,
+    "push_merge_deploy_or_sites_actions": 0
+  }
+}
