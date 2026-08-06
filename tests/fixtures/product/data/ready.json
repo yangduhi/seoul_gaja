@@ -1,0 +1,98 @@
+{
+  "catalog": [
+    {
+      "area_code": "alpha",
+      "area_name": "Alpha Place",
+      "latitude": 37.5001,
+      "longitude": 127.0001,
+      "catalog_version": "catalog-2026-08",
+      "active": 1
+    },
+    {
+      "area_code": "beta",
+      "area_name": "Beta Place",
+      "latitude": null,
+      "longitude": null,
+      "catalog_version": "catalog-2026-08",
+      "active": 1
+    }
+  ],
+  "snapshot": [
+    {
+      "area_code": "alpha",
+      "snapshot_id": "snapshot-2026-08-06T00:00:00Z",
+      "catalog_version": "catalog-2026-08",
+      "snapshot_status": "accepted",
+      "source_updated_at": "2026-08-06T00:00:00Z",
+      "fetched_at": "2026-08-06T00:05:00Z",
+      "stored_at": "2026-08-06T00:06:00Z",
+      "availability": "available",
+      "provenance": "refreshed",
+      "crowd_level": "NORMAL",
+      "population_min": 10,
+      "population_max": 20
+    },
+    {
+      "area_code": "beta",
+      "snapshot_id": "snapshot-2026-08-06T00:00:00Z",
+      "catalog_version": "catalog-2026-08",
+      "snapshot_status": "accepted",
+      "source_updated_at": "2026-08-06T00:00:00Z",
+      "fetched_at": "2026-08-06T00:05:00Z",
+      "stored_at": "2026-08-06T00:06:00Z",
+      "availability": "carried_forward",
+      "provenance": "carried_forward",
+      "crowd_level": "BUSY",
+      "population_min": 30,
+      "population_max": 40
+    }
+  ],
+  "forecast": [
+    {
+      "area_code": "alpha",
+      "section_name": "official_forecast",
+      "source_updated_at": "2026-08-06T00:00:00Z",
+      "fetched_at": "2026-08-06T00:05:00Z",
+      "expires_at": "2026-08-06T12:05:00Z",
+      "state": "available",
+      "normalized_json": "{\"authority\":\"official\",\"synthetic\":false,\"points\":[{\"timestamp\":\"2026-08-06T01:00:00Z\",\"crowd_level\":\"NORMAL\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\",\"population_min\":10,\"population_max\":20},{\"timestamp\":\"2026-08-06T02:00:00Z\",\"crowd_level\":\"BUSY\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T03:00:00Z\",\"crowd_level\":\"CROWDED\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T04:00:00Z\",\"crowd_level\":\"NORMAL\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T05:00:00Z\",\"crowd_level\":\"BUSY\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T06:00:00Z\",\"crowd_level\":\"RELAXED\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"}]}"
+    },
+    {
+      "area_code": "beta",
+      "section_name": "official_forecast",
+      "source_updated_at": "2026-08-06T00:00:00Z",
+      "fetched_at": "2026-08-06T00:05:00Z",
+      "expires_at": "2026-08-06T12:05:00Z",
+      "state": "available",
+      "normalized_json": "{\"authority\":\"official\",\"synthetic\":false,\"points\":[{\"timestamp\":\"2026-08-06T01:00:00Z\",\"crowd_level\":\"BUSY\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T02:00:00Z\",\"crowd_level\":\"BUSY\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T03:00:00Z\",\"crowd_level\":\"NORMAL\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T04:00:00Z\",\"crowd_level\":\"NORMAL\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T05:00:00Z\",\"crowd_level\":\"RELAXED\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"},{\"timestamp\":\"2026-08-06T06:00:00Z\",\"crowd_level\":\"RELAXED\",\"source_updated_at\":\"2026-08-06T00:00:00Z\",\"snapshot_id\":\"snapshot-2026-08-06T00:00:00Z\"}]}"
+    }
+  ],
+  "history": [
+    {
+      "area_code": "alpha",
+      "weekday": 4,
+      "hour": 9,
+      "maturity": "PROVISIONAL",
+      "crowd_rank_median": 0.4,
+      "population_midpoint_median": 15,
+      "population_midpoint_iqr": 3,
+      "sample_count": 8,
+      "missing_count": 1,
+      "coverage": 0.8,
+      "computed_at": "2026-08-06T00:10:00Z"
+    },
+    {
+      "area_code": "beta",
+      "weekday": 4,
+      "hour": 9,
+      "maturity": "ACCUMULATING",
+      "crowd_rank_median": null,
+      "population_midpoint_median": null,
+      "population_midpoint_iqr": null,
+      "sample_count": 0,
+      "missing_count": 8,
+      "coverage": 0,
+      "computed_at": "2026-08-06T00:10:00Z"
+    }
+  ]
+}
