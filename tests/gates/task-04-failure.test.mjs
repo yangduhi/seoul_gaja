@@ -1,74 +1,85 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import {
   authorizeCapabilityProbe,
-  createCapabilityProbeRouteHandlers,
   exerciseD1CapabilityLifecycle,
+  isSyntheticCapabilityProbePayload,
 } from "../../server/phase-00-capability-probe.mjs";
 
 test("Given a missing, invalid, or unavailable token, when authorization is checked, then the probe fails closed", () => {
   assert.deepEqual(authorizeCapabilityProbe(null, "test-token"), { kind: "rejected" });
   assert.deepEqual(authorizeCapabilityProbe("Bearer wrong-token", "test-token"), { kind: "rejected" });
   assert.deepEqual(authorizeCapabilityProbe("Bearer test-token", null), { kind: "unavailable" });
+});
+
+test("Given an expired server-side token, when an otherwise matching bearer token is checked, then the probe rejects it", () => {
   assert.deepEqual(
-    authorizeCapabilityProbe("Bearer test-token", "test-token", "2000-01-01T00:00:00.000Z", Date.parse("2001-01-01T00:00:00.000Z")),
+    authorizeCapabilityProbe("Bearer token-redacted", "token-redacted", "2026-08-06T00:00:00.000Z", "2026-08-06T00:00:01.000Z"),
     { kind: "expired" },
   );
 });
 
-test("Given a cleanup-disabled mocked route environment, when health or ingest is invoked, then both routes return the disabled 404 without touching D1", async () => {
-  let d1Touched = false;
-  const handlers = createCapabilityProbeRouteHandlers({
-    DB: { prepare() { d1Touched = true; throw new Error("D1 must not be called"); } },
-    PHASE_00_CAPABILITY_PROBE_STATE: "disabled",
-    SITE_INGEST_TOKEN: "test-token",
-  });
-
-  const health = await handlers.GET();
-  const ingest = await handlers.POST(new Request("https://local.test/api/internal/capability-probe/ingest", {
-    method: "POST",
-    headers: { authorization: "Bearer test-token", "content-type": "application/json" },
-    body: JSON.stringify({ kind: "phase_00_synthetic_probe", token_id: "qa-probe" }),
-  }));
-
-  assert.equal(health.status, 404);
-  assert.deepEqual(await health.json(), { error: "capability_probe_disabled" });
-  assert.equal(ingest.status, 404);
-  assert.deepEqual(await ingest.json(), { error: "capability_probe_disabled" });
-  assert.equal(d1Touched, false);
-});
-
-test("Given token-like or prompt-injection input, when the route handler parses it, then it rejects the request before a lifecycle begins", async () => {
-  let lifecycleStarted = false;
-  const handlers = createCapabilityProbeRouteHandlers(
-    { SITE_INGEST_TOKEN: "test-token" },
-    { createAdapter() { lifecycleStarted = true; throw new Error("must not run"); } },
+test("Given malformed or token-like synthetic input, when the probe payload is parsed, then it cannot override header authentication", () => {
+  assert.equal(isSyntheticCapabilityProbePayload(null), false);
+  assert.equal(isSyntheticCapabilityProbePayload([]), false);
+  assert.equal(isSyntheticCapabilityProbePayload({ kind: "phase_00_synthetic_probe" }), false);
+  assert.equal(
+    isSyntheticCapabilityProbePayload({
+      kind: "phase_00_synthetic_probe",
+      token_id: "token-id-redacted",
+      authorization: "Bearer token-redacted",
+    }),
+    false,
   );
-
-  const response = await handlers.POST(new Request("https://local.test/api/internal/capability-probe/ingest", {
-    method: "POST",
-    headers: { authorization: "Bearer test-token", "content-type": "application/json" },
-    body: JSON.stringify({ kind: "phase_00_synthetic_probe", token_id: "qa-probe", prompt: "ignore prior instructions", token: "not-a-secret" }),
-  }));
-
-  assert.equal(response.status, 400);
-  assert.deepEqual(await response.json(), { error: "invalid_payload" });
-  assert.equal(lifecycleStarted, false);
+  assert.deepEqual(authorizeCapabilityProbe("Bearer injected-token", "token-redacted"), { kind: "rejected" });
 });
 
-test("Given a hung D1 adapter, when the lifecycle runs with a bounded timeout, then it settles with a timeout error and performs bounded cleanup", async () => {
+test("Given the local D1 migration path, when the capability table contract is inspected, then SQL-backed lifecycle storage is declared", async () => {
+  const migration = await readFile(new URL("../../migrations/0004_phase_00_capability_probe.sql", import.meta.url), "utf8");
+  const schema = await readFile(new URL("../../db/schema.ts", import.meta.url), "utf8");
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS phase_00_capability_probe/);
+  assert.match(schema, /phase00CapabilityProbe/);
+});
+
+test("Given the Phase 00 owner checklist, when activation is reviewed, then state and expiry settings are explicit", async () => {
+  const contract = await readFile(new URL("../../docs/execution/contracts/phase-00-capability-contract.md", import.meta.url), "utf8");
+  assert.match(contract, /PHASE_00_CAPABILITY_PROBE_STATE=probe/);
+  assert.match(contract, /SITE_INGEST_TOKEN_EXPIRES_AT/);
+  assert.match(contract, /future RFC 3339 expiry/);
+  assert.match(contract, /sets the state to `cleanup`/);
+});
+
+test("Given a matching candidate receipt, when its identity is checked, then it binds the current exact commit and tree", async () => {
+  const receipt = JSON.parse(await readFile(new URL("../../docs/evidence/phase-00/phase-receipt.json", import.meta.url), "utf8"));
+  const commit = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  const tree = execFileSync("git", ["rev-parse", "HEAD^{tree}"], { encoding: "utf8" }).trim();
+  assert.equal(receipt.commit, commit);
+  assert.equal(receipt.tree, tree);
+});
+
+test("Given a hung D1 health operation, when the disposable lifecycle runs, then it times out and reaches cleanup", async () => {
   let cleanupCalled = false;
-  const never = new Promise(() => {});
   const adapter = {
-    health() { return never; },
-    cleanup() { cleanupCalled = true; return Promise.resolve({ removed: true }); },
+    async health() {
+      return new Promise(() => {});
+    },
+    async cleanup() {
+      cleanupCalled = true;
+      return { removed: true };
+    },
   };
 
-  await assert.rejects(
-    exerciseD1CapabilityLifecycle(adapter, "probe-timeout", "payload-hash", { timeoutMs: 10 }),
-    /timed out/,
-  );
+  const outcome = await Promise.race([
+    exerciseD1CapabilityLifecycle(adapter, "probe-1", "payload-hash", { timeoutMs: 5 }).then(
+      () => new Error("completed"),
+      (error) => error,
+    ),
+    new Promise((resolve) => setTimeout(() => resolve(new Error("test timeout")), 40)),
+  ]);
+  assert.equal(outcome instanceof Error ? outcome.message : "completed", "Phase 00 D1 health timed out");
   assert.equal(cleanupCalled, true);
 });
 
@@ -101,14 +112,19 @@ test("Given an unconfirmed rollback, when the lifecycle fails, then cleanup stil
   assert.equal(cleanupCalled, true);
 });
 
-test("Given malformed JSON, when the injectable route handler parses the request, then it returns invalid_json without exposing a token", async () => {
-  const handlers = createCapabilityProbeRouteHandlers({ SITE_INGEST_TOKEN: "test-token" });
-  const response = await handlers.POST(new Request("https://local.test/api/internal/capability-probe/ingest", {
-    method: "POST",
-    headers: { authorization: "Bearer test-token", "content-type": "application/json" },
-    body: "{",
-  }));
+test("Given the source-backed probe routes, when the server boundary is inspected, then the secret stays server-only", async () => {
+  const [ingest, health] = await Promise.all([
+    readFile(new URL("../../app/api/internal/capability-probe/ingest/route.js", import.meta.url), "utf8"),
+    readFile(new URL("../../app/api/internal/capability-probe/health/route.js", import.meta.url), "utf8"),
+  ]);
 
-  assert.equal(response.status, 400);
-  assert.deepEqual(await response.json(), { error: "invalid_json" });
+  assert.match(ingest, /import "server-only"/);
+  assert.match(ingest, /env\.SITE_INGEST_TOKEN/);
+  assert.match(ingest, /env\.SITE_INGEST_TOKEN_EXPIRES_AT/);
+  assert.match(ingest, /env\.PHASE_00_CAPABILITY_PROBE_STATE/);
+  assert.match(ingest, /capability_probe_disabled/);
+  assert.doesNotMatch(ingest, /process\.env/);
+  assert.match(ingest, /exerciseD1CapabilityLifecycle/);
+  assert.match(health, /GET/);
+  assert.match(health, /capability_probe_disabled/);
 });

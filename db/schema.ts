@@ -104,3 +104,10 @@ export const jobReceipts = sqliteTable("job_receipts", {
   metricsJson: text("metrics_json"),
   errorCode: text("error_code"),
 }, (table) => ({ primaryKey: primaryKey({ columns: [table.jobName, table.runId] }) }));
+
+export const phase00CapabilityProbe = sqliteTable("phase_00_capability_probe", {
+  probeId: text("probe_id").primaryKey(),
+  payloadHash: text("payload_hash").notNull(),
+  state: text("state").notNull(),
+  createdAt: text("created_at").notNull(),
+});
