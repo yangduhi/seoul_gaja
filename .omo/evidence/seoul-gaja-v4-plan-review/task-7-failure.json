@@ -1,24 +1,29 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "task": "Todo 7 snapshot-truth failure gate",
-  "observed_at": "2026-08-04T21:37:00+09:00",
-  "candidate_commit": "79b74ceec2013a96af179cd833d7e02a993a0682",
-  "candidate_tree": "9e6d2c3cf1bcad1d77a9c7515cb5c6f1991ef728",
+  "observed_at": "2026-08-07T03:42:36.1964052+09:00",
+  "candidate_commit": "6b1b41d8840f42ce29343054a1ed2ca6b1a576b1",
+  "candidate_tree": "95ddfa2db19ff3750cc675b494034218d7b7aad0",
+  "plan_sha256": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
   "command": {
-    "id": "task-07-failure",
-    "argv": ["node", "--test", "tests/gates/task-07-failure.test.mjs"],
+    "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-07-failure"],
     "actual_exit": 0,
+    "inner_test_exit": 0,
+    "tests": 14,
     "verdict": "PASS"
   },
-  "coverage": [
-    "same-attempt hash conflict returns 409",
-    "identical replay returns existing receipt",
-    "recovery rejects non-partial supersession and skipped attempts",
-    "more-than-five-minute future skew rejects and smaller skew clamps",
-    "counter mismatch rejects, 96 first activation retains LKG, all-unavailable remains audit-only",
-    "0003 sequence collision is NOT_RUN_BLOCKED pending v4.1 authority amendment"
-  ],
-  "supplemental_checks": {
-    "migration_execution": "NOT_RUN_BLOCKED: owner must authorize execution of migrations/0003_snapshot_revision_and_provenance.sql against the approved Sites D1 binding after candidate integration. No migration was executed."
-  }
+  "negative_observables": {
+    "malformed_input": "REJECTED: MALFORMED_SOURCE_TIMESTAMP and FETCHED_AT_DEGRADED_BASIS_REQUIRED",
+    "replay": "REPLAY returns receipt-existing",
+    "payload_conflict": "REJECTED status 409: PAYLOAD_HASH_CONFLICT",
+    "recovery": "REJECTED for non-partial supersession and skipped attempt",
+    "stale": "exact 180-minute boundary remains stale; older values expire",
+    "future": "more than five minutes rejects; exactly five minutes clamps with clock_skew_clamped=true",
+    "counters": "mismatch and undeclared counters reject",
+    "catalog": "non-string identity rejects; provenance overlap cannot double count",
+    "activation_96": "first generation with 96 refreshed-fresh places retains LKG",
+    "all_unavailable_or_expired": "audit-only generation retains existing LKG",
+    "migration_collision": "NOT_RUN_BLOCKED: MIGRATION_SEQUENCE_COLLISION; migration remains named 0003_snapshot_revision_and_provenance"
+  },
+  "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-7-failure.json"
 }

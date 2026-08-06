@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "task": 7,
+  "verdict": "PASS",
+  "observed_at": "2026-08-07T03:42:36.1964052+09:00",
+  "worktree": "D:\\vscode\\seoul_gaja-worktrees\\todo7-snapshot-semantics",
+  "branch": "codex/todo7-snapshot-semantics",
+  "base": {
+    "commit": "688f0437f0b6bf3c1d8ae5448a30f3181f2ad3b5",
+    "tree": "0c327269efb149634fcd6674b3e0effca874efa2"
+  },
+  "implementation": {
+    "commit": "6b1b41d8840f42ce29343054a1ed2ca6b1a576b1",
+    "tree": "95ddfa2db19ff3750cc675b494034218d7b7aad0",
+    "commit_subject": "fix(data): harden snapshot revision boundaries",
+    "changed_paths": [
+      "server/snapshot-revision.mjs",
+      "tests/fixtures/task-07/legacy-snapshot.sql",
+      "tests/gates/task-07-failure.test.mjs",
+      "tests/gates/task-07-happy.test.mjs"
+    ]
+  },
+  "authority": {
+    "plan_sha256": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
+    "authority_lock_sha256": "872f345ec7938189453fcb5627668d3c38fdd60c2e9bc73cd127f9ad5e7ec363",
+    "command_map_sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
+    "validator": {
+      "argv": ["python", "docs/execution/scripts/validate_authority_lock.py"],
+      "actual_exit": 0,
+      "verdict": "PASS"
+    }
+  },
+  "artifact_sha256": {
+    "server/snapshot-revision.mjs": "9ac33f5bf8ce1f0f2084165b3853053c8ec152d30a407bb42e38b29dc0668647",
+    "migrations/0003_snapshot_revision_and_provenance.sql": "83b0097119db95b49b4c36268b0fd0978b8ac4c8570f8d47dda3693bac4ee265",
+    "tests/gates/task-07-happy.test.mjs": "22ce8d22e8377330a40f407a0cb42ab4c345ee0dfdef094925c5521495037f73",
+    "tests/gates/task-07-failure.test.mjs": "1f51ce8810347abf3561feefda9e8718082628a86f13e003cf54b987c972bb41",
+    "tests/fixtures/task-07/legacy-snapshot.sql": "cec0496838610833129ebdfc1f86cfe6d4030d5350ddc34e4b36663523c1120b"
+  },
+  "red_first": [
+    {
+      "scenario": "malformed timestamp, implicit degraded basis, revision ID reuse, provenance double count, and malformed catalog identity",
+      "argv": ["node", "--test", "tests/gates/task-07-happy.test.mjs", "tests/gates/task-07-failure.test.mjs"],
+      "actual_exit": 1,
+      "observable": "13 passed and 6 failed before the implementation fix"
+    },
+    {
+      "scenario": "undeclared counter reconciliation",
+      "argv": ["node", "--test", "tests/gates/task-07-failure.test.mjs"],
+      "actual_exit": 1,
+      "observable": "13 passed and the undeclared-counter test failed before the counter fix"
+    }
+  ],
+  "verification": [
+    {
+      "scenario": "command-map happy path over 121-row, freshness, recovery, and migration fixtures",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-07-happy"],
+      "actual_exit": 0,
+      "observable": "runner verdict PASS; inner node test exit 0; 7 of 7 tests passed",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-7-happy.json"
+    },
+    {
+      "scenario": "command-map failure path over malformed, replay, conflict, recovery, future, counter, 96, LKG, and collision fixtures",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-07-failure"],
+      "actual_exit": 0,
+      "observable": "runner verdict PASS; inner node test exit 0; 14 of 14 negative tests passed",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-7-failure.json"
+    },
+    {
+      "scenario": "focused suite repeat 1",
+      "argv": ["node", "--test", "tests/gates/task-07-happy.test.mjs", "tests/gates/task-07-failure.test.mjs"],
+      "actual_exit": 0,
+      "observable": "21 of 21 tests passed"
+    },
+    {
+      "scenario": "focused suite repeat 2",
+      "argv": ["node", "--test", "tests/gates/task-07-happy.test.mjs", "tests/gates/task-07-failure.test.mjs"],
+      "actual_exit": 0,
+      "observable": "21 of 21 tests passed"
+    },
+    {
+      "scenario": "migration/schema/static safety",
+      "argv": ["PowerShell", "strip SQL comments and reject executable DROP|DELETE|TRUNCATE|RENAME statements"],
+      "actual_exit": 0,
+      "observable": "migration_static_additive=PASS; local in-memory SQLite backfill/read-old/write-new test passed; no D1 migration executed"
+    },
+    {
+      "scenario": "syntax and patch hygiene",
+      "argv": ["node --check server/snapshot-revision.mjs", "git diff --check"],
+      "actual_exit": 0,
+      "observable": "both commands exited 0"
+    }
+  ],
+  "external_migration_execution": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "Live Sites D1 migration execution is an explicit owner-action gate and was not authorized.",
+    "owner_action": "Authorize execution of migrations/0003_snapshot_revision_and_provenance.sql against the approved Sites D1 DB binding after candidate integration.",
+    "next_allowed_phase": "none"
+  },
+  "ultraqa": {
+    "malformed_input": "PASS: malformed source timestamp, implicit degraded fallback, non-string identity, conflicting provenance, and undeclared counter reject",
+    "stale_state": "PASS: fixed server_now fixtures prove exact 30/90/180 boundaries without wall-clock state",
+    "dirty_worktree": "PASS: implementation commit was clean before evidence-only files were written; changed paths matched Todo 7 ownership",
+    "hung_or_long_commands": "PASS: all commands terminated normally; no service or watcher was started",
+    "flaky_tests": "PASS: focused 21-test suite passed twice consecutively",
+    "misleading_success_output": "PASS: direct process exits, inner test counts, runner JSON verdicts, and parsed fixture receipts were checked",
+    "repeated_interruptions": "PASS: no interrupted command or partial resume occurred",
+    "prompt_injection": "N/A: the boundary consumes structured local fixture data and no prompt or model surface",
+    "cancel_resume": "N/A: all verification is single-shot and no resumable job state exists"
+  },
+  "cleanup": {
+    "removed_worktrees": [],
+    "retained_worktrees": ["D:\\vscode\\seoul_gaja-worktrees\\todo7-snapshot-semantics (retained for operating-leader integration)"],
+    "started_background_processes": [],
+    "terminated_background_processes": [],
+    "temporary_databases": ["node:sqlite :memory: database closed in test finally block; no filesystem database created"],
+    "live_resources_created": [],
+    "secrets_observed": false
+  }
+}
