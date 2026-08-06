@@ -4,15 +4,15 @@
   "verdict": "PASS",
   "release_verdict": "NOT_RUN_BLOCKED",
   "authority": {
-    "base_head": "54b4a8247e31e6f7dbb811b99666ecb2aac14117",
-    "base_tree": "86952b22345638d1493ebddfa4fc0b6d4d2419e8",
+    "base_head": "422e92b98294924cd7aa54bd18f49065e495bbdb",
+    "base_tree": "421173d39ddcb054b97b99621f68c65a4b6e3578",
     "plan_sha256_lf_normalized": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
     "authority_validator": "PASS"
   },
   "implementation": {
-    "branch": "codex/todo8-d1-persistence-fix",
-    "commit": "5406649c7c55117ffc19d07806631ad270b5459c",
-    "tree": "1ff5c6e4f4f7c58e2a5414b91e75b8536425e38a",
+    "branch": "codex/todo8-profile-binding-fix",
+    "commit": "f9fe55126a95140f96ac0f29c15013431268d435",
+    "tree": "90a641f14d0302ff9e3ad86038924c3e4bd041f5",
     "behavior": [
       "accepted canonical ingest persists one redacted provenance_receipts row through env.DB before returning 202",
       "identical receipt content is idempotent and conflicting content fails closed",
@@ -70,6 +70,53 @@
       "exit": 0,
       "observable": "STATIC_CHECKS=PASS, 18 JSON files parsed, source binding has production consumer, no server/temp DB was started",
       "artifact": ".omo/evidence/task-8-d1-static-checks.txt"
+    }
+  ],
+  "repair_verification": [
+    {
+      "scenario": "RED profile binding and observed-hash receipt",
+      "invocation": "node --test tests/gates/task-08-happy.test.mjs",
+      "exit": 1,
+      "observable": "profile binding was undefined and observed_hashes was absent",
+      "artifact": ".omo/evidence/task-8-profile-hash-red.txt"
+    },
+    {
+      "scenario": "observed production-ingest D1 mock receipt",
+      "invocation": "node --input-type=module -e <redacted Task 8 D1 ingest driver>",
+      "exit": 0,
+      "observable": "202; canonical, persisted, and readback SHA-256 equal; materialization and profile bindings present",
+      "artifact": ".omo/evidence/task-8-profile-hash-observed.json"
+    },
+    {
+      "scenario": "current command-map happy",
+      "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-08-happy",
+      "exit": 0,
+      "observable": "6 tests passed; command-map PASS",
+      "artifact": ".omo/evidence/task-8-profile-command-happy.txt"
+    },
+    {
+      "scenario": "current command-map failure",
+      "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-08-failure",
+      "exit": 0,
+      "observable": "14 tests passed; command-map PASS",
+      "artifact": ".omo/evidence/task-8-profile-command-failure.txt"
+    },
+    {
+      "scenario": "current focused suite repeated",
+      "invocation": "node --test tests/gates/task-08-contract.mjs tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+      "exit": 0,
+      "observable": "21 tests passed, 0 failed in each of two runs",
+      "artifacts": [
+        ".omo/evidence/task-8-profile-focused-1.txt",
+        ".omo/evidence/task-8-profile-focused-2.txt"
+      ]
+    },
+    {
+      "scenario": "profile source-consumer and observed-hash static audit",
+      "invocation": "node --check server/ingest-snapshot-request.mjs; parse evidence and observed JSON; rg derived_kind; git diff --check",
+      "exit": 0,
+      "observable": "both production consumers present; observed SHA equality true; all artifacts non-empty",
+      "artifact": ".omo/evidence/task-8-profile-static-checks.txt"
     }
   ],
   "tooling": {
