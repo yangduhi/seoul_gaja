@@ -2,6 +2,25 @@
   "schema_version": 1,
   "name": "Calm Glass",
   "source_of_truth": "docs/codex-pack-v4/design/design.md",
+  "authority": {
+    "design_document": "docs/codex-pack-v4/design/design.md",
+    "component_contracts": "docs/codex-pack-v4/design/component-contracts.md",
+    "screen_specs": "docs/codex-pack-v4/design/screen-specs.md"
+  },
+  "references": {
+    "mockups": [
+      "01-home-map-light.png",
+      "02-place-detail-light.png",
+      "03-family-recommendations-light.png",
+      "04-history-insights-dark.png",
+      "05-desktop-dashboard.png"
+    ],
+    "concept_boards": "inspiration-only"
+  },
+  "recommendation": {
+    "modes": ["NOW", "NEXT"],
+    "missing_input": "suppress-no-renormalization"
+  },
   "color": {
     "surface": { "base": "#EEF3FB", "elevated": "#FFFFFF", "dark": "#07101D" },
     "text": { "primary": "#0D1726", "secondary": "#657387", "inverse": "#F7F9FC" },
