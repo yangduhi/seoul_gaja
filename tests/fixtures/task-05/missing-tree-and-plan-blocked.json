@@ -1,4 +1,5 @@
 {
+  "fixture_scope": "STATIC_TEMPLATE_NOT_CANDIDATE_BOUND",
   "branch_local": {
     "candidate_sha": "1111111111111111111111111111111111111111",
     "reviewed_candidate_sha": "1111111111111111111111111111111111111111",

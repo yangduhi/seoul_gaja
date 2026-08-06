@@ -1,10 +1,18 @@
+import { execFile } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 
 export const CANONICAL_INGEST_TARGET = 'POST /api/internal/ingest/snapshot';
 
+const execFileAsync = promisify(execFile);
 const SHA = /^[a-f0-9]{40}$/;
 const SHA256 = /^[a-f0-9]{64}$/;
+const REPEATED_HEX = /^([a-f0-9])\1+$/;
+const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const requiredOwnerAction = 'Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge.';
 
 function isSha(value) {
   return typeof value === 'string' && SHA.test(value);
@@ -14,72 +22,148 @@ function isSha256(value) {
   return typeof value === 'string' && SHA256.test(value);
 }
 
+function isPlaceholder(value) {
+  return typeof value === 'string' && REPEATED_HEX.test(value);
+}
+
 function hasProof(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-function blocked(candidateSha, code) {
+function blocked(candidateSha, code, ownerAction) {
   return {
     verdict: 'NOT_RUN_BLOCKED',
     candidate_sha: candidateSha,
     blocker_code: code,
+    ...(ownerAction ? { owner_action: ownerAction } : {}),
   };
 }
 
-function branchLocalResult(branchLocal) {
-  if (!branchLocal || !isSha(branchLocal.candidate_sha)) {
-    return blocked(null, 'CANDIDATE_SHA_REQUIRED');
+function candidateValueResult(value, expectedValue, requiredCode, placeholderCode, mismatchCode, candidateSha) {
+  if (expectedValue === undefined) {
+    return blocked(candidateSha, 'LOCAL_CANDIDATE_BINDING_REQUIRED');
   }
 
-  if (!isSha(branchLocal.candidate_tree)) {
-    return blocked(branchLocal.candidate_sha, 'CANDIDATE_TREE_REQUIRED');
+  if (!value) {
+    return blocked(candidateSha, requiredCode);
   }
 
-  if (!isSha256(branchLocal.plan_sha256)) {
-    return blocked(branchLocal.candidate_sha, 'PLAN_SHA256_REQUIRED');
+  if (isPlaceholder(value)) {
+    return blocked(candidateSha, placeholderCode);
   }
 
-  if (branchLocal.reviewed_candidate_sha !== branchLocal.candidate_sha) {
-    return blocked(branchLocal.candidate_sha, 'REVIEWED_CANDIDATE_SHA_MISMATCH');
-  }
-
-  if (branchLocal.reviewed_candidate_tree !== branchLocal.candidate_tree) {
-    return blocked(branchLocal.candidate_sha, 'REVIEWED_CANDIDATE_TREE_MISMATCH');
-  }
-
-  if (branchLocal.reviewed_plan_sha256 !== branchLocal.plan_sha256) {
-    return blocked(branchLocal.candidate_sha, 'REVIEWED_PLAN_SHA256_MISMATCH');
-  }
-
-  if (!Array.isArray(branchLocal.tests) || branchLocal.tests.length === 0) {
-    return blocked(branchLocal.candidate_sha, 'BRANCH_LOCAL_TESTS_REQUIRED');
-  }
-
-  if (!branchLocal.tests.every((test) => test?.exit_code === 0)) {
-    return {
-      verdict: 'FAIL',
-      candidate_sha: branchLocal.candidate_sha,
-      blocker_code: 'BRANCH_LOCAL_TEST_FAILURE',
-    };
-  }
-
-  if (!branchLocal.tests.every((test) => (
-    test?.candidate_sha === branchLocal.candidate_sha
-    && test.candidate_tree === branchLocal.candidate_tree
-    && test.plan_sha256 === branchLocal.plan_sha256
-  ))) {
-    return blocked(branchLocal.candidate_sha, 'BRANCH_LOCAL_TEST_BINDING_MISMATCH');
+  if (value !== expectedValue) {
+    return blocked(candidateSha, mismatchCode);
   }
 
   return null;
 }
 
-export function evaluateCandidateGate(record) {
+export function evaluateBranchLocal(record, { candidateBinding } = {}) {
   const branchLocal = record?.branch_local;
-  const branchResult = branchLocalResult(branchLocal);
-  if (branchResult) return branchResult;
+  if (!branchLocal || !isSha(branchLocal.candidate_sha)) {
+    return blocked(null, 'CANDIDATE_SHA_REQUIRED');
+  }
 
   const candidateSha = branchLocal.candidate_sha;
+  const candidateShaResult = candidateValueResult(
+    candidateSha,
+    candidateBinding?.candidate_sha,
+    'CANDIDATE_SHA_REQUIRED',
+    'CANDIDATE_SHA_PLACEHOLDER',
+    'CANDIDATE_SHA_MISMATCH',
+    candidateSha,
+  );
+  if (candidateShaResult) return candidateShaResult;
+
+  if (!isSha(branchLocal.candidate_tree)) {
+    return blocked(candidateSha, 'CANDIDATE_TREE_REQUIRED');
+  }
+
+  const candidateTreeResult = candidateValueResult(
+    branchLocal.candidate_tree,
+    candidateBinding?.candidate_tree,
+    'CANDIDATE_TREE_REQUIRED',
+    'CANDIDATE_TREE_PLACEHOLDER',
+    'CANDIDATE_TREE_MISMATCH',
+    candidateSha,
+  );
+  if (candidateTreeResult) return candidateTreeResult;
+
+  if (!isSha256(branchLocal.plan_sha256)) {
+    return blocked(candidateSha, 'PLAN_SHA256_REQUIRED');
+  }
+
+  const planShaResult = candidateValueResult(
+    branchLocal.plan_sha256,
+    candidateBinding?.plan_sha256,
+    'PLAN_SHA256_REQUIRED',
+    'PLAN_SHA256_PLACEHOLDER',
+    'PLAN_SHA256_MISMATCH',
+    candidateSha,
+  );
+  if (planShaResult) return planShaResult;
+
+  if (branchLocal.reviewed_candidate_sha !== candidateSha) {
+    return blocked(candidateSha, 'REVIEWED_CANDIDATE_SHA_MISMATCH');
+  }
+
+  if (branchLocal.reviewed_candidate_tree !== branchLocal.candidate_tree) {
+    return blocked(candidateSha, 'REVIEWED_CANDIDATE_TREE_MISMATCH');
+  }
+
+  if (branchLocal.reviewed_plan_sha256 !== branchLocal.plan_sha256) {
+    return blocked(candidateSha, 'REVIEWED_PLAN_SHA256_MISMATCH');
+  }
+
+  if (!Array.isArray(branchLocal.tests) || branchLocal.tests.length === 0) {
+    return blocked(candidateSha, 'BRANCH_LOCAL_TESTS_REQUIRED');
+  }
+
+  if (!branchLocal.tests.every((test) => test?.exit_code === 0)) {
+    return {
+      verdict: 'FAIL',
+      candidate_sha: candidateSha,
+      blocker_code: 'BRANCH_LOCAL_TEST_FAILURE',
+    };
+  }
+
+  if (!branchLocal.tests.every((test) => (
+    test?.candidate_sha === candidateSha
+    && test.candidate_tree === branchLocal.candidate_tree
+    && test.plan_sha256 === branchLocal.plan_sha256
+  ))) {
+    return blocked(candidateSha, 'BRANCH_LOCAL_TEST_BINDING_MISMATCH');
+  }
+
+  return {
+    verdict: 'PASS',
+    candidate_sha: candidateSha,
+    candidate_tree: branchLocal.candidate_tree,
+    plan_sha256: branchLocal.plan_sha256,
+  };
+}
+
+function hasTrustedExternalAuthorization(authorization, candidateBinding) {
+  return authorization?.kind === 'OWNER_AUTHORIZED_EXTERNAL_RUN'
+    && authorization.candidate_sha === candidateBinding.candidate_sha
+    && authorization.candidate_tree === candidateBinding.candidate_tree
+    && authorization.plan_sha256 === candidateBinding.plan_sha256;
+}
+
+export function evaluateCandidateGate(record, { candidateBinding, externalAuthorization } = {}) {
+  const branchResult = evaluateBranchLocal(record, { candidateBinding });
+  if (branchResult.verdict !== 'PASS') return branchResult;
+
+  const candidateSha = branchResult.candidate_sha;
+  if (!externalAuthorization) {
+    return blocked(candidateSha, 'OWNER_AUTHORIZED_EXTERNAL_RUN_REQUIRED', requiredOwnerAction);
+  }
+
+  if (!hasTrustedExternalAuthorization(externalAuthorization, candidateBinding)) {
+    return blocked(candidateSha, 'EXTERNAL_AUTHORIZATION_CANDIDATE_MISMATCH', requiredOwnerAction);
+  }
+
   const smoke = record.default_branch_smoke;
   if (!smoke?.owner_approved_merge) {
     return blocked(candidateSha, 'OWNER_APPROVED_MERGE_REQUIRED');
@@ -93,7 +177,7 @@ export function evaluateCandidateGate(record) {
     !isSha(smoke.approved_merge_sha)
     || !isSha(smoke.approved_merge_tree)
     || smoke.merged_candidate_sha !== candidateSha
-    || smoke.merged_candidate_tree !== branchLocal.candidate_tree
+    || smoke.merged_candidate_tree !== branchResult.candidate_tree
   ) {
     return blocked(candidateSha, 'APPROVED_MERGE_CANDIDATE_MISMATCH');
   }
@@ -130,8 +214,8 @@ export function evaluateCandidateGate(record) {
   if (
     !receipt
     || receipt.candidate_sha !== candidateSha
-    || receipt.candidate_tree !== branchLocal.candidate_tree
-    || receipt.plan_sha256 !== branchLocal.plan_sha256
+    || receipt.candidate_tree !== branchResult.candidate_tree
+    || receipt.plan_sha256 !== branchResult.plan_sha256
   ) {
     return blocked(candidateSha, 'RECEIPT_CANDIDATE_MISMATCH');
   }
@@ -154,8 +238,8 @@ export function evaluateCandidateGate(record) {
   return {
     verdict: 'PASS',
     candidate_sha: candidateSha,
-    candidate_tree: branchLocal.candidate_tree,
-    plan_sha256: branchLocal.plan_sha256,
+    candidate_tree: branchResult.candidate_tree,
+    plan_sha256: branchResult.plan_sha256,
     approved_merge_sha: smoke.approved_merge_sha,
     approved_merge_tree: smoke.approved_merge_tree,
     workflow_head_sha: workflowRun.head_sha,
@@ -163,18 +247,42 @@ export function evaluateCandidateGate(record) {
   };
 }
 
+export async function readLocalCandidateBinding(root = repositoryRoot) {
+  const [head, tree, plan] = await Promise.all([
+    execFileAsync('git', ['-C', root, 'rev-parse', 'HEAD']),
+    execFileAsync('git', ['-C', root, 'rev-parse', 'HEAD^{tree}']),
+    readFile(resolve(root, '.omo/plans/seoul-gaja-v4-plan-review.md')),
+  ]);
+
+  return {
+    candidate_sha: head.stdout.trim(),
+    candidate_tree: tree.stdout.trim(),
+    plan_sha256: createHash('sha256').update(plan).digest('hex'),
+  };
+}
+
+function writeResult(result) {
+  console.log(JSON.stringify(result));
+  process.exitCode = result.verdict === 'PASS' ? 0 : result.verdict === 'FAIL' ? 1 : 3;
+}
+
 async function main() {
   const fixturePath = process.argv[2];
   if (!fixturePath) throw new Error('fixture path is required');
 
+  let record;
   try {
-    const record = JSON.parse(await readFile(fixturePath, 'utf8'));
-    const result = evaluateCandidateGate(record);
-    console.log(JSON.stringify(result));
-    process.exitCode = result.verdict === 'PASS' ? 0 : result.verdict === 'FAIL' ? 1 : 3;
+    record = JSON.parse(await readFile(fixturePath, 'utf8'));
   } catch {
-    console.log(JSON.stringify(blocked(null, 'MALFORMED_RECORD')));
-    process.exitCode = 3;
+    writeResult(blocked(null, 'MALFORMED_RECORD'));
+    return;
+  }
+
+  try {
+    const candidateBinding = await readLocalCandidateBinding();
+    writeResult(evaluateCandidateGate(record, { candidateBinding }));
+  } catch {
+    writeResult(blocked(null, 'LOCAL_CANDIDATE_BINDING_REQUIRED'));
   }
 }
 

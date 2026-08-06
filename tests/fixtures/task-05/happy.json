@@ -1,4 +1,6 @@
 {
+  "fixture_scope": "STATIC_TEMPLATE_NOT_CANDIDATE_BOUND",
+  "external_proof_scope": "SYNTHETIC_TEST_DATA_NOT_EXTERNAL_APPROVAL",
   "branch_local": {
     "candidate_sha": "1111111111111111111111111111111111111111",
     "candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",

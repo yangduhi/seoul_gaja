@@ -2,6 +2,11 @@
   "schema_version": 1,
   "purpose": "Static candidate and default-branch smoke acceptance boundary for Phase 02.",
   "branch_local": {
+    "runtime_candidate_binding": {
+      "source": "git rev-parse HEAD, git rev-parse HEAD^{tree}, and SHA-256(.omo/plans/seoul-gaja-v4-plan-review.md) in the candidate checkout",
+      "static_template_verdict": "NOT_RUN_BLOCKED",
+      "repeated_hex_identifiers": "forbidden"
+    },
     "required_bindings": [
       "candidate_sha",
       "candidate_tree",
@@ -37,6 +42,7 @@
   },
   "local_execution": {
     "workflow_invocation": "forbidden",
+    "full_gate_runtime": "NOT_RUN_BLOCKED unless an owner-operated verifier injects a non-record trusted external authorization bound to the same candidate SHA, tree, and plan SHA-256",
     "unavailable_default_branch_proof_verdict": "NOT_RUN_BLOCKED",
     "required_owner_action": "Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge."
   }
