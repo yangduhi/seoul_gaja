@@ -1,6 +1,6 @@
 # Current-head visual QA evidence
 
-The captures are bound to product-source commit `dd15d62320cac662a150c68806d129a8c54cebe3` and product-source tree `659182a8ec70344a85113a5ff36b94155ddea614`. Any later commit containing this evidence is evidence-only and must preserve that product-source binding.
+The captures are bound to product-source commit `94244ec8a607bc324c915937c77f8c6ab2a05ffc` and product-source tree `188cb392a4d1d047956137177590cb01b684d656`. Any later commit containing this evidence is evidence-only and must preserve that product-source binding.
 
 The local server was started on `http://localhost:3100` from this worktree and the deterministic development-only fixture `visualFixture=ready-v1` was used. No live API, Sites, D1, secret, deploy, or external workflow was used.
 
@@ -11,7 +11,7 @@ The local server was started on `http://localhost:3100` from this worktree and t
 - `detail-390x844.png`: `/places/alpha` at 390x844. The direct detail route, close control, crowd card, recommendation state, forecast chart/table, and fixed navigation are visible.
 - `detail-1616x923.png`: `/places/alpha` at 1616x923. The standalone detail surface is centered at its maximum width.
 
-The mobile marker interaction was also exercised on the same server: clicking `Alpha Place 지도 표식 선택` navigated to `/places/alpha`.
+The mobile map hit-testing was also exercised on the same server: clicking the overlapping legend area stayed on `/`, while clicking `Alpha Place 지도 표식 선택` navigated to `/places/alpha`.
 
 All four captures were written by Playwright against the current candidate and validated as non-empty PNGs with the requested dimensions. The browser console reported only local font-file loading errors from the dev runtime; no hydration mismatch or application HTTP error occurred on port 3100.
 
