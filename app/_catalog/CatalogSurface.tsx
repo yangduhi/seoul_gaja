@@ -32,6 +32,7 @@ export type CatalogSurfaceProps = Readonly<{
   sourceTime: string | null;
   recommendations: Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>;
   unavailableReason?: string;
+  initialSelectedAreaCode?: string;
 }>;
 
 const purposes = [
@@ -63,10 +64,10 @@ function eventSelection(event: Event): string | null {
   return typeof selection === "string" ? selection : null;
 }
 
-export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason }: CatalogSurfaceProps) {
+export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason, initialSelectedAreaCode }: CatalogSurfaceProps) {
   const [query, setQuery] = useState("");
   const [purpose, setPurpose] = useState<(typeof purposes)[number]["id"]>("family");
-  const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(null);
+  const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(initialSelectedAreaCode ?? null);
   const [geoState, setGeoState] = useState<"idle" | "denied" | "timeout">("idle");
   const [mapRetry, setMapRetry] = useState(0);
   useEffect(() => {
@@ -126,12 +127,15 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
             </button>)}
           </div>
         </section>
-        <section className={styles.main} aria-label="서울 지도와 추천">
+        <section className={styles.main} aria-label="서울 지도와 추천" data-selected-area-code={selectedRow?.areaCode ?? "none"}>
           <GlassPanel depth="content" className={styles.mapPane} aria-label="서울 한눈에 보기">
             <div className={styles.mapGrid} aria-hidden="true" />
+            {status === "READY" && <div className={styles.mapMarkers} aria-label="지도 장소 표식">
+              {catalog.slice(0, 6).map((row, index) => <button key={row.areaCode} className={styles.mapMarker} data-index={index} data-level={row.crowdLevel} data-selected={selectedRow?.areaCode === row.areaCode} type="button" onClick={() => openPlace(row)} aria-label={`${row.areaName} 지도 표식 선택`}><span aria-hidden="true" /></button>)}
+            </div>}
             <div className={styles.mapContent}>
               <div className={styles.mapHeading}><div><p className={styles.eyebrow}>LIVE MAP</p><h2>서울 한눈에 보기</h2><p>공식 장소 목록과 같은 선택 상태를 공유합니다.</p></div><span className={styles.caption}>실제 데이터 연결 전 미리보기</span></div>
-              <div className={styles.mapNotice} role="status"><strong>지도를 불러오지 못했습니다</strong><p>목록과 장소 상세는 유지됩니다. 연결이 되면 {mapRetry > 0 ? "다시 시도했습니다." : "자동으로 갱신됩니다."}</p><div className={styles.mapActions}><button className={styles.retryButton} type="button" onClick={() => setMapRetry((value) => value + 1)}>다시 시도</button><button className={styles.geoButton} type="button" onClick={requestLocation}>내 주변</button><a className={styles.externalMap} href="https://map.kakao.com/?q=서울" target="_blank" rel="noreferrer">카카오 지도</a></div>{geoState !== "idle" && <p className={styles.source}>{geoState === "timeout" ? "위치 요청 시간이 초과되었습니다." : "위치 권한이 없어 공식 목록으로 계속합니다."}</p>}</div>
+              {status === "UNAVAILABLE" ? <div className={styles.mapNotice} role="status"><strong>지도를 불러오지 못했습니다</strong><p>목록과 장소 상세는 유지됩니다. 연결이 되면 {mapRetry > 0 ? "다시 시도했습니다." : "자동으로 갱신됩니다."}</p><div className={styles.mapActions}><button className={styles.retryButton} type="button" onClick={() => setMapRetry((value) => value + 1)}>다시 시도</button><button className={styles.geoButton} type="button" onClick={requestLocation}>내 주변</button><a className={styles.externalMap} href="https://map.kakao.com/?q=서울" target="_blank" rel="noreferrer">카카오 지도</a></div>{geoState !== "idle" && <p className={styles.source}>{geoState === "timeout" ? "위치 요청 시간이 초과되었습니다." : "위치 권한이 없어 공식 목록으로 계속합니다."}</p>}</div> : <div className={styles.mapLegend} aria-label="혼잡도 범례"><span data-level="RELAXED">여유</span><span data-level="NORMAL">보통</span><span data-level="BUSY">약간 붐빔</span></div>}
             </div>
           </GlassPanel>
           <div className={styles.recommendations} aria-label="가족 시간 추천">

@@ -3,6 +3,7 @@ import { env } from "cloudflare:workers";
 import { CatalogSurface, type CatalogRow, type RecommendationSummary } from "./_catalog/CatalogSurface";
 import { readProductViewModel } from "../server/product-read-model";
 import { evaluateRecommendations } from "../server/recommendations.mjs";
+import { resolveVisualEvidenceFixture, type VisualEvidenceSearchParams } from "./_visual-evidence/resolve";
 
 export const metadata: Metadata = {
   title: "서울 가자 — 인파 레이더",
@@ -12,8 +13,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Home() {
-  const result = await readProductViewModel(env?.DB, { expectedCatalogCount: 121 });
+type HomeProps = Readonly<{ searchParams: Promise<VisualEvidenceSearchParams> }>;
+
+export default async function Home({ searchParams }: HomeProps) {
+  const visualQuery = await searchParams;
+  const visualFixture = resolveVisualEvidenceFixture(visualQuery);
+  const result = visualFixture === null
+    ? await readProductViewModel(env?.DB, { expectedCatalogCount: 121 })
+    : { status: "READY", data: visualFixture } as const;
   if (result.status !== "READY") {
     const unavailableRecommendations = { now: { mode: "NOW", status: "ZERO_ELIGIBLE", browseCopy: "공식 데이터 연결 후 원천 기반 추천을 계산합니다." }, next: { mode: "NEXT", status: "ZERO_ELIGIBLE", browseCopy: "공식 데이터 연결 후 원천 기반 추천을 계산합니다." } } satisfies Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>;
     return <CatalogSurface status="UNAVAILABLE" catalog={[]} snapshotStatus="UNAVAILABLE" sourceTime={null} recommendations={unavailableRecommendations} unavailableReason={result.reason} />;
@@ -29,6 +36,8 @@ export default async function Home() {
     historyMaturity: { elapsedDays: 0, coverage: 0 },
     places: catalog.map((row) => ({ areaCode: row.areaCode, currentCrowd: { status: row.availability === "unavailable" ? "unavailable" : "available", sourceUpdatedAt: row.sourceUpdatedAt ?? row.fetchedAt, percentile: undefined, snapshotId: result.data.snapshot.snapshotId }, officialForecasts: result.data.officialForecast.status === "READY" ? result.data.officialForecast.byAreaCode[row.areaCode]?.points.map((point) => ({ ...point, status: "available" })) : [] })),
   };
-  const recommendations = evaluateRecommendations(recommendationInput) as Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>;
-  return <CatalogSurface status="READY" catalog={catalog} snapshotStatus={result.data.snapshot.status} sourceTime={catalog[0]?.sourceUpdatedAt ?? catalog[0]?.fetchedAt ?? null} recommendations={recommendations} />;
+  const recommendations = visualFixture === null
+    ? evaluateRecommendations(recommendationInput) as Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>
+    : { now: { mode: "NOW", status: "READY" }, next: { mode: "NEXT", status: "READY" } } as const;
+  return <CatalogSurface status="READY" catalog={catalog} snapshotStatus={result.data.snapshot.status} sourceTime={catalog[0]?.sourceUpdatedAt ?? catalog[0]?.fetchedAt ?? null} recommendations={recommendations} initialSelectedAreaCode={visualFixture !== null && visualQuery.visualState === "selected-detail" ? catalog[0]?.areaCode : undefined} />;
 }

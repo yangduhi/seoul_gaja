@@ -4,11 +4,13 @@ import { env } from "cloudflare:workers";
 import { PlaceDetailClient } from "./PlaceDetailClient";
 import type { DetailPayload } from "./PlaceDetailClient";
 import { readProductViewModel } from "../../../server/product-read-model";
+import { resolveVisualEvidenceFixture, type VisualEvidenceSearchParams } from "../../_visual-evidence/resolve";
 
 const safeAreaCode = /^[A-Za-z0-9_-]+$/;
 
 type PlacePageProps = Readonly<{
   params: Promise<Readonly<{ areaCode: string }>>;
+  searchParams: Promise<VisualEvidenceSearchParams>;
 }>;
 
 export async function generateMetadata({ params }: PlacePageProps): Promise<Metadata> {
@@ -21,9 +23,12 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
   };
 }
 
-export default async function PlacePage({ params }: PlacePageProps) {
+export default async function PlacePage({ params, searchParams }: PlacePageProps) {
   const { areaCode } = await params;
-  const result = await readProductViewModel(env?.DB, { expectedCatalogCount: 121 });
+  const visualFixture = resolveVisualEvidenceFixture(await searchParams);
+  const result = visualFixture === null
+    ? await readProductViewModel(env?.DB, { expectedCatalogCount: 121 })
+    : { status: "READY", data: visualFixture } as const;
   if (result.status !== "READY") {
     const payload: DetailPayload = { status: "UNAVAILABLE", areaCode, areaName: null, snapshot: null, forecast: [], history: [], reason: result.reason };
     return <PlaceDetailClient areaCode={areaCode} payload={payload} />;
