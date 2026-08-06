@@ -46,6 +46,34 @@ function officialBucketMaps(viewModel, cohort) {
   return new Map([...groups].filter(([, places]) => places.size === cohort.length));
 }
 
+function koreaHistoryBasis(now) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Seoul',
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(new Date(now));
+  const values = Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+  const weekdays = Object.freeze({ Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 });
+  return {
+    weekday: weekdays[values.weekday],
+    localTimeBucket: `${values.hour}:${Number(values.minute) < 30 ? '00' : '30'}`,
+  };
+}
+
+function matchingHistoryProfiles(viewModel, rows, now) {
+  if (viewModel.history.status !== 'READY') return new Map();
+  const basis = koreaHistoryBasis(now);
+  return new Map(rows.flatMap((row) => {
+    const profiles = viewModel.history.byAreaCode[row.areaCode]?.profiles ?? [];
+    const profile = profiles.find((candidate) => candidate.weekday === basis.weekday && candidate.hour === Number(basis.localTimeBucket.slice(0, 2)));
+    return profile === undefined || typeof profile.crowdRankMedian !== 'number'
+      ? []
+      : [[row.areaCode, profile]];
+  }));
+}
+
 export function buildRecommendationInput(viewModel, now) {
   const currentRows = eligibleSnapshotRows(viewModel);
   const cohort = currentRows.map((row) => row.areaCode).sort();
@@ -61,6 +89,15 @@ export function buildRecommendationInput(viewModel, now) {
       value: CROWD_VALUE[point.crowdLevel],
     }))),
   ]));
+  const profiles = matchingHistoryProfiles(viewModel, currentRows, now);
+  const historyRanks = rankByAreaCode(currentRows.flatMap((row) => {
+    const profile = profiles.get(row.areaCode);
+    const currentRank = currentRanks.get(row.areaCode);
+    return profile === undefined || currentRank === undefined
+      ? []
+      : [{ areaCode: row.areaCode, value: Math.abs(currentRank - profile.crowdRankMedian) }];
+  }));
+  const historyBasis = koreaHistoryBasis(now);
   const snapshotSources = currentRows.map(sourceTimestamp).sort();
   return {
     now: typeof now === 'string' ? now : new Date(now).toISOString(),
@@ -68,7 +105,7 @@ export function buildRecommendationInput(viewModel, now) {
       id: viewModel.snapshot.snapshotId,
       sourceUpdatedAt: snapshotSources[0] ?? '',
     },
-    historyMaturity: { elapsedDays: 0, coverage: 0 },
+    historyMaturity: {},
     places: currentRows.map((row) => ({
       areaCode: row.areaCode,
       currentCrowd: {
@@ -93,7 +130,21 @@ export function buildRecommendationInput(viewModel, now) {
           extrapolated: false,
         };
       }),
-      historyDeviation: { status: 'unavailable' },
+      historyDeviation: (() => {
+        const profile = profiles.get(row.areaCode);
+        const percentile = historyRanks.get(row.areaCode);
+        return profile === undefined || percentile === undefined
+          ? { status: 'unavailable' }
+          : {
+            status: 'available',
+            percentile,
+            computedAt: profile.computedAt,
+            weekday: new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Seoul', weekday: 'short' }).format(new Date(now)),
+            localTimeBucket: historyBasis.localTimeBucket,
+            maturity: profile.maturity,
+            coverage: profile.coverage,
+          };
+      })(),
     })),
   };
 }

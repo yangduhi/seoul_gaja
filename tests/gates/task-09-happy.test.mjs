@@ -11,13 +11,19 @@ async function fixture() {
   return JSON.parse(await readFile(fixturePath, 'utf8'));
 }
 
+function hasOwnScore(value) {
+  if (Array.isArray(value)) return value.some(hasOwnScore);
+  if (value !== null && typeof value === 'object') return Object.hasOwn(value, 'score') || Object.values(value).some(hasOwnScore);
+  return false;
+}
+
 test('Given source-backed percentile inputs, When NOW is evaluated, Then it uses the first official point in the 60-minute horizon', async () => {
   const result = evaluateRecommendations(await fixture());
 
   assert.equal(result.now.status, 'READY');
   assert.equal(result.now.results[0].areaCode, 'aardvark');
   assert.equal(result.now.results[0].selectedTimestamp, '2026-08-04T09:20:00Z');
-  assert.equal(result.now.results[0].score, 0.37);
+  assert.equal(hasOwnScore(result), false);
   assert.equal(result.now.results[0].variant, 'history-enhanced');
   assert.deepEqual(result.now.results[0].reasons.map((reason) => reason.kind), [
     'current_crowd_percentile',
@@ -39,7 +45,7 @@ test('Given equal NEXT scores, When the best official points are selected, Then 
   assert.equal(result.next.status, 'READY');
   assert.equal(result.next.results[0].areaCode, 'aardvark');
   assert.equal(result.next.results[0].selectedTimestamp, '2026-08-04T10:00:00Z');
-  assert.equal(result.next.results[0].score, 0.25);
+  assert.equal(hasOwnScore(result), false);
 });
 
 test('Given history below PROVISIONAL maturity, When recommendations are evaluated, Then base formulas remain unrenormalized', async () => {
@@ -49,9 +55,9 @@ test('Given history below PROVISIONAL maturity, When recommendations are evaluat
   const result = evaluateRecommendations(record);
 
   assert.equal(result.now.results[0].variant, 'base');
-  assert.equal(result.now.results[0].score, 0.32);
+  assert.equal(hasOwnScore(result), false);
   assert.equal(result.next.results[0].variant, 'base');
-  assert.equal(result.next.results[0].score, 0.14);
+  assert.equal(hasOwnScore(result), false);
 });
 
 test('Given a point exactly at the current time, When NOW is evaluated, Then it is ignored instead of interpolating', async () => {
@@ -113,6 +119,6 @@ test('Given stable or mature elapsed-day coverage, When history is eligible, The
     const result = evaluateRecommendations(record);
 
     assert.equal(result.now.results[0].historyMaturity, expected);
-    assert.equal(result.now.results[0].score, 0.37);
+    assert.equal(hasOwnScore(result), false);
   }
 });

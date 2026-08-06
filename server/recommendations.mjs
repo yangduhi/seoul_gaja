@@ -146,12 +146,13 @@ function hasForbiddenInput(input) {
     || FORBIDDEN_INPUT_KEYS.some((key) => Object.hasOwn(input, key));
 }
 
-function resultForPlace(input, mode, now, historyEnhanced, historyMaturity, basis, currentCohort, cohorts) {
+function resultForPlace(input, mode, now, historyMaturity, basis, currentCohort, cohorts) {
   if (hasForbiddenInput(input) || !sourceIsAvailable(input.currentCrowd, now)) return null;
   if (!percentile(input.currentCrowd.percentile) || input.currentCrowd.snapshotId !== input.activeSnapshot.id) return null;
   if (!sameCohort(input.currentCrowd.cohort, currentCohort)) return null;
   if (!Array.isArray(input.officialForecasts) || input.officialForecasts.some((point) => point?.interpolated === true || point?.extrapolated === true)) return null;
   const history = input.historyDeviation;
+  const historyEnhanced = historyMaturity !== 'ACCUMULATING';
   if (historyEnhanced && !historyIsAvailable(history, basis, now)) return null;
   const forecast = selectedForecast(input, mode, input.activeSnapshot.id, now, historyEnhanced, history, cohorts);
   if (forecast === null) return null;
@@ -166,21 +167,24 @@ function resultForPlace(input, mode, now, historyEnhanced, historyMaturity, basi
   ];
   if (historyEnhanced) reasons.push({ kind: 'history_deviation_percentile', value: history.percentile, sourceTimestamp: history.computedAt });
   return {
-    areaCode: input.areaCode,
-    score: Number(score.toFixed(6)),
-    variant: historyEnhanced ? 'history-enhanced' : 'base',
-    historyMaturity,
-    selectedTimestamp: forecast.timestamp,
-    sourceTimestamps: sourceTimestamps(input, forecast, historyEnhanced, history),
-    reasons,
+    order: Number(score.toFixed(6)),
+    result: {
+      areaCode: input.areaCode,
+      variant: historyEnhanced ? 'history-enhanced' : 'base',
+      historyMaturity,
+      selectedTimestamp: forecast.timestamp,
+      sourceTimestamps: sourceTimestamps(input, forecast, historyEnhanced, history),
+      reasons,
+    },
   };
 }
 
-function evaluateMode(input, mode, now, historyEnhanced, historyMaturity, basis, currentCohort, cohorts) {
+function evaluateMode(input, mode, now, basis, currentCohort, cohorts) {
   const results = input.places
-    .map((place) => resultForPlace({ ...place, activeSnapshot: input.activeSnapshot }, mode, now, historyEnhanced, historyMaturity, basis, currentCohort, cohorts))
-    .filter((result) => result !== null)
-    .sort((left, right) => left.score - right.score || time(left.selectedTimestamp) - time(right.selectedTimestamp) || left.areaCode.localeCompare(right.areaCode));
+    .map((place) => resultForPlace({ ...place, activeSnapshot: input.activeSnapshot }, mode, now, historyMaturity(input, place.historyDeviation), basis, currentCohort, cohorts))
+    .filter((entry) => entry !== null)
+    .sort((left, right) => left.order - right.order || time(left.result.selectedTimestamp) - time(right.result.selectedTimestamp) || left.result.areaCode.localeCompare(right.result.areaCode))
+    .map((entry) => entry.result);
   return results.length > 0
     ? { mode, status: 'READY', results }
     : { mode, status: 'ZERO_ELIGIBLE', browseCopy: ZERO_ELIGIBLE_COPY, results: [] };
@@ -196,13 +200,18 @@ function currentCohort(input, now) {
     .sort();
 }
 
-function historyMaturity(input) {
+function historyMaturity(input, history) {
   const elapsedDays = input.historyMaturity?.elapsedDays;
   const coverage = input.historyMaturity?.coverage;
-  if (!Number.isFinite(elapsedDays) || !percentile(coverage)) return 'ACCUMULATING';
-  if (elapsedDays >= 56 && coverage >= 0.9) return 'MATURE';
-  if (elapsedDays >= 28 && coverage >= 0.8) return 'STABLE';
-  if (elapsedDays >= 7 && coverage >= 0.7) return 'PROVISIONAL';
+  if (Number.isFinite(elapsedDays) && percentile(coverage)) {
+    if (elapsedDays >= 56 && coverage >= 0.9) return 'MATURE';
+    if (elapsedDays >= 28 && coverage >= 0.8) return 'STABLE';
+    if (elapsedDays >= 7 && coverage >= 0.7) return 'PROVISIONAL';
+  }
+  if (!percentile(history?.coverage)) return 'ACCUMULATING';
+  if (history.maturity === 'MATURE' && history.coverage >= 0.9) return 'MATURE';
+  if (history.maturity === 'STABLE' && history.coverage >= 0.8) return 'STABLE';
+  if (history.maturity === 'PROVISIONAL' && history.coverage >= 0.7) return 'PROVISIONAL';
   return 'ACCUMULATING';
 }
 
@@ -214,14 +223,12 @@ export function evaluateRecommendations(input) {
       next: { mode: 'NEXT', status: 'ZERO_ELIGIBLE', browseCopy: ZERO_ELIGIBLE_COPY, results: [] },
     };
   }
-  const maturity = historyMaturity(input);
-  const historyEnhanced = maturity !== 'ACCUMULATING';
   const basis = koreaTimeBasis(now);
   const current = currentCohort(input, now);
   const forecasts = forecastCohorts(input, input.activeSnapshot.id, now, current);
   return {
-    now: evaluateMode(input, 'NOW', now, historyEnhanced, maturity, basis, current, forecasts),
-    next: evaluateMode(input, 'NEXT', now, historyEnhanced, maturity, basis, current, forecasts),
+    now: evaluateMode(input, 'NOW', now, basis, current, forecasts),
+    next: evaluateMode(input, 'NEXT', now, basis, current, forecasts),
   };
 }
 

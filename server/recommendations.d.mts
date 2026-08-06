@@ -8,7 +8,6 @@ export type RecommendationReason = Readonly<{
 
 export type RecommendationResult = Readonly<{
   areaCode: string;
-  score: number;
   variant: "base" | "history-enhanced";
   historyMaturity: "ACCUMULATING" | "PROVISIONAL" | "STABLE" | "MATURE";
   selectedTimestamp: string;
