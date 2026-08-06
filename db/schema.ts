@@ -35,6 +35,7 @@ export const currentSnapshot = sqliteTable("current_snapshot", {
   crowdLevel: text("crowd_level").notNull(),
   populationMin: integer("population_min"),
   populationMax: integer("population_max"),
+  rawHash: text("raw_hash"),
 });
 
 export const rawObservation15m = sqliteTable("raw_observation_15m", {
