@@ -1,0 +1,42 @@
+{
+  "task": 9,
+  "status": "PASS_LOCAL",
+  "binding": {
+    "implementation_commit": "4a7ff7167522356a9f1042e430c93d83009e031e",
+    "implementation_tree": "69915587a2952865d2d9a07612aa46b3cdf8db0e"
+  },
+  "red": {
+    "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+    "observable": [
+      "public result had own key score",
+      "ProductViewModel history returned base instead of history-enhanced"
+    ]
+  },
+  "green": {
+    "invocation": "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+    "observable": "18/18 pass",
+    "exit": 0
+  },
+  "browser": {
+    "invocation": "npm run dev -- --host 127.0.0.1 --port 3199",
+    "binding_workaround": "the server listened on [::1]:3199, so required http://127.0.0.1:3199 returned ERR_CONNECTION_REFUSED and http://localhost:3199 reached the same local server through IPv6 loopback",
+    "observable": "two cards; NOW/NEXT PROVISIONAL history-enhanced copy; Alpha detail button active after click; zero raw score/purpose presets; four viewport overflow checks false; console errors empty",
+    "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+    "cleanup": "PIDs 174668 and 143988 stopped; PORT_3199_CLOSED"
+  },
+  "verification": {
+    "commands": [
+      "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy",
+      "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure",
+      "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+      "node tests/gates/task-09-repeat-probe.mjs",
+      "node tests/gates/task-09-surface-probe.mjs",
+      "npx tsc --noEmit",
+      "npm run lint",
+      "npm run build",
+      "git diff --check",
+      "PYTHONUTF8=1 python docs/execution/scripts/validate_authority_lock.py"
+    ],
+    "observable": "all exit 0; lint has four pre-existing Todo 8 warnings and zero errors"
+  }
+}
