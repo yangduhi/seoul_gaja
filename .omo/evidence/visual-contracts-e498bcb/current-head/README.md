@@ -1,6 +1,6 @@
 # Current-head visual QA evidence
 
-The captures are bound to product-source commit `24cabb9469e92c2676f49e9126933295406a7a1c` and product-source tree `d35a43ca59d8e6eb974936e4ed5b4a47c88e6868`. Any later commit containing this evidence is evidence-only and must preserve that product-source binding.
+The captures are bound to product-source commit `dd1ea3380c2a2ef021239120758f26fbf4e6e008` and product-source tree `68b844cfcbf96a6f767ef0cd0e34256c373f49e4`. Any later commit containing this evidence is evidence-only and must preserve that product-source binding.
 
 The local server was started on `http://localhost:3100` from this worktree and the deterministic development-only fixture `visualFixture=ready-v1` was used. No live API, Sites, D1, secret, deploy, or external workflow was used.
 
