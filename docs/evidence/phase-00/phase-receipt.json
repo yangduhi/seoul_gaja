@@ -1,45 +1,47 @@
 {
   "phase": "00",
   "verdict": "NOT_RUN_BLOCKED",
-  "commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
-  "tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7",
-  "base_commit": "390e32d3c237214696dcee2cb8231f686e1b4628",
-  "base_tree": "02714a656ddb0eb1d60596cb5d1afae7f89d4e55",
+  "commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
+  "tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd",
+  "base_commit": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
+  "base_tree": "d876c8389e82b9b772ae637731102923babb9d07",
   "tests": [
     {
-      "command": "focused Phase 00 happy and failure gate suite",
+      "command": "task 04 happy command map",
       "exitCode": 0,
-      "summary": "PASS twice: 8 focused lifecycle and fail-closed tests"
+      "summary": "PASS: SQL-backed health, write/read/update/rollback, cleanup, timeout, and probe-state assertions"
     },
     {
-      "command": "npm run build",
+      "command": "task 04 failure command map",
       "exitCode": 0,
-      "summary": "PASS: capability-probe health and ingest routes loaded"
-    },
-    {
-      "command": "npm run lint",
-      "exitCode": 0,
-      "summary": "PASS"
+      "summary": "PASS: missing, invalid, expired, malformed, prompt-injection, and stale receipt boundaries"
     }
   ],
   "evidence": [
     {
-      "path": "phase-00/aggregate.json",
-      "sha256": "89dc5f1ad9bddaa0286bbcf6a253644a21b81f62c7229b1c76c86798cdac956c"
+      "path": "server/phase-00-capability-probe.mjs",
+      "sha256": "74a17583cbe1fe3ef191cf31d877b05218df053db29acd7a68eda07575bb2cde"
     },
     {
-      "path": "phase-00/manual-qa.json",
-      "sha256": "313cac7412c25ebc020c7eb92ed949a6f7c763f34d89627e630a352186c53700"
+      "path": "app/api/internal/capability-probe/ingest/route.js",
+      "sha256": "1821bf3fb6b59d40810ded911df188a189a75fa212ba674010665cd39c8a6f2d"
+    },
+    {
+      "path": "migrations/0004_phase_00_capability_probe.sql",
+      "sha256": "bd066c9b14b0836138127596e42a2b6f12e8f2e9bbf80e4cb2a9e35a37ae7b75"
+    },
+    {
+      "path": "db/schema.ts",
+      "sha256": "06e4fb03268c0921098a126a343e528b44eb84c38521d1aae5e56f24314cca11"
     }
   ],
   "blockers": [
-    "External Sites capability proof and cleanup deployment remain owner-controlled and were not authorized."
+    "Owner must enter the temporary Sites hosted secret and future expiry, Save the probe version with state probe, explicitly approve Deploy, Save the cleanup version with state cleanup, explicitly approve cleanup Deploy, and verify no test data remains."
   ],
-  "owner_action": "Enter a temporary hosted secret, Save the probe version, explicitly approve probe Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no synthetic test data remains.",
+  "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
   "limitations": [
-    "No hosted secret value, live API, D1 migration execution, Sites Save, Sites Deploy, sharing change, push, or merge was performed.",
-    "Local preview could not expose the required IPv4 loopback surface; the injected route harness established the post-cleanup 404 response without a D1 call.",
-    "Local proof does not establish a live Sites deployment or production snapshot ingestion."
+    "Local fixtures prove disposable Phase 00 logic only; no live D1 or ChatGPT Sites capability was exercised.",
+    "No secret value, Sites action, external call, push, merge, deployment, sharing change, or migration execution occurred."
   ],
   "secret_status": "REDACTED"
 }

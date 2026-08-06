@@ -1,19 +1,15 @@
 {
   "schema_version": 1,
   "task": 4,
-  "observed_at": "2026-08-06T23:48:00+09:00",
+  "observed_at": "2026-08-06T00:00:00+09:00",
   "command_id": "task-04-happy",
   "argv": ["node", "--test", "tests/gates/task-04-happy.test.mjs"],
+  "expected_exit": 0,
   "actual_exit": 0,
   "verdict": "PASS",
   "binding": {
-    "code_commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
-    "code_tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7"
+    "code_commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
+    "code_tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd"
   },
-  "inner_result": {
-    "tests": 2,
-    "pass": 2,
-    "fail": 0,
-    "observable": "baseline ordering and the full health/write/read/update/atomic-rollback/confirmed-cleanup lifecycle passed"
-  }
+  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-seoul-gaja-v4-plan-review.json"
 }

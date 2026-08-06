@@ -1,16 +1,20 @@
 {
   "schema_version": 1,
   "task": 4,
-  "observed_at": "2026-08-06T23:48:00+09:00",
+  "observed_at": "2026-08-06T00:00:00+09:00",
   "verdict": "NOT_RUN_BLOCKED",
   "binding": {
-    "code_commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
-    "code_tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7"
+    "branch": "codex/todo4-phase00",
+    "candidate_commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
+    "candidate_tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd"
   },
-  "missing_owner_action": "Enter a temporary hosted secret, Save the probe version, explicitly approve probe Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no synthetic test data remains.",
   "checked": [
-    "No hosted secret value was entered.",
-    "No Sites Save or Deploy action was attempted.",
-    "No live D1 probe, cleanup deployment, or external data-removal proof was available."
-  ]
+    "No owner-controlled Sites hosted secret was entered.",
+    "No Sites Save, Deploy, sharing, external POST, live D1 query, push, or merge was attempted.",
+    "Local cleanup-state and test-data-removal fixtures passed without a live capability claim."
+  ],
+  "redacted_token_id": "NOT_ENTERED",
+  "missing_owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+  "required_owner_sequence": "Enter the temporary Sites hosted secret, Save the probe version, explicitly approve Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no test data remains.",
+  "receipt": "docs/evidence/phase-00/phase-receipt.json"
 }

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "phase": "00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "implementation_candidate": {
+    "branch": "codex/todo4-phase00",
+    "commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
+    "tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd",
+    "base_commit": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
+    "base_tree": "d876c8389e82b9b772ae637731102923babb9d07"
+  },
+  "red": {
+    "command": "node --test tests/gates/task-04-failure.test.mjs",
+    "exit": 1,
+    "observed": "Missing migration ENOENT, null receipt identity, and hung D1 operation reached the bounded test timeout."
+  },
+  "green": {
+    "focused_tests": "11 of 11 assertions pass after C2 evidence commit",
+    "local_d1": "Native node:sqlite fixture applies 0004 migration and proves health/write/read/update/rollback/cleanup",
+    "timeout": "Hung health operation aborts after the configured bound and cleanup is invoked",
+    "receipt": "Canonical receipt binds the implementation candidate commit/tree; external deployment fields remain withheld"
+  },
+  "owner_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+    "required_sequence": "Enter the hosted secret and future expiry, Save and approve Deploy for the probe state, then Save and approve Deploy for the cleanup state and verify no synthetic row remains.",
+    "sites_actions": 0,
+    "external_calls": 0,
+    "secret_values": 0
+  },
+  "changed_paths": [
+    "db/schema.ts",
+    "docs/execution/contracts/phase-00-capability-contract.md",
+    "migrations/0004_phase_00_capability_probe.sql",
+    "server/phase-00-capability-probe.mjs",
+    "tests/fixtures/task-04/local-d1.mjs",
+    "tests/gates/task-04-failure.test.mjs",
+    "tests/gates/task-04-happy.test.mjs",
+    "docs/evidence/phase-00/phase-receipt.json",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-4-happy.json",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-4-failure.json",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-4-seoul-gaja-v4-plan-review.json",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-4-owner-gate-blocked.json"
+  ],
+  "cleanup": {
+    "servers": 0,
+    "ports": 0,
+    "temporary_files": 0,
+    "pycache": 0,
+    "external_calls": 0
+  }
+}
