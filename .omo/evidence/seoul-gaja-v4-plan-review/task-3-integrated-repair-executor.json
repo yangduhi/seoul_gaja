@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "task": "Todo 3 integrated validator startup repair",
+  "verdict": "PASS_FOR_SCOPED_IMPORT_REPAIR",
+  "branch": "codex/todo3-integrated-repair",
+  "scope": {
+    "base_commit": "ee14b91592ecd7151e9d20878559b3c9a1bf0a8f",
+    "base_tree": "c29d6bd8256a38887c3bb8901612bbdf62665df5",
+    "verified_source_only_tree": "eb4f5999641efad7808e045d6d525a0e808f67bd",
+    "source_change": "docs/execution/scripts/validate_phase_receipts.py: add exactly import re",
+    "changed_product_path_count": 1,
+    "changed_product_paths": [
+      "docs/execution/scripts/validate_phase_receipts.py"
+    ],
+    "evidence_path": ".omo/evidence/seoul-gaja-v4-plan-review/task-3-integrated-repair-executor.json",
+    "forbidden_changes": [
+      "parent checkout",
+      "plan",
+      "ledger",
+      "authority",
+      "readiness",
+      "schema",
+      "fixtures",
+      "tests"
+    ]
+  },
+  "red": {
+    "command": "python docs/execution/scripts/validate_phase_receipts.py",
+    "exit": 1,
+    "observation": "Startup failed before argument parsing with NameError: name re is not defined at SECRET_VALUE_PATTERN = re.compile(...).",
+    "gate_command": "node --test tests/gates/task-03-happy.test.mjs tests/gates/task-03-failure.test.mjs",
+    "gate_exit": 1,
+    "gate_result": "10 negative fixture rejections passed; the one positive receipt gate failed because the validator raised the same startup NameError."
+  },
+  "green": {
+    "repair": "Added the missing Python standard-library import re immediately after import json.",
+    "manual_startup_command": "python docs/execution/scripts/validate_phase_receipts.py",
+    "manual_startup_exit": 2,
+    "manual_startup_result": "No startup traceback or NameError; the parent-derived CLI requires schema and receipts and therefore reports argparse usage. This is recorded separately from semantic fixture validation and was not changed by the import-only repair.",
+    "positive_direct_command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json tests/fixtures/phase-receipts/positive/*.json",
+    "positive_direct_exit": 0,
+    "positive_direct_result": "PASS: all five positive fixtures accepted.",
+    "negative_direct_result": "PASS: each of the ten named negative fixtures exited nonzero; fixture output was discarded after exit verification so no secret-shaped value entered this report.",
+    "fixture_outcomes": "PASS 15/15 semantic fixture outcomes: 5 positive accepted and 10 negative rejected.",
+    "task_suite": "PASS 11/11 Node TAP tests, repeated twice.",
+    "command_map": {
+      "task_03_happy": {"exit": 0, "verdict": "PASS", "actual_exit": 0},
+      "task_03_failure": {"exit": 0, "verdict": "PASS", "actual_exit": 0}
+    },
+    "authority": {
+      "validate_command_map": {"command": "python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json", "exit": 0, "result": "PASS: 30 command entries validated"},
+      "validate_authority_lock": {"command": "python docs/execution/scripts/validate_authority_lock.py", "exit": 0, "verdict": "PASS"}
+    },
+    "diff_check": {"command": "git diff --check", "exit": 0}
+  },
+  "logic_preservation": {
+    "static_source_confirmation": "The integrated source still contains recursive secret_locations traversal, SECRET_VALUE_PATTERN, HIGH_ENTROPY_TOKEN_PATTERN, SENSITIVE_KEY_NAMES, semantic_failures Phase 08 release identity checks, and expected_identity_failures.",
+    "scope_observation": "The parent-derived main() requires positional schema/receipts and does not invoke semantic_failures or expected_identity_failures. The prior Todo 3 branch contains a broader CLI integration. Restoring it is intentionally excluded by the exact import-only work order; this evidence does not claim that broader behavior is restored."
+  },
+  "manual_qa": {
+    "channel": "mcp__git_bash__run",
+    "exact_startup_invocation": "python docs/execution/scripts/validate_phase_receipts.py",
+    "startup_nameerror": "ABSENT_AFTER_REPAIR",
+    "semantic_pass_proof": "Positive direct fixture command exit 0 and task-03-happy command-map exit 0.",
+    "negative_rejection_proof": "Ten direct negative fixture exits were nonzero and task-03-failure command-map exit 0.",
+    "cp949_wrapper_warning": "The existing run_command_map.py child-output reader emitted UnicodeDecodeError for CP949 decoding while both parsed JSON verdicts and process exits were PASS/0. The warning is host-wrapper behavior and is not used as semantic proof."
+  },
+  "ultraqa": {
+    "malformed_input": "PASS: existing negative fixtures reject malformed verdict/identity/proof forms without printing fixture values.",
+    "stale_state": "NOT_RUN_SCOPE_CONSTRAINED: the parent-derived CLI lacks the historical --expected-commit/--expected-tree/--expected-plan-sha256 arguments; restoring them would exceed the one-import repair scope.",
+    "prompt_injection": "NOT_APPLICABLE: local JSON Schema/validator execution has no model or instruction-execution surface.",
+    "dirty_worktree": "PASS: parent checkout was not edited; repair worktree started clean and tracked product scope is one path.",
+    "hung_or_long_commands": "PASS: direct validation, two Node suite runs, and command-map runs finished within the 120000 ms terminal bound.",
+    "flaky_tests": "PASS: focused Node TAP suite was 11/11 on both consecutive runs; fixture outcome count was 15/15.",
+    "misleading_success_output": "PASS: conclusions use direct exits and parsed command-map verdicts, not prose-only output.",
+    "repeated_interruptions": "PASS: no interrupted command, partial commit, background process, port, or browser resource was created.",
+    "cancel_resume": "NOT_APPLICABLE: validator invocation is single-shot and has no resumable state."
+  },
+  "cleanup": {
+    "temporary_negative_output": "Removed through mktemp cleanup after all ten negative exits were checked.",
+    "worker_created_pycache_removed": "NONE_CREATED",
+    "leftover_processes": 0,
+    "leftover_temp_fixtures": 0,
+    "network_live_api_deploy_push_merge_actions": 0,
+    "secret_values_recorded": 0
+  }
+}
