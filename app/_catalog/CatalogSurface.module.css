@@ -145,7 +145,7 @@
 .mapNotice strong { display: block; margin-bottom: 4px; color: var(--sg-text-strong); }
 .mapNotice p { margin: 0; color: var(--sg-text-secondary); font-size: 13px; line-height: 1.5; }
 .mapLegend { position: absolute; bottom: var(--sg-space-xl); left: 50%; display: flex; width: fit-content; gap: var(--sg-space-md); padding: var(--sg-space-sm) var(--sg-space-md); border: 1px solid var(--sg-glass-border-floating); border-radius: var(--sg-radius-pill); background: var(--sg-glass-floating); box-shadow: var(--sg-shadow-glass); transform: translateX(-50%); backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation)); }
-.mapLegend span { display: inline-flex; align-items: center; gap: var(--sg-space-xs); color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); }
+.mapLegend span { display: inline-flex; align-items: center; gap: var(--sg-space-xs); color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); white-space: nowrap; }
 .mapLegend span::before { width: var(--sg-space-xs); height: var(--sg-space-xs); border-radius: var(--sg-radius-pill); background: var(--sg-crowd-normal); content: ""; }
 .mapLegend span[data-level="RELAXED"]::before { background: var(--sg-crowd-relaxed); }
 .mapLegend span[data-level="BUSY"]::before { background: var(--sg-crowd-busy); }
