@@ -44,6 +44,8 @@ test("Given valid snake_case D1 rows, when the product read model is loaded, the
   assert.equal(result.data.catalog[0].areaName, "Alpha Place");
   assert.equal(result.data.snapshot.rows[1].availability, "carried_forward");
   assert.equal(result.data.snapshot.rows[0].sourceUpdatedAt, "2026-08-06T00:00:00Z");
+  assert.equal(result.data.snapshot.rows[0].rawHash, "sha256-alpha");
+  assert.equal(result.data.snapshot.rows[0].freshnessBasis, "source_updated_at");
   assert.equal(result.data.officialForecast.byAreaCode.alpha.points[0].crowdLevel, "NORMAL");
   assert.equal(result.data.officialForecast.byAreaCode.alpha.points[0].snapshotId, "snapshot-2026-08-06T00:00:00Z");
   assert.equal(result.data.history.byAreaCode.alpha.profiles[0].crowdRankMedian, 0.4);
@@ -88,6 +90,46 @@ test("Given a source timestamp older than 180 minutes, when the snapshot is read
   const result = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
 
   assert.deepEqual(result, { status: "UNAVAILABLE", reason: "SNAPSHOT_EXPIRED" });
+});
+
+test("Given a source timestamp 120 minutes old, when the snapshot is read, then the row is classified stale", async () => {
+  const data = await fixture();
+  data.snapshot[0].source_updated_at = "2026-08-05T22:30:00Z";
+  const result = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+
+  assert.equal(result.status, "READY");
+  assert.equal(result.data.snapshot.rows[0].freshness, "stale");
+});
+
+test("Given an available row without source time, when the snapshot is read, then fetched time is marked as degraded freshness basis", async () => {
+  const data = await fixture();
+  data.snapshot[0].source_updated_at = null;
+  data.snapshot[0].fetched_at = "2026-08-06T00:10:00Z";
+  const result = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+
+  assert.equal(result.status, "READY");
+  assert.equal(result.data.snapshot.rows[0].freshnessBasis, "fetched_at_degraded");
+  assert.equal(result.data.snapshot.rows[0].freshness, "fresh");
+});
+
+test("Given degraded freshness based on a fetched time older than 180 minutes, when the snapshot is read, then it is unavailable", async () => {
+  const data = await fixture();
+  data.snapshot[0].source_updated_at = null;
+  data.snapshot[0].fetched_at = "2026-08-05T20:00:00Z";
+  const result = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+
+  assert.deepEqual(result, { status: "UNAVAILABLE", reason: "SNAPSHOT_EXPIRED" });
+});
+
+test("Given every snapshot row is unavailable, when the snapshot is read, then activation is unavailable", async () => {
+  const data = await fixture();
+  for (const row of data.snapshot) {
+    row.availability = "unavailable";
+    row.source_updated_at = null;
+  }
+  const result = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+
+  assert.deepEqual(result, { status: "UNAVAILABLE", reason: "SNAPSHOT_UNAVAILABLE" });
 });
 
 test("Given a synthetic forecast payload, when the data boundary is read, then it is rejected instead of used as official data", async () => {

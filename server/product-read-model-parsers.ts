@@ -61,23 +61,23 @@ export function parseSnapshot(rows: readonly D1Row[], catalog: readonly CatalogP
     const storedAt = iso(row.stored_at);
     const populationMin = nullableInteger(row.population_min);
     const populationMax = nullableInteger(row.population_max);
-    if (place === undefined || seen.has(areaCode ?? "") || currentSnapshotId === null || currentCatalogVersion === null || availability === null || provenance === null || crowdLevel === null || sourceUpdatedAt === undefined || fetchedAt === null || storedAt === null || populationMin === undefined || populationMax === undefined || (row.snapshot_status !== "accepted" && row.snapshot_status !== "replayed") || currentCatalogVersion !== place.catalogVersion || !validRange(populationMin, populationMax)) return { status: "REJECTED", reason: "MALFORMED_SNAPSHOT_ROW" };
+    const rawHash = nullableString(row.raw_hash);
+    if (place === undefined || seen.has(areaCode ?? "") || currentSnapshotId === null || currentCatalogVersion === null || availability === null || provenance === null || crowdLevel === null || sourceUpdatedAt === undefined || fetchedAt === null || storedAt === null || populationMin === undefined || populationMax === undefined || rawHash === undefined || (row.snapshot_status !== "accepted" && row.snapshot_status !== "replayed") || currentCatalogVersion !== place.catalogVersion || !validRange(populationMin, populationMax)) return { status: "REJECTED", reason: "MALFORMED_SNAPSHOT_ROW" };
     if (snapshotId !== null && currentSnapshotId !== snapshotId || catalogVersion !== null && currentCatalogVersion !== catalogVersion) return { status: "REJECTED", reason: "MISMATCHED_SNAPSHOT" };
     snapshotId = currentSnapshotId;
     catalogVersion = currentCatalogVersion;
     seen.add(areaCode);
     if (availability === "expired") return { status: "UNAVAILABLE", reason: "SNAPSHOT_EXPIRED" };
-    if (sourceUpdatedAt !== null) {
-      const age = now - Date.parse(sourceUpdatedAt);
-      if (age < -MAX_FUTURE_SKEW_MS) return { status: "UNAVAILABLE", reason: "SNAPSHOT_FUTURE_TIMESTAMP" };
-      if (age > MAX_SOURCE_AGE_MS) return { status: "UNAVAILABLE", reason: "SNAPSHOT_EXPIRED" };
-    } else if (availability === "available" || availability === "carried_forward") {
-      return { status: "REJECTED", reason: "MALFORMED_SNAPSHOT_ROW" };
-    }
+    const freshnessBasis = sourceUpdatedAt === null ? "fetched_at_degraded" : "source_updated_at";
+    const freshnessTimestamp = sourceUpdatedAt ?? fetchedAt;
+    const age = now - Date.parse(freshnessTimestamp);
+    if (age < -MAX_FUTURE_SKEW_MS) return { status: "UNAVAILABLE", reason: "SNAPSHOT_FUTURE_TIMESTAMP" };
+    if (age > MAX_SOURCE_AGE_MS) return { status: "UNAVAILABLE", reason: "SNAPSHOT_EXPIRED" };
     hasUnavailable ||= availability === "unavailable";
-    mapped.push({ areaCode, areaName: place.areaName, snapshotId: currentSnapshotId, catalogVersion: currentCatalogVersion, sourceUpdatedAt, fetchedAt, storedAt, availability, provenance, crowdLevel, populationMin, populationMax });
+    mapped.push({ areaCode, areaName: place.areaName, snapshotId: currentSnapshotId, catalogVersion: currentCatalogVersion, sourceUpdatedAt, fetchedAt, storedAt, availability, provenance, crowdLevel, populationMin, populationMax, rawHash, freshness: classifyFreshness(age), freshnessBasis });
   }
   if (snapshotId === null || catalogVersion === null || mapped.length !== catalog.length || seen.size !== catalog.length) return { status: "UNAVAILABLE", reason: "SNAPSHOT_UNAVAILABLE" };
+  if (!mapped.some((row) => row.availability !== "unavailable")) return { status: "UNAVAILABLE", reason: "SNAPSHOT_UNAVAILABLE" };
   return { status: "READY", view: { status: hasUnavailable ? "PARTIAL" : "READY", snapshotId, catalogVersion, rows: mapped } };
 }
 
@@ -144,6 +144,7 @@ export function parseHistory(rows: readonly D1Row[], catalog: readonly CatalogPl
 
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === "object" && value !== null && !Array.isArray(value); }
 function nonEmptyString(value: unknown): string | null { return typeof value === "string" && value.trim().length > 0 ? value : null; }
+function nullableString(value: unknown): string | null | undefined { return value === null || value === undefined ? null : nonEmptyString(value) ?? undefined; }
 function iso(value: unknown): string | null { return typeof value === "string" && /(?:Z|[+-]\d\d:\d\d)$/u.test(value) && Number.isFinite(Date.parse(value)) ? value : null; }
 function nullableIso(value: unknown): string | null | undefined { return value === null || value === undefined ? null : iso(value) ?? undefined; }
 function integer(value: unknown): number | null { return typeof value === "number" && Number.isSafeInteger(value) ? value : null; }
@@ -155,3 +156,4 @@ function nullablePercentile(value: unknown): number | null | undefined { return 
 function optionalPercentile(value: unknown): number | null | undefined { return value === undefined ? null : percentile(value) ?? undefined; }
 function literal<T extends readonly string[]>(value: unknown, values: T): T[number] | null { return typeof value === "string" && values.includes(value) ? value : null; }
 function validRange(min: number | null, max: number | null): boolean { return min === null && max === null || min !== null && max !== null && max >= min; }
+function classifyFreshness(ageMs: number): "fresh" | "delayed" | "stale" { const age = Math.max(0, ageMs); return age <= 30 * 60 * 1000 ? "fresh" : age <= 90 * 60 * 1000 ? "delayed" : "stale"; }
