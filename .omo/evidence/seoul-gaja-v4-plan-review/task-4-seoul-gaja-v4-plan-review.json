@@ -1,57 +1,45 @@
 {
   "schema_version": 1,
   "task": 4,
-  "observed_at": "2026-08-04T21:05:00+09:00",
+  "observed_at": "2026-08-06T23:48:00+09:00",
   "verdict": "NOT_RUN_BLOCKED",
   "binding": {
-    "branch": "team/team-5e8b1c22/D",
-    "base_head": "381d4f9af880efbb2b0ef8da622461e8e80952ce",
-    "base_tree": "4284f47c7e7e96d9857781cf4fcb18dc1589fa60",
-    "code_commit": "029e50a6d0f6c3bc98051a2b711ab2060c24e8a0",
-    "code_tree": "fcad26ef3e8079df989a94504e56100975504af9"
+    "branch": "codex/prep-v4-1",
+    "base_commit": "390e32d3c237214696dcee2cb8231f686e1b4628",
+    "base_tree": "02714a656ddb0eb1d60596cb5d1afae7f89d4e55",
+    "code_commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
+    "code_tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7"
   },
   "checks": [
-    {
-      "command_id": "task-04-happy",
-      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
-      "actual_exit": 0,
-      "verdict": "PASS"
-    },
-    {
-      "command_id": "task-04-failure",
-      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-failure",
-      "actual_exit": 0,
-      "verdict": "PASS"
-    },
-    {
-      "command": "npm run build",
-      "actual_exit": 0,
-      "verdict": "PASS",
-      "detail": "vinext built both Phase 00 API routes."
-    },
-    {
-      "command": "npm run lint",
-      "actual_exit": 0,
-      "verdict": "PASS"
-    },
-    {
-      "command": "git diff --check",
-      "actual_exit": 0,
-      "verdict": "PASS"
-    }
+    { "command": "node --test tests/gates/task-04-happy.test.mjs tests/gates/task-04-failure.test.mjs", "actual_exit": 0, "runs": 2, "inner_result": "PASS: 8 total tests" },
+    { "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy", "actual_exit": 0, "inner_result": "PASS: TAP parsed, 2 of 2 passed" },
+    { "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-failure", "actual_exit": 0, "inner_result": "PASS: TAP parsed, 6 of 6 passed" },
+    { "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json", "actual_exit": 0, "inner_result": "PASS: existing receipt parsed before its candidate rebind" },
+    { "command": "npm run build", "actual_exit": 0, "inner_result": "PASS: both capability-probe routes loaded" },
+    { "command": "npm run lint", "actual_exit": 0, "inner_result": "PASS" },
+    { "command": "git diff --check", "actual_exit": 0, "inner_result": "PASS" }
   ],
-  "local_contract": {
-    "probe": "phase-00-capability-probe",
-    "route": "POST /api/internal/capability-probe/ingest",
-    "coverage": ["health", "D1 write/read/update/rollback/cleanup", "missing/invalid/unavailable token rejection", "server-only secret boundary"]
+  "artifacts": [
+    { "path": "server/phase-00-capability-probe.mjs", "sha256": "5df14a4cfb1de271b403d527b0de61abced50f411b5a4203c191aa0bf21608cf" },
+    { "path": "app/api/internal/capability-probe/health/route.js", "sha256": "b47e1fc33982f215848542b6b1aaef8c1b657cd7a22ce3c8a7e555b16cd00394" },
+    { "path": "app/api/internal/capability-probe/ingest/route.js", "sha256": "9b7f385e6222c38418d81f94655a32fec00d29308364cc9cba0f3eb27a49d1d9" },
+    { "path": "tests/gates/task-04-happy.test.mjs", "sha256": "13859e3346506d6e0546def93136c345537860b4480a5a981fd3bead1b58af1f" },
+    { "path": "tests/gates/task-04-failure.test.mjs", "sha256": "a6c0b6b31d1601e70f94ebf4a418c1c401a4c0a3891e6497912420c61cdc377d" }
+  ],
+  "manual_qa": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-manual-qa.json",
+  "ultraqa": {
+    "malformed_input": "PASS: invalid JSON, strict schema, and oversize boundary are rejected before lifecycle work.",
+    "prompt_injection": "PASS: extra prompt and token-like fields are rejected before lifecycle work.",
+    "stale_state": "PASS: only the exact disabled state produces 404; all other state is not treated as cleanup-disabled.",
+    "dirty_worktree": "PASS: only assigned Todo 4 files were staged and committed; concurrent edits remain untouched.",
+    "hung_or_long_commands": "PASS: every adapter and request-body await is timeout-bounded; the hung-adapter test settled as an error.",
+    "flaky_tests": "PASS: focused suite passed twice with the same 8-test total.",
+    "misleading_success_output": "PASS: wrapper output was backed by parsed inner TAP results; the first command-map attempt had a CP949 decoder warning and was not used as proof.",
+    "repeated_interruptions": "PASS: forced lifecycle failure still called cleanup; both registered local preview process trees were terminated and no ports remained listening.",
+    "cancel_resume": "NOT_APPLICABLE: the probe lifecycle has no resumable flow."
   },
   "external_gate": {
     "verdict": "NOT_RUN_BLOCKED",
-    "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
-    "reason": "No owner-approved Sites secret, Save version, deployment, or cleanup deployment proof is available."
-  },
-  "limitations": [
-    "No secret value, live API, D1 migration execution, Sites Save, Sites Deploy, sharing change, push, or merge was performed.",
-    "The v4.0.0 packet was not modified."
-  ]
+    "owner_action": "Enter a temporary hosted secret, Save the probe version, explicitly approve probe Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no synthetic test data remains."
+  }
 }

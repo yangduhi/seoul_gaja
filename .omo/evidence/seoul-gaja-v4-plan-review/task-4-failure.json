@@ -1,15 +1,25 @@
 {
   "schema_version": 1,
   "task": 4,
-  "observed_at": "2026-08-04T21:05:00+09:00",
+  "observed_at": "2026-08-06T23:48:00+09:00",
   "command_id": "task-04-failure",
   "argv": ["node", "--test", "tests/gates/task-04-failure.test.mjs"],
-  "expected_exit": 0,
   "actual_exit": 0,
   "verdict": "PASS",
   "binding": {
-    "code_commit": "029e50a6d0f6c3bc98051a2b711ab2060c24e8a0",
-    "code_tree": "fcad26ef3e8079df989a94504e56100975504af9"
+    "code_commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
+    "code_tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7"
   },
-  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-seoul-gaja-v4-plan-review.json"
+  "failing_first": {
+    "command": "node --test tests/gates/task-04-failure.test.mjs",
+    "actual_exit_before_product_change": 1,
+    "observable": "the module did not export the injected route handler needed to prove disabled route behavior",
+    "result_after_product_change": "PASS"
+  },
+  "inner_result": {
+    "tests": 6,
+    "pass": 6,
+    "fail": 0,
+    "coverage": ["missing-invalid-expired authentication", "disabled health and ingest 404", "malformed input", "prompt-injection and token-like fields", "hung adapter timeout", "forced lifecycle failure cleanup"]
+  }
 }

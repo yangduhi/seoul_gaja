@@ -1,28 +1,45 @@
 {
   "phase": "00",
   "verdict": "NOT_RUN_BLOCKED",
-  "commit": "029e50a6d0f6c3bc98051a2b711ab2060c24e8a0",
-  "tree": "fcad26ef3e8079df989a94504e56100975504af9",
-  "base_commit": "381d4f9af880efbb2b0ef8da622461e8e80952ce",
-  "base_tree": "4284f47c7e7e96d9857781cf4fcb18dc1589fa60",
+  "commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
+  "tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7",
+  "base_commit": "390e32d3c237214696dcee2cb8231f686e1b4628",
+  "base_tree": "02714a656ddb0eb1d60596cb5d1afae7f89d4e55",
   "tests": [
     {
-      "command": "phase capability happy command map",
+      "command": "focused Phase 00 happy and failure gate suite",
       "exitCode": 0,
-      "summary": "PASS: 1 local lifecycle test"
+      "summary": "PASS twice: 8 focused lifecycle and fail-closed tests"
     },
     {
-      "command": "phase capability negative command map",
+      "command": "npm run build",
       "exitCode": 0,
-      "summary": "PASS: 3 fail-closed tests"
+      "summary": "PASS: capability-probe health and ingest routes loaded"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "summary": "PASS"
     }
   ],
-  "evidence": [],
-  "blockers": ["Owner has not approved the external capability probe in ChatGPT Sites."],
-  "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+  "evidence": [
+    {
+      "path": "phase-00/aggregate.json",
+      "sha256": "89dc5f1ad9bddaa0286bbcf6a253644a21b81f62c7229b1c76c86798cdac956c"
+    },
+    {
+      "path": "phase-00/manual-qa.json",
+      "sha256": "313cac7412c25ebc020c7eb92ed949a6f7c763f34d89627e630a352186c53700"
+    }
+  ],
+  "blockers": [
+    "External Sites capability proof and cleanup deployment remain owner-controlled and were not authorized."
+  ],
+  "owner_action": "Enter a temporary hosted secret, Save the probe version, explicitly approve probe Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no synthetic test data remains.",
   "limitations": [
-    "No secret value, live API, D1 migration execution, Sites Save, Sites Deploy, sharing change, push, or merge was performed.",
-    "The local capability contract does not prove a live Sites deployment or Phase 02 production ingestion."
+    "No hosted secret value, live API, D1 migration execution, Sites Save, Sites Deploy, sharing change, push, or merge was performed.",
+    "Local preview could not expose the required IPv4 loopback surface; the injected route harness established the post-cleanup 404 response without a D1 call.",
+    "Local proof does not establish a live Sites deployment or production snapshot ingestion."
   ],
   "secret_status": "REDACTED"
 }

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "observed_at": "2026-08-06T23:48:00+09:00",
+  "binding": {
+    "code_commit": "6f1b33e6803dd160242a79a5baf1c3c5c87d85ae",
+    "code_tree": "0e38ec18709f0d84123596eef2d81af6a5d6cbd7"
+  },
+  "local_preview": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "attempts": [
+      "npm run dev -- --port 4314",
+      "npm run dev -- --host 127.0.0.1 --port 4315"
+    ],
+    "missing_local_runtime_capability": "The vinext/workerd preview did not publish a usable HTTP listener on 127.0.0.1 for either registered port, so the required loopback curl surface could not be observed.",
+    "cleanup": "Stopped registered preview PID trees rooted at 136476 and 144320; checked ports 4314 and 4315 after teardown with no remaining listener."
+  },
+  "route_level_harness": {
+    "verdict": "PASS",
+    "surface": "createCapabilityProbeRouteHandlers mocked-env route handler",
+    "observable": "GET health and POST ingest each returned HTTP 404 with error capability_probe_disabled while the mocked D1 adapter remained untouched."
+  }
+}
