@@ -1,14 +1,20 @@
 {
-  "schema_version": 2,
-  "contract_id": "seoul-gaja-design-audit-v2",
+  "schema_version": 3,
+  "contract_id": "seoul-gaja-design-audit-v3",
   "status": "ACTIVE",
   "scope": "All local UI and frontend implementation slices in v4.1",
   "purpose": "Make design auditing and unbounded score-driven visual improvement autonomous while preserving the existing execution and design authority chain.",
   "quality_target": {
     "target_score": 100,
     "scale": "10 components x 10 points",
-    "score_formula": "Sum 10 points for every component whose status is PASS.",
-    "component_rule": "A component earns 10 points only when every listed check has candidate-bound evidence and no applicable DEVIATION, OMISSION, or UNVERIFIED remains.",
+    "score_formula": "Sum 10 points for every component whose atomic checks are PASS.",
+    "component_rule": "A component earns 10 points only when every listed atomic check has candidate-bound evidence and no applicable DEVIATION, OMISSION, or UNVERIFIED remains.",
+    "atomic_check_rule": "Every check names applicability, source authority, observable acceptance criteria, observation method, and required evidence. A subjective summary cannot earn points without those fields.",
+    "severity_caps": {
+      "unresolved_P0_or_P1": "PASS is forbidden regardless of numeric score.",
+      "unverified_required_evidence": "The affected component earns zero points and the audit remains non-PASS.",
+      "P3": "In-scope P3 findings remain score-bearing and are never report-only."
+    },
     "components": [
       {
         "id": "C01_SOURCE_FIDELITY",
@@ -64,7 +70,8 @@
     "score_states": {
       "score_less_than_target": "BELOW_TARGET",
       "score_equals_target": "PASS_100",
-      "required_evidence_missing": "NOT_RUN_BLOCKED"
+      "required_evidence_missing": "NOT_RUN_BLOCKED",
+      "non_rendering_target": "NOT_APPLICABLE"
     },
     "loop_states": [
       "AUDIT_REQUIRED",
@@ -73,7 +80,8 @@
       "APPLYING_IMPROVEMENTS",
       "RECHECK_REQUIRED",
       "PASS_100",
-      "HARD_BLOCKED"
+       "HARD_BLOCKED",
+       "NON_RENDERING_PROVENANCE_COMPLETE"
     ]
   },
   "authority": {
@@ -100,12 +108,27 @@
     "candidate_binding": {
       "required": [
         "head_sha",
-        "tree_sha",
+        "head_tree_sha",
         "plan_sha256",
-        "authority_lock_sha256"
+        "authority_lock_sha256",
+        "worktree_snapshot_sha256"
       ],
-      "stale_evidence_rule": "Evidence bound to another HEAD or tree is invalid and must not be reused."
+      "stale_evidence_rule": "Evidence bound to another HEAD, commit tree, or worktree input snapshot is invalid and must not be reused.",
+      "snapshot_algorithm": "sha256-path-manifest-v1",
+      "snapshot_inputs": "The audit manifest lists every source and authority input path with its current SHA-256. The aggregate is computed from sorted '<sha256>  <path>\\n' lines.",
+      "snapshot_exclusions": [
+        ".omo/evidence/design-audit/**",
+        ".omo/tmp/**",
+        ".omo/teams/**"
+      ]
     }
+  },
+  "applicability": {
+    "classify_at": "D0_BIND",
+    "target_classes": ["RENDERED_UI", "NON_RENDERING_FRONTEND", "SERVER_ONLY"],
+    "rendered_ui_requires": "Full D0-D9 score loop, real browser captures, interaction and accessibility evidence.",
+    "non_rendering_requires": "Candidate-bound source, authority, MengTo, contract-matrix, loop ledger, and provenance evidence; visual score components are NOT_APPLICABLE.",
+    "non_rendering_terminal": "NOT_APPLICABLE with loop_state NON_RENDERING_PROVENANCE_COMPLETE. It is not a visual PASS and does not approve a rendered product surface."
   },
   "triggers": {
     "before_ui_slice": "REQUIRED",
@@ -169,19 +192,30 @@
       "generic font, token, motion, gradient, or image replacement that conflicts with repository authority"
     ]
   },
+  "tooling": {
+    "validator": {
+      "path": "docs/execution/scripts/validate_design_audit.py",
+      "invocation": "python docs/execution/scripts/validate_design_audit.py --audit-dir <audit-dir>",
+      "active_invocation": "python docs/execution/scripts/validate_design_audit.py --active --audit-root .omo/evidence/design-audit",
+      "exit_codes": {"PASS": 0, "FAIL": 1, "NOT_RUN_BLOCKED": 3, "NOT_APPLICABLE": 0}
+    },
+    "active_pointer": ".omo/evidence/design-audit/ACTIVE.json",
+    "mengto_adapter": "Record the exact recommendation command, adapter version/hash, exit code, and redacted output in mengto-recommendation.json.",
+    "browser_adapter": "Record preview start, health check, four viewport captures, state/accessibility checks, browser version, and cleanup in capture-manifest.json."
+  },
   "lifecycle": [
     {
       "id": "D0_BIND",
       "name": "candidate binding",
-      "required_inputs": ["head_sha", "tree_sha", "plan_sha256", "authority_lock_sha256", "target_route", "target_surface"],
-      "success": "All inputs are recorded for the same candidate.",
+      "required_inputs": ["head_sha", "head_tree_sha", "plan_sha256", "authority_lock_sha256", "worktree_snapshot_sha256", "target_class", "target_route", "target_surface"],
+      "success": "All inputs are recorded for the same candidate and the snapshot manifest excludes audit outputs.",
       "failure": "UNVERIFIED and no design PASS is allowed."
     },
     {
       "id": "D1_SELECT",
       "name": "MengTo pack selection",
       "required_action": "Run mengto-skills and record the recommendation output and selected pack.",
-      "success": "Only the approved diagnostic and comparison lenses are active.",
+      "success": "Only the approved diagnostic and comparison lenses are active, and the recommendation artifact records router, command, version, and candidate binding.",
       "failure": "Use the last known pack only as a non-authoritative hint, mark selection UNVERIFIED, and prevent C10 from earning points until a fresh successful recommendation is recorded."
     },
     {
@@ -209,8 +243,8 @@
     {
       "id": "D5_SCORE",
       "name": "100-point scorecard",
-      "required_action": "Run all ten quality components and write scorecard.json with component status, points, evidence, baseline score, and target score.",
-      "success": "The score is reproducible and equals the sum of component points.",
+      "required_action": "Run all ten quality components and every applicable atomic check. Write scorecard.json with component status, points, source references, acceptance criteria, observation method, evidence IDs, baseline score, and target score.",
+      "success": "The score is reproducible, equals the sum of atomic component points, and respects severity caps.",
       "failure": "Any score below 100 enters BELOW_TARGET and can never produce PASS."
     },
     {
@@ -219,28 +253,28 @@
       "required_when": "score < target_score",
       "required_action": "Create improvement-plan.json before changing code. It must list every in-scope finding, ordered improvements, expected score delta, changed paths, acceptance criteria, and recheck evidence required.",
       "success": "A concrete plan exists for every unmet score component.",
-      "failure": "No improvement plan means FAIL_NON_TERMINAL; the implementation may not claim progress or PASS."
+      "failure": "No improvement plan means gate verdict FAIL with loop_state IMPROVEMENT_PLAN_REQUIRED; the implementation may not claim progress or PASS."
     },
     {
       "id": "D7_APPLY",
       "name": "autonomous improvement application",
-      "required_action": "Apply the improvement plan's safe local actions without routine user approval. There is no cycle-count limit; continue while score < 100 and no hard blocker exists.",
-      "success": "Applied changes and actual changed paths are recorded against the plan.",
+      "required_action": "Apply the improvement plan's safe local actions without routine user approval. There is no cycle-count limit; continue while score < 100 and no hard blocker exists. Every action records change_class, requires_owner_gate, owner_gate_id, authorization_artifact, and candidate snapshot.",
+      "success": "Applied changes and actual changed paths are recorded against the plan, and owner-gated changes remain unapplied without authorization.",
       "failure": "Escalate authority, dependency, route, external-action, or scope changes to the existing owner gate."
     },
     {
       "id": "D8_RECHECK",
       "name": "full re-audit and rescore",
-      "required_action": "Repeat D0 through D5 after every improvement batch or integration, then return to D6 whenever score < 100.",
+      "required_action": "Repeat D0 through D5 after every improvement change, including an uncommitted change, then return to D6 whenever score < 100.",
       "success": "A new score and score delta are bound to the new candidate; score 100 transitions to PASS_100.",
-      "failure": "Score below 100 remains FAIL_NON_TERMINAL; missing browser/source/owner capability becomes HARD_BLOCKED and NOT_RUN_BLOCKED."
+      "failure": "Score below 100 remains gate verdict FAIL with a non-terminal loop state; missing browser/source/owner capability becomes HARD_BLOCKED and NOT_RUN_BLOCKED. A no-progress iteration requires a named blocker or design decision packet."
     },
     {
       "id": "D9_CLOSE",
       "name": "100-point design gate closeout",
       "required_gate": "PASS",
       "success": "Score is exactly 100, all in-scope findings are resolved, all required viewport and accessibility evidence is current, and no hard blocker remains.",
-      "failure": "Score below 100 is never a closeout. Keep the loop open or record NOT_RUN_BLOCKED for a named hard blocker."
+      "failure": "Score below 100 is never a closeout. Keep the loop open or record NOT_RUN_BLOCKED for a named hard blocker. NON_RENDERING_PROVENANCE_COMPLETE closes only with NOT_APPLICABLE and cannot approve a UI release."
     }
   ],
   "checks": {
@@ -275,6 +309,8 @@
     "target_score": 100,
     "improvement_plan_required_below_target": true,
     "full_recheck_required_after_each_plan": true,
+    "progress_invariant": "Each iteration must increase score, close a finding, add required evidence, or produce a named owner/tool/design-decision blocker. This is a progress rule, not a cycle limit.",
+    "on_no_progress": "Create design-decision.json or a hard-blocker object and stop with NOT_RUN_BLOCKED; never repeat a no-op plan silently.",
     "auto_fix_severities": ["P0", "P1", "P2"],
     "plan_required_severities": ["P0", "P1", "P2", "P3"],
     "report_only_severities": [],
@@ -286,9 +322,15 @@
       "scope expansion beyond the assigned UI slice"
     ],
     "on_score_target": "PASS with score 100 and a complete recheck ledger",
-    "on_score_stall": "FAIL_NON_TERMINAL; keep the loop open and record the missing improvement or design decision",
+    "on_score_stall": "FAIL with loop_state BELOW_TARGET; continue until progress occurs or a named blocker/design decision produces NOT_RUN_BLOCKED",
     "on_hard_blocker": "NOT_RUN_BLOCKED with the missing capability, owner action, and next allowed action",
-    "on_browser_unavailable": "NOT_RUN_BLOCKED with the missing capability and next allowed action"
+    "on_browser_unavailable": "NOT_RUN_BLOCKED with the missing capability and next allowed action",
+    "change_policy": {
+      "required_fields": ["change_class", "requires_owner_gate", "owner_gate_id", "authorization_artifact", "authorization_candidate_snapshot", "decision"],
+      "safe_local_change_classes": ["STYLE_LOCAL", "COMPONENT_LOCAL", "A11Y_LOCAL", "RESPONSIVE_LOCAL", "EVIDENCE_ONLY"],
+      "owner_gate_change_classes": ["AUTHORITY", "DEPENDENCY", "PUBLIC_ROUTE", "EXTERNAL_ACTION", "SCOPE_EXPANSION", "DESTRUCTIVE"],
+      "missing_authorization_result": "NOT_RUN_BLOCKED"
+    }
   },
   "evidence": {
     "root": ".omo/evidence/design-audit",
@@ -299,9 +341,12 @@
       "scorecard.json",
       "improvement-plan.json",
       "loop-ledger.json",
-      "browser-captures or an explicit NOT_RUN_BLOCKED record",
+      "capture-manifest.json for RENDERED_UI or an explicit NOT_RUN_BLOCKED record",
+      "state-transition-matrix.json for RENDERED_UI",
+      "responsive-acceptance.json for RENDERED_UI",
       "findings.json",
-      "verdict.json"
+      "verdict.json",
+      "worktree-snapshot.json"
     ],
     "required_finding_fields": [
       "finding_id",
@@ -317,7 +362,9 @@
       "expected_score_delta",
       "improvement_plan_id",
       "head_sha",
-      "tree_sha"
+      "head_tree_sha",
+      "worktree_snapshot_sha256",
+      "blocker"
     ],
     "required_verdict_fields": [
       "score",
@@ -328,7 +375,10 @@
       "improvements_applied",
       "recheck_evidence",
       "head_sha",
-      "tree_sha"
+      "head_tree_sha",
+      "worktree_snapshot_sha256",
+      "target_class",
+      "blocker"
     ],
     "required_loop_fields": [
       "iteration",
@@ -340,17 +390,27 @@
       "score_delta",
       "recheck_verdict",
       "head_sha",
-      "tree_sha",
+      "head_tree_sha",
+      "worktree_snapshot_sha256",
       "next_loop_state"
     ],
-    "gate_verdicts": ["PASS", "FAIL", "NOT_RUN_BLOCKED"],
+    "gate_verdicts": ["PASS", "FAIL", "NOT_RUN_BLOCKED", "NOT_APPLICABLE"],
+    "hard_blocker_fields": ["type", "reason", "owner_or_tool", "next_allowed_action", "candidate_snapshot"],
+    "capture_manifest_fields": ["capture_id", "route", "state", "viewport", "dpr", "browser", "candidate_snapshot", "evidence_kind", "evidence_sha256", "source_anchors"],
+    "contract_matrix_fields": ["source_requirement_id", "source_anchor", "applicable_route", "applicable_state", "applicable_viewport", "expected_observable", "observation_method", "actual_evidence", "classification"],
+    "state_transition_fields": ["surface_id", "trigger", "precondition", "visible_result", "focus_target", "live_announcement", "history_effect", "recovery_or_exit", "evidence_id"],
+    "responsive_acceptance_fields": ["viewport_or_range", "layout_mode", "visible_regions", "sheet_or_drawer", "scroll_owner", "primary_action_visibility", "evidence_id"],
+    "decision_packet_fields": ["decision_id", "question", "affected_source_or_matrix_rows", "options_and_tradeoffs", "decision_owner", "needed_by_iteration", "permitted_interim_behavior", "resolution_evidence"],
     "forbidden_claims": [
       "mockup-only PASS",
       "fixture-only semantic PASS",
       "stale-HEAD PASS",
       "browser PASS without real route evidence",
       "PASS below score 100",
-      "improvement applied without a subsequent full recheck"
+      "improvement applied without a subsequent full recheck",
+      "rendered UI PASS without capture-manifest and matrix evidence",
+      "owner-gated change applied without authorization artifact",
+      "no-progress iteration without blocker or decision packet"
     ]
   },
   "handoff": {
