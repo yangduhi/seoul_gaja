@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "observable": "Development server on 127.0.0.1:3199 was stopped with Ctrl+C and the in-app browser tab was closed after capture.",
+  "external_actions": "No push, merge, deploy, migration, secret entry, paid resource, or destructive operation.",
+  "status": "PASS"
+}

@@ -1,20 +1,42 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "task": 9,
   "verdict": "PASS",
   "binding": {
-    "tested_commit": "aedacc4ae359a63d5815dd8257e8b9a88d14091a",
-    "tested_tree": "78406a950e00c945c691565eb96ef6f36977fc48"
+    "tested_commit": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tested_tree": "d1661589ab32c4b977517db74c850d4560f7c828",
+    "base_commit": "57cf39a2289c1dd7947eab3a8c89c9750e7fe97b",
+    "plan_sha256": "4b608ffbbb4164a7fc7bef925dab6e36ca773534cdc1e04f58ada19a80aa581d",
+    "authority_lock_sha256": "42573e57d1220bbf573335a6cec30ccb303adeefd0bc9efae8a429ccefa1d0f3"
   },
-  "local_gates": [
-    {"command_id": "task-09-happy", "actual_exit": 0, "verdict": "PASS"},
-    {"command_id": "task-09-failure", "actual_exit": 0, "verdict": "PASS"},
-    {"command": "npm run lint", "actual_exit": 0, "verdict": "PASS"},
-    {"command": "npm run build", "actual_exit": 0, "verdict": "PASS"}
+  "success_criteria": [
+    {
+      "scenario": "available, partial, provisional, stable, and mature source-backed inputs",
+      "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy",
+      "binary_observable": "actual_exit=0 and 7/7 tests pass",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-happy.json"
+    },
+    {
+      "scenario": "real ProductViewModel is adapted into render-ready NOW/NEXT results",
+      "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+      "binary_observable": "1/1 test passes with READY, base variant, selected timestamp, source timestamps, and fixed reason kinds",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-surface-probe.json"
+    },
+    {
+      "scenario": "real route recommendation surface at four required viewports and expanded details interaction",
+      "invocation": "npm run dev -- --host 127.0.0.1 --port 3199; in-app browser GET /?visualFixture=ready-v1",
+      "binary_observable": "2 cards, 0 purpose presets, no raw score, no horizontal overflow, details open, console errors=[]",
+      "artifact": ".omo/evidence/design-audit/task-09-recommendation-surface/verdict.json"
+    },
+    {
+      "scenario": "production static and build gates",
+      "invocation": "npx tsc --noEmit; npm run lint; npm run build; git diff --check; PYTHONUTF8=1 python docs/execution/scripts/validate_authority_lock.py",
+      "binary_observable": "all exit 0; lint has 0 errors and 4 pre-existing Todo 8 warnings; authority lock observes exact tested commit/tree",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-verification.json"
+    }
   ],
-  "implementation": "server/recommendations.mjs",
   "limitations": [
     "No secret, live API call, migration execution, Sites Save/Deploy, push, or merge was performed.",
-    "The local deterministic contract proves fail-closed recommendation behavior only; it does not establish live source availability."
+    "Local deterministic and real local route evidence does not establish live source availability or production deployment."
   ]
 }

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "audit_id": "task-09-recommendation-surface",
+  "router": "mengto-skills",
+  "status": "PASS",
+  "selected_pack": [
+    {"skill": "ui/redesign-existing-projects", "mode": "DIAGNOSTIC_ONLY"},
+    {"skill": "web-design/framed-grid-layout", "mode": "COMPARISON_LENS"},
+    {"skill": "web-design/split-layout-technical", "mode": "COMPARISON_LENS"},
+    {"skill": "web-design/nested-container-frames", "mode": "COMPARISON_LENS"},
+    {"skill": "codex/playwright", "mode": "REAL_SURFACE_EVIDENCE"},
+    {"skill": "codex/audit-verify-explain-grade-5", "mode": "EVIDENCE_AND_REPORT"}
+  ],
+  "authority_boundary": "Repository tokens, primitives, component contracts, and screen specs remained authoritative."
+}

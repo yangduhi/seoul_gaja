@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "audit_id": "task-09-recommendation-surface",
+  "verdict": "PASS_100",
+  "binding": {
+    "head_sha": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tree_sha": "d1661589ab32c4b977517db74c850d4560f7c828"
+  },
+  "scenario": "Real local route /?visualFixture=ready-v1 rendered in the in-app browser",
+  "invocation": "npm run dev -- --host 127.0.0.1 --port 3199; browser viewport and DOM interaction checks",
+  "binary_observables": {
+    "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+    "recommendation_cards": 2,
+    "purpose_preset_count": 0,
+    "raw_score_visible": false,
+    "horizontal_overflow": false,
+    "expanded_details_open": true,
+    "expanded_summary_height_px": 44,
+    "console_errors": [],
+    "console_warnings": []
+  },
+  "screenshots": ["390x844.png", "390x844-expanded.png", "430x932.png", "768x1024.png", "1616x923.png"],
+  "score": 100,
+  "open_findings": [],
+  "hard_blockers": []
+}

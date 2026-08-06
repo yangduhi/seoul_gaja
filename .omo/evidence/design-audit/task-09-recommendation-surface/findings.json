@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "audit_id": "task-09-recommendation-surface",
+  "findings": [
+    {"finding_id": "T09-UI-001", "severity": "P1", "initial_status": "OMISSION", "final_status": "MATCH", "resolution": "Removed purpose presets and rendered source-backed recommendation fields without raw scores."},
+    {"finding_id": "T09-UI-002", "severity": "P1", "initial_status": "UNVERIFIED", "final_status": "MATCH", "resolution": "Observed the real local route at all four required viewports and expanded-details state."}
+  ],
+  "open_findings": []
+}

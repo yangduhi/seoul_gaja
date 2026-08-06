@@ -1,0 +1,21 @@
+{
+  "schema_version": 2,
+  "audit_id": "task-09-recommendation-surface",
+  "baseline_score": 60,
+  "target_score": 100,
+  "current_score": 100,
+  "status": "PASS_100",
+  "components": [
+    {"id": "C01_SOURCE_FIDELITY", "status": "PASS", "points": 10},
+    {"id": "C02_LAYOUT_GEOMETRY", "status": "PASS", "points": 10},
+    {"id": "C03_RESPONSIVE_VIEWPORTS", "status": "PASS", "points": 10},
+    {"id": "C04_TYPOGRAPHY_CJK", "status": "PASS", "points": 10},
+    {"id": "C05_SURFACE_TOKENS", "status": "PASS", "points": 10},
+    {"id": "C06_INTERACTION_STATES", "status": "PASS", "points": 10},
+    {"id": "C07_ACCESSIBILITY", "status": "PASS", "points": 10},
+    {"id": "C08_CONTENT_HIERARCHY", "status": "PASS", "points": 10},
+    {"id": "C09_SYSTEM_CONSISTENCY", "status": "PASS", "points": 10},
+    {"id": "C10_EVIDENCE_COMPLETENESS", "status": "PASS", "points": 10}
+  ],
+  "reproducible_sum": 100
+}

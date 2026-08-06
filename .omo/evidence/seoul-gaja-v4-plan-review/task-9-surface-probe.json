@@ -1,0 +1,894 @@
+{
+  "happy": {
+    "available": {
+      "now": {
+        "mode": "NOW",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "base",
+            "historyMaturity": "ACCUMULATING",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "base",
+            "historyMaturity": "ACCUMULATING",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "base",
+            "historyMaturity": "ACCUMULATING",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "base",
+            "historyMaturity": "ACCUMULATING",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "base",
+            "historyMaturity": "ACCUMULATING",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "base",
+            "historyMaturity": "ACCUMULATING",
+            "selectedTimestamp": "2026-08-04T10:30:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "partial": {
+      "now": {
+        "mode": "NOW",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T10:30:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "provisional": {
+      "now": {
+        "mode": "NOW",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "PROVISIONAL",
+            "selectedTimestamp": "2026-08-04T10:30:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "stable": {
+      "now": {
+        "mode": "NOW",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "STABLE",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "STABLE",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "history-enhanced",
+            "historyMaturity": "STABLE",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "STABLE",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "history-enhanced",
+            "historyMaturity": "STABLE",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "STABLE",
+            "selectedTimestamp": "2026-08-04T10:30:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "mature": {
+      "now": {
+        "mode": "NOW",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "MATURE",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "MATURE",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "history-enhanced",
+            "historyMaturity": "MATURE",
+            "selectedTimestamp": "2026-08-04T09:20:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.5,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "READY",
+        "results": [
+          {
+            "areaCode": "aardvark",
+            "variant": "history-enhanced",
+            "historyMaturity": "MATURE",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "beta",
+            "variant": "history-enhanced",
+            "historyMaturity": "MATURE",
+            "selectedTimestamp": "2026-08-04T10:00:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          },
+          {
+            "areaCode": "alpha",
+            "variant": "history-enhanced",
+            "historyMaturity": "MATURE",
+            "selectedTimestamp": "2026-08-04T10:30:00Z",
+            "sourceTimestamps": {
+              "activeSnapshot": "2026-08-04T08:55:00Z",
+              "currentCrowd": "2026-08-04T08:55:00Z",
+              "officialForecast": "2026-08-04T08:55:00Z",
+              "history": "2026-08-04T08:55:00Z"
+            },
+            "reasons": [
+              {
+                "kind": "current_crowd_percentile",
+                "value": 0.2,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "official_forecast_percentile",
+                "value": 0.1,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              },
+              {
+                "kind": "history_deviation_percentile",
+                "value": 0.6,
+                "sourceTimestamp": "2026-08-04T08:55:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "failure": {
+    "missing_or_unknown": {
+      "now": {
+        "mode": "NOW",
+        "status": "ZERO_ELIGIBLE",
+        "browseCopy": "No source-backed crowd-and-time recommendations are available right now.",
+        "results": []
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "ZERO_ELIGIBLE",
+        "browseCopy": "No source-backed crowd-and-time recommendations are available right now.",
+        "results": []
+      }
+    },
+    "interpolation": {
+      "now": {
+        "mode": "NOW",
+        "status": "ZERO_ELIGIBLE",
+        "browseCopy": "No source-backed crowd-and-time recommendations are available right now.",
+        "results": []
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "ZERO_ELIGIBLE",
+        "browseCopy": "No source-backed crowd-and-time recommendations are available right now.",
+        "results": []
+      }
+    },
+    "unsupported": {
+      "now": {
+        "mode": "NOW",
+        "status": "ZERO_ELIGIBLE",
+        "browseCopy": "No source-backed crowd-and-time recommendations are available right now.",
+        "results": []
+      },
+      "next": {
+        "mode": "NEXT",
+        "status": "ZERO_ELIGIBLE",
+        "browseCopy": "No source-backed crowd-and-time recommendations are available right now.",
+        "results": []
+      }
+    }
+  }
+}
