@@ -16,7 +16,6 @@ const AVAILABILITIES = ["available", "carried_forward", "unavailable", "expired"
 const PROVENANCES = ["refreshed", "carried_forward", "missing"] as const;
 const CROWD_LEVELS = ["RELAXED", "NORMAL", "BUSY", "CROWDED", "UNKNOWN"] as const;
 const FORECAST_CROWD_LEVELS = ["RELAXED", "NORMAL", "BUSY", "CROWDED"] as const;
-const MATURITIES = ["ACCUMULATING", "PROVISIONAL", "STABLE", "MATURE"] as const;
 const HISTORY_CROWD_VALUES = Object.freeze({ RELAXED: 0, NORMAL: 1, BUSY: 2, CROWDED: 3 });
 const WEEKDAYS = Object.freeze({ Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 });
 const UNAVAILABLE_CACHE_STATES = ["empty", "unavailable", "expired"] as const;
@@ -176,9 +175,7 @@ function nonNegativeInteger(value: unknown): number | null { const result = inte
 function nullableInteger(value: unknown): number | null | undefined { return value === null || value === undefined ? null : nonNegativeInteger(value) ?? undefined; }
 function nullableFiniteNumber(value: unknown): number | null | undefined { return value === null || value === undefined ? null : typeof value === "number" && Number.isFinite(value) ? value : undefined; }
 function percentile(value: unknown): number | null { return typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 1 ? value : null; }
-function nullablePercentile(value: unknown): number | null | undefined { return value === null || value === undefined ? null : percentile(value) ?? undefined; }
 function optionalPercentile(value: unknown): number | null | undefined { return value === undefined ? null : percentile(value) ?? undefined; }
-function localTimeBucketValue(value: unknown): string | undefined { return typeof value === "string" && /^([01]\d|2[0-3]):(?:00|30)$/u.test(value) ? value : undefined; }
 function literal<T extends readonly string[]>(value: unknown, values: T): T[number] | null { return typeof value === "string" && values.includes(value) ? value : null; }
 function validRange(min: number | null, max: number | null): boolean { return min === null && max === null || min !== null && max !== null && max >= min; }
 function classifyFreshness(ageMs: number): "fresh" | "delayed" | "stale" { const age = Math.max(0, ageMs); return age <= 30 * 60 * 1000 ? "fresh" : age <= 90 * 60 * 1000 ? "delayed" : "stale"; }
