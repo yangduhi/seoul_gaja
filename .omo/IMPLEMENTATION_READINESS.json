@@ -20,13 +20,13 @@
   },
   "authority": {
     "plan_path": ".omo/plans/seoul-gaja-v4-plan-review.md",
-    "plan_sha256": "e0608e1f525d032eef82b071b6086c27be86d9d14d76ee2d4426a331f86ab756",
+    "plan_sha256": "ea18ae8d55296cfc63f4ed853476809b87aff19bd283e038eef4f2367bcfaf39",
     "amendment_path": "docs/execution/AMENDMENT-v4.1.md",
     "amendment_sha256": "b0da4eb07ddfe8a8be341a636085751cebc6967d57db726d7ff9219fa5592be1",
     "command_map_path": "docs/execution/contracts/execution-command-map.json",
     "command_map_sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
     "authority_lock_path": ".omo/authority-lock.json",
-    "authority_lock_sha256": "73e587202869a36d70273e7cf871ec25b56735f98a09bafabf4c4f6f5d0b1efb",
+    "authority_lock_sha256": "65736f764be0e3544f6abb78a7885489f171b1794d6270e5b5bcd78840616967",
     "validator": "PASS"
   },
   "approval_scope": {
