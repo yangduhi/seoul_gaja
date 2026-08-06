@@ -107,7 +107,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
             {query.length > 0 && <button className={styles.clearButton} type="button" aria-label="검색어 지우기" onClick={() => setQuery("")}>×</button>}
           </label>
           <div className={styles.chipRow} role="group" aria-label="오늘의 목적">
-            {purposes.map((item) => <button key={item.id} className={styles.chip} data-selected={purpose === item.id} type="button" onClick={() => setPurpose(item.id)}>{item.label}</button>)}
+            {purposes.map((item) => <button key={item.id} className={styles.chip} data-selected={purpose === item.id} aria-pressed={purpose === item.id} type="button" onClick={() => setPurpose(item.id)}>{item.label}</button>)}
           </div>
           <section className={styles.statusBanner} aria-live="polite">
             <div className={styles.statusLine}><span className={styles.statusPill} data-state={status === "READY" ? "READY" : "UNAVAILABLE"}><span className={styles.statusDot} aria-hidden="true" />{status === "READY" ? (snapshotStatus === "PARTIAL" ? "일부 공식 데이터" : "서울 전체 분위기") : "공식 데이터 연결 대기"}</span><strong>{status === "READY" ? `${catalog.length}곳 확인` : "확인 필요"}</strong></div>
