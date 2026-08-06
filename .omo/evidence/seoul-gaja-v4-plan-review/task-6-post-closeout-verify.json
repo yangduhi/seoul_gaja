@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "todo": 6,
+  "verdict": "CONFIRMED_LOCAL",
+  "verified_head": "dfbafb47f6f91dd7944183c9492817dad445a3d8",
+  "verified_tree": "aec7605dffc5b09392b0e7b3c292cd97c3f2e541",
+  "implementation_commit": "f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66",
+  "implementation_tree": "5b07f87511a0768c49e59a2b64f16a9db0c26092",
+  "scenarios": [
+    {
+      "invocation": "node --test tests/gates/task-06-happy.test.mjs tests/gates/task-06-failure.test.mjs",
+      "observable": "18 passed, 0 failed",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-post-closeout-verify.txt"
+    },
+    {
+      "invocation": "node scripts/validate_workflow_security_fixture.mjs <fixture>",
+      "observable": "14/14 fixtures returned structured ACCEPTED or REJECTED without a raw token value",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-post-closeout-verify.txt"
+    },
+    {
+      "invocation": "git diff --check 08ae1434a674e3f59452fca624a95613f..HEAD",
+      "observable": "exit 0",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-post-closeout-verify.txt"
+    }
+  ],
+  "cleanup": {
+    "temporary_baseline_worktree_exists": false,
+    "external_actions": 0
+  }
+}
