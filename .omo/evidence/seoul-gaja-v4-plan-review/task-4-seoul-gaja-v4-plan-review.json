@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
   "task": 4,
-  "observed_at": "2026-08-06T00:00:00+09:00",
+  "observed_at": "2026-08-07T00:00:00+09:00",
   "verdict": "NOT_RUN_BLOCKED",
   "binding": {
     "branch": "codex/todo4-phase00",
     "base_head": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
     "base_tree": "d876c8389e82b9b772ae637731102923babb9d07",
-    "candidate_commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
-    "candidate_tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd",
-    "reason": "Candidate identity binds the implementation commit; evidence commit is separate so receipt identity is not self-referential."
+    "candidate_commit": "2ee3e43559c3cac19036c35644dce030688c9a7a",
+    "candidate_tree": "11cfaffcdbcd1219bbb3b48e8df76a452882be7e",
+    "reason": "Candidate identity binds the implementation commit; evidence commit is separate so receipt identity is not self-referential. Parent integration must regenerate this binding if cherry-pick remaps the commit."
   },
   "baseline": {
     "happy_command_map_exit": 0,
     "failure_command_map_exit": 0,
-    "red_test": "Expired matching bearer token was authorized before the lifecycle change.",
+    "red_test": "Route fixture failed because createCapabilityProbeRouteHandlers was undefined; expected integrated receipt ea46d/170749 did not match the prior C1 receipt.",
     "red_exit": 1
   },
   "local_checks": [
@@ -31,14 +31,21 @@
       "actual_exit": 0,
       "verdict": "PASS",
       "summary": "PASS: invalid, expired, malformed, stale, timeout, and cleanup-state rejection"
+    },
+    {
+      "command_id": "task-04-route-direct",
+      "command": "node --test tests/gates/task-04-route.test.mjs",
+      "actual_exit": 0,
+      "verdict": "PASS",
+      "summary": "PASS: route factory health, SQL-backed POST lifecycle, auth/JSON rejection, unavailable D1, and cleanup-state disablement"
     }
   ],
   "local_contract": {
     "probe": "phase-00-capability-probe",
     "route": "POST /api/internal/capability-probe/ingest",
     "production_route_separation": "POST /api/internal/ingest/snapshot is not called or modified.",
-    "coverage": [
-      "health", "SQL-backed D1 write/read/update/rollback", "cleanup removes the probe record", "cleanup state disables probe and health routes", "missing/invalid/expired rejection", "strict malformed payload rejection", "untrusted payload cannot override header authorization", "server-only secret lookup", "bounded timeout and abort signalling"
+      "coverage": [
+      "health", "route-factory SQL-backed POST", "SQL-backed D1 write/read/update/rollback", "cleanup removes the probe record", "cleanup state disables probe and health routes", "missing/invalid/expired rejection", "strict malformed payload rejection", "untrusted payload cannot override header authorization", "server-only secret lookup", "bounded timeout and abort signalling"
     ]
   },
   "external_gate": {
@@ -56,7 +63,7 @@
     "stale_state": "PASS expired token and cleanup state rejection",
     "dirty_worktree": "PASS baseline parent changes were not copied into this isolated worktree",
     "hung_or_long_commands": "PASS bounded command-map and node test invocations plus 5ms hung-D1 fixture",
-    "flaky_tests": "PASS two focused test runs completed with 11 of 11 assertions each",
+    "flaky_tests": "PASS focused lifecycle suite repeated; route suite and command-map suites are deterministic",
     "misleading_success_output": "PASS parsed command-map verdict and exit are recorded",
     "repeated_interruptions": "PASS timeout fixture reaches cleanup; no server, port, or worker temp resource was created"
   },

@@ -1,8 +1,8 @@
 {
   "phase": "00",
   "verdict": "NOT_RUN_BLOCKED",
-  "commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
-  "tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd",
+  "commit": "2ee3e43559c3cac19036c35644dce030688c9a7a",
+  "tree": "11cfaffcdbcd1219bbb3b48e8df76a452882be7e",
   "base_commit": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
   "base_tree": "d876c8389e82b9b772ae637731102923babb9d07",
   "tests": [
@@ -20,11 +20,15 @@
   "evidence": [
     {
       "path": "server/phase-00-capability-probe.mjs",
-      "sha256": "74a17583cbe1fe3ef191cf31d877b05218df053db29acd7a68eda07575bb2cde"
+      "sha256": "3c59c169e3e3cc26c71425a5089ebdbb81b769cfe21e2aa71e606f5270117cf0"
     },
     {
       "path": "app/api/internal/capability-probe/ingest/route.js",
-      "sha256": "1821bf3fb6b59d40810ded911df188a189a75fa212ba674010665cd39c8a6f2d"
+      "sha256": "9b7f385e6222c38418d81f94655a32fec00d29308364cc9cba0f3eb27a49d1d9"
+    },
+    {
+      "path": "app/api/internal/capability-probe/health/route.js",
+      "sha256": "b47e1fc33982f215848542b6b1aaef8c1b657cd7a22ce3c8a7e555b16cd00394"
     },
     {
       "path": "migrations/0004_phase_00_capability_probe.sql",

@@ -1,0 +1,25 @@
+file:///D:/vscode/seoul_gaja-worktrees/todo4-phase00/tests/gates/task-04-route.test.mjs:6
+import { createCapabilityProbeRouteHandlers } from "../../server/phase-00-capability-probe.mjs";
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: The requested module '../../server/phase-00-capability-probe.mjs' does not provide an export named 'createCapabilityProbeRouteHandlers'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0
+✖ tests\gates\task-04-route.test.mjs (95.4533ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.2357
+
+✖ failing tests:
+
+test at tests\gates\task-04-route.test.mjs:1:1
+✖ tests\gates\task-04-route.test.mjs (95.4533ms)
+  'test failed'

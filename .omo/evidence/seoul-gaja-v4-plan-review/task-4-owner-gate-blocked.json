@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "task": 4,
-  "observed_at": "2026-08-06T00:00:00+09:00",
+  "observed_at": "2026-08-07T00:00:00+09:00",
   "verdict": "NOT_RUN_BLOCKED",
   "binding": {
     "branch": "codex/todo4-phase00",
-    "candidate_commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
-    "candidate_tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd"
+    "candidate_commit": "2ee3e43559c3cac19036c35644dce030688c9a7a",
+    "candidate_tree": "11cfaffcdbcd1219bbb3b48e8df76a452882be7e"
   },
   "checked": [
     "No owner-controlled Sites hosted secret was entered.",

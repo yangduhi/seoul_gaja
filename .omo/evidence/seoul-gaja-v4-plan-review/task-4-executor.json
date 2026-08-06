@@ -5,21 +5,21 @@
   "verdict": "NOT_RUN_BLOCKED",
   "implementation_candidate": {
     "branch": "codex/todo4-phase00",
-    "commit": "07765d00b03706307472c58fa5f1cbaf8bf96605",
-    "tree": "656f01c05a9af82923d1a3334fe6fc75fd59e8bd",
+    "commit": "2ee3e43559c3cac19036c35644dce030688c9a7a",
+    "tree": "11cfaffcdbcd1219bbb3b48e8df76a452882be7e",
     "base_commit": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
     "base_tree": "d876c8389e82b9b772ae637731102923babb9d07"
   },
   "red": {
     "command": "node --test tests/gates/task-04-failure.test.mjs",
     "exit": 1,
-    "observed": "Missing migration ENOENT, null receipt identity, and hung D1 operation reached the bounded test timeout."
+    "observed": "Route-level fixture failed because createCapabilityProbeRouteHandlers was undefined; integrated parent identity did not match the prior C1 receipt; existing lifecycle REDs were also reproduced before the first implementation."
   },
   "green": {
-    "focused_tests": "11 of 11 assertions pass after C2 evidence commit",
+    "focused_tests": "11 lifecycle assertions plus 6 route assertions pass after C4 evidence commit",
     "local_d1": "Native node:sqlite fixture applies 0004 migration and proves health/write/read/update/rollback/cleanup",
     "timeout": "Hung health operation aborts after the configured bound and cleanup is invoked",
-    "receipt": "Canonical receipt binds the implementation candidate commit/tree; external deployment fields remain withheld"
+    "receipt": "Canonical receipt binds C3 implementation commit/tree; evidence commit is separate and external deployment fields remain withheld"
   },
   "owner_gate": {
     "verdict": "NOT_RUN_BLOCKED",
@@ -34,9 +34,12 @@
     "docs/execution/contracts/phase-00-capability-contract.md",
     "migrations/0004_phase_00_capability_probe.sql",
     "server/phase-00-capability-probe.mjs",
+    "app/api/internal/capability-probe/ingest/route.js",
+    "app/api/internal/capability-probe/health/route.js",
     "tests/fixtures/task-04/local-d1.mjs",
     "tests/gates/task-04-failure.test.mjs",
     "tests/gates/task-04-happy.test.mjs",
+    "tests/gates/task-04-route.test.mjs",
     "docs/evidence/phase-00/phase-receipt.json",
     ".omo/evidence/seoul-gaja-v4-plan-review/task-4-happy.json",
     ".omo/evidence/seoul-gaja-v4-plan-review/task-4-failure.json",
