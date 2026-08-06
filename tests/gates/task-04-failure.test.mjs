@@ -113,18 +113,21 @@ test("Given an unconfirmed rollback, when the lifecycle fails, then cleanup stil
 });
 
 test("Given the source-backed probe routes, when the server boundary is inspected, then the secret stays server-only", async () => {
-  const [ingest, health] = await Promise.all([
+  const [ingest, health, server] = await Promise.all([
     readFile(new URL("../../app/api/internal/capability-probe/ingest/route.js", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/internal/capability-probe/health/route.js", import.meta.url), "utf8"),
+    readFile(new URL("../../server/phase-00-capability-probe.mjs", import.meta.url), "utf8"),
   ]);
 
   assert.match(ingest, /import "server-only"/);
-  assert.match(ingest, /env\.SITE_INGEST_TOKEN/);
-  assert.match(ingest, /env\.SITE_INGEST_TOKEN_EXPIRES_AT/);
-  assert.match(ingest, /env\.PHASE_00_CAPABILITY_PROBE_STATE/);
-  assert.match(ingest, /capability_probe_disabled/);
+  assert.match(server, /environment\.SITE_INGEST_TOKEN/);
+  assert.match(server, /environment\.SITE_INGEST_TOKEN_EXPIRES_AT/);
+  assert.match(server, /environment\.PHASE_00_CAPABILITY_PROBE_STATE/);
+  assert.match(server, /capability_probe_disabled/);
   assert.doesNotMatch(ingest, /process\.env/);
-  assert.match(ingest, /exerciseD1CapabilityLifecycle/);
+  assert.doesNotMatch(server, /process\.env/);
+  assert.match(server, /createCapabilityProbeRouteHandlers/);
+  assert.match(server, /exerciseD1CapabilityLifecycle/);
   assert.match(health, /GET/);
-  assert.match(health, /capability_probe_disabled/);
+  assert.match(server, /capability_probe_disabled/);
 });
