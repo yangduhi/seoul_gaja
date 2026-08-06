@@ -34,6 +34,58 @@ CREATE TABLE snapshot_revision_provenance (
   expired_count INTEGER NOT NULL
 );
 
+CREATE TABLE provenance_receipts (
+  receipt_id TEXT NOT NULL,
+  receipt_version INTEGER NOT NULL CHECK(receipt_version >= 1),
+  workflow_run_id TEXT NOT NULL,
+  collector_version TEXT NOT NULL,
+  parser_version TEXT NOT NULL,
+  catalog_version TEXT NOT NULL,
+  raw_response_sha256 TEXT NOT NULL CHECK(length(raw_response_sha256) = 64),
+  per_place_outcome_counts TEXT NOT NULL,
+  source_times TEXT NOT NULL,
+  fetch_times TEXT NOT NULL,
+  canonical_payload_sha256 TEXT NOT NULL CHECK(length(canonical_payload_sha256) = 64),
+  accepted_at TEXT NOT NULL,
+  retained_until TEXT NOT NULL,
+  PRIMARY KEY(receipt_id, receipt_version)
+);
+
+CREATE TRIGGER provenance_receipts_no_update
+BEFORE UPDATE ON provenance_receipts
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
+END;
+
+CREATE TRIGGER provenance_receipts_no_delete
+BEFORE DELETE ON provenance_receipts
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
+END;
+
+CREATE TABLE provenance_source_bindings (
+  derived_kind TEXT NOT NULL CHECK(derived_kind IN ('materialization', 'profile')),
+  derived_key TEXT NOT NULL,
+  source_receipt_id TEXT NOT NULL,
+  source_receipt_version INTEGER NOT NULL,
+  bound_at TEXT NOT NULL,
+  PRIMARY KEY(derived_kind, derived_key),
+  FOREIGN KEY(source_receipt_id, source_receipt_version)
+    REFERENCES provenance_receipts(receipt_id, receipt_version)
+);
+
+CREATE TRIGGER provenance_source_bindings_no_update
+BEFORE UPDATE ON provenance_source_bindings
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
+END;
+
+CREATE TRIGGER provenance_source_bindings_no_delete
+BEFORE DELETE ON provenance_source_bindings
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
+END;
+
 -- Fixture backfill only: one revision per legacy snapshot, preserving the old snapshot_id.
 INSERT OR IGNORE INTO snapshot_revisions (revision_id, run_id, attempt_no, payload_sha256, supersedes_revision_id, status, created_at)
 SELECT snapshot_id, snapshot_id, 1, payload_sha256, NULL,

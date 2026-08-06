@@ -1,3 +1,10 @@
+import {
+  createProvenanceReceipt,
+  persistDerivedSourceBinding,
+  persistProvenanceReceipt,
+  ProvenancePolicyError,
+} from "./provenance-cadence.mjs";
+
 const MAX_PAYLOAD_BYTES = 1024 * 1024;
 const CATALOG_SIZE = 121;
 const CROWD_LEVELS = new Set(["RELAXED", "NORMAL", "BUSY", "CROWDED", "UNKNOWN"]);
@@ -41,7 +48,7 @@ function parseSnapshot(payload) {
   return payload;
 }
 
-export async function handleIngestSnapshot(request, expectedToken) {
+export async function handleIngestSnapshot(request, expectedToken, database) {
   if (request.method !== "POST") return jsonError("method_not_allowed", 405);
   if (typeof expectedToken !== "string" || expectedToken.length === 0) return jsonError("ingest_unavailable", 503);
   if (request.headers.get("authorization") !== `Bearer ${expectedToken}`) return jsonError("unauthorized", 401);
@@ -59,10 +66,42 @@ export async function handleIngestSnapshot(request, expectedToken) {
   const snapshot = parseSnapshot(payload);
   if (snapshot === null) return jsonError("invalid_payload", 422);
 
+  const { provenanceReceipt, ...canonicalPayload } = snapshot;
+  let receipt;
+  try {
+    receipt = createProvenanceReceipt({
+      ...provenanceReceipt,
+      accepted_status: "accepted",
+      canonical_payload: canonicalPayload,
+    });
+  } catch (error) {
+    if (error instanceof ProvenancePolicyError) return jsonError("invalid_provenance", 422);
+    throw error;
+  }
+
+  try {
+    await persistProvenanceReceipt(database, receipt);
+    await persistDerivedSourceBinding(database, {
+      derived_kind: "materialization",
+      derived_key: snapshot.snapshotId,
+      receipt,
+    });
+  } catch (error) {
+    if (error instanceof ProvenancePolicyError && /CONFLICT$/.test(error.code)) return jsonError("provenance_conflict", 409);
+    if (error instanceof ProvenancePolicyError) return jsonError("provenance_storage_unavailable", 503);
+    if (error instanceof Error) return jsonError("provenance_storage_error", 503);
+    throw error;
+  }
+
   return Response.json({
     status: "accepted",
     snapshotId: snapshot.snapshotId,
     catalogVersion: snapshot.catalogVersion,
     attempted: snapshot.meta.attempted,
+    receiptId: receipt.receipt_id,
+    receiptVersion: receipt.receipt_version,
+    canonicalPayloadSha256: receipt.canonical_payload_sha256,
+    sourceReceiptId: receipt.receipt_id,
+    sourceReceiptVersion: receipt.receipt_version,
   }, { status: 202 });
 }
