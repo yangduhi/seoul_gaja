@@ -60,9 +60,16 @@ async function validatePacket(lock) {
 }
 
 function validateHumanPlan(plan, contract) {
-  const failures = contract.forbidden_human_plan_literals
-    .filter((literal) => plan.includes(literal))
-    .map((literal) => `stale human-plan literal: ${literal}`);
+  const failures = [];
+  const lines = plan.split(/\r?\n/);
+  for (const literal of contract.forbidden_human_plan_literals) {
+    const allowedMarkers = contract.allowed_human_plan_contexts?.[literal] ?? [];
+    for (const line of lines) {
+      if (line.includes(literal) && !allowedMarkers.some((marker) => line.includes(marker))) {
+        failures.push(`stale human-plan literal: ${literal}`);
+      }
+    }
+  }
   const required = [
     contract.canonical.production_ingest,
     contract.canonical.capability_probe,

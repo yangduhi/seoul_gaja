@@ -30,6 +30,10 @@
     "/help",
     "/saved"
   ],
+  "allowed_human_plan_contexts": {
+    "source_updated_at": ["D1 column"],
+    "fetched_at": ["D1 column"]
+  },
   "owner_blockers": [
     "Sites Phase00 owner approval",
     "D1 migration execution/sequence collision authority",
