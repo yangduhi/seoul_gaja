@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "todo": 6,
+  "verdict": "PASS_LOCAL_CONTRACT",
+  "parent_base": {
+    "commit": "d99796b9c700c7c790b3113237dda834942e0be8",
+    "tree": "51a115eab6500465311e0fe953ec7672583fe327"
+  },
+  "implementation": {
+    "commit": "651a3f5f977b567f3d6185a9eb69e2a146d21e55",
+    "tree": "1f20fabb2654ae28d94bae297253da8e4a04e463",
+    "branch": "codex/todo6-cli-exit-fix"
+  },
+  "failure_reproduction": {
+    "command": "node scripts/validate_workflow_security_fixture.mjs <negative fixture>",
+    "baseline_observable": "12 structured REJECTED outputs with exit 0",
+    "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-cli-exit-baseline-red.txt"
+  },
+  "verification": {
+    "focused_suite": "PASS: 19/19 twice",
+    "command_map_happy": "PASS",
+    "command_map_failure": "PASS",
+    "authority_validator": "PASS",
+    "command_map_validator": "PASS: 30 entries",
+    "receipt_validator": "PASS",
+    "dependency_hash_install": "PASS",
+    "helper_cli_matrix": "PASS: 2 ACCEPTED fixtures exit 0; 12 REJECTED fixtures exit 1; every result is structured and redacted",
+    "static_workflow_scan": "PASS: 6 full-SHA action pins; zero write permissions; zero raw input expressions in secret-bearing job",
+    "git_diff_check": "PASS"
+  },
+  "command_map_observability": {
+    "result": "PASS with actual_exit 0",
+    "caveat": "Windows runner emitted a CP949 decode traceback while separately recorded direct focused suites passed; this is not an actionlint or workflow-runtime claim."
+  },
+  "ultraqa": {
+    "malformed_input": "PASS_NEGATIVE: fixture exits 1 / MALFORMED_INPUT",
+    "stale_state": "PASS: authority validator bound the exact implementation commit and tree",
+    "dirty_worktree": "PASS: code was committed before verification; evidence-only files are isolated from source diff",
+    "misleading_success_output": "PASS: command exit status and JSON verdict are independently asserted",
+    "flaky_tests": "PASS: focused suite passed twice",
+    "prompt_injection": "NOT_APPLICABLE: no prompt surface",
+    "cancel_resume": "NOT_APPLICABLE: no resumable external operation",
+    "hung_or_long": "NOT_APPLICABLE: local one-shot commands completed",
+    "repeated_interruptions": "NOT_APPLICABLE: no external process, server, or workflow was started"
+  },
+  "external_owner_gates": {
+    "actionlint": "NOT_RUN_BLOCKED: not installed",
+    "default_branch_workflow": "NOT_RUN_BLOCKED: no owner-authorized dispatch",
+    "required_reviewer_environment_activation": "NOT_RUN_BLOCKED: external GitHub Environment was not changed",
+    "secret_entry_or_rotation": "NOT_RUN_BLOCKED: no secret value was supplied or handled",
+    "live_ingest": "NOT_RUN_BLOCKED: no live API call was authorized"
+  },
+  "cleanup": {
+    "external_actions": 0,
+    "servers_or_ports": 0,
+    "temporary_resources_remaining": 0,
+    "secrets_logged": false
+  }
+}

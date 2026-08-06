@@ -1,0 +1,100 @@
+[
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/expired-token.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "TOKEN_STATE_REJECTED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/invalid-date.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "INVALID_BACKFILL_RANGE",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/malformed-input.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "MALFORMED_INPUT",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/missing-token.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "TOKEN_STATE_REJECTED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/old-token.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "TOKEN_STATE_REJECTED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/oversized-range.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "INVALID_BACKFILL_RANGE",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/payload-conflict.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "PAYLOAD_CONFLICT",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/replay.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "REPLAY_NOT_IDEMPOTENT",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/positive/rotation-cutover.json",
+        "exit":  0,
+        "verdict":  "ACCEPTED",
+        "code":  "ROTATION_LIFECYCLE_ACCEPTED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/shell-metacharacters.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "INVALID_BACKFILL_RANGE",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/unauthorized-branch.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "BRANCH_NOT_PROTECTED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/unauthorized-dispatcher.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "DISPATCHER_NOT_ALLOWED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/negative/unauthorized-environment.json",
+        "exit":  1,
+        "verdict":  "REJECTED",
+        "code":  "ENVIRONMENT_NOT_ALLOWED",
+        "raw_token_value":  "absent"
+    },
+    {
+        "fixture":  "tests/fixtures/workflow-security/positive/valid-manual-backfill.json",
+        "exit":  0,
+        "verdict":  "ACCEPTED",
+        "code":  "AUTHORIZED_MANUAL_BACKFILL",
+        "raw_token_value":  "absent"
+    }
+]
