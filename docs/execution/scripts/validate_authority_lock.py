@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+from collections.abc import Mapping
 from pathlib import Path
 
 
@@ -64,6 +65,25 @@ def is_ancestor(ancestor: str, descendant: str) -> bool:
     return completed.returncode == 0
 
 
+def transition_failures(
+    transition: Mapping[str, str], preparation_branch: str, candidate_head: str
+) -> list[str]:
+    failures: list[str] = []
+    frozen_head = transition["preparation_head"]
+    frozen_tree = git("rev-parse", f"{frozen_head}^{{tree}}")
+    if frozen_tree != transition["preparation_tree"]:
+        failures.append(
+            f"frozen preparation tree: expected {transition['preparation_tree']}, observed {frozen_tree}"
+        )
+
+    preparation_head = git("rev-parse", f"{preparation_branch}^{{commit}}")
+    if not is_ancestor(frozen_head, preparation_head):
+        failures.append("preparation branch head is not a descendant of frozen implementation candidate")
+    if not is_ancestor(frozen_head, candidate_head):
+        failures.append("candidate head is not a descendant of frozen implementation candidate")
+    return failures
+
+
 def main() -> None:
     lock = json.loads(LOCK_PATH.read_text(encoding="utf-8"))
     authority = lock["authority"]
@@ -91,22 +111,11 @@ def main() -> None:
 
     if readiness.get("implementation_allowed") is True:
         transition = authority["implementation_candidate"]
-        preparation_head = git("rev-parse", f"{authority['preparation_branch']}^{{commit}}")
-        if preparation_head != transition["preparation_head"]:
-            failures.append(
-                f"preparation branch head: expected {transition['preparation_head']}, observed {preparation_head}"
-            )
-        preparation_tree = git("rev-parse", f"{preparation_head}^{{tree}}")
-        if preparation_tree != transition["preparation_tree"]:
-            failures.append(
-                f"preparation branch tree: expected {transition['preparation_tree']}, observed {preparation_tree}"
-            )
         if not observed["branch"]:
             failures.append("candidate must be on a named branch")
-        if not is_ancestor(preparation_head, observed["head"]):
-            failures.append(
-                "candidate head is not a descendant of the bound preparation branch head"
-            )
+        failures.extend(
+            transition_failures(transition, authority["preparation_branch"], observed["head"])
+        )
     else:
         expected = {
             "branch": authority["preparation_branch"],
