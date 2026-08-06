@@ -8,6 +8,22 @@ import {
   exerciseD1CapabilityLifecycle,
 } from "../../server/phase-00-capability-probe.mjs";
 
+test("Given the baseline adapter, when its health check succeeds, then the lifecycle calls it before any mutation", async () => {
+  const calls = [];
+  const adapter = {
+    async health() { calls.push("health"); },
+    async write({ probeId, payloadHash }) { calls.push("write"); return { probeId, payloadHash, state: "written" }; },
+    async read(probeId) { calls.push("read"); return { probeId, payloadHash: "baseline-hash", state: "written" }; },
+    async update(probeId) { calls.push("update"); return { probeId, payloadHash: "baseline-hash", state: "updated" }; },
+    async rollback(probeId) { calls.push("rollback"); return { probeId, payloadHash: "baseline-hash", state: "updated" }; },
+    async cleanup() { calls.push("cleanup"); return { removed: true }; },
+  };
+
+  await exerciseD1CapabilityLifecycle(adapter, "baseline-probe", "baseline-hash");
+
+  assert.deepEqual(calls, ["health", "write", "read", "update", "rollback", "cleanup"]);
+});
+
 test("Given a matching server-side bearer token, when the disposable lifecycle runs, then health through cleanup succeeds", async () => {
   const calls = [];
   const adapter = {
