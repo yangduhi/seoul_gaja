@@ -5,18 +5,18 @@
   "verdict": "PASS_LOCAL_REBIND",
   "parent_base": {
     "branch": "codex/prep-v4-1",
-    "commit": "3f879e849aba415ca282fa56af0d3d14d7745908",
-    "tree": "c83374e2e208efb7168614082de6dc815d01e5b8"
+    "commit": "2e541bc01f50ad1e1f547084ce03cee325b41ad2",
+    "tree": "464869267e78a0172c94e95550c3bdcf6b30bb01"
   },
   "implementation_candidate": {
     "branch": "codex/todo4-candidate-receipt-fix",
-    "commit": "b81e79ee7e07cdd3d1ad322c9dbaf06ef480d7b0",
+    "commit": "1a0c5c1dad9be3ba04c6f0ee303d99d952a7e50d",
     "tree": "e6225795867ca666141ae2d0223e32ecb827112c",
     "receipt_binding": "docs/evidence/phase-00/phase-receipt.json commit/tree equal the implementation candidate; later evidence-only commit does not replace this binding"
   },
   "red_reproduction": {
     "receipt_validator": {
-      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 3f879e849aba415ca282fa56af0d3d14d7745908 --expected-tree c83374e2e208efb7168614082de6dc815d01e5b8",
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 2e541bc01f50ad1e1f547084ce03cee325b41ad2 --expected-tree 464869267e78a0172c94e95550c3bdcf6b30bb01",
       "exit": 1,
       "observable": "receipt commit/tree did not match the exact parent candidate"
     },
@@ -60,7 +60,7 @@
   },
   "validators": {
     "receipt": {
-      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit b81e79ee7e07cdd3d1ad322c9dbaf06ef480d7b0 --expected-tree e6225795867ca666141ae2d0223e32ecb827112c",
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 1a0c5c1dad9be3ba04c6f0ee303d99d952a7e50d --expected-tree e6225795867ca666141ae2d0223e32ecb827112c",
       "exit": 0
     },
     "authority": {
