@@ -17,6 +17,8 @@ const PROVENANCES = ["refreshed", "carried_forward", "missing"] as const;
 const CROWD_LEVELS = ["RELAXED", "NORMAL", "BUSY", "CROWDED", "UNKNOWN"] as const;
 const FORECAST_CROWD_LEVELS = ["RELAXED", "NORMAL", "BUSY", "CROWDED"] as const;
 const MATURITIES = ["ACCUMULATING", "PROVISIONAL", "STABLE", "MATURE"] as const;
+const HISTORY_CROWD_VALUES = Object.freeze({ RELAXED: 0, NORMAL: 1, BUSY: 2, CROWDED: 3 });
+const WEEKDAYS = Object.freeze({ Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 });
 const UNAVAILABLE_CACHE_STATES = ["empty", "unavailable", "expired"] as const;
 const MAX_SOURCE_AGE_MS = 180 * 60 * 1000;
 const MAX_FUTURE_SKEW_MS = 5 * 60 * 1000;
@@ -120,30 +122,49 @@ export function parseForecast(rows: readonly D1Row[], catalog: readonly CatalogP
   return { status: "READY", view: { status: "READY", byAreaCode: Object.fromEntries(byAreaCode) } };
 }
 
-export function parseHistory(rows: readonly D1Row[], catalog: readonly CatalogPlace[]): { readonly status: "READY"; readonly view: HistoryView } | Readonly<{ readonly status: "UNAVAILABLE"; readonly reason: UnavailableReason }> | Readonly<{ readonly status: "REJECTED"; readonly reason: RejectionReason }> {
-  const byAreaCode = new Map<string, { readonly profiles: readonly HistoryProfile[] }>();
+export function parseRawHistory(rows: readonly D1Row[], catalog: readonly CatalogPlace[], now: number): HistoryView {
   const catalogCodes = new Set(catalog.map((place) => place.areaCode));
+  const seen = new Set<string>();
+  const observations: { readonly areaCode: string; readonly bucket: string; readonly timestamp: number; readonly value: number | null; readonly population: number | null; readonly sourceUpdatedAt: string; readonly key: string }[] = [];
   for (const row of rows) {
-    const areaCode = nonEmptyString(row.area_code);
-    const weekday = integer(row.weekday);
-    const hour = integer(row.hour);
-    const localTimeBucket = row.local_time_bucket === undefined ? null : localTimeBucketValue(row.local_time_bucket);
-    const maturity = literal(row.maturity, MATURITIES);
-    const crowdRankMedian = nullablePercentile(row.crowd_rank_median);
-    const populationMidpointMedian = nullableFiniteNumber(row.population_midpoint_median);
-    const populationMidpointIqr = nullableFiniteNumber(row.population_midpoint_iqr);
-    const sampleCount = nonNegativeInteger(row.sample_count);
-    const elapsedDays = row.elapsed_days === undefined ? null : nonNegativeInteger(row.elapsed_days);
-    const missingCount = nonNegativeInteger(row.missing_count);
-    const coverage = percentile(row.coverage);
-    const computedAt = iso(row.computed_at);
-    if (areaCode === null || !catalogCodes.has(areaCode) || weekday === null || weekday < 0 || weekday > 6 || hour === null || hour < 0 || hour > 23 || localTimeBucket === undefined || maturity === null || crowdRankMedian === undefined || populationMidpointMedian === undefined || populationMidpointIqr === undefined || sampleCount === null || elapsedDays === undefined || missingCount === null || coverage === null || computedAt === null) return { status: "REJECTED", reason: "MALFORMED_HISTORY_ROW" };
-    const profile = { weekday, hour, localTimeBucket, maturity, crowdRankMedian, populationMidpointMedian, populationMidpointIqr, sampleCount, elapsedDays, missingCount, coverage, computedAt };
-    byAreaCode.set(areaCode, { profiles: [...(byAreaCode.get(areaCode)?.profiles ?? []), profile] });
+    const areaCode = nonEmptyString(row.area_code), bucket = iso(row.observation_bucket), availability = literal(row.availability, AVAILABILITIES), sourceUpdatedAt = iso(row.source_updated_at);
+    if (areaCode === null || !catalogCodes.has(areaCode) || bucket === null || availability === null || sourceUpdatedAt === null) return unavailableHistory();
+    const timestamp = Date.parse(bucket), normalizedBucket = new Date(timestamp).toISOString(), duplicate = `${areaCode}|${normalizedBucket}`;
+    const crowd = rawCrowdValue(row.crowd_level), population = rawPopulationMidpoint(row.population_min, row.population_max);
+    if (timestamp > now + MAX_FUTURE_SKEW_MS || seen.has(duplicate) || crowd === undefined || population === undefined) return unavailableHistory();
+    seen.add(duplicate);
+    const basis = koreaHistoryBasis(timestamp);
+    observations.push({ areaCode, bucket: normalizedBucket, timestamp, value: availability === "available" || availability === "carried_forward" ? crowd : null, population, sourceUpdatedAt, key: `${areaCode}|${basis.weekday}|${basis.hour}|${basis.localTimeBucket}` });
   }
-  if (byAreaCode.size !== catalog.length) return { status: "UNAVAILABLE", reason: "HISTORY_UNAVAILABLE" };
-  return { status: "READY", view: { status: "READY", byAreaCode: Object.fromEntries(byAreaCode) } };
+  const buckets = new Map<string, typeof observations>();
+  for (const observation of observations) if (observation.value !== null) buckets.set(observation.bucket, [...(buckets.get(observation.bucket) ?? []), observation]);
+  const profiles = new Map<string, { valid: { readonly rank: number; readonly population: number | null; readonly timestamp: number; readonly sourceUpdatedAt: string }[]; missingCount: number }>();
+  for (const observation of observations) {
+    const cohort = buckets.get(observation.bucket) ?? [], denominator = Math.max(1, cohort.length - 1);
+    const crowdValue = observation.value;
+    const rank = crowdValue === null ? undefined : cohort.filter((candidate) => candidate.value !== null && candidate.value < crowdValue).length / denominator;
+    const profile = profiles.get(observation.key) ?? { valid: [], missingCount: 0 };
+    profiles.set(observation.key, rank === undefined ? { ...profile, missingCount: profile.missingCount + 1 } : { ...profile, valid: [...profile.valid, { rank, population: observation.population, timestamp: observation.timestamp, sourceUpdatedAt: observation.sourceUpdatedAt }] });
+  }
+  const byAreaCode = new Map<string, Readonly<{ readonly profiles: readonly HistoryProfile[] }>>();
+  for (const [key, profile] of profiles) {
+    if (profile.valid.length === 0) continue;
+    const [areaCode, weekdayText, hourText, localTimeBucket] = key.split("|");
+    if (areaCode === undefined || weekdayText === undefined || hourText === undefined || localTimeBucket === undefined) return unavailableHistory();
+    const samples = profile.valid.length, elapsedDays = (Math.max(...profile.valid.map((item) => item.timestamp)) - Math.min(...profile.valid.map((item) => item.timestamp))) / 86_400_000, coverage = samples / (samples + profile.missingCount);
+    const populations = profile.valid.flatMap((item) => item.population === null ? [] : [item.population]);
+    const value: HistoryProfile = { weekday: Number(weekdayText), hour: Number(hourText), localTimeBucket, maturity: rawMaturity(samples, elapsedDays, coverage), crowdRankMedian: rawPercentile(profile.valid.map((item) => item.rank), 0.5), populationMidpointMedian: populations.length === 0 ? null : rawPercentile(populations, 0.5), populationMidpointIqr: populations.length < 2 ? null : rawPercentile(populations, 0.75) - rawPercentile(populations, 0.25), sampleCount: samples, elapsedDays, missingCount: profile.missingCount, coverage, computedAt: profile.valid.map((item) => item.sourceUpdatedAt).sort().at(-1) ?? "" };
+    byAreaCode.set(areaCode, { profiles: [...(byAreaCode.get(areaCode)?.profiles ?? []), value] });
+  }
+  return byAreaCode.size === 0 ? unavailableHistory() : { status: "READY", byAreaCode: Object.fromEntries(byAreaCode) };
 }
+
+function rawCrowdValue(value: unknown): number | null | undefined { if (value === null || value === undefined || value === "UNKNOWN") return null; return typeof value === "string" && Object.hasOwn(HISTORY_CROWD_VALUES, value) ? HISTORY_CROWD_VALUES[value as keyof typeof HISTORY_CROWD_VALUES] : undefined; }
+function rawPopulationMidpoint(minimum: unknown, maximum: unknown): number | null | undefined { if ((minimum === null || minimum === undefined) && (maximum === null || maximum === undefined)) return null; return typeof minimum === "number" && Number.isFinite(minimum) && minimum >= 0 && typeof maximum === "number" && Number.isFinite(maximum) && maximum >= minimum ? (minimum + maximum) / 2 : undefined; }
+function rawMaturity(samples: number, elapsedDays: number, coverage: number): HistoryProfile["maturity"] { if (samples < 4) return "ACCUMULATING"; if (elapsedDays >= 56 && coverage >= 0.9) return "MATURE"; if (elapsedDays >= 28 && coverage >= 0.8) return "STABLE"; return elapsedDays >= 7 && coverage >= 0.7 ? "PROVISIONAL" : "ACCUMULATING"; }
+function rawPercentile(values: readonly number[], rank: number): number { const sorted = [...values].sort((left, right) => left - right), index = (sorted.length - 1) * rank, lower = Math.floor(index), upper = Math.ceil(index), lowerValue = sorted[lower] ?? 0, upperValue = sorted[upper] ?? lowerValue; return lowerValue + (upperValue - lowerValue) * (index - lower); }
+function koreaHistoryBasis(timestamp: number): Readonly<{ readonly weekday: number; readonly hour: number; readonly localTimeBucket: string }> { const parts = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date(timestamp)), values = Object.fromEntries(parts.filter((part) => part.type !== "literal").map((part) => [part.type, part.value])); return { weekday: WEEKDAYS[values.weekday as keyof typeof WEEKDAYS], hour: Number(values.hour), localTimeBucket: `${values.hour}:${Number(values.minute) < 30 ? "00" : "30"}` }; }
+function unavailableHistory(): HistoryView { return { status: "UNAVAILABLE", reason: "HISTORY_UNAVAILABLE" }; }
 
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === "object" && value !== null && !Array.isArray(value); }
 function nonEmptyString(value: unknown): string | null { return typeof value === "string" && value.trim().length > 0 ? value : null; }

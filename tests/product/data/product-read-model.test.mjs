@@ -24,6 +24,8 @@ function database(data, { missingTable = null } = {}) {
           ? data.snapshot
           : sql.includes("FROM detail_cache")
             ? data.forecast
+            : sql.includes("FROM raw_observation_15m")
+              ? data.rawObservations ?? []
             : sql.includes("FROM weekday_hour_profile")
               ? data.history
               : [];
@@ -48,8 +50,7 @@ test("Given valid snake_case D1 rows, when the product read model is loaded, the
   assert.equal(result.data.snapshot.rows[0].freshnessBasis, "source_updated_at");
   assert.equal(result.data.officialForecast.byAreaCode.alpha.points[0].crowdLevel, "NORMAL");
   assert.equal(result.data.officialForecast.byAreaCode.alpha.points[0].snapshotId, "snapshot-2026-08-06T00:00:00Z");
-  assert.equal(result.data.history.byAreaCode.alpha.profiles[0].crowdRankMedian, 0.4);
-  assert.equal(result.data.history.byAreaCode.alpha.profiles[0].computedAt, "2026-08-06T00:10:00Z");
+  assert.deepEqual(result.data.history, { status: "UNAVAILABLE", reason: "HISTORY_UNAVAILABLE" });
 });
 
 test("Given no DB binding, when the product read model is loaded, then it returns UNAVAILABLE without a fallback", async () => {

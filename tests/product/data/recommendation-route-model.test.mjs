@@ -18,6 +18,8 @@ function database(data) {
           ? data.snapshot
           : sql.includes("FROM detail_cache")
             ? data.forecast
+            : sql.includes("FROM raw_observation_15m")
+              ? data.rawObservations ?? []
             : sql.includes("FROM weekday_hour_profile")
               ? data.history
               : [];
@@ -26,8 +28,86 @@ function database(data) {
   };
 }
 
+function authoritativeRawHistory() {
+  const buckets = [
+    "2026-07-09T00:30:00Z",
+    "2026-07-16T00:30:00Z",
+    "2026-07-23T00:30:00Z",
+    "2026-07-30T00:30:00Z",
+    "2026-08-06T00:30:00Z",
+  ];
+  return buckets.flatMap((observation_bucket) => [
+    {
+      area_code: "alpha",
+      observation_bucket,
+      crowd_level: "NORMAL",
+      availability: "available",
+      source_updated_at: "2026-08-06T00:10:00Z",
+    },
+    {
+      area_code: "beta",
+      observation_bucket,
+      crowd_level: "BUSY",
+      availability: "available",
+      source_updated_at: "2026-08-06T00:10:00Z",
+    },
+  ]);
+}
+
+function forgeEligibleProfiles(rows) {
+  for (const row of rows) {
+    row.weekday = 4;
+    row.hour = 9;
+    row.local_time_bucket = "09:30";
+    row.elapsed_days = 56;
+    row.maturity = "MATURE";
+    row.crowd_rank_median = 0;
+    row.sample_count = 999;
+    row.missing_count = 0;
+    row.coverage = 1;
+    row.computed_at = "2026-08-06T00:10:00Z";
+  }
+}
+
+test("Given forged eligible weekday profiles but absent raw observations, when the ProductViewModel feeds recommendations, then history stays base", async () => {
+  const data = JSON.parse(await readFile(fixturePath, "utf8"));
+  forgeEligibleProfiles(data.history);
+
+  const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+  assert.equal(product.status, "READY");
+  if (product.status !== "READY") return;
+
+  const surface = buildRecommendationSurface(product.data, now);
+
+  assert.equal(surface.now.status, "READY");
+  assert.equal(surface.now.results.every((result) => result.variant === "base"), true);
+});
+
+test("Given authoritative raw observations at the exact Seoul weekday and 30-minute bucket, when forged profiles remain ineligible, then recommendations derive eligible history", async () => {
+  const data = JSON.parse(await readFile(fixturePath, "utf8"));
+  data.rawObservations = authoritativeRawHistory();
+  for (const row of data.history) {
+    row.local_time_bucket = "00:00";
+    row.elapsed_days = 0;
+    row.maturity = "ACCUMULATING";
+    row.sample_count = 0;
+    row.coverage = 0;
+    row.computed_at = "2026-07-01T00:00:00Z";
+  }
+
+  const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+  assert.equal(product.status, "READY");
+  if (product.status !== "READY") return;
+
+  const surface = buildRecommendationSurface(product.data, now);
+
+  assert.equal(surface.now.status, "READY");
+  assert.equal(surface.now.results.every((result) => result.variant === "history-enhanced"), true);
+});
+
 test("Given the real product read model, when the route builds recommendation props, then source-backed NOW/NEXT fields reach the render boundary", async () => {
   const data = JSON.parse(await readFile(fixturePath, "utf8"));
+  data.rawObservations = authoritativeRawHistory();
   const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
   assert.equal(product.status, "READY");
   if (product.status !== "READY") return;
@@ -58,6 +138,7 @@ function hasOwnScore(value) {
 
 test("Given ProductViewModel history rows at the current Seoul weekday and hour, when the route builds recommendations, then eligible history is enhanced and stale history is suppressed", async () => {
   const data = JSON.parse(await readFile(fixturePath, "utf8"));
+  data.rawObservations = authoritativeRawHistory();
   const betaHistory = data.history.find((row) => row.area_code === "beta");
   betaHistory.maturity = "PROVISIONAL";
   betaHistory.crowd_rank_median = 0.7;
@@ -76,12 +157,12 @@ test("Given ProductViewModel history rows at the current Seoul weekday and hour,
 
   assert.equal(surface.now.status, "READY");
   assert.equal(surface.now.results[0].variant, "history-enhanced");
-  assert.equal(surface.now.results[0].historyMaturity, "PROVISIONAL");
+  assert.equal(surface.now.results[0].historyMaturity, "STABLE");
   assert.equal(surface.now.results[0].reasons.at(-1)?.kind, "history_deviation_percentile");
   assert.equal(typeof surface.now.results[0].sourceTimestamps.history, "string");
   assert.equal(hasOwnScore(surface), false);
 
-  for (const row of data.history) row.computed_at = "2026-08-05T21:29:59Z";
+  for (const row of data.rawObservations) row.source_updated_at = "2026-08-05T21:29:59Z";
   const staleProduct = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
   assert.equal(staleProduct.status, "READY");
   if (staleProduct.status !== "READY") return;
@@ -112,5 +193,23 @@ test("Given history provenance that is missing, mismatched, or below the sample 
     assert.equal(surface.now.status, "READY");
     assert.equal(surface.now.results.every((result) => result.variant === "base"), true);
     assert.equal(surface.now.results.every((result) => result.reasons.every((reason) => reason.kind !== "history_deviation_percentile")), true);
+  }
+});
+
+test("Given malformed or duplicate raw observations, when the ProductViewModel feeds recommendations, then ordinary browsing stays ready and history stays base", async () => {
+  for (const mutate of [
+    (rows) => { rows[0].crowd_level = "PROMPT_INJECTION"; },
+    (rows) => { rows.push({ ...rows[0] }); },
+    (rows) => { rows[0].observation_bucket = "not-an-iso-timestamp"; },
+  ]) {
+    const data = JSON.parse(await readFile(fixturePath, "utf8"));
+    data.rawObservations = authoritativeRawHistory();
+    mutate(data.rawObservations);
+    const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+
+    assert.equal(product.status, "READY");
+    if (product.status !== "READY") return;
+    assert.deepEqual(product.data.history, { status: "UNAVAILABLE", reason: "HISTORY_UNAVAILABLE" });
+    assert.equal(buildRecommendationSurface(product.data, now).now.results.every((result) => result.variant === "base"), true);
   }
 });
