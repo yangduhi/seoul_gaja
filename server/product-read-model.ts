@@ -91,11 +91,13 @@ export type ForecastView =
 export type HistoryProfile = Readonly<{
   readonly weekday: number;
   readonly hour: number;
+  readonly localTimeBucket: string | null;
   readonly maturity: "ACCUMULATING" | "PROVISIONAL" | "STABLE" | "MATURE";
   readonly crowdRankMedian: number | null;
   readonly populationMidpointMedian: number | null;
   readonly populationMidpointIqr: number | null;
   readonly sampleCount: number;
+  readonly elapsedDays: number | null;
   readonly missingCount: number;
   readonly coverage: number;
   readonly computedAt: string;
@@ -126,7 +128,7 @@ export type RejectionReason =
 const CATALOG_SQL = "SELECT area_code, area_name, category, latitude, longitude, catalog_version FROM place_catalog WHERE active = 1 ORDER BY area_code";
 const SNAPSHOT_SQL = "SELECT c.area_code, c.source_updated_at, c.fetched_at, c.stored_at, c.snapshot_id, c.availability, c.provenance, c.crowd_level, c.population_min, c.population_max, c.raw_hash, s.catalog_version, s.status AS snapshot_status FROM current_snapshot AS c INNER JOIN snapshot_runs AS s ON s.snapshot_id = c.snapshot_id";
 const FORECAST_SQL = "SELECT area_code, section_name, source_updated_at, fetched_at, expires_at, state, normalized_json FROM detail_cache WHERE section_name = 'official_forecast'";
-const HISTORY_SQL = "SELECT area_code, weekday, hour, maturity, crowd_rank_median, population_midpoint_median, population_midpoint_iqr, sample_count, missing_count, coverage, computed_at FROM weekday_hour_profile";
+const HISTORY_SQL = "SELECT * FROM weekday_hour_profile";
 
 export async function readProductViewModel(
   database: D1DatabaseLike | null | undefined,

@@ -67,8 +67,8 @@ function matchingHistoryProfiles(viewModel, rows, now) {
   const basis = koreaHistoryBasis(now);
   return new Map(rows.flatMap((row) => {
     const profiles = viewModel.history.byAreaCode[row.areaCode]?.profiles ?? [];
-    const profile = profiles.find((candidate) => candidate.weekday === basis.weekday && candidate.hour === Number(basis.localTimeBucket.slice(0, 2)));
-    return profile === undefined || typeof profile.crowdRankMedian !== 'number'
+    const profile = profiles.find((candidate) => candidate.weekday === basis.weekday && candidate.localTimeBucket === basis.localTimeBucket);
+    return profile === undefined || typeof profile.crowdRankMedian !== 'number' || profile.elapsedDays === null || profile.sampleCount < 4
       ? []
       : [[row.areaCode, profile]];
   }));
@@ -143,6 +143,8 @@ export function buildRecommendationInput(viewModel, now) {
             localTimeBucket: historyBasis.localTimeBucket,
             maturity: profile.maturity,
             coverage: profile.coverage,
+            elapsedDays: profile.elapsedDays,
+            sampleCount: profile.sampleCount,
           };
       })(),
     })),

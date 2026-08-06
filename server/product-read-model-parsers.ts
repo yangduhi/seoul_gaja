@@ -127,16 +127,18 @@ export function parseHistory(rows: readonly D1Row[], catalog: readonly CatalogPl
     const areaCode = nonEmptyString(row.area_code);
     const weekday = integer(row.weekday);
     const hour = integer(row.hour);
+    const localTimeBucket = row.local_time_bucket === undefined ? null : localTimeBucketValue(row.local_time_bucket);
     const maturity = literal(row.maturity, MATURITIES);
     const crowdRankMedian = nullablePercentile(row.crowd_rank_median);
     const populationMidpointMedian = nullableFiniteNumber(row.population_midpoint_median);
     const populationMidpointIqr = nullableFiniteNumber(row.population_midpoint_iqr);
     const sampleCount = nonNegativeInteger(row.sample_count);
+    const elapsedDays = row.elapsed_days === undefined ? null : nonNegativeInteger(row.elapsed_days);
     const missingCount = nonNegativeInteger(row.missing_count);
     const coverage = percentile(row.coverage);
     const computedAt = iso(row.computed_at);
-    if (areaCode === null || !catalogCodes.has(areaCode) || weekday === null || weekday < 0 || weekday > 6 || hour === null || hour < 0 || hour > 23 || maturity === null || crowdRankMedian === undefined || populationMidpointMedian === undefined || populationMidpointIqr === undefined || sampleCount === null || missingCount === null || coverage === null || computedAt === null) return { status: "REJECTED", reason: "MALFORMED_HISTORY_ROW" };
-    const profile = { weekday, hour, maturity, crowdRankMedian, populationMidpointMedian, populationMidpointIqr, sampleCount, missingCount, coverage, computedAt };
+    if (areaCode === null || !catalogCodes.has(areaCode) || weekday === null || weekday < 0 || weekday > 6 || hour === null || hour < 0 || hour > 23 || localTimeBucket === undefined || maturity === null || crowdRankMedian === undefined || populationMidpointMedian === undefined || populationMidpointIqr === undefined || sampleCount === null || elapsedDays === undefined || missingCount === null || coverage === null || computedAt === null) return { status: "REJECTED", reason: "MALFORMED_HISTORY_ROW" };
+    const profile = { weekday, hour, localTimeBucket, maturity, crowdRankMedian, populationMidpointMedian, populationMidpointIqr, sampleCount, elapsedDays, missingCount, coverage, computedAt };
     byAreaCode.set(areaCode, { profiles: [...(byAreaCode.get(areaCode)?.profiles ?? []), profile] });
   }
   if (byAreaCode.size !== catalog.length) return { status: "UNAVAILABLE", reason: "HISTORY_UNAVAILABLE" };
@@ -155,6 +157,7 @@ function nullableFiniteNumber(value: unknown): number | null | undefined { retur
 function percentile(value: unknown): number | null { return typeof value === "number" && Number.isFinite(value) && value >= 0 && value <= 1 ? value : null; }
 function nullablePercentile(value: unknown): number | null | undefined { return value === null || value === undefined ? null : percentile(value) ?? undefined; }
 function optionalPercentile(value: unknown): number | null | undefined { return value === undefined ? null : percentile(value) ?? undefined; }
+function localTimeBucketValue(value: unknown): string | undefined { return typeof value === "string" && /^([01]\d|2[0-3]):(?:00|30)$/u.test(value) ? value : undefined; }
 function literal<T extends readonly string[]>(value: unknown, values: T): T[number] | null { return typeof value === "string" && values.includes(value) ? value : null; }
 function validRange(min: number | null, max: number | null): boolean { return min === null && max === null || min !== null && max !== null && max >= min; }
 function classifyFreshness(ageMs: number): "fresh" | "delayed" | "stale" { const age = Math.max(0, ageMs); return age <= 30 * 60 * 1000 ? "fresh" : age <= 90 * 60 * 1000 ? "delayed" : "stale"; }

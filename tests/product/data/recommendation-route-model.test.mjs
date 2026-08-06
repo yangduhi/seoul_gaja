@@ -66,6 +66,8 @@ test("Given ProductViewModel history rows at the current Seoul weekday and hour,
   betaHistory.sample_count = 8;
   betaHistory.missing_count = 1;
   betaHistory.coverage = 0.8;
+  betaHistory.local_time_bucket = "09:30";
+  betaHistory.elapsed_days = 7;
   const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
   assert.equal(product.status, "READY");
   if (product.status !== "READY") return;
@@ -84,4 +86,31 @@ test("Given ProductViewModel history rows at the current Seoul weekday and hour,
   assert.equal(staleProduct.status, "READY");
   if (staleProduct.status !== "READY") return;
   assert.equal(buildRecommendationSurface(staleProduct.data, now).now.status, "ZERO_ELIGIBLE");
+});
+
+test("Given history provenance that is missing, mismatched, or below the sample threshold, when recommendations are built from ProductViewModel, then history enhancement fails closed", async () => {
+  for (const update of [
+    (row) => { delete row.local_time_bucket; },
+    (row) => { row.local_time_bucket = "09:00"; },
+    (row) => { delete row.elapsed_days; },
+    (row) => { row.sample_count = 0; },
+  ]) {
+    const data = JSON.parse(await readFile(fixturePath, "utf8"));
+    for (const row of data.history) {
+      row.maturity = "PROVISIONAL";
+      row.crowd_rank_median ??= 0.7;
+      row.coverage = 0.7;
+      row.elapsed_days = 7;
+      row.local_time_bucket = "09:30";
+      row.sample_count = 4;
+      update(row);
+    }
+    const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+    assert.equal(product.status, "READY");
+    if (product.status !== "READY") return;
+    const surface = buildRecommendationSurface(product.data, now);
+    assert.equal(surface.now.status, "READY");
+    assert.equal(surface.now.results.every((result) => result.variant === "base"), true);
+    assert.equal(surface.now.results.every((result) => result.reasons.every((reason) => reason.kind !== "history_deviation_percentile")), true);
+  }
 });

@@ -201,6 +201,7 @@ function currentCohort(input, now) {
 }
 
 function historyMaturity(input, history) {
+  if (!Number.isSafeInteger(history?.sampleCount) || history.sampleCount < 4) return 'ACCUMULATING';
   const elapsedDays = input.historyMaturity?.elapsedDays;
   const coverage = input.historyMaturity?.coverage;
   if (Number.isFinite(elapsedDays) && percentile(coverage)) {
@@ -208,7 +209,7 @@ function historyMaturity(input, history) {
     if (elapsedDays >= 28 && coverage >= 0.8) return 'STABLE';
     if (elapsedDays >= 7 && coverage >= 0.7) return 'PROVISIONAL';
   }
-  if (!percentile(history?.coverage)) return 'ACCUMULATING';
+  if (!percentile(history?.coverage) || !Number.isFinite(history?.elapsedDays) || history.elapsedDays < 7) return 'ACCUMULATING';
   if (history.maturity === 'MATURE' && history.coverage >= 0.9) return 'MATURE';
   if (history.maturity === 'STABLE' && history.coverage >= 0.8) return 'STABLE';
   if (history.maturity === 'PROVISIONAL' && history.coverage >= 0.7) return 'PROVISIONAL';

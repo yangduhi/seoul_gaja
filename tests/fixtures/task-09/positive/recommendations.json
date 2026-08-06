@@ -45,6 +45,7 @@
         "percentile": 0.6,
         "weekday": "Tue",
         "localTimeBucket": "18:00",
+        "sampleCount": 4,
         "computedAt": "2026-08-04T08:55:00Z"
       }
     },
@@ -84,6 +85,7 @@
         "percentile": 0.6,
         "weekday": "Tue",
         "localTimeBucket": "18:00",
+        "sampleCount": 4,
         "computedAt": "2026-08-04T08:55:00Z"
       }
     },
@@ -123,6 +125,7 @@
         "percentile": 0.6,
         "weekday": "Tue",
         "localTimeBucket": "18:00",
+        "sampleCount": 4,
         "computedAt": "2026-08-04T08:55:00Z"
       }
     }
