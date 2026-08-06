@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "verdict": "PASS_LOCAL_PENDING_INDEPENDENT_VERIFY",
+  "binding": {
+    "implementation_commit": "6b30a1bd0a33cd8ecd76763819be2fff4693317a",
+    "implementation_tree": "26706aab79d4d6f66e07e89b92e8422ae1f40714",
+    "parent_evidence_commit": "24dfe3fc0ef38bba2c73eafda10633a450bd2f47"
+  },
+  "red": {
+    "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+    "actual_exit": 1,
+    "observable": "6 passed, 1 failed; rejected snapshot provenance, future 00:45 bucket, and off-grid 00:17 bucket were not all fail-closed"
+  },
+  "green": {
+    "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+    "actual_exit": 0,
+    "observable": "7/7 passed including accepted/replayed provenance, no-future, and exact 00/15/30/45 grid rejection matrix"
+  },
+  "implementation": [
+    "RAW_HISTORY_SQL explicitly joins raw_observation_15m.snapshot_id to snapshot_runs.snapshot_id, projects snapshot_status, and filters to accepted/replayed.",
+    "parseRawHistory independently requires a non-empty snapshot_id and accepted/replayed snapshot_status.",
+    "parseRawHistory rejects observation timestamps later than read now.",
+    "parseRawHistory accepts only exact UTC quarter-hour buckets with zero seconds and milliseconds before KST half-hour aggregation."
+  ],
+  "verification": [
+    {"invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy", "actual_exit": 0, "observable": "7/7 PASS"},
+    {"invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure", "actual_exit": 0, "observable": "8/8 PASS"},
+    {"invocation": "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/product-read-model.test.mjs tests/product/data/recommendation-route-model.test.mjs", "actual_exit": 0, "observable": "34/34 PASS"},
+    {"invocation": "node tests/gates/task-09-repeat-probe.mjs", "actual_exit": 0, "observable": "bounded repeat PASS"},
+    {"invocation": "node tests/gates/task-09-surface-probe.mjs", "actual_exit": 0, "observable": "surface JSON generated; no public score regression"},
+    {"invocation": "npx tsc --noEmit", "actual_exit": 0, "observable": "no diagnostics"},
+    {"invocation": "npm run lint", "actual_exit": 0, "observable": "0 errors; 4 inherited Todo 8 warnings"},
+    {"invocation": "npm run build", "actual_exit": 0, "observable": "Vinext build 5/5 stages complete"},
+    {"invocation": "git diff --check", "actual_exit": 0, "observable": "no whitespace errors"},
+    {"invocation": "PYTHONUTF8=1 python docs/execution/scripts/validate_authority_lock.py", "actual_exit": 0, "observable": "PASS at pre-implementation evidence HEAD; implementation changes are bounded and authority files unchanged"}
+  ],
+  "adversarial_classes": {
+    "malformed_input": "PASS: missing snapshot_id and off-grid minute fail closed",
+    "prompt_injection": "PASS: inherited malformed raw crowd-level coverage",
+    "stale_state": "PASS: future bucket and rejected snapshot run fail closed",
+    "dirty_worktree": "PASS: preserved pre-existing untracked final receipt",
+    "hung_or_long_commands": "PASS: bounded command-map, repeat, type, lint, and build exits",
+    "flaky_tests": "PASS: repeat probe green",
+    "misleading_success_output": "PASS: direct test and process exits inspected",
+    "repeated_interruptions": "PASS: accidental NUL temp artifact removed",
+    "cancel_resume": "NOT_APPLICABLE: single-shot read-model derivation"
+  },
+  "cleanup": "PASS: accidental NUL temp removed; no server/browser/process/port created by this fix; only pre-existing untracked final receipt remains.",
+  "external_actions": "NOT_RUN_BLOCKED: no prep integration, migration execution, live D1/API, secret, deploy, push, or merge."
+}
