@@ -1,5 +1,7 @@
 "use client";
 
+import { GlassPanel } from "../_design/GlassPanel";
+import { Navigation } from "../_design/Navigation";
 import { useEffect, useMemo, useState } from "react";
 import { openInAppPlaceDetail } from "../places/[areaCode]/PlaceDetailClient";
 import styles from "./CatalogSurface.module.css";
@@ -80,6 +82,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
     const normalized = query.trim().toLocaleLowerCase("ko-KR");
     return normalized.length === 0 ? catalog : catalog.filter((row) => row.areaName.toLocaleLowerCase("ko-KR").includes(normalized));
   }, [catalog, query]);
+  const selectedRow = useMemo(() => catalog.find((row) => row.areaCode === selectedAreaCode) ?? filtered[0] ?? null, [catalog, filtered, selectedAreaCode]);
 
   function requestLocation() {
     if (!navigator.geolocation) { setGeoState("denied"); return; }
@@ -109,10 +112,10 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
           <div className={styles.chipRow} role="group" aria-label="오늘의 목적">
             {purposes.map((item) => <button key={item.id} className={styles.chip} data-selected={purpose === item.id} aria-pressed={purpose === item.id} type="button" onClick={() => setPurpose(item.id)}>{item.label}</button>)}
           </div>
-          <section className={styles.statusBanner} aria-live="polite">
+          <GlassPanel depth="floating" className={styles.statusBanner} aria-live="polite">
             <div className={styles.statusLine}><span className={styles.statusPill} data-state={status === "READY" ? "READY" : "UNAVAILABLE"}><span className={styles.statusDot} aria-hidden="true" />{status === "READY" ? (snapshotStatus === "PARTIAL" ? "일부 공식 데이터" : "서울 전체 분위기") : "공식 데이터 연결 대기"}</span><strong>{status === "READY" ? `${catalog.length}곳 확인` : "확인 필요"}</strong></div>
             <p className={styles.caption}>{sourceTime ? `${displaySource({ sourceUpdatedAt: sourceTime, fetchedAt: sourceTime, freshnessBasis: "source_updated_at" } as CatalogRow)}` : unavailableReason ?? "D1 연결 후 공식 장소 목록이 표시됩니다."}</p>
-          </section>
+          </GlassPanel>
           <div className={styles.listHeader}><h2 className={styles.sectionTitle}>{purposes.find((item) => item.id === purpose)?.label} 추천 장소</h2><p className={styles.caption}>{filtered.length}곳</p></div>
           <div className={styles.placeList} aria-label="공식 장소 목록">
             {status === "UNAVAILABLE" && <p className={styles.empty}>현재 데이터 연결이 지연되고 있습니다.<br />지도와 목록은 연결 후 자동으로 갱신됩니다.</p>}
@@ -124,18 +127,25 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
           </div>
         </section>
         <section className={styles.main} aria-label="서울 지도와 추천">
-          <div className={styles.mapPane} aria-label="서울 한눈에 보기">
+          <GlassPanel depth="content" className={styles.mapPane} aria-label="서울 한눈에 보기">
             <div className={styles.mapGrid} aria-hidden="true" />
             <div className={styles.mapContent}>
               <div className={styles.mapHeading}><div><p className={styles.eyebrow}>LIVE MAP</p><h2>서울 한눈에 보기</h2><p>공식 장소 목록과 같은 선택 상태를 공유합니다.</p></div><span className={styles.caption}>실제 데이터 연결 전 미리보기</span></div>
-              <div className={styles.mapNotice} role="status"><strong>지도를 불러오지 못했습니다</strong><p>목록과 장소 상세는 유지됩니다. 연결이 되면 {mapRetry > 0 ? "다시 시도했습니다." : "자동으로 갱신됩니다."}</p><div className={styles.mapActions}><button className={styles.retryButton} type="button" onClick={() => setMapRetry((value) => value + 1)}>다시 시도</button><button className={styles.geoButton} type="button" onClick={requestLocation}>내 주변</button></div>{geoState !== "idle" && <p className={styles.source}>{geoState === "timeout" ? "위치 요청 시간이 초과되었습니다." : "위치 권한이 없어 공식 목록으로 계속합니다."}</p>}</div>
+              <div className={styles.mapNotice} role="status"><strong>지도를 불러오지 못했습니다</strong><p>목록과 장소 상세는 유지됩니다. 연결이 되면 {mapRetry > 0 ? "다시 시도했습니다." : "자동으로 갱신됩니다."}</p><div className={styles.mapActions}><button className={styles.retryButton} type="button" onClick={() => setMapRetry((value) => value + 1)}>다시 시도</button><button className={styles.geoButton} type="button" onClick={requestLocation}>내 주변</button><a className={styles.externalMap} href="https://map.kakao.com/?q=서울" target="_blank" rel="noreferrer">카카오 지도</a></div>{geoState !== "idle" && <p className={styles.source}>{geoState === "timeout" ? "위치 요청 시간이 초과되었습니다." : "위치 권한이 없어 공식 목록으로 계속합니다."}</p>}</div>
             </div>
-          </div>
+          </GlassPanel>
           <div className={styles.recommendations} aria-label="가족 시간 추천">
-            {[recommendations.now, recommendations.next].map((item) => <article key={item.mode} className={styles.recommendation}><h2>{item.mode === "NOW" ? "지금 가면 좋은 시간" : "다음이 더 편안한 시간"}</h2><p>현재 혼잡도와 공식 미래 시각을 함께 확인합니다.</p><div className={styles.recommendationStatus}>{item.status === "READY" ? "추천 결과가 준비되었습니다" : "추천 보류"}</div><p className={styles.recommendationReason}>{item.browseCopy ?? "원천 데이터가 충분해지면 추천 이유와 시각을 표시합니다."}</p></article>)}
+            {[recommendations.now, recommendations.next].map((item) => <GlassPanel depth="content" key={item.mode} className={styles.recommendation}><h2>{item.mode === "NOW" ? "지금 가면 좋은 시간" : "다음이 더 편안한 시간"}</h2><p>현재 혼잡도와 공식 미래 시각을 함께 확인합니다.</p><div className={styles.recommendationStatus}>{item.status === "READY" ? "추천 결과가 준비되었습니다" : "추천 보류"}</div><p className={styles.recommendationReason}>{item.browseCopy ?? "원천 데이터가 충분해지면 추천 이유와 시각을 표시합니다."}</p></GlassPanel>)}
           </div>
         </section>
+        <GlassPanel depth="strong" className={styles.detailPane} aria-label="선택한 장소 상세">
+          <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>PLACE DETAIL</p><h2>{selectedRow?.areaName ?? "장소를 선택하세요"}</h2></div>{selectedRow && <span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span>}</div>
+          <div className={styles.detailStatusCard}><span className={styles.badge} data-level={selectedRow?.crowdLevel ?? "UNKNOWN"}>{selectedRow ? displayLevel(selectedRow.crowdLevel) : "정보 없음"}</span><strong>{selectedRow ? displayRange(selectedRow) : "인구 범위 확인 불가"}</strong><p className={styles.caption}>{selectedRow ? displaySource(selectedRow) : "공식 데이터가 연결되면 선택한 장소의 혼잡도와 예측을 표시합니다."}</p></div>
+          <div className={styles.detailMeta}><span>공식 예측</span><strong>연결 대기</strong><span>히스토리 인사이트</span><strong>UNAVAILABLE</strong></div>
+          {selectedRow && <button className={styles.detailAction} type="button" onClick={() => openPlace(selectedRow)}>상세 열기</button>}
+        </GlassPanel>
       </div>
+      <Navigation activeId="map" items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }, { id: "saved", label: "저장" }, { id: "settings", label: "설정" }]} label="주요 화면" onSelect={(item) => { if (item.id === "list") document.getElementById("catalog-list")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
     </main>
   );
 }
