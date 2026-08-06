@@ -159,6 +159,10 @@
 .recommendation p { margin: var(--sg-space-xs) 0 0; color: var(--sg-text-secondary); font-size: var(--sg-type-caption); line-height: 1.5; }
 .recommendationStatus { margin-top: var(--sg-space-md); color: var(--sg-text-strong); font-size: var(--sg-type-eyebrow); font-weight: 760; }
 .recommendationReason { margin-top: 4px; color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); }
+.recommendationDetails { margin-top: var(--sg-space-sm); color: var(--sg-text-secondary); font-size: var(--sg-type-caption); }
+.recommendationDetails summary { min-height: 44px; padding-block: 12px; color: var(--sg-text-strong); cursor: pointer; }
+.recommendationDetails ul { margin: 0; padding-left: 18px; }
+.recommendationDetails p { display: grid; gap: 2px; }
 
 .detailPane { display: flex; flex-direction: column; gap: var(--sg-space-lg); min-width: 0; padding: var(--sg-space-xl); }
 .detailPaneHeader { display: flex; align-items: start; justify-content: space-between; gap: var(--sg-space-md); }
@@ -191,15 +195,17 @@
   .mapPane { height: 100%; min-height: 100%; padding: 0; border: 0; border-radius: 0; }
   .mapContent { min-height: 100%; }
   .mapHeading { display: none; }
-  .recommendations, .detailPane { display: none; }
+  .detailPane { display: none; }
+  .recommendations { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); left: var(--sg-space-lg); display: grid; }
+  .recommendation { padding: var(--sg-space-sm) var(--sg-space-md); }
+  .recommendationDetails[open] { position: relative; z-index: 6; max-height: 180px; overflow: auto; padding: var(--sg-space-sm); border-radius: var(--sg-radius-sm); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); }
   .explorer > header { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + var(--sg-space-xl)); left: var(--sg-space-lg); right: var(--sg-space-lg); pointer-events: none; }
   .explorer > header > * { pointer-events: auto; }
   .title { max-width: 260px; font-size: clamp(28px, 8vw, 36px); }
   .subtitle { display: none; }
   .search { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 112px); left: var(--sg-space-lg); right: var(--sg-space-lg); }
-  .chipRow { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 170px); left: var(--sg-space-lg); right: var(--sg-space-lg); padding: 0; overflow: auto; }
   .mapLegend { z-index: 4; bottom: calc(var(--sg-nav-height) + 272px); }
-  .statusBanner { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 220px); left: var(--sg-space-lg); right: var(--sg-space-lg); padding: var(--sg-space-sm) var(--sg-space-md); border-radius: var(--sg-radius-control); background: var(--sg-glass-floating); }
+  .statusBanner { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 292px); left: var(--sg-space-lg); right: var(--sg-space-lg); padding: var(--sg-space-sm) var(--sg-space-md); border-radius: var(--sg-radius-control); background: var(--sg-glass-floating); }
   .statusBanner .caption { display: none; }
   .listHeader { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: calc(var(--sg-nav-height) + 212px); left: var(--sg-space-sm); padding: var(--sg-space-md) var(--sg-space-lg) 0; border-radius: var(--sg-radius-sheet) var(--sg-radius-sheet) 0 0; background: var(--sg-glass-strong); }
   .placeList { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: var(--sg-nav-height); left: var(--sg-space-sm); display: grid; max-height: 212px; padding: var(--sg-space-sm) var(--sg-space-lg) var(--sg-space-md); border-radius: 0 0 var(--sg-radius-sheet) var(--sg-radius-sheet); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); backdrop-filter: blur(var(--sg-glass-strong-blur)) saturate(var(--sg-glass-strong-saturation)); }
@@ -214,8 +220,8 @@
 @media (max-width: 560px) {
   .explorer > header { top: calc(env(safe-area-inset-top) + var(--sg-space-lg)); }
   .search { top: calc(env(safe-area-inset-top) + 98px); }
-  .chipRow { top: calc(env(safe-area-inset-top) + 156px); }
-  .statusBanner { top: calc(env(safe-area-inset-top) + 204px); }
+  .recommendations { top: calc(env(safe-area-inset-top) + 144px); }
+  .statusBanner { top: calc(env(safe-area-inset-top) + 280px); }
   .mapNotice { top: calc(env(safe-area-inset-top) + 255px); }
 }
 

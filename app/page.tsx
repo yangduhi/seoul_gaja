@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { env } from "cloudflare:workers";
 import { CatalogSurface, type CatalogRow, type RecommendationSummary } from "./_catalog/CatalogSurface";
 import { readProductViewModel } from "../server/product-read-model";
-import { evaluateRecommendations } from "../server/recommendations.mjs";
+import { buildRecommendationSurface } from "../server/recommendations.mjs";
 import { resolveVisualEvidenceFixture, type VisualEvidenceSearchParams } from "./_visual-evidence/resolve";
 
 export const metadata: Metadata = {
@@ -16,13 +16,14 @@ export const metadata: Metadata = {
 type HomeProps = Readonly<{ searchParams: Promise<VisualEvidenceSearchParams> }>;
 
 export default async function Home({ searchParams }: HomeProps) {
+  const requestNow = new Date().toISOString();
   const visualQuery = await searchParams;
   const visualFixture = resolveVisualEvidenceFixture(visualQuery);
   const result = visualFixture === null
-    ? await readProductViewModel(env?.DB, { expectedCatalogCount: 121 })
+    ? await readProductViewModel(env?.DB, { now: requestNow, expectedCatalogCount: 121 })
     : { status: "READY", data: visualFixture } as const;
   if (result.status !== "READY") {
-    const unavailableRecommendations = { now: { mode: "NOW", status: "ZERO_ELIGIBLE", browseCopy: "공식 데이터 연결 후 원천 기반 추천을 계산합니다." }, next: { mode: "NEXT", status: "ZERO_ELIGIBLE", browseCopy: "공식 데이터 연결 후 원천 기반 추천을 계산합니다." } } satisfies Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>;
+    const unavailableRecommendations = { now: { mode: "NOW", status: "ZERO_ELIGIBLE", browseCopy: "공식 현재 혼잡도와 예보가 없어 추천을 잠시 보류합니다.", results: [] }, next: { mode: "NEXT", status: "ZERO_ELIGIBLE", browseCopy: "공식 현재 혼잡도와 예보가 없어 추천을 잠시 보류합니다.", results: [] } } satisfies Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>;
     return <CatalogSurface status="UNAVAILABLE" catalog={[]} snapshotStatus="UNAVAILABLE" sourceTime={null} recommendations={unavailableRecommendations} unavailableReason={result.reason} />;
   }
   const snapshotByCode = new Map(result.data.snapshot.rows.map((row) => [row.areaCode, row]));
@@ -30,14 +31,7 @@ export default async function Home({ searchParams }: HomeProps) {
     const row = snapshotByCode.get(place.areaCode);
     return { areaCode: place.areaCode, areaName: place.areaName, availability: row?.availability ?? "unavailable", crowdLevel: row?.crowdLevel ?? "UNKNOWN", populationMin: row?.populationMin ?? null, populationMax: row?.populationMax ?? null, sourceUpdatedAt: row?.sourceUpdatedAt ?? null, fetchedAt: row?.fetchedAt ?? "", freshness: row?.freshness ?? null, freshnessBasis: row?.freshnessBasis ?? "source_updated_at" };
   });
-  const recommendationInput = {
-    now: new Date().toISOString(),
-    activeSnapshot: { id: result.data.snapshot.snapshotId, sourceUpdatedAt: catalog[0]?.sourceUpdatedAt ?? catalog[0]?.fetchedAt ?? new Date().toISOString() },
-    historyMaturity: { elapsedDays: 0, coverage: 0 },
-    places: catalog.map((row) => ({ areaCode: row.areaCode, currentCrowd: { status: row.availability === "unavailable" ? "unavailable" : "available", sourceUpdatedAt: row.sourceUpdatedAt ?? row.fetchedAt, percentile: undefined, snapshotId: result.data.snapshot.snapshotId }, officialForecasts: result.data.officialForecast.status === "READY" ? result.data.officialForecast.byAreaCode[row.areaCode]?.points.map((point) => ({ ...point, status: "available" })) : [] })),
-  };
-  const recommendations = visualFixture === null
-    ? evaluateRecommendations(recommendationInput) as Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>
-    : { now: { mode: "NOW", status: "READY" }, next: { mode: "NEXT", status: "READY" } } as const;
+  const recommendationNow = visualFixture === null ? requestNow : "2026-08-06T00:30:00Z";
+  const recommendations = buildRecommendationSurface(result.data, recommendationNow);
   return <CatalogSurface status="READY" catalog={catalog} snapshotStatus={result.data.snapshot.status} sourceTime={catalog[0]?.sourceUpdatedAt ?? catalog[0]?.fetchedAt ?? null} recommendations={recommendations} initialSelectedAreaCode={visualFixture !== null && visualQuery.visualState === "selected-detail" ? catalog[0]?.areaCode : undefined} />;
 }

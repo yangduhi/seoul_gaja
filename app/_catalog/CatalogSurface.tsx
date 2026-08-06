@@ -23,6 +23,17 @@ export type RecommendationSummary = Readonly<{
   mode: "NOW" | "NEXT";
   status: "READY" | "ZERO_ELIGIBLE";
   browseCopy?: string;
+  results: readonly Readonly<{
+    areaCode: string;
+    variant: "base" | "history-enhanced";
+    historyMaturity: "ACCUMULATING" | "PROVISIONAL" | "STABLE" | "MATURE";
+    selectedTimestamp: string;
+    sourceTimestamps: Readonly<Record<string, string>>;
+    reasons: readonly Readonly<{
+      kind: "current_crowd_percentile" | "official_forecast_percentile" | "history_deviation_percentile";
+      sourceTimestamp: string;
+    }>[];
+  }>[];
 }>;
 
 export type CatalogSurfaceProps = Readonly<{
@@ -34,12 +45,6 @@ export type CatalogSurfaceProps = Readonly<{
   unavailableReason?: string;
   initialSelectedAreaCode?: string;
 }>;
-
-const purposes = [
-  { id: "family", label: "아이와 나들이", description: "걷기 편하고 여유로운 곳" },
-  { id: "date", label: "데이트", description: "분위기와 발견이 있는 곳" },
-  { id: "hot", label: "지금 핫플", description: "지금 가장 생생한 거리" },
-] as const;
 
 function displayRange(row: CatalogRow): string {
   if (row.populationMin === null || row.populationMax === null) return "인구 범위 확인 불가";
@@ -56,6 +61,16 @@ function displaySource(row: CatalogRow): string {
   return `${new Intl.DateTimeFormat("ko-KR", { hour: "2-digit", minute: "2-digit" }).format(new Date(value))} · ${basis}`;
 }
 
+function displayRecommendationTime(timestamp: string): string {
+  return new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }).format(new Date(timestamp));
+}
+
+function reasonLabel(kind: RecommendationSummary["results"][number]["reasons"][number]["kind"]): string {
+  if (kind === "current_crowd_percentile") return "같은 시각의 현재 혼잡도 비교";
+  if (kind === "official_forecast_percentile") return "같은 예보 구간의 공식 혼잡도 비교";
+  return "같은 요일·30분 구간의 과거 편차";
+}
+
 function eventSelection(event: Event): string | null {
   if (!(event instanceof CustomEvent)) return null;
   const detail: unknown = event.detail;
@@ -66,7 +81,6 @@ function eventSelection(event: Event): string | null {
 
 export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason, initialSelectedAreaCode }: CatalogSurfaceProps) {
   const [query, setQuery] = useState("");
-  const [purpose, setPurpose] = useState<(typeof purposes)[number]["id"]>("family");
   const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(initialSelectedAreaCode ?? null);
   const [geoState, setGeoState] = useState<"idle" | "denied" | "timeout">("idle");
   const [mapRetry, setMapRetry] = useState(0);
@@ -110,14 +124,11 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
             <input id="place-search" className={styles.searchInput} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") setQuery(""); }} placeholder="명소나 동네를 찾아보세요" />
             {query.length > 0 && <button className={styles.clearButton} type="button" aria-label="검색어 지우기" onClick={() => setQuery("")}>×</button>}
           </label>
-          <div className={styles.chipRow} role="group" aria-label="오늘의 목적">
-            {purposes.map((item) => <button key={item.id} className={styles.chip} data-selected={purpose === item.id} aria-pressed={purpose === item.id} type="button" onClick={() => setPurpose(item.id)}>{item.label}</button>)}
-          </div>
           <GlassPanel depth="floating" className={styles.statusBanner} aria-live="polite">
             <div className={styles.statusLine}><span className={styles.statusPill} data-state={status === "READY" ? "READY" : "UNAVAILABLE"}><span className={styles.statusDot} aria-hidden="true" />{status === "READY" ? (snapshotStatus === "PARTIAL" ? "일부 공식 데이터" : "서울 전체 분위기") : "공식 데이터 연결 대기"}</span><strong>{status === "READY" ? `${catalog.length}곳 확인` : "확인 필요"}</strong></div>
             <p className={styles.caption}>{sourceTime ? `${displaySource({ sourceUpdatedAt: sourceTime, fetchedAt: sourceTime, freshnessBasis: "source_updated_at" } as CatalogRow)}` : unavailableReason ?? "D1 연결 후 공식 장소 목록이 표시됩니다."}</p>
           </GlassPanel>
-          <div className={styles.listHeader}><h2 className={styles.sectionTitle}>{purposes.find((item) => item.id === purpose)?.label} 추천 장소</h2><p className={styles.caption}>{filtered.length}곳</p></div>
+          <div className={styles.listHeader}><h2 className={styles.sectionTitle}>공식 장소 둘러보기</h2><p className={styles.caption}>{filtered.length}곳</p></div>
           <div id="catalog-list" className={styles.placeList} aria-label="공식 장소 목록">
             {status === "UNAVAILABLE" && <p className={styles.empty}>현재 데이터 연결이 지연되고 있습니다.<br />지도와 목록은 연결 후 자동으로 갱신됩니다.</p>}
             {status === "READY" && filtered.length === 0 && <p className={styles.empty}>검색 결과가 없습니다. 다른 공식 장소명을 입력해 보세요.</p>}
@@ -138,8 +149,22 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
               {status === "UNAVAILABLE" ? <div className={styles.mapNotice} role="status"><strong>지도를 불러오지 못했습니다</strong><p>목록과 장소 상세는 유지됩니다. 연결이 되면 {mapRetry > 0 ? "다시 시도했습니다." : "자동으로 갱신됩니다."}</p><div className={styles.mapActions}><button className={styles.retryButton} type="button" onClick={() => setMapRetry((value) => value + 1)}>다시 시도</button><button className={styles.geoButton} type="button" onClick={requestLocation}>내 주변</button><a className={styles.externalMap} href="https://map.kakao.com/?q=서울" target="_blank" rel="noreferrer">카카오 지도</a></div>{geoState !== "idle" && <p className={styles.source}>{geoState === "timeout" ? "위치 요청 시간이 초과되었습니다." : "위치 권한이 없어 공식 목록으로 계속합니다."}</p>}</div> : <div className={styles.mapLegend} aria-label="혼잡도 범례"><span data-level="RELAXED">여유</span><span data-level="NORMAL">보통</span><span data-level="BUSY">약간 붐빔</span></div>}
             </div>
           </GlassPanel>
-          <div className={styles.recommendations} aria-label="가족 시간 추천">
-            {[recommendations.now, recommendations.next].map((item) => <GlassPanel depth="content" key={item.mode} className={styles.recommendation}><h2>{item.mode === "NOW" ? "지금 가면 좋은 시간" : "다음이 더 편안한 시간"}</h2><p>현재 혼잡도와 공식 미래 시각을 함께 확인합니다.</p><div className={styles.recommendationStatus}>{item.status === "READY" ? "추천 결과가 준비되었습니다" : "추천 보류"}</div><p className={styles.recommendationReason}>{item.browseCopy ?? "원천 데이터가 충분해지면 추천 이유와 시각을 표시합니다."}</p></GlassPanel>)}
+          <div className={styles.recommendations} aria-label="공식 혼잡도 기반 시간 안내" aria-live="polite">
+            {[recommendations.now, recommendations.next].map((item) => {
+              const result = item.results[0];
+              return <GlassPanel depth="content" key={item.mode} className={styles.recommendation}>
+                <h2>{item.mode}</h2>
+                {item.status === "READY" && result ? <>
+                  <p className={styles.recommendationStatus}>{result.variant === "history-enhanced" ? `${result.historyMaturity} · 과거 패턴 포함` : "기본 · 현재와 공식 예보"}</p>
+                  <p><strong>{catalog.find((place) => place.areaCode === result.areaCode)?.areaName ?? result.areaCode}</strong> · <time dateTime={result.selectedTimestamp}>{displayRecommendationTime(result.selectedTimestamp)}</time></p>
+                  <details className={styles.recommendationDetails}>
+                    <summary>근거와 원천 시각</summary>
+                    <ul>{result.reasons.slice(0, 3).map((reason) => <li key={reason.kind}>{reasonLabel(reason.kind)} · <time dateTime={reason.sourceTimestamp}>{displayRecommendationTime(reason.sourceTimestamp)}</time></li>)}</ul>
+                    <p>{Object.entries(result.sourceTimestamps).map(([source, timestamp]) => <span key={source}>{source}: <time dateTime={timestamp}>{displayRecommendationTime(timestamp)}</time></span>)}</p>
+                  </details>
+                </> : <p className={styles.recommendationReason}>{item.browseCopy ?? "필수 원천값이 없어 추천을 보류합니다. 장소 목록은 계속 둘러볼 수 있습니다."}</p>}
+              </GlassPanel>;
+            })}
           </div>
         </section>
         <GlassPanel depth="strong" className={styles.detailPane} aria-label="선택한 장소 상세">

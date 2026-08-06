@@ -14,6 +14,7 @@
       "currentCrowd": {
         "status": "available",
         "percentile": 0.2,
+        "cohort": ["aardvark", "alpha", "beta"],
         "snapshotId": "snapshot-20260804-0900",
         "sourceUpdatedAt": "2026-08-04T08:55:00Z"
       },
@@ -25,6 +26,7 @@
           "timestamp": "2026-08-04T09:20:00Z",
           "horizonBucket": "2026-08-04T09:00:00Z",
           "percentile": 0.5,
+          "cohort": ["aardvark", "alpha", "beta"],
           "sourceUpdatedAt": "2026-08-04T08:55:00Z"
         },
         {
@@ -34,6 +36,7 @@
           "timestamp": "2026-08-04T10:30:00Z",
           "horizonBucket": "2026-08-04T10:00:00Z",
           "percentile": 0.1,
+          "cohort": ["aardvark", "alpha", "beta"],
           "sourceUpdatedAt": "2026-08-04T08:55:00Z"
         }
       ],
@@ -50,6 +53,7 @@
       "currentCrowd": {
         "status": "available",
         "percentile": 0.2,
+        "cohort": ["aardvark", "alpha", "beta"],
         "snapshotId": "snapshot-20260804-0900",
         "sourceUpdatedAt": "2026-08-04T08:55:00Z"
       },
@@ -61,6 +65,7 @@
           "timestamp": "2026-08-04T09:20:00Z",
           "horizonBucket": "2026-08-04T09:00:00Z",
           "percentile": 0.5,
+          "cohort": ["aardvark", "alpha", "beta"],
           "sourceUpdatedAt": "2026-08-04T08:55:00Z"
         },
         {
@@ -70,6 +75,7 @@
           "timestamp": "2026-08-04T10:00:00Z",
           "horizonBucket": "2026-08-04T10:00:00Z",
           "percentile": 0.1,
+          "cohort": ["aardvark", "alpha", "beta"],
           "sourceUpdatedAt": "2026-08-04T08:55:00Z"
         }
       ],
@@ -86,6 +92,7 @@
       "currentCrowd": {
         "status": "available",
         "percentile": 0.2,
+        "cohort": ["aardvark", "alpha", "beta"],
         "snapshotId": "snapshot-20260804-0900",
         "sourceUpdatedAt": "2026-08-04T08:55:00Z"
       },
@@ -97,6 +104,7 @@
           "timestamp": "2026-08-04T09:20:00Z",
           "horizonBucket": "2026-08-04T09:00:00Z",
           "percentile": 0.5,
+          "cohort": ["aardvark", "alpha", "beta"],
           "sourceUpdatedAt": "2026-08-04T08:55:00Z"
         },
         {
@@ -106,6 +114,7 @@
           "timestamp": "2026-08-04T10:00:00Z",
           "horizonBucket": "2026-08-04T10:00:00Z",
           "percentile": 0.1,
+          "cohort": ["aardvark", "alpha", "beta"],
           "sourceUpdatedAt": "2026-08-04T08:55:00Z"
         }
       ],

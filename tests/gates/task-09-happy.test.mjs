@@ -66,3 +66,53 @@ test('Given a point exactly at the current time, When NOW is evaluated, Then it 
 
   assert.equal(alpha.selectedTimestamp, '2026-08-04T09:20:00Z');
 });
+
+test('Given a recommendation in the second half of a Seoul hour, When history is evaluated, Then the valid 30-minute local bucket is used', async () => {
+  const record = await fixture();
+  record.now = '2026-08-04T09:45:00Z';
+  record.activeSnapshot.sourceUpdatedAt = '2026-08-04T09:40:00Z';
+  for (const place of record.places) {
+    place.currentCrowd.sourceUpdatedAt = '2026-08-04T09:40:00Z';
+    place.historyDeviation.localTimeBucket = '18:30';
+    place.historyDeviation.computedAt = '2026-08-04T09:40:00Z';
+    place.officialForecasts[0].timestamp = '2026-08-04T10:00:00Z';
+    place.officialForecasts[0].horizonBucket = '2026-08-04T10:00:00Z';
+    place.officialForecasts[1].timestamp = '2026-08-04T11:00:00Z';
+    place.officialForecasts[1].horizonBucket = '2026-08-04T11:00:00Z';
+    for (const point of place.officialForecasts) point.sourceUpdatedAt = '2026-08-04T09:40:00Z';
+  }
+
+  const result = evaluateRecommendations(record);
+
+  assert.equal(result.now.status, 'READY');
+  assert.equal(result.now.results[0].variant, 'history-enhanced');
+});
+
+test('Given partial current availability, When cohorts are formed, Then unavailable places are excluded while ordinary browse candidates remain recommendable', async () => {
+  const record = await fixture();
+  record.places[1].currentCrowd.status = 'unavailable';
+  for (const place of [record.places[0], record.places[2]]) {
+    place.currentCrowd.cohort = ['aardvark', 'alpha'];
+    for (const point of place.officialForecasts) point.cohort = ['aardvark', 'alpha'];
+  }
+
+  const result = evaluateRecommendations(record);
+
+  assert.equal(result.now.status, 'READY');
+  assert.deepEqual(result.now.results.map((item) => item.areaCode).sort(), ['aardvark', 'alpha']);
+});
+
+test('Given stable or mature elapsed-day coverage, When history is eligible, Then the result exposes the truthful maturity without changing fixed weights', async () => {
+  for (const [historyMaturity, expected] of [
+    [{ elapsedDays: 28, coverage: 0.8 }, 'STABLE'],
+    [{ elapsedDays: 56, coverage: 0.9 }, 'MATURE'],
+  ]) {
+    const record = await fixture();
+    record.historyMaturity = historyMaturity;
+
+    const result = evaluateRecommendations(record);
+
+    assert.equal(result.now.results[0].historyMaturity, expected);
+    assert.equal(result.now.results[0].score, 0.37);
+  }
+});

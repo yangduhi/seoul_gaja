@@ -1,5 +1,35 @@
+import { buildRecommendationInput } from './recommendation-input.mjs';
+
 const MAX_SOURCE_AGE_MS = 180 * 60 * 1000;
 const ZERO_ELIGIBLE_COPY = 'No source-backed crowd-and-time recommendations are available right now.';
+const FORBIDDEN_INPUT_KEYS = [
+  'bestTime',
+  'bestTimeClaim',
+  'child',
+  'childScore',
+  'cultureEvent',
+  'date',
+  'dateScore',
+  'event',
+  'eventScore',
+  'exactCrowd',
+  'exactCrowdCount',
+  'incident',
+  'incidentScore',
+  'momentum',
+  'momentumScore',
+  'noIncident',
+  'parking',
+  'parkingScore',
+  'purpose',
+  'purposeFit',
+  'safety',
+  'safetyScore',
+  'transport',
+  'transportScore',
+  'trending',
+  'trendingScore',
+];
 
 function time(value) {
   if (typeof value !== 'string' || !/(?:Z|[+-]\d\d:\d\d)$/.test(value)) return null;
@@ -21,25 +51,32 @@ function koreaTimeBasis(now) {
     timeZone: 'Asia/Seoul',
     weekday: 'short',
     hour: '2-digit',
+    minute: '2-digit',
     hourCycle: 'h23',
   }).formatToParts(new Date(now));
   const value = Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
-  return { weekday: value.weekday, localTimeBucket: `${value.hour}:00` };
+  return { weekday: value.weekday, localTimeBucket: `${value.hour}:${Number(value.minute) < 30 ? '00' : '30'}` };
 }
 
 function horizonBucket(timestamp) {
   return `${new Date(timestamp).toISOString().slice(0, 13)}:00:00Z`;
 }
 
-function historyIsAvailable(history, basis) {
+function historyIsAvailable(history, basis, now) {
   return history?.status === 'available'
     && percentile(history.percentile)
-    && time(history.computedAt) !== null
+    && sourceIsAvailable({ status: history.status, sourceUpdatedAt: history.computedAt }, now)
     && history.weekday === basis.weekday
     && history.localTimeBucket === basis.localTimeBucket;
 }
 
-function forecastIsAvailable(point, snapshotId, now) {
+function sameCohort(actual, expected) {
+  return Array.isArray(actual)
+    && actual.length === expected.length
+    && actual.every((areaCode, index) => areaCode === expected[index]);
+}
+
+function forecastCoreIsAvailable(point, snapshotId, now) {
   const timestamp = time(point?.timestamp);
   return sourceIsAvailable(point, now)
     && point.authority === 'official'
@@ -51,11 +88,37 @@ function forecastIsAvailable(point, snapshotId, now) {
     && point.extrapolated !== true;
 }
 
-function selectedForecast(place, mode, snapshotId, now, historyEnhanced, history) {
+function forecastCohorts(input, snapshotId, now, current) {
+  const cohorts = new Map();
+  for (const place of input.places) {
+    if (!current.includes(place.areaCode)) continue;
+    for (const point of place.officialForecasts ?? []) {
+      if (!forecastCoreIsAvailable(point, snapshotId, now)) continue;
+      const bucket = point.horizonBucket;
+      const areaCodes = cohorts.get(bucket) ?? [];
+      if (!areaCodes.includes(place.areaCode)) areaCodes.push(place.areaCode);
+      cohorts.set(bucket, areaCodes);
+    }
+  }
+  for (const [bucket, areaCodes] of cohorts) {
+    const sorted = areaCodes.sort();
+    if (sameCohort(sorted, current)) cohorts.set(bucket, sorted);
+    else cohorts.delete(bucket);
+  }
+  return cohorts;
+}
+
+function selectedForecast(place, mode, snapshotId, now, historyEnhanced, history, cohorts) {
   const upperBound = now + (mode === 'NOW' ? 60 : 180) * 60 * 1000;
   const points = place.officialForecasts?.filter((point) => {
     const timestamp = time(point?.timestamp);
-    return timestamp !== null && timestamp > now && timestamp <= upperBound && forecastIsAvailable(point, snapshotId, now);
+    const cohort = cohorts.get(point?.horizonBucket);
+    return timestamp !== null
+      && timestamp > now
+      && timestamp <= upperBound
+      && forecastCoreIsAvailable(point, snapshotId, now)
+      && Array.isArray(cohort)
+      && sameCohort(point.cohort, cohort);
   }) ?? [];
   if (points.length === 0) return null;
   const score = (point) => historyEnhanced
@@ -78,13 +141,19 @@ function sourceTimestamps(input, forecast, historyEnhanced, history) {
   return values;
 }
 
-function resultForPlace(input, mode, now, historyEnhanced, basis) {
-  if (input.unsupportedInput === true || !sourceIsAvailable(input.currentCrowd, now)) return null;
+function hasForbiddenInput(input) {
+  return input.unsupportedInput === true
+    || FORBIDDEN_INPUT_KEYS.some((key) => Object.hasOwn(input, key));
+}
+
+function resultForPlace(input, mode, now, historyEnhanced, historyMaturity, basis, currentCohort, cohorts) {
+  if (hasForbiddenInput(input) || !sourceIsAvailable(input.currentCrowd, now)) return null;
   if (!percentile(input.currentCrowd.percentile) || input.currentCrowd.snapshotId !== input.activeSnapshot.id) return null;
+  if (!sameCohort(input.currentCrowd.cohort, currentCohort)) return null;
   if (!Array.isArray(input.officialForecasts) || input.officialForecasts.some((point) => point?.interpolated === true || point?.extrapolated === true)) return null;
   const history = input.historyDeviation;
-  if (historyEnhanced && !historyIsAvailable(history, basis)) return null;
-  const forecast = selectedForecast(input, mode, input.activeSnapshot.id, now, historyEnhanced, history);
+  if (historyEnhanced && !historyIsAvailable(history, basis, now)) return null;
+  const forecast = selectedForecast(input, mode, input.activeSnapshot.id, now, historyEnhanced, history, cohorts);
   if (forecast === null) return null;
   const score = historyEnhanced
     ? 0.5 * input.currentCrowd.percentile + 0.3 * forecast.percentile + 0.2 * history.percentile
@@ -100,20 +169,41 @@ function resultForPlace(input, mode, now, historyEnhanced, basis) {
     areaCode: input.areaCode,
     score: Number(score.toFixed(6)),
     variant: historyEnhanced ? 'history-enhanced' : 'base',
+    historyMaturity,
     selectedTimestamp: forecast.timestamp,
     sourceTimestamps: sourceTimestamps(input, forecast, historyEnhanced, history),
     reasons,
   };
 }
 
-function evaluateMode(input, mode, now, historyEnhanced, basis) {
+function evaluateMode(input, mode, now, historyEnhanced, historyMaturity, basis, currentCohort, cohorts) {
   const results = input.places
-    .map((place) => resultForPlace({ ...place, activeSnapshot: input.activeSnapshot }, mode, now, historyEnhanced, basis))
+    .map((place) => resultForPlace({ ...place, activeSnapshot: input.activeSnapshot }, mode, now, historyEnhanced, historyMaturity, basis, currentCohort, cohorts))
     .filter((result) => result !== null)
     .sort((left, right) => left.score - right.score || time(left.selectedTimestamp) - time(right.selectedTimestamp) || left.areaCode.localeCompare(right.areaCode));
   return results.length > 0
     ? { mode, status: 'READY', results }
     : { mode, status: 'ZERO_ELIGIBLE', browseCopy: ZERO_ELIGIBLE_COPY, results: [] };
+}
+
+function currentCohort(input, now) {
+  return input.places
+    .filter((place) => !hasForbiddenInput(place)
+      && sourceIsAvailable(place.currentCrowd, now)
+      && percentile(place.currentCrowd?.percentile)
+      && place.currentCrowd.snapshotId === input.activeSnapshot.id)
+    .map((place) => place.areaCode)
+    .sort();
+}
+
+function historyMaturity(input) {
+  const elapsedDays = input.historyMaturity?.elapsedDays;
+  const coverage = input.historyMaturity?.coverage;
+  if (!Number.isFinite(elapsedDays) || !percentile(coverage)) return 'ACCUMULATING';
+  if (elapsedDays >= 56 && coverage >= 0.9) return 'MATURE';
+  if (elapsedDays >= 28 && coverage >= 0.8) return 'STABLE';
+  if (elapsedDays >= 7 && coverage >= 0.7) return 'PROVISIONAL';
+  return 'ACCUMULATING';
 }
 
 export function evaluateRecommendations(input) {
@@ -124,10 +214,17 @@ export function evaluateRecommendations(input) {
       next: { mode: 'NEXT', status: 'ZERO_ELIGIBLE', browseCopy: ZERO_ELIGIBLE_COPY, results: [] },
     };
   }
-  const historyEnhanced = input.historyMaturity?.elapsedDays >= 7 && input.historyMaturity?.coverage >= 0.7;
+  const maturity = historyMaturity(input);
+  const historyEnhanced = maturity !== 'ACCUMULATING';
   const basis = koreaTimeBasis(now);
+  const current = currentCohort(input, now);
+  const forecasts = forecastCohorts(input, input.activeSnapshot.id, now, current);
   return {
-    now: evaluateMode(input, 'NOW', now, historyEnhanced, basis),
-    next: evaluateMode(input, 'NEXT', now, historyEnhanced, basis),
+    now: evaluateMode(input, 'NOW', now, historyEnhanced, maturity, basis, current, forecasts),
+    next: evaluateMode(input, 'NEXT', now, historyEnhanced, maturity, basis, current, forecasts),
   };
+}
+
+export function buildRecommendationSurface(viewModel, now) {
+  return evaluateRecommendations(buildRecommendationInput(viewModel, now));
 }
