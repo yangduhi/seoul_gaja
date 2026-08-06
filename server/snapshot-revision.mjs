@@ -16,15 +16,25 @@ function parseUtc(value) {
 }
 
 function classifyFreshness(place, serverNow) {
-  const sourceTimestamp = parseUtc(place.sourceUpdatedAt);
-  const fetchedTimestamp = sourceTimestamp === null ? parseUtc(place.fetchedAt) : null;
-  const timestamp = sourceTimestamp ?? fetchedTimestamp;
-  if (timestamp === null) return { kind: 'unavailable', clockSkewClamped: false, fetchedAtDegraded: false };
+  const hasSourceTimestamp = place.sourceUpdatedAt !== null && place.sourceUpdatedAt !== undefined;
+  const hasFetchedTimestamp = place.fetchedAt !== null && place.fetchedAt !== undefined;
+  let timestamp;
+  let fetchedAtDegraded = false;
+  if (hasSourceTimestamp) {
+    timestamp = parseUtc(place.sourceUpdatedAt);
+    if (timestamp === null) return { kind: 'rejected', code: 'MALFORMED_SOURCE_TIMESTAMP' };
+  } else if (hasFetchedTimestamp) {
+    if (place.freshness_basis !== 'fetched_at_degraded') return { kind: 'rejected', code: 'FETCHED_AT_DEGRADED_BASIS_REQUIRED' };
+    timestamp = parseUtc(place.fetchedAt);
+    if (timestamp === null) return { kind: 'rejected', code: 'MALFORMED_FETCHED_TIMESTAMP' };
+    fetchedAtDegraded = true;
+  } else {
+    return { kind: 'unavailable', clockSkewClamped: false, fetchedAtDegraded: false };
+  }
   const age = serverNow - timestamp;
-  if (age < -FUTURE_SKEW_MAX_MS) return { kind: 'future_rejected', clockSkewClamped: false, fetchedAtDegraded: sourceTimestamp === null };
+  if (age < -FUTURE_SKEW_MAX_MS) return { kind: 'future_rejected', clockSkewClamped: false, fetchedAtDegraded };
   const effectiveAge = age < 0 ? 0 : age;
   const clockSkewClamped = age < 0;
-  const fetchedAtDegraded = sourceTimestamp === null;
   if (effectiveAge <= FRESH_MAX_MS) return { kind: 'fresh', clockSkewClamped, fetchedAtDegraded };
   if (effectiveAge <= DELAYED_MAX_MS) return { kind: 'delayed', clockSkewClamped, fetchedAtDegraded };
   if (effectiveAge <= STALE_MAX_MS) return { kind: 'stale', clockSkewClamped, fetchedAtDegraded };
@@ -39,6 +49,7 @@ function identityResult(record) {
   const existing = Array.isArray(record.existing_revisions) ? record.existing_revisions : [];
   const priorAttempt = existing.find((revision) => revision?.run_id === record.run_id && revision.attempt_no === record.attempt_no);
   if (priorAttempt) return priorAttempt.payload_sha256 === record.payload_sha256 ? { verdict: 'REPLAY', receipt_id: priorAttempt.receipt_id } : rejected('PAYLOAD_HASH_CONFLICT', 409);
+  if (existing.some((revision) => revision?.revision_id === record.revision_id)) return rejected('REVISION_ID_CONFLICT', 409);
   if (record.attempt_no > 1) {
     if (typeof record.supersedes_revision_id !== 'string' || record.supersedes_revision_id.length === 0) return rejected('RECOVERY_SUPERSEDES_REQUIRED');
     const superseded = existing.find((revision) => revision?.run_id === record.run_id && revision.revision_id === record.supersedes_revision_id);
@@ -50,8 +61,8 @@ function identityResult(record) {
 
 function aggregatePlaces(record) {
   if (!Array.isArray(record.places) || record.places.length !== CATALOG_SIZE) return rejected('CATALOG_IDENTITY_COUNT_REQUIRED');
-  const identities = new Set(record.places.map((place) => place?.area_code));
-  if (identities.size !== CATALOG_SIZE || identities.has(undefined) || identities.has('')) return rejected('CATALOG_IDENTITIES_UNIQUE_REQUIRED');
+  const areaCodes = record.places.map((place) => place?.area_code);
+  if (areaCodes.some((areaCode) => typeof areaCode !== 'string' || areaCode.length === 0) || new Set(areaCodes).size !== CATALOG_SIZE) return rejected('CATALOG_IDENTITIES_UNIQUE_REQUIRED');
   const serverNow = parseUtc(record.server_now);
   if (serverNow === null) return rejected('SERVER_UTC_TIME_REQUIRED');
   const counts = { total: CATALOG_SIZE, fresh: 0, delayed: 0, stale: 0, expired: 0, unavailable: 0 };
@@ -61,7 +72,10 @@ function aggregatePlaces(record) {
   let refreshedCount = 0;
   let carriedNonExpiredCount = 0;
   for (const place of record.places) {
+    if (typeof place.refreshed !== 'boolean' || typeof place.carried !== 'boolean') return rejected('PLACE_PROVENANCE_REQUIRED');
+    if (place.refreshed && place.carried) return rejected('PLACE_PROVENANCE_CONFLICT');
     const freshness = classifyFreshness(place, serverNow);
+    if (freshness.kind === 'rejected') return rejected(freshness.code);
     if (freshness.kind === 'future_rejected') return rejected('FUTURE_SOURCE_TIMESTAMP');
     counts[freshness.kind] += 1;
     clockSkewClamped ||= freshness.clockSkewClamped;
@@ -73,7 +87,7 @@ function aggregatePlaces(record) {
     if (place.carried && freshness.kind !== 'expired' && freshness.kind !== 'unavailable') carriedNonExpiredCount += 1;
   }
   const counters = record.counters;
-  if (!counters || Object.keys(counts).some((key) => counters[key] !== counts[key])) return rejected('COUNTER_RECONCILIATION_FAILED');
+  if (!counters || Object.keys(counters).length !== Object.keys(counts).length || Object.keys(counts).some((key) => counters[key] !== counts[key])) return rejected('COUNTER_RECONCILIATION_FAILED');
   const counterTotal = counts.fresh + counts.delayed + counts.stale + counts.expired + counts.unavailable;
   if (counterTotal !== CATALOG_SIZE) return rejected('COUNTER_RECONCILIATION_FAILED');
   return { counts, clockSkewClamped, fetchedAtDegraded, refreshedFreshCount, refreshedCount, carriedNonExpiredCount };

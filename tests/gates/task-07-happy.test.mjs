@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { DatabaseSync } from 'node:sqlite';
 import test from 'node:test';
 
 import { evaluateSnapshotRevision, evaluateMigrationContract } from '../../server/snapshot-revision.mjs';
@@ -78,7 +79,7 @@ test('Given an upstream timestamp is absent, when fetchedAt is used, then the re
   const result = evaluateSnapshotRevision({
     run_id: 'run-degraded', attempt_no: 1, revision_id: 'revision-degraded', payload_sha256: 'f'.repeat(64),
     server_now: '2026-08-04T10:30:00Z',
-    places: places({ fresh: 121 }).map((place, index) => index === 0 ? { ...place, sourceUpdatedAt: null, fetchedAt: '2026-08-04T10:00:00Z' } : place),
+    places: places({ fresh: 121 }).map((place, index) => index === 0 ? { ...place, sourceUpdatedAt: null, fetchedAt: '2026-08-04T10:00:00Z', freshness_basis: 'fetched_at_degraded' } : place),
     counters: { total: 121, fresh: 121, delayed: 0, stale: 0, expired: 0, unavailable: 0 }, has_last_known_good: false,
   });
 
@@ -116,4 +117,41 @@ test('Given the declared 0003 migration, when its compatibility fixture is evalu
   assert.match(migration, /CREATE TABLE snapshot_revisions/);
   assert.match(migration, /INSERT OR IGNORE INTO snapshot_revisions/);
   assert.match(migration, /Rollback limit: do not drop columns or tables/);
+});
+
+test('Given a legacy snapshot database, when migration 0003 is applied, then old reads survive and new revision writes work', async () => {
+  const legacySchema = await readFile(resolve(root, 'tests/fixtures/task-07/legacy-snapshot.sql'), 'utf8');
+  const migration = await readFile(resolve(root, 'migrations/0003_snapshot_revision_and_provenance.sql'), 'utf8');
+  const database = new DatabaseSync(':memory:');
+
+  try {
+    database.exec(legacySchema);
+    database.exec(migration);
+
+    assert.deepEqual({ ...database.prepare('SELECT snapshot_id, status FROM snapshot_runs').get() }, {
+      snapshot_id: 'legacy-snapshot-001',
+      status: 'accepted',
+    });
+    assert.deepEqual({ ...database.prepare('SELECT revision_id, run_id, attempt_no, payload_sha256, status FROM snapshot_revisions WHERE revision_id = ?').get('legacy-snapshot-001') }, {
+      revision_id: 'legacy-snapshot-001',
+      run_id: 'legacy-snapshot-001',
+      attempt_no: 1,
+      payload_sha256: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+      status: 'accepted',
+    });
+
+    database.prepare(`INSERT INTO snapshot_revisions
+      (revision_id, run_id, attempt_no, payload_sha256, status, created_at)
+      VALUES (?, ?, ?, ?, ?, ?)`).run(
+      'revision-new-002',
+      'run-new-002',
+      1,
+      'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+      'accepted',
+      '2026-08-07T00:00:00Z',
+    );
+    assert.equal(database.prepare('SELECT COUNT(*) AS count FROM snapshot_revisions').get().count, 2);
+  } finally {
+    database.close();
+  }
 });

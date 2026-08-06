@@ -79,3 +79,79 @@ test('Given a pre-existing migration sequence collision, when the migration cont
     owner_action: 'Approve a v4.1 authority amendment for the migration sequence; do not rename or execute the migration.',
   });
 });
+
+test('Given a malformed upstream timestamp, when fetchedAt is present, then degraded fallback is rejected', () => {
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-malformed-source', attempt_no: 1, revision_id: 'revision-malformed-source', payload_sha256: '1'.repeat(64),
+    server_now: '2026-08-04T10:30:00Z',
+    places: places({ sourceUpdatedAt: 'not-a-timestamp', fetchedAt: '2026-08-04T10:00:00Z', freshness_basis: 'fetched_at_degraded' }),
+    counters: { total: 121, fresh: 121, delayed: 0, stale: 0, expired: 0, unavailable: 0 }, has_last_known_good: false,
+  });
+
+  assert.deepEqual(result, { verdict: 'REJECTED', code: 'MALFORMED_SOURCE_TIMESTAMP' });
+});
+
+test('Given source time is absent without explicit degraded provenance, when fetchedAt is present, then fallback is rejected', () => {
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-implicit-degraded', attempt_no: 1, revision_id: 'revision-implicit-degraded', payload_sha256: '2'.repeat(64),
+    server_now: '2026-08-04T10:30:00Z',
+    places: places({ sourceUpdatedAt: null, fetchedAt: '2026-08-04T10:00:00Z' }),
+    counters: { total: 121, fresh: 121, delayed: 0, stale: 0, expired: 0, unavailable: 0 }, has_last_known_good: false,
+  });
+
+  assert.deepEqual(result, { verdict: 'REJECTED', code: 'FETCHED_AT_DEGRADED_BASIS_REQUIRED' });
+});
+
+test('Given a revision id already belongs to another attempt, when a new tuple reuses it, then identity is rejected', () => {
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-new', attempt_no: 1, revision_id: 'revision-existing', payload_sha256: '3'.repeat(64),
+    existing_revisions: [{ run_id: 'run-existing', attempt_no: 1, revision_id: 'revision-existing', payload_sha256: '4'.repeat(64), status: 'accepted' }],
+    server_now: '2026-08-04T10:30:00Z', places: places(),
+    counters: { total: 121, fresh: 96, delayed: 0, stale: 0, expired: 25, unavailable: 0 }, has_last_known_good: false,
+  });
+
+  assert.deepEqual(result, { verdict: 'REJECTED', status: 409, code: 'REVISION_ID_CONFLICT' });
+});
+
+test('Given overlapping refreshed and carried provenance, when usable places are counted, then double counting is rejected', () => {
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-overlap', attempt_no: 1, revision_id: 'revision-overlap', payload_sha256: '5'.repeat(64),
+    server_now: '2026-08-04T10:30:00Z',
+    places: places().map((place, index) => ({ ...place, refreshed: index === 0, carried: index < 97 })),
+    counters: { total: 121, fresh: 96, delayed: 0, stale: 0, expired: 25, unavailable: 0 }, has_last_known_good: true,
+  });
+
+  assert.deepEqual(result, { verdict: 'REJECTED', code: 'PLACE_PROVENANCE_CONFLICT' });
+});
+
+test('Given a non-string catalog identity, when 121 rows are reconciled, then catalog identity validation rejects it', () => {
+  const malformedPlaces = places();
+  malformedPlaces[120] = { ...malformedPlaces[120], area_code: null };
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-malformed-identity', attempt_no: 1, revision_id: 'revision-malformed-identity', payload_sha256: '6'.repeat(64),
+    server_now: '2026-08-04T10:30:00Z', places: malformedPlaces,
+    counters: { total: 121, fresh: 96, delayed: 0, stale: 0, expired: 25, unavailable: 0 }, has_last_known_good: false,
+  });
+
+  assert.deepEqual(result, { verdict: 'REJECTED', code: 'CATALOG_IDENTITIES_UNIQUE_REQUIRED' });
+});
+
+test('Given an undeclared counter, when freshness counters are reconciled, then the generation is rejected', () => {
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-extra-counter', attempt_no: 1, revision_id: 'revision-extra-counter', payload_sha256: '7'.repeat(64),
+    server_now: '2026-08-04T10:30:00Z', places: places(),
+    counters: { total: 121, fresh: 96, delayed: 0, stale: 0, expired: 25, unavailable: 0, ignored: 121 }, has_last_known_good: false,
+  });
+
+  assert.deepEqual(result, { verdict: 'REJECTED', code: 'COUNTER_RECONCILIATION_FAILED' });
+});
+
+test('Given every place is expired, when a generation is evaluated with an LKG, then it is audit-only and retains the LKG', () => {
+  const result = evaluateSnapshotRevision({
+    run_id: 'run-all-expired', attempt_no: 1, revision_id: 'revision-all-expired', payload_sha256: '8'.repeat(64),
+    server_now: '2026-08-04T10:30:00Z', places: places({ sourceUpdatedAt: '2026-08-04T07:29:59Z', refreshed: false }),
+    counters: { total: 121, fresh: 0, delayed: 0, stale: 0, expired: 121, unavailable: 0 }, has_last_known_good: true,
+  });
+
+  assert.deepEqual(result, { verdict: 'ACCEPTED', activation: 'AUDIT_ONLY_LKG_RETAINED', refreshed_fresh_count: 0, refreshed_count: 0, refreshed_or_carried_non_expired_count: 0, clock_skew_clamped: false, fetched_at_degraded: false });
+});
