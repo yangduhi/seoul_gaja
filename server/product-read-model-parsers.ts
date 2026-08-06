@@ -18,6 +18,7 @@ const CROWD_LEVELS = ["RELAXED", "NORMAL", "BUSY", "CROWDED", "UNKNOWN"] as cons
 const FORECAST_CROWD_LEVELS = ["RELAXED", "NORMAL", "BUSY", "CROWDED"] as const;
 const HISTORY_CROWD_VALUES = Object.freeze({ RELAXED: 0, NORMAL: 1, BUSY: 2, CROWDED: 3 });
 const WEEKDAYS = Object.freeze({ Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 });
+const USABLE_SNAPSHOT_STATUSES = ["accepted", "replayed"] as const;
 const UNAVAILABLE_CACHE_STATES = ["empty", "unavailable", "expired"] as const;
 const MAX_SOURCE_AGE_MS = 180 * 60 * 1000;
 const MAX_FUTURE_SKEW_MS = 5 * 60 * 1000;
@@ -126,11 +127,12 @@ export function parseRawHistory(rows: readonly D1Row[], catalog: readonly Catalo
   const seen = new Set<string>();
   const observations: { readonly areaCode: string; readonly bucket: string; readonly timestamp: number; readonly value: number | null; readonly population: number | null; readonly sourceUpdatedAt: string; readonly key: string }[] = [];
   for (const row of rows) {
-    const areaCode = nonEmptyString(row.area_code), bucket = iso(row.observation_bucket), availability = literal(row.availability, AVAILABILITIES), sourceUpdatedAt = iso(row.source_updated_at);
-    if (areaCode === null || !catalogCodes.has(areaCode) || bucket === null || availability === null || sourceUpdatedAt === null) return unavailableHistory();
+    const areaCode = nonEmptyString(row.area_code), bucket = iso(row.observation_bucket), snapshotId = nonEmptyString(row.snapshot_id), snapshotStatus = literal(row.snapshot_status, USABLE_SNAPSHOT_STATUSES), availability = literal(row.availability, AVAILABILITIES), sourceUpdatedAt = iso(row.source_updated_at);
+    if (areaCode === null || !catalogCodes.has(areaCode) || bucket === null || snapshotId === null || snapshotStatus === null || availability === null || sourceUpdatedAt === null) return unavailableHistory();
     const timestamp = Date.parse(bucket), normalizedBucket = new Date(timestamp).toISOString(), duplicate = `${areaCode}|${normalizedBucket}`;
+    const bucketDate = new Date(timestamp);
     const crowd = rawCrowdValue(row.crowd_level), population = rawPopulationMidpoint(row.population_min, row.population_max);
-    if (timestamp > now + MAX_FUTURE_SKEW_MS || seen.has(duplicate) || crowd === undefined || population === undefined) return unavailableHistory();
+    if (timestamp > now || bucketDate.getUTCMinutes() % 15 !== 0 || bucketDate.getUTCSeconds() !== 0 || bucketDate.getUTCMilliseconds() !== 0 || seen.has(duplicate) || crowd === undefined || population === undefined) return unavailableHistory();
     seen.add(duplicate);
     const basis = koreaHistoryBasis(timestamp);
     observations.push({ areaCode, bucket: normalizedBucket, timestamp, value: availability === "available" || availability === "carried_forward" ? crowd : null, population, sourceUpdatedAt, key: `${areaCode}|${basis.weekday}|${basis.hour}|${basis.localTimeBucket}` });

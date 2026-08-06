@@ -40,6 +40,8 @@ function authoritativeRawHistory() {
     {
       area_code: "alpha",
       observation_bucket,
+      snapshot_id: `raw-${observation_bucket}`,
+      snapshot_status: "accepted",
       crowd_level: "NORMAL",
       availability: "available",
       source_updated_at: "2026-08-06T00:10:00Z",
@@ -47,6 +49,8 @@ function authoritativeRawHistory() {
     {
       area_code: "beta",
       observation_bucket,
+      snapshot_id: `raw-${observation_bucket}`,
+      snapshot_status: "accepted",
       crowd_level: "BUSY",
       availability: "available",
       source_updated_at: "2026-08-06T00:10:00Z",
@@ -211,5 +215,26 @@ test("Given malformed or duplicate raw observations, when the ProductViewModel f
     if (product.status !== "READY") return;
     assert.deepEqual(product.data.history, { status: "UNAVAILABLE", reason: "HISTORY_UNAVAILABLE" });
     assert.equal(buildRecommendationSurface(product.data, now).now.results.every((result) => result.variant === "base"), true);
+  }
+});
+
+test("Given raw observations without accepted snapshot provenance, in the future, or off the 15-minute grid, when recommendations are built, then history fails closed", async () => {
+  for (const mutate of [
+    (rows) => { rows[0].snapshot_status = "rejected"; },
+    (rows) => { delete rows[0].snapshot_id; },
+    (rows) => { rows[0].observation_bucket = "2026-08-06T00:45:00Z"; },
+    (rows) => { rows[0].observation_bucket = "2026-07-09T00:17:00Z"; },
+  ]) {
+    const data = JSON.parse(await readFile(fixturePath, "utf8"));
+    data.rawObservations = authoritativeRawHistory();
+    mutate(data.rawObservations);
+
+    const product = await readProductViewModel(database(data), { now, expectedCatalogCount: 2 });
+    assert.equal(product.status, "READY");
+    if (product.status !== "READY") continue;
+
+    const surface = buildRecommendationSurface(product.data, now);
+    assert.equal(surface.now.status, "READY");
+    assert.equal(surface.now.results.every((result) => result.variant === "base"), true);
   }
 });

@@ -128,7 +128,7 @@ export type RejectionReason =
 const CATALOG_SQL = "SELECT area_code, area_name, category, latitude, longitude, catalog_version FROM place_catalog WHERE active = 1 ORDER BY area_code";
 const SNAPSHOT_SQL = "SELECT c.area_code, c.source_updated_at, c.fetched_at, c.stored_at, c.snapshot_id, c.availability, c.provenance, c.crowd_level, c.population_min, c.population_max, c.raw_hash, s.catalog_version, s.status AS snapshot_status FROM current_snapshot AS c INNER JOIN snapshot_runs AS s ON s.snapshot_id = c.snapshot_id";
 const FORECAST_SQL = "SELECT area_code, section_name, source_updated_at, fetched_at, expires_at, state, normalized_json FROM detail_cache WHERE section_name = 'official_forecast'";
-const RAW_HISTORY_SQL = "SELECT area_code, observation_bucket, crowd_level, population_min, population_max, availability, source_updated_at FROM raw_observation_15m";
+const RAW_HISTORY_SQL = "SELECT r.area_code, r.observation_bucket, r.snapshot_id, r.crowd_level, r.population_min, r.population_max, r.availability, r.source_updated_at, s.status AS snapshot_status FROM raw_observation_15m AS r INNER JOIN snapshot_runs AS s ON s.snapshot_id = r.snapshot_id WHERE s.status IN ('accepted','replayed')";
 
 export async function readProductViewModel(
   database: D1DatabaseLike | null | undefined,
