@@ -4,6 +4,7 @@ import Link from "next/link";
 import { GlassPanel } from "../../_design/GlassPanel";
 import { Navigation } from "../../_design/Navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import type { KeyboardEvent as ReactKeyboardEvent } from "react";
 import styles from "./PlaceDetail.module.css";
 
 type DetailSurface = "BOTTOM_SHEET" | "DETAIL_PANE" | "FULL_SCREEN";
@@ -20,6 +21,7 @@ function navigationType(): string { const entry = performance.getEntriesByType("
 function sheetSurface(): DetailSurface { return window.innerWidth >= 768 ? "DETAIL_PANE" : "BOTTOM_SHEET"; }
 function currentSurface(): DetailSurface { return navigationType() !== "reload" && window.history.state?.entry === "sheet" ? sheetSurface() : "FULL_SCREEN"; }
 function subscribeToSurface(onStoreChange: () => void): () => void { const onPopState = () => { restorePriorPlaceContext(); onStoreChange(); }; window.addEventListener("resize", onStoreChange); window.addEventListener("popstate", onPopState); return () => { window.removeEventListener("resize", onStoreChange); window.removeEventListener("popstate", onPopState); }; }
+function dialogFocusableElements(container: HTMLElement): HTMLElement[] { return Array.from(container.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((element) => element.tabIndex >= 0 && !element.hasAttribute("disabled")); }
 function isRestoreContext(value: unknown): value is RestoreContext { if (typeof value !== "object" || value === null) return false; const selection = Reflect.get(value, "selection"); const scrollY = Reflect.get(value, "scrollY"); const focusTarget = Reflect.get(value, "focusTarget"); return (typeof selection === "string" || selection === null) && typeof scrollY === "number" && (typeof focusTarget === "string" || focusTarget === null); }
 function readRestoreContext(): RestoreContext | null { const value = sessionStorage.getItem(restoreKey); if (value === null) return null; try { const parsed: unknown = JSON.parse(value); return isRestoreContext(parsed) ? parsed : null; } catch (error) { if (error instanceof SyntaxError) return null; throw error; } }
 export function openInAppPlaceDetail(areaCode: string, restore: RestoreContext): void { const path = `/places/${encodeURIComponent(areaCode)}`; sessionStorage.setItem(restoreKey, JSON.stringify(restore)); window.history.pushState({ entry: "sheet" }, "", path); window.dispatchEvent(new CustomEvent("seoul-gaja:detail-selection", { detail: { areaCode, restore } })); }
@@ -37,6 +39,15 @@ export function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: st
   const [announcement, setAnnouncement] = useState("");
   useEffect(() => { const prior = document.activeElement instanceof HTMLElement ? document.activeElement : null; closeRef.current?.focus(); return () => { if (prior?.isConnected) prior.focus(); }; }, []);
   useEffect(() => { const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") window.history.back(); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, []);
+  function handleDialogKeyDown(event: ReactKeyboardEvent<HTMLElement>): void {
+    if (event.key !== "Tab") return;
+    const focusable = dialogFocusableElements(event.currentTarget);
+    const first = focusable[0];
+    const last = focusable.at(-1);
+    if (first === undefined || last === undefined) return;
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
   if (!isSafe || payload.status === "NOT_FOUND") return <main className={styles.surface}><section className={styles.panel} aria-live="polite"><h1 className={styles.title}>공식 장소를 찾을 수 없습니다</h1><p className={styles.notice}>현재 공식 목록에서 사라진 장소입니다. 최신 카탈로그에서 다시 선택해 주세요.</p><Link className={styles.back} href="/">공식 장소 목록으로</Link></section></main>;
   const snapshot = payload.snapshot;
   const isUnavailable = payload.status !== "READY" || snapshot === null || snapshot.availability === "unavailable" || snapshot.availability === "expired";
@@ -44,7 +55,7 @@ export function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: st
   const history = payload.history;
   const panelClass = surface === "FULL_SCREEN" ? styles.panel : `${styles.panel} ${styles.sheet}`;
   async function share() { const url = new URL(`/places/${encodeURIComponent(areaCode)}`, window.location.origin).toString(); try { if (navigator.share !== undefined) { await navigator.share({ title: payload.areaName ?? "서울 공식 장소", url }); setAnnouncement("공식 장소 링크를 공유했습니다."); } else { await navigator.clipboard.writeText(url); setAnnouncement("공식 장소 링크를 복사했습니다."); } } catch (error) { if (error instanceof DOMException && error.name === "AbortError") setAnnouncement("공유를 취소했습니다."); else setAnnouncement("공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요."); } }
-  return <main className={styles.surface} data-detail-surface={surface} data-area-code={areaCode} aria-live="polite"><section className={panelClass} role={surface === "FULL_SCREEN" ? undefined : "dialog"} aria-modal={surface === "FULL_SCREEN" ? undefined : true} aria-label={`${payload.areaName ?? areaCode} 상세`}>
+  return <main className={styles.surface} data-detail-surface={surface} data-area-code={areaCode} aria-live="polite"><section className={panelClass} role={surface === "FULL_SCREEN" ? undefined : "dialog"} aria-modal={surface === "FULL_SCREEN" ? undefined : true} aria-label={`${payload.areaName ?? areaCode} 상세`} onKeyDown={surface === "FULL_SCREEN" ? undefined : handleDialogKeyDown}>
     <header className={styles.header}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h1 className={styles.title}>{payload.areaName ?? areaCode}</h1><p className={styles.subtitle}>{snapshot === null ? "원천 데이터 연결 대기" : source(snapshot)}</p></div><button ref={closeRef} className={styles.close} type="button" onClick={() => window.history.back()}>닫기</button></header>
     <p className={styles.announcement} aria-live="polite">{announcement}</p>
     <GlassPanel depth="floating" className={styles.surfaceHint}>원천 데이터와 선택 상태를 공유하는 공식 장소 상세입니다.</GlassPanel>

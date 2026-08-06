@@ -4,6 +4,7 @@ import test from "node:test";
 
 const rootPage = await readFile(new URL("../../../app/page.tsx", import.meta.url), "utf8");
 const surface = await readFile(new URL("../../../app/_catalog/CatalogSurface.tsx", import.meta.url), "utf8");
+const styles = await readFile(new URL("../../../app/_catalog/CatalogSurface.module.css", import.meta.url), "utf8");
 
 test("catalog route renders the product surface and never falls back to the starter preview", () => {
   assert.match(rootPage, /CatalogSurface/);
@@ -19,4 +20,10 @@ test("catalog surface exposes the family planning failure-safe interactions", ()
   assert.match(surface, /openInAppPlaceDetail/);
   assert.match(surface, /seoul-gaja:detail-restored/);
   assert.match(surface, /selectedAreaCode/);
+});
+
+test("map legend stays bottom-centered and mobile chips retain the touch target", () => {
+  assert.match(styles, /\.mapLegend \{ z-index: 4; bottom: calc\(var\(--sg-nav-height\) \+ 272px\); \}/);
+  assert.match(styles, /\.mapLegend \{ position: absolute; bottom: var\(--sg-space-xl\); left: 50%;/);
+  assert.doesNotMatch(styles, /\.chip \{ min-height: 38px; \}/);
 });

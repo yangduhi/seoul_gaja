@@ -4,6 +4,7 @@ import test from "node:test";
 
 const route = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetailClient.tsx", import.meta.url), "utf8");
 const page = await readFile(new URL("../../../app/places/[areaCode]/page.tsx", import.meta.url), "utf8");
+const styles = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetail.module.css", import.meta.url), "utf8");
 
 test("detail route is bound to the truthful D1 read model", () => {
   assert.match(page, /readProductViewModel/);
@@ -21,4 +22,12 @@ test("detail surface exposes source-backed forecast, history, and recovery contr
 test("invalid or removed places are excluded from indexing", () => {
   assert.match(page, /robots: \{ index: isOfficialPlace, follow: isOfficialPlace \}/);
   assert.match(page, /catalog\.some\(\(place\) => place\.areaCode === areaCode\)/);
+});
+
+test("full-screen detail is centered on desktop while in-app detail remains a drawer dialog", () => {
+  assert.match(styles, /\.surface \{ display: flex; align-items: center; justify-content: center;/);
+  assert.match(styles, /\.panel \{ width: min\(100%, 720px\);/);
+  assert.match(styles, /\.sheet \{ width: min\(var\(--sg-desktop-detail\), 100%\); align-self: stretch; margin-left: auto;/);
+  assert.match(route, /onKeyDown=\{surface === "FULL_SCREEN" \? undefined : handleDialogKeyDown\}/);
+  assert.match(route, /event\.key !== "Tab"/);
 });

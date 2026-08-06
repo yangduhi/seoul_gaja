@@ -1,0 +1,47 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+Default inspector port 9229 not available, using 9231 instead
+
+오후 6:34:42 [vite] (client) [console.error] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <default>
+      <RootLayout>
+        <html lang="ko">
+          ...
+            <RedirectErrorBoundary>
+              <LayoutSegmentProvider segmentMap={{children:[...]}}>
+                <Slot id="page:/">
+                  <AwaitAppRenderDependencies>
+                    <Home>
+                      <CatalogSurface status="READY" catalog={[...]} snapshotStatus="READY" sourceTime="2026-08-06..." ...>
+                        <main className="_surface_f...">
+                          <div className="_shell_flw...">
+                            <section className="_explorer_..." aria-label="서울 공식 장소 탐색">
+                              <header>
+                              <label className="_search_fl..." htmlFor="place-search">
+                                <span>
+                                <span>
+                                <input
+                                  id="place-search"
+                                  className="_searchInput_flw9q_121"
+                                  value=""
+                                  onChange={function onChange}
+                                  onKeyDown={function onKeyDown}
+                                  placeholder="명소나 동네를 찾아보세요"
+-                                 style={{caret-color:"transparent"}}
+                                >
+                              ...
+                            ...
+                          ...
+

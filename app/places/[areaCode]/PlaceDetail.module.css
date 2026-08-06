@@ -67,9 +67,9 @@
 .surfaceHint { margin-top: var(--sg-space-sm); color: var(--sg-text-secondary); font-size: 12px; }
 
 @media (min-width: 768px) {
-  .surface { display: flex; align-items: stretch; justify-content: flex-end; min-height: 100dvh; padding: var(--sg-space-md); }
-  .panel, .sheet { width: min(var(--sg-desktop-detail), 100%); max-height: calc(100dvh - (var(--sg-space-md) * 2)); margin: 0; overflow-y: auto; border-radius: var(--sg-radius-sheet); }
-  .sheet { align-self: stretch; }
+  .surface { display: flex; align-items: center; justify-content: center; min-height: 100dvh; padding: var(--sg-space-md); }
+  .panel { width: min(100%, 720px); max-height: calc(100dvh - (var(--sg-space-md) * 2)); margin: 0; overflow-y: auto; border-radius: var(--sg-radius-sheet); }
+  .sheet { width: min(var(--sg-desktop-detail), 100%); align-self: stretch; margin-left: auto; }
   .surface :global(.sg-navigation) { display: none; }
 }
 
