@@ -28,7 +28,7 @@
     "commands": [
       "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy",
       "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure",
-      "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+      "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/product-read-model.test.mjs tests/product/data/recommendation-route-model.test.mjs",
       "node tests/gates/task-09-repeat-probe.mjs",
       "node tests/gates/task-09-surface-probe.mjs",
       "npx tsc --noEmit",
