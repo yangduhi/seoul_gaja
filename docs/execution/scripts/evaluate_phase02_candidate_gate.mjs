@@ -12,6 +12,7 @@ const SHA = /^[a-f0-9]{40}$/;
 const SHA256 = /^[a-f0-9]{64}$/;
 const REPEATED_HEX = /^([a-f0-9])\1+$/;
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const approvedPlanPath = '.omo/plans/seoul-gaja-v4-plan-review.md';
 const requiredOwnerAction = 'Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge.';
 
 function isSha(value) {
@@ -251,13 +252,13 @@ export async function readLocalCandidateBinding(root = repositoryRoot) {
   const [head, tree, plan] = await Promise.all([
     execFileAsync('git', ['-C', root, 'rev-parse', 'HEAD']),
     execFileAsync('git', ['-C', root, 'rev-parse', 'HEAD^{tree}']),
-    readFile(resolve(root, '.omo/plans/seoul-gaja-v4-plan-review.md')),
+    execFileAsync('git', ['-C', root, 'show', `HEAD:${approvedPlanPath}`], { encoding: 'buffer' }),
   ]);
 
   return {
     candidate_sha: head.stdout.trim(),
     candidate_tree: tree.stdout.trim(),
-    plan_sha256: createHash('sha256').update(plan).digest('hex'),
+    plan_sha256: createHash('sha256').update(plan.stdout).digest('hex'),
   };
 }
 

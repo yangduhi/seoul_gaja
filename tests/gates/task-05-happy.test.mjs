@@ -12,6 +12,7 @@ import {
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const templatePath = resolve(repositoryRoot, 'tests/fixtures/task-05/happy.json');
+const authorityLockPath = resolve(repositoryRoot, '.omo/authority-lock.json');
 
 function bindTemplate(template, candidateBinding) {
   return {
@@ -40,6 +41,13 @@ test('accepts branch-local verification only when it is bound to this checkout c
     verdict: 'PASS',
     ...candidateBinding,
   });
+});
+
+test('reads the authority-bound plan hash from tracked plan bytes', async () => {
+  const authorityLock = JSON.parse(await readFile(authorityLockPath, 'utf8'));
+  const candidateBinding = await readLocalCandidateBinding(repositoryRoot);
+
+  assert.equal(candidateBinding.plan_sha256, authorityLock.authority.plan.sha256);
 });
 
 test('keeps the complete gate blocked without injected owner-authorized external proof', async () => {
