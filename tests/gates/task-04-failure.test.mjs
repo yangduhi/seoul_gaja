@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
@@ -53,8 +54,12 @@ test("Given the Phase 00 owner checklist, when activation is reviewed, then stat
 
 test("Given a matching candidate receipt, when its identity is checked, then it binds the current exact commit and tree", async () => {
   const receipt = JSON.parse(await readFile(new URL("../../docs/evidence/phase-00/phase-receipt.json", import.meta.url), "utf8"));
-  const commit = "2a8815643a7cd780b1ac80567e6ebad14fce53f5";
-  const tree = "6b2f95b946dab3ae8de1a19a9af414a314bb5151";
+  const commit = execFileSync(
+    "git",
+    ["log", "-1", "--format=%H", "--", "docs/codex-pack-v4/scripts/run_command_map.py"],
+    { encoding: "utf8" },
+  ).trim();
+  const tree = execFileSync("git", ["rev-parse", `${commit}^{tree}`], { encoding: "utf8" }).trim();
   assert.equal(receipt.commit, commit);
   assert.equal(receipt.tree, tree);
 });
