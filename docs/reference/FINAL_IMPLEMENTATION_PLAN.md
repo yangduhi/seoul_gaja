@@ -18,7 +18,7 @@
 - 애플리케이션 host와 structured store는 각각 ChatGPT Sites 및 Sites D1 `DB`다.
 - GitHub와 GitHub Actions는 source, review, CI, collector 실행용이다. application host가 아니다.
 - production ingest는 오직 `POST /api/internal/ingest/snapshot`이다.
-- `phase-00-capability-probe`의 `POST /api/internal/capability-probe/ingest`는 disposable capability 확인용이며 production ingest를 증명하지 않는다.
+- `phase-00-capability-probe`의 `POST /api/internal/capability-probe/ingest`는 disposable capability 확인용이며 cannot prove Phase 02 production behavior; production ingest를 증명하지 않는다.
 - ingest credential 이름은 `SITE_INGEST_TOKEN` 하나다. 값은 source, receipt, 로그, fixture에 기록하지 않는다. rotation overlap의 최대값은 30분이다.
 
 ## 데이터와 추천 계약
@@ -35,7 +35,8 @@
 - canonical detail route는 `/places/{areaCode}`다.
 - in-app 선택은 transient `history.state.entry="sheet"`로 sheet 또는 desktop detail pane을 열고, direct/reload/shared 진입은 full-screen detail을 사용한다.
 - canonical URL은 transient state와 user coordinates를 포함하지 않는다. Back/close는 이전 URL, selection, focus를 복원한다.
-- phase evidence의 유일한 경로 패턴은 `docs/evidence/phase-XX/phase-receipt.json`이다. Phase 08 식별자는 그 receipt의 nested `release` object에만 둔다.
+- phase evidence의 유일한 경로 패턴은 `docs/evidence/phase-XX/phase-receipt.json`이다. Phase 08 식별자는 `docs/evidence/phase-08/phase-receipt.json`의 nested `release` object에만 둔다.
+- UI/API는 `sourceUpdatedAt`과 `fetchedAt`을 쓰며 D1 column은 `source_updated_at`과 `fetched_at`을 쓴다. design token authority는 `design/design-tokens.json`이다.
 - phase receipt는 verdict-safe schema를 통과해야 한다. local fixture 또는 source assertion은 Sites나 browser PASS로 승격되지 않는다.
 
 ## 로컬 closeout 범위

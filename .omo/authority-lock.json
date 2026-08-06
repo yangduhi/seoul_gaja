@@ -1,13 +1,17 @@
 {
   "schema_version": 1,
-  "locked_at": "2026-08-04T14:54:27+09:00",
+  "locked_at": "2026-08-06T12:03:50+09:00",
   "authority": {
-    "approval_basis": "User approved the final plan corrections and authorized actual-checkout preparation up to, but not including, product implementation.",
+    "approval_basis": "User explicitly approved safe local implementation in isolated worktrees while retaining all owner-controlled external-action gates.",
     "repository_url": "https://github.com/yangduhi/seoul_gaja",
     "default_branch": "main",
     "base_commit": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
     "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
     "preparation_branch": "codex/prep-v4-1",
+    "implementation_candidate": {
+      "preparation_head": "6450006a2e07d20b77bd24aaa3fe75053e89ae02",
+      "preparation_tree": "7eae482176e5d6586505e7d9dee8585d7560dd03"
+    },
     "plan": {
       "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
       "sha256": "9ec41b95cdcc22c5d8f0135dcb8103d90f00e3610931b54d1c8015a88a0c4849"
@@ -26,11 +30,12 @@
     },
     "command_map": {
       "path": "docs/execution/contracts/execution-command-map.json",
-      "sha256": "791d32fe1dc38dc3f850e5d23dce1f52dab9e60fa6ee63ec34a822e1c9d5d81f",
-      "authority_validator_sha256": "66a18ce55bc085b0011c009d95f3ff1eecde5c21de9f152c4baf9ea5f6adde28",
+      "sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
+      "authority_validator_sha256": "1c257ba191267af5e530e7f60c1b5d6839e03b9b93d81a3395e750c3a8cd51c0",
       "validator_sha256": "6cadd5886383462e1b0f01c404a04a04f96080e3f3f4bf17c34034e784a778d1",
       "runner_sha256": "fc13d3ec7df9373e867ddfb2643e52817d165e7148bb775349e9ec940b8984a3",
-      "checkout_checker_sha256": "fbe441e6394153271a4c5992acfa786b7cb907facdd86bbc256ad9162688b947"
+      "checkout_checker_sha256": "fbe441e6394153271a4c5992acfa786b7cb907facdd86bbc256ad9162688b947",
+      "immutable_packet_validator_sha256": "45e10d2ca22ed2750258e18f6b6e0e30cb802692d0bfd220dd835d3c9269580c"
     }
   },
   "audit_packet_v4_0_0": {
@@ -44,15 +49,15 @@
   },
   "starter": {
     "manifest": "package.json",
-    "manifest_sha256": "b88f1577e9e3acd6e49b0b4351401344c574b11f15d0ac019cbfcca4311ccf3b",
+    "manifest_sha256": "410e6f7b0dbf0fdc332306559dc3375f718bae8211662c4c539eee4272add2e3",
     "lockfile": "package-lock.json",
-    "lockfile_sha256": "e991413abfdf76b3f95990c11837a3942abca069ced94220ceb9f1d6f6162c1a",
+    "lockfile_sha256": "508e5e494cb77250db352459ed25e92614886e7f38c5739334649616976d9439",
     "hosting_config": ".openai/hosting.json",
-    "hosting_config_sha256": "d2841f8a91a91bab4f4a1e27671e7d3fe8f02261eb41996f43ac61e6970a9d74"
+    "hosting_config_sha256": "89610cb100afd3db32d865423a69a3fe2de1da54150570ea979a63143a6d5bdd"
   },
   "lifecycle": {
-    "implementation_allowed": false,
-    "implementation_approval": "PENDING_EXPLICIT_USER_APPROVAL",
+    "implementation_allowed": true,
+    "implementation_approval": "EXPLICIT_USER_IMPLEMENTATION_APPROVED",
     "external_actions_allowed": false,
     "thread_transport": "THREAD_TOOL_UNAVAILABLE"
   }

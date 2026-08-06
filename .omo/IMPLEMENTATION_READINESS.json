@@ -24,9 +24,9 @@
     "amendment_path": "docs/execution/AMENDMENT-v4.1.md",
     "amendment_sha256": "b0da4eb07ddfe8a8be341a636085751cebc6967d57db726d7ff9219fa5592be1",
     "command_map_path": "docs/execution/contracts/execution-command-map.json",
-    "command_map_sha256": "791d32fe1dc38dc3f850e5d23dce1f52dab9e60fa6ee63ec34a822e1c9d5d81f",
+    "command_map_sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
     "authority_lock_path": ".omo/authority-lock.json",
-    "authority_lock_sha256": "2db06cf33be43f90bc4c13b2507dda4087aee37c211d3907a9eb5fced031b987",
+    "authority_lock_sha256": "970b906e3599e2c77323f4c7dfc3008c14344edf7db90f0468ff8174733c53ef",
     "validator": "PASS"
   },
   "approval_scope": {
@@ -51,9 +51,9 @@
   "starter": {
     "type": "Sites vinext starter",
     "manifest": "package.json",
-    "manifest_sha256": "b88f1577e9e3acd6e49b0b4351401344c574b11f15d0ac019cbfcca4311ccf3b",
+    "manifest_sha256": "410e6f7b0dbf0fdc332306559dc3375f718bae8211662c4c539eee4272add2e3",
     "lockfile": "package-lock.json",
-    "lockfile_sha256": "e991413abfdf76b3f95990c11837a3942abca069ced94220ceb9f1d6f6162c1a",
+    "lockfile_sha256": "508e5e494cb77250db352459ed25e92614886e7f38c5739334649616976d9439",
     "baseline_build": "PASS",
     "baseline_tests": "PASS: 2",
     "baseline_lint": "PASS",

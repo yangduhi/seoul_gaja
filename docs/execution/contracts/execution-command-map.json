@@ -20,18 +20,20 @@
       "cwd": ".",
       "argv": [
         "python",
-        "docs/codex-pack-v4/scripts/validate_packet.py",
-        "docs/codex-pack-v4"
+        "docs/execution/scripts/validate_immutable_packet.py",
+        "--expected-git-blob-listing-sha256",
+        "0c981b539c823bdb4709b8ab24f9385fa6a154dbfc1812909df1f1fce2fbe1c2"
       ],
       "expected_exit": [
         0
       ],
       "required_paths": [
         "docs/codex-pack-v4/MANIFEST.sha256",
-        "docs/codex-pack-v4/PACKET-INTEGRITY.json"
+        "docs/codex-pack-v4/PACKET-INTEGRITY.json",
+        "docs/execution/scripts/validate_immutable_packet.py"
       ],
       "assertions": [
-        "v4.0.0 audit packet validates structurally without implying semantic or live PASS"
+        "v4.0.0 audit packet validates immutable Git blobs and archived canonical bytes structurally without implying semantic or live PASS"
       ],
       "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-1-packet.json"
     },
