@@ -19,6 +19,11 @@
     "authority_plan_sha256_worktree_crlf": "aa1d4a4972f6742a26830aa69d9d281f095c8c8e8e6941fd0acbcc4726dbb249",
     "authority_validation": "PASS"
   },
+  "validated_candidate": {
+    "implementation_commit": "84f002414b10552af5757ffa066e890fca5f66d5",
+    "implementation_tree": "803f7970ff7d4210651dc8347de0b6f89b844d30",
+    "verification_basis": "All final-state commands completed before the content-identical implementation commit; no source, test, fixture, contract, dependency, or environment input changed between the final green runs and this commit."
+  },
   "artifacts": {
     "server/provenance-cadence.mjs": "3424f6b4cd565614d5e1a5b18ee5763d00219fb4e898fc180cbd8c2fd70e0440",
     "tests/gates/task-08-contract.mjs": "0e4def3b1f3fa042d3dae69797ca1b71284dbe434b9f01fbc29fd38b76fdbc53",
