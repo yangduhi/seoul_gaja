@@ -117,7 +117,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
             <p className={styles.caption}>{sourceTime ? `${displaySource({ sourceUpdatedAt: sourceTime, fetchedAt: sourceTime, freshnessBasis: "source_updated_at" } as CatalogRow)}` : unavailableReason ?? "D1 연결 후 공식 장소 목록이 표시됩니다."}</p>
           </GlassPanel>
           <div className={styles.listHeader}><h2 className={styles.sectionTitle}>{purposes.find((item) => item.id === purpose)?.label} 추천 장소</h2><p className={styles.caption}>{filtered.length}곳</p></div>
-          <div className={styles.placeList} aria-label="공식 장소 목록">
+          <div id="catalog-list" className={styles.placeList} aria-label="공식 장소 목록">
             {status === "UNAVAILABLE" && <p className={styles.empty}>현재 데이터 연결이 지연되고 있습니다.<br />지도와 목록은 연결 후 자동으로 갱신됩니다.</p>}
             {status === "READY" && filtered.length === 0 && <p className={styles.empty}>검색 결과가 없습니다. 다른 공식 장소명을 입력해 보세요.</p>}
             {status === "READY" && filtered.map((row) => <button key={row.areaCode} id={`place-${row.areaCode}`} className={styles.placeButton} data-selected={selectedAreaCode === row.areaCode} type="button" onClick={() => openPlace(row)} aria-current={selectedAreaCode === row.areaCode ? "true" : undefined} aria-label={`${row.areaName} 상세 보기`}>
