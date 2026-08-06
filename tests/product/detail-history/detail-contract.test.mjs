@@ -31,3 +31,11 @@ test("full-screen detail is centered on desktop while in-app detail remains a dr
   assert.match(route, /onKeyDown=\{surface === "FULL_SCREEN" \? undefined : handleDialogKeyDown\}/);
   assert.match(route, /event\.key !== "Tab"/);
 });
+
+test("detail material and hierarchy consume canonical design tokens", () => {
+  assert.match(styles, /\.statusCard \{[^}]*background: var\(--sg-gradient-detail-warning\);/);
+  assert.match(styles, /min-height: var\(--sg-touch-target\)/);
+  assert.match(styles, /line-height: var\(--sg-typography-body-line-height\)/);
+  assert.match(styles, /saturate\(var\(--sg-glass-(?:strong|floating)-saturation\)\)/);
+  assert.doesNotMatch(styles, /blur\(26px\) saturate\(145%\)/);
+});

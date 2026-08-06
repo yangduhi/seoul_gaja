@@ -31,3 +31,20 @@ test("Given canonical spacing and radii, When the generated CSS is inspected, Th
     assert.match(generatedCss, new RegExp(declaration.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 });
+
+test("Given the Calm Glass material contract, When CSS variables are generated, Then visual recipes remain canonical", async () => {
+  const generatedCss = await readFile(generatedCssUrl, "utf8");
+
+  for (const declaration of [
+    "--sg-glass-floating-saturation: 145%;",
+    "--sg-typography-body-line-height: 1.5;",
+    "--sg-typography-title-tracking: -.05em;",
+    "--sg-gradient-map-roads:",
+    "--sg-gradient-map-river:",
+    "--sg-gradient-detail-warning:",
+    "--sg-touch-target: 44px;",
+    "--sg-control-height: 48px;",
+  ]) {
+    assert.match(generatedCss, new RegExp(declaration.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});

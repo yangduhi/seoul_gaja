@@ -27,3 +27,12 @@ test("map legend stays bottom-centered and mobile chips retain the touch target"
   assert.match(styles, /\.mapLegend \{ position: absolute; bottom: var\(--sg-space-xl\); left: 50%;/);
   assert.doesNotMatch(styles, /\.chip \{ min-height: 38px; \}/);
 });
+
+test("map texture is live CSS and shared material values come from canonical tokens", () => {
+  assert.match(styles, /\.mapGrid \{[^}]*background-image: var\(--sg-gradient-map-roads\);/);
+  assert.match(styles, /\.mapGrid::before \{[^}]*background: var\(--sg-gradient-map-river\);/);
+  assert.match(styles, /\.mapGrid::after \{[^}]*border: 2px solid var\(--sg-semantic-map-road\);/);
+  assert.match(styles, /saturate\(var\(--sg-glass-floating-saturation\)\)/);
+  assert.doesNotMatch(styles, /background(?:-image)?:\s*url\(/);
+  assert.doesNotMatch(styles, /linear-gradient\(135deg,\s*var\(--sg-brand-blue\),\s*var\(--sg-brand-indigo\)\)/);
+});
