@@ -91,7 +91,7 @@
   ],
   "ultraqa": {
     "malformed_input": {"status": "PASS", "observable": "task-04-failure suite covers missing, invalid, expired, malformed JSON, and token-like payloads"},
-    "stale_state": {"status": "PASS", "observable": "receipt validator accepts only b81e79e/e622579 identity; old 2a88156/6b2f95 identity is absent from active assertions"},
+    "stale_state": {"status": "PASS", "observable": "receipt validator accepts only the implementation candidate identity; the replaced worker identity is absent from active assertions"},
     "dirty_worktree": {"status": "PASS", "observable": "isolated worktree began clean and parent peer changes were untouched"},
     "misleading_success_output": {"status": "PASS", "observable": "wrapper and canonical actual exits parsed as 0; receipt and tracked artifact hashes independently recomputed"},
     "flaky_tests": {"status": "PASS", "observable": "focused 17-test suite passed twice"},
