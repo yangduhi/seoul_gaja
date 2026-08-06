@@ -1,0 +1,19 @@
+
+  vinext dev  (Vite 8.0.13)
+
+Using secrets defined in .dev.vars
+  ➜  Local:   http://localhost:43184/
+  ➜  Debug:   http://localhost:43184/__debug
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+ POST /api/internal/ingest/snapshot 202 in 210ms
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+ POST /api/internal/ingest/snapshot 400 in 176ms
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+ GET /api/internal/ingest/snapshot 405 in 148ms
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+ POST /api/internal/ingest 404 in 140ms
+오후 9:00:08 [vite] (rsc) hmr update /app/globals.css
+오후 9:01:13 [vite] (rsc) hmr update /app/globals.css

@@ -1,0 +1,8 @@
+
+  vinext dev  (Vite 8.0.13)
+
+Port 43182 is in use, trying another one...
+  ➜  Local:   http://localhost:43183/
+  ➜  Debug:   http://localhost:43183/__debug
+오후 8:55:49 [vite] (rsc) hmr update /app/globals.css
+오후 8:56:05 [vite] (rsc) hmr update /app/globals.css
