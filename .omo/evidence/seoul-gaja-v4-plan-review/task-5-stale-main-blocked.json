@@ -1,30 +1,16 @@
 {
-  "schema_version": 1,
-  "task": "Todo 5 stale-main and pre-merge failure gate",
-  "observed_at": "2026-08-04T20:55:00+09:00",
-  "code_commit": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
-  "code_tree": "7836ac090953e72204e8ad454ad594ba430afab5",
+  "schema_version": 2,
+  "task": "Todo 5 stale-main, receipt, and malformed-input gate",
+  "implementation_tree_before_evidence": "8aa3f0cc441fdc43976dff9ccba5bc08eda2bbff",
   "command_id": "task-05-failure",
   "verdict": "PASS",
   "actual_exit": 0,
-  "blocked_fixtures": [
-    {
-      "path": "tests/fixtures/task-05/pre-merge-blocked.json",
-      "blocker_code": "OWNER_APPROVED_MERGE_REQUIRED"
-    },
-    {
-      "path": "tests/fixtures/task-05/stale-main-blocked.json",
-      "blocker_code": "WORKFLOW_HEAD_SHA_MISMATCH"
-    },
-    {
-      "path": "tests/fixtures/task-05/receipt-mismatch-blocked.json",
-      "blocker_code": "RECEIPT_CANDIDATE_MISMATCH"
-    }
+  "blocked_records": [
+    { "path": "tests/fixtures/task-05/pre-merge-blocked.json", "actual_exit": 3, "blocker_code": "OWNER_APPROVED_MERGE_REQUIRED" },
+    { "path": "tests/fixtures/task-05/stale-main-blocked.json", "actual_exit": 3, "blocker_code": "WORKFLOW_HEAD_SHA_MISMATCH" },
+    { "path": "tests/fixtures/task-05/receipt-mismatch-blocked.json", "actual_exit": 3, "blocker_code": "RECEIPT_CANDIDATE_MISMATCH" },
+    { "path": "tests/fixtures/task-05/missing-tree-and-plan-blocked.json", "actual_exit": 3, "blocker_code": "CANDIDATE_TREE_REQUIRED" },
+    { "path": "tests/fixtures/task-05/malformed-record.json", "actual_exit": 3, "blocker_code": "MALFORMED_RECORD" }
   ],
-  "additional_blocked_conditions": [
-    "WORKFLOW_NOT_ON_DEFAULT_BRANCH",
-    "NON_PRODUCTION_ENDPOINT_REQUIRED",
-    "CANONICAL_INGEST_TARGET_REQUIRED"
-  ],
-  "meaning": "The failure gate passes only because stale-main, pre-merge, missing default-branch workflow, missing non-production endpoint, receipt mismatch, and non-canonical target conditions are returned as NOT_RUN_BLOCKED rather than PASS."
+  "meaning": "A stale or incomplete default-branch record is never upgraded to PASS. The default-branch smoke remains NOT_RUN_BLOCKED until the owner-controlled merge and workflow proof exist."
 }

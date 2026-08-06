@@ -1,8 +1,12 @@
 {
   "branch_local": {
     "candidate_sha": "1111111111111111111111111111111111111111",
+    "candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
     "reviewed_candidate_sha": "1111111111111111111111111111111111111111",
-    "tests": [{ "id": "task-05-happy", "exit_code": 0 }]
+    "reviewed_candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "reviewed_plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "tests": [{ "id": "task-05-happy", "exit_code": 0, "candidate_sha": "1111111111111111111111111111111111111111", "candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" }]
   },
   "default_branch_smoke": {
     "owner_approved_merge": false

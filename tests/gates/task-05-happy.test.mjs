@@ -16,7 +16,11 @@ test('accepts an owner-approved default-branch smoke bound to the reviewed candi
   assert.deepEqual(result, {
     verdict: 'PASS',
     candidate_sha: fixture.branch_local.candidate_sha,
+    candidate_tree: fixture.branch_local.candidate_tree,
+    plan_sha256: fixture.branch_local.plan_sha256,
     approved_merge_sha: fixture.default_branch_smoke.approved_merge_sha,
+    approved_merge_tree: fixture.default_branch_smoke.approved_merge_tree,
     workflow_head_sha: fixture.default_branch_smoke.workflow_run.head_sha,
+    workflow_head_tree: fixture.default_branch_smoke.workflow_run.head_tree,
   });
 });

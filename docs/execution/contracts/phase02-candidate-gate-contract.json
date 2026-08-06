@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "purpose": "Static candidate and default-branch smoke acceptance boundary for Phase 02.",
+  "branch_local": {
+    "required_bindings": [
+      "candidate_sha",
+      "candidate_tree",
+      "plan_sha256",
+      "reviewed_candidate_sha",
+      "reviewed_candidate_tree",
+      "reviewed_plan_sha256",
+      "tests[].candidate_sha",
+      "tests[].candidate_tree",
+      "tests[].plan_sha256",
+      "tests[].exit_code"
+    ]
+  },
+  "default_branch_smoke": {
+    "requires_owner_approved_merge": true,
+    "requires_owner_merge_proof": true,
+    "default_branch": "main",
+    "required_workflow_bindings": [
+      "approved_merge_sha",
+      "approved_merge_tree",
+      "workflow_run.head_sha",
+      "workflow_run.head_tree",
+      "workflow_run.run_id",
+      "workflow_run.run_proof",
+      "receipt.candidate_sha",
+      "receipt.candidate_tree",
+      "receipt.plan_sha256",
+      "receipt.workflow_head_sha",
+      "receipt.workflow_head_tree",
+      "receipt.workflow_run_id"
+    ],
+    "canonical_ingest_target": "POST /api/internal/ingest/snapshot"
+  },
+  "local_execution": {
+    "workflow_invocation": "forbidden",
+    "unavailable_default_branch_proof_verdict": "NOT_RUN_BLOCKED",
+    "required_owner_action": "Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge."
+  }
+}
