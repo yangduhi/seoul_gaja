@@ -81,18 +81,34 @@ def expected_identity_failures(receipt: dict[str, JsonValue], receipt_path: Path
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Validate verdict-safe phase receipts.")
-    parser.add_argument("schema", type=Path)
-    parser.add_argument("receipts", nargs="+", type=Path)
+    parser.add_argument("schema", nargs="?", type=Path)
+    parser.add_argument("receipts", nargs="*", type=Path)
+    parser.add_argument("--expected-commit")
+    parser.add_argument("--expected-tree")
+    parser.add_argument("--expected-plan-sha256")
     args = parser.parse_args()
 
-    schema = json.loads(args.schema.read_text(encoding="utf-8"))
+    repository_root = Path(__file__).resolve().parents[3]
+    schema_path = args.schema or repository_root / "docs" / "execution" / "contracts" / "phase-receipt.schema.json"
+    paths = receipt_paths(repository_root, args.receipts)
+    if not paths:
+        raise SystemExit("FAIL: no canonical phase receipt paths found")
+
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema, format_checker=FormatChecker())
     failures: list[str] = []
-    for receipt_path in args.receipts:
-        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+    for receipt_path in paths:
+        try:
+            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as error:
+            failures.append(f"{receipt_path}: invalid JSON: {error.msg}")
+            continue
         errors = sorted(validator.iter_errors(receipt), key=lambda error: list(error.absolute_path))
         if errors:
             failures.extend(f"{receipt_path}: {error.message}" for error in errors)
+        elif isinstance(receipt, dict):
+            failures.extend(semantic_failures(receipt, receipt_path))
+            failures.extend(expected_identity_failures(receipt, receipt_path, args))
 
     if failures:
         raise SystemExit("\n".join(failures))
