@@ -1,14 +1,25 @@
 {
-  "schema_version": 1,
-  "task": "Todo 5 stale-main and pre-merge failure gate",
-  "code_commit": "a4bc60f6c6ca2f72f55cc230f6dc43da10f574f0",
-  "code_tree": "7836ac090953e72204e8ad454ad594ba430afab5",
+  "schema_version": 2,
+  "task": "Todo 5 candidate-gate negative coverage",
+  "implementation_candidate": {
+    "commit": "8f07c3db5ee991437360e603591363a519ef194b",
+    "tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7"
+  },
   "command_id": "task-05-failure",
   "argv": ["node", "--test", "tests/gates/task-05-failure.test.mjs"],
   "actual_exit": 0,
   "verdict": "PASS",
-  "scope": "Local negative fixture evaluation only; each unsafe identity condition is returned as NOT_RUN_BLOCKED rather than PASS.",
-  "stale_main_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-stale-main-blocked.json",
-  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-seoul-gaja-v4-plan-review.json",
-  "owner_gate": "The aggregate record remains NOT_RUN_BLOCKED until owner-approved default-branch execution is available."
+  "covered_blockers": [
+    "CANDIDATE_SHA_PLACEHOLDER",
+    "CANDIDATE_TREE_PLACEHOLDER",
+    "CANDIDATE_SHA_MISMATCH",
+    "CANDIDATE_TREE_REQUIRED",
+    "PLAN_SHA256_REQUIRED",
+    "OWNER_AUTHORIZED_EXTERNAL_RUN_REQUIRED",
+    "WORKFLOW_DEFAULT_BRANCH_REQUIRED",
+    "WORKFLOW_HEAD_SHA_MISMATCH",
+    "CANONICAL_INGEST_TARGET_REQUIRED",
+    "MALFORMED_RECORD"
+  ]
 }

@@ -1,16 +1,11 @@
 {
   "schema_version": 2,
-  "task": "Todo 5 stale-main, receipt, and malformed-input gate",
-  "implementation_tree_before_evidence": "8aa3f0cc441fdc43976dff9ccba5bc08eda2bbff",
-  "command_id": "task-05-failure",
+  "task": "Todo 5 stale external identity rejection",
+  "implementation_candidate": {
+    "commit": "8f07c3db5ee991437360e603591363a519ef194b",
+    "tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7"
+  },
   "verdict": "PASS",
-  "actual_exit": 0,
-  "blocked_records": [
-    { "path": "tests/fixtures/task-05/pre-merge-blocked.json", "actual_exit": 3, "blocker_code": "OWNER_APPROVED_MERGE_REQUIRED" },
-    { "path": "tests/fixtures/task-05/stale-main-blocked.json", "actual_exit": 3, "blocker_code": "WORKFLOW_HEAD_SHA_MISMATCH" },
-    { "path": "tests/fixtures/task-05/receipt-mismatch-blocked.json", "actual_exit": 3, "blocker_code": "RECEIPT_CANDIDATE_MISMATCH" },
-    { "path": "tests/fixtures/task-05/missing-tree-and-plan-blocked.json", "actual_exit": 3, "blocker_code": "CANDIDATE_TREE_REQUIRED" },
-    { "path": "tests/fixtures/task-05/malformed-record.json", "actual_exit": 3, "blocker_code": "MALFORMED_RECORD" }
-  ],
-  "meaning": "A stale or incomplete default-branch record is never upgraded to PASS. The default-branch smoke remains NOT_RUN_BLOCKED until the owner-controlled merge and workflow proof exist."
+  "observable": "Focused failure suite rejects stale default branch, stale workflow head/tree, malformed input, missing binding, fabricated proof, and canonical-target mismatch before semantic PASS."
 }

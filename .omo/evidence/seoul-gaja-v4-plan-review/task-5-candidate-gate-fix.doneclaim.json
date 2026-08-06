@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "type": "DoneClaim",
+  "task": 5,
+  "verdict": "PASS_LOCAL_EXTERNAL_NOT_RUN_BLOCKED",
+  "implementation_commit": "8f07c3db5ee991437360e603591363a519ef194b",
+  "implementation_tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+  "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7",
+  "parent_base_commit": "08ae1434a674e3f59452fca624a95613f25504df",
+  "parent_base_tree": "db0fbfb4136f2b509a814c797d3507371ee253f8",
+  "evidence_report": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-seoul-gaja-v4-plan-review.json",
+  "changed_paths": [
+    "docs/execution/contracts/phase02-candidate-gate-contract.json",
+    "docs/execution/scripts/evaluate_phase02_candidate_gate.mjs",
+    "tests/gates/task-05-happy.test.mjs",
+    "tests/gates/task-05-failure.test.mjs",
+    "tests/fixtures/task-05/*",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-5-*"
+  ],
+  "external_owner_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "owner_action": "Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge.",
+    "external_actions_attempted": 0
+  },
+  "cleanup": {
+    "temporary_processes": 0,
+    "temporary_resources": 0,
+    "isolated_worktree": "retained pending parent integration disposition"
+  }
+}

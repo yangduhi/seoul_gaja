@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "task": "Todo 5 Phase 02 candidate gate baseline",
+  "verdict": "FAIL_OPEN_REPRODUCED",
+  "observed_candidate": {
+    "commit": "08ae1434a674e3f59452fca624a95613f25504df",
+    "tree": "db0fbfb4136f2b509a814c797d3507371ee253f8"
+  },
+  "commands": [
+    {
+      "command": "node --test tests/gates/task-05-happy.test.mjs tests/gates/task-05-failure.test.mjs",
+      "exit": 0,
+      "observable": "PASS: 8/8 before the repair"
+    },
+    {
+      "command": "node docs/execution/scripts/evaluate_phase02_candidate_gate.mjs tests/fixtures/task-05/happy.json",
+      "exit": 0,
+      "observable": "PASS with placeholder candidate SHA 111..., tree aaa..., plan SHA bbb..., and synthetic owner/workflow proof"
+    }
+  ],
+  "historical_placeholder_scope": "Baseline-only reproduction; these identifiers are not a current candidate binding."
+}
