@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "report_type": "Todo6EvidenceRebindFix",
+  "todo": 6,
+  "generated_at": "2026-08-07T03:00:49.4246448+09:00",
+  "verdict": "PASS_BOUNDED_EVIDENCE_REPAIR",
+  "recommendation": "APPROVE_LOCAL_CONTRACT_WITH_BROAD_DIFF_BLOCKER_NOTED",
+  "scope": "Rebind durable Todo 6 command-map evidence to the exact parent candidate; no product behavior changes.",
+  "candidate": {
+    "parent_branch": "codex/prep-v4-1",
+    "verification_branch": "codex/todo6-evidence-rebind-fix",
+    "head": "61ed6c4885e36e1d3556727392a1de54f5a541f8",
+    "tree": "ebc1d411d3da76aa98eff0b76da6486c71a532dd",
+    "plan_sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98",
+    "binding_note": "Evidence records the parent candidate before this evidence-only commit; integration to a later HEAD requires normal downstream rebind."
+  },
+  "baseline_and_failing_first": {
+    "stale_identity_assertion": {
+      "command": "node .omo/tmp/task6-rebind/identity-assertion.mjs",
+      "exit": 1,
+      "observable": "FAIL before rewrite: both durable records held implementation_commit f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66, implementation_tree 5b07f87511a0768c49e59a2b64f16a9db0c26092, and no plan_sha256; exact current candidate was 61ed6c4885e36e1d3556727392a1de54f5a541f8 / ebc1d411d3da76aa98eff0b76da6486c71a532dd / b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98.",
+      "artifact_path": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-evidence-rebind-fix.json"
+    },
+    "diff_check_baseline": {
+      "scoped_command": "git diff --check 23b4023870c47e1280f15f4dd5abcce7bcadcbd9..HEAD -- .omo/evidence/seoul-gaja-v4-plan-review/task-6-happy.json .omo/evidence/seoul-gaja-v4-plan-review/task-6-failure.json",
+      "scoped_exit": 0,
+      "broad_command": "git diff --check 23b4023870c47e1280f15f4dd5abcce7bcadcbd9..HEAD",
+      "broad_exit": 2,
+      "broad_observable": ".omo/evidence/visual-contracts-e498bcb/dev.stderr.log:47: new blank line at EOF.",
+      "decision": "Peer evidence was not edited; Todo 6 bounded diff check is the applicable clean result.",
+      "artifact_path": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-evidence-rebind-fix.json"
+    }
+  },
+  "rebound_records": [
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-6-happy.json",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-6-failure.json"
+  ],
+  "verification": {
+    "authority_lock": {
+      "command": "python docs/execution/scripts/validate_authority_lock.py",
+      "exit": 0,
+      "observable": "PASS; exact HEAD/tree observed"
+    },
+    "command_map_validation": {
+      "command": "python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json",
+      "exit": 0,
+      "observable": "PASS: 30 command entries validated"
+    },
+    "command_map_runs": [
+      {
+        "id": "task-06-happy",
+        "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-06-happy",
+        "exit": 0,
+        "observable": "PASS; actual_exit 0; evidence points to rebound task-6-happy.json",
+        "warning": "Windows CP949 reader-thread UnicodeDecodeError was emitted by the wrapper while returning structured PASS; direct Node suite and fixture CLI were checked independently."
+      },
+      {
+        "id": "task-06-failure",
+        "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-06-failure",
+        "exit": 0,
+        "observable": "PASS; actual_exit 0; evidence points to rebound task-6-failure.json",
+        "warning": "Same non-fatal Windows CP949 reader-thread warning as task-06-happy."
+      }
+    ],
+    "focused_suite": {
+      "command": "node --test tests/gates/task-06-happy.test.mjs tests/gates/task-06-failure.test.mjs",
+      "runs": [
+        {"run": 1, "exit": 0, "tests": 19, "passed": 19, "failed": 0},
+        {"run": 2, "exit": 0, "tests": 19, "passed": 19, "failed": 0}
+      ],
+      "observable": "Two consecutive 19/19 runs"
+    },
+    "fixture_cli_matrix": {
+      "command": "node scripts/validate_workflow_security_fixture.mjs <fixture>",
+      "total": 14,
+      "accepted": {"count": 2, "required_exit": 0, "observed_exit": 0, "codes": ["AUTHORIZED_MANUAL_BACKFILL", "ROTATION_LIFECYCLE_ACCEPTED"]},
+      "rejected": {
+        "count": 12,
+        "required_exit": 1,
+        "observed_exit_all": 1,
+        "codes": {
+          "expired-token.json": "TOKEN_STATE_REJECTED",
+          "invalid-date.json": "INVALID_BACKFILL_RANGE",
+          "malformed-input.json": "MALFORMED_INPUT",
+          "missing-token.json": "TOKEN_STATE_REJECTED",
+          "old-token.json": "TOKEN_STATE_REJECTED",
+          "oversized-range.json": "INVALID_BACKFILL_RANGE",
+          "payload-conflict.json": "PAYLOAD_CONFLICT",
+          "replay.json": "REPLAY_NOT_IDEMPOTENT",
+          "shell-metacharacters.json": "INVALID_BACKFILL_RANGE",
+          "unauthorized-branch.json": "BRANCH_NOT_PROTECTED",
+          "unauthorized-dispatcher.json": "DISPATCHER_NOT_ALLOWED",
+          "unauthorized-environment.json": "ENVIRONMENT_NOT_ALLOWED"
+        },
+        "raw_secret_values_emitted": false
+      }
+    },
+    "diff_check": {
+      "scoped_command": "git diff --check -- .omo/evidence/seoul-gaja-v4-plan-review/task-6-happy.json .omo/evidence/seoul-gaja-v4-plan-review/task-6-failure.json",
+      "exit": 0,
+      "broad_candidate_range_exit": 2,
+      "broad_blocker": ".omo/evidence/visual-contracts-e498bcb/dev.stderr.log:47: new blank line at EOF."
+    },
+    "identity_assertion_after_rewrite": {
+      "command": "node .omo/tmp/task6-rebind/identity-assertion.mjs",
+      "exit": 0,
+      "observable": "PASS; both rebound records match exact current HEAD/tree/plan"
+    }
+  },
+  "ultraqa": {
+    "malformed_input": "PASS: malformed-input.json -> MALFORMED_INPUT, exit 1",
+    "stale_state_current_evidence_mismatch": "PASS: failing-first identity assertion exit 1, then rebound assertion exit 0",
+    "dirty_worktree": "PASS: temporary untracked marker did not alter exact identity assertion; marker removed",
+    "prompt_injection_shell_metacharacters": "PASS: shell-metacharacters.json -> INVALID_BACKFILL_RANGE, exit 1",
+    "misleading_success_output": "PASS_WITH_NOTE: wrapper CP949 warning cross-checked against structured runner output, direct suite, and direct fixture JSON/exits",
+    "flaky_tests": "PASS: focused Todo 6 suite 19/19 twice",
+    "hung_or_long_commands": "PASS: all local invocations completed in bounded runs; no server, listener, or temporary DB",
+    "cancel_resume": "N/A: commands are single-shot local validators with no resumable operation",
+    "repeated_interruptions": "N/A: no long-running or resumable process was used"
+  },
+  "external_gates": {
+    "actionlint": "NOT_RUN_BLOCKED: actionlint unavailable",
+    "default_branch_workflow": "NOT_RUN_BLOCKED: no owner-authorized GitHub Actions dispatch",
+    "required_reviewer_environment": "NOT_RUN_BLOCKED: external GitHub Environment was not changed",
+    "secret_entry_or_rotation": "NOT_RUN_BLOCKED: no secret value was supplied or handled",
+    "live_ingest": "NOT_RUN_BLOCKED: no live API call was authorized"
+  },
+  "cleanup": {
+    "temporary_files": "Removed after report write; no temp DBs",
+    "processes": "none remain",
+    "ports": "none opened",
+    "external_actions": 0,
+    "peer_whitespace_file": "left unchanged; existing blocker recorded above",
+    "owned_changed_paths": [
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-6-happy.json",
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-6-failure.json",
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-6-evidence-rebind-fix.json"
+    ]
+  },
+  "artifact": {
+    "path": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-evidence-rebind-fix.json",
+    "sha256": "7e09be79d591f3e99907ee408fbaa4bbbfb66f404a5e21ef20973e4084845a63",
+    "hash_scope": "UTF-8 canonical JSON bytes with artifact.sha256 value set to PENDING_CANONICAL_HASH before embedding; the embedded full SHA-256 is recorded out-of-band by this deterministic preimage convention."
+  }
+}
