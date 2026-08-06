@@ -1,9 +1,14 @@
 {
+  "kind": "authorized_manual_backfill",
   "start_date": "2026-08-01",
   "end_date": "2026-08-31",
   "environment": "production-ingest",
-  "branch": "main",
+  "branch_ref": "refs/heads/main",
+  "dispatcher": "yangduhi",
+  "method": "POST",
+  "path": "/api/internal/ingest/snapshot",
+  "scopes": ["ingest:snapshot"],
   "token_id": "ingest-token-current-redacted",
-  "secret_status": "REDACTED",
-  "expected_result": "ACCEPTED"
+  "token_state": "current",
+  "secret_status": "REDACTED"
 }

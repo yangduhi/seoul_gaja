@@ -1,10 +1,11 @@
 {
+  "kind": "rotation_lifecycle",
   "token_id": "ingest-token-next-redacted",
   "prior_token_id": "ingest-token-prior-redacted",
   "issued_at": "2026-08-06T00:00:00Z",
   "cut_over_at": "2026-08-06T00:10:00Z",
   "revoked_at": "2026-08-06T00:30:00Z",
   "overlap_minutes": 30,
-  "secret_status": "REDACTED",
-  "expected_result": "ACCEPTED"
+  "rotation_steps": ["install_next", "verify_next", "cut_over", "revoke_prior"],
+  "secret_status": "REDACTED"
 }

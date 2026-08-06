@@ -1,7 +1,5 @@
 {
   "kind": "malformed_json",
   "raw_payload": "{\"start_date\":",
-  "secret_status": "REDACTED",
-  "expected_result": "REJECTED",
-  "reason": "malformed input JSON is rejected before any protected step"
+  "secret_status": "REDACTED"
 }

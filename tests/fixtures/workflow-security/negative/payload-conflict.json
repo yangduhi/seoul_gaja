@@ -1,7 +1,7 @@
 {
   "kind": "payload_conflict",
   "request_id": "request-redacted",
-  "secret_status": "REDACTED",
-  "expected_result": "REJECTED",
-  "reason": "conflict returns 409 for a reused identity with a different payload hash"
+  "existing_payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "secret_status": "REDACTED"
 }

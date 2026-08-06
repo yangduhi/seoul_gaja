@@ -1,7 +1,5 @@
 {
   "kind": "unauthorized_branch",
-  "branch": "feature/unreviewed",
-  "secret_status": "REDACTED",
-  "expected_result": "REJECTED",
-  "reason": "branch is not the protected default branch"
+  "branch_ref": "refs/heads/feature/unreviewed",
+  "secret_status": "REDACTED"
 }

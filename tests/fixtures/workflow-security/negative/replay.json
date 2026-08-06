@@ -1,7 +1,6 @@
 {
   "kind": "replay",
   "request_id": "request-redacted",
-  "secret_status": "REDACTED",
-  "expected_result": "REJECTED",
-  "reason": "replay is rejected when request identity cannot be idempotently matched"
+  "idempotent_match": false,
+  "secret_status": "REDACTED"
 }

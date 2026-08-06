@@ -5,7 +5,5 @@
   "expires_at": "2026-08-06T00:10:00Z",
   "requested_at": "2026-08-06T00:11:00Z",
   "token_state": "expired",
-  "secret_status": "REDACTED",
-  "expected_result": "REJECTED",
-  "reason": "token expiry is enforced before ingest"
+  "secret_status": "REDACTED"
 }

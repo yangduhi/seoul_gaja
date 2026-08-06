@@ -1,7 +1,6 @@
 {
   "kind": "missing_token",
   "token_id": "absent-redacted",
-  "secret_status": "REDACTED",
-  "expected_result": "REJECTED",
-  "reason": "a missing token is rejected before the protected ingest step"
+  "token_state": "missing",
+  "secret_status": "REDACTED"
 }
