@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "type": "DoneClaim",
+  "task": 6,
+  "verdict": "PASS_LOCAL_CONTRACT",
+  "implementation_commit": "f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66",
+  "implementation_tree": "5b07f87511a0768c49e59a2b64f16a9db0c26092",
+  "parent_base_commit": "08ae1434a674e3f59452fca624a95613f25504df",
+  "parent_base_tree": "db0fbfb4136f2b509a814c797d3507371ee253f8",
+  "evidence_report": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-seoul-gaja-v4-plan-review.json",
+  "verification": {
+    "baseline_red": "PASS: exact parent 16/16 tautology captured",
+    "focused_suite": "PASS: 18/18 twice",
+    "command_map": "PASS: task-06-happy and task-06-failure",
+    "helper_cli_matrix": "PASS: 14/14 structured redacted results",
+    "static_workflow_scan": "PASS",
+    "dependency_hash": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "external_owner_gates": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "actionlint, GitHub default-branch workflow/reviewer environment, secrets, and live ingestion were not available or authorized."
+  },
+  "cleanup": {
+    "status": "PASS",
+    "temporary_resources_remaining": 0,
+    "parent_worktree_touched": false
+  }
+}

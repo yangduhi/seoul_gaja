@@ -1,10 +1,9 @@
 # Todo 6 executor report
 
-- Branch: `codex/todo6-workflow-security`
-- Base: `390e32d3c237214696dcee2cb8231f686e1b4628` / `02714a656ddb0eb1d60596cb5d1afae7f89d4e55`
-- Verified source tree: `71d6da47cb8ce9d7e89281d1b5b379aeb511d999`
-- Baseline RED: reviewer identity was not machine-bound; manual dispatcher was not allowlisted.
-- Local contract result: PASS for 16 focused checks, command-map happy/failure, authority, command map, dependency hash mode, injection scan, full-SHA scan, and diff check.
-- Workflow lint: NOT_RUN_BLOCKED because `actionlint` is not installed. Static equivalent checks passed, but this does not claim an `actionlint` pass.
-- UltraQA: malformed input, prompt injection, stale token/replay, conflict, and dirty-worktree preservation exercised; cancel/resume is NOT_APPLICABLE for one-shot local checks; repeat focused checks passed; no server, browser, port, secret input, live API, or Actions run occurred.
-- Secrets: no raw value was supplied, logged, or written.
+- Implementation: `f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66` / `5b07f87511a0768c49e59a2b64f16a9db0c26092`, parent `08ae1434a674e3f59452fca624a95613f25504df` / `db0fbfb4136f2b509a814c797d3507371ee253f8`.
+- Baseline finding: the exact parent passed 16/16 focused tests while old/expired/missing token, unauthorized branch/environment/dispatcher, replay, and payload-conflict only asserted fixture-authored text. Artifact: `task-6-baseline-tautological-red.txt`.
+- Local result: PASS. A pure fixture/policy evaluator now produces structured `ACCEPTED` or `REJECTED` codes; 12 negative fixtures and both positive fixtures invoke it, and the CLI matrix has 14 redacted observations.
+- Static result: PASS for six full-SHA `uses` entries, zero write permissions, no secret-bearing raw GitHub input expression, and pre-secret date validation. Artifact: `task-6-static-workflow-scan.json`.
+- actionlint: NOT_RUN_BLOCKED because it is not installed. Default-branch workflow execution, required-reviewer/environment activation, secret entry, and live ingest are also NOT_RUN_BLOCKED by owner authority; none was attempted.
+- Windows command-map runner emitted a CP949 decode traceback while its recorded `actual_exit` remained 0 and declared PASS. The direct focused suites independently passed, so this is recorded as a runner-observability caveat, not an actionlint or workflow-runtime claim.
+- Cleanup: the temporary exact-parent baseline worktree was removed; no server, browser, port, secret, live API, GitHub Actions run, push, merge, or deploy occurred.

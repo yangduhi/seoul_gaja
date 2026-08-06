@@ -1,9 +1,12 @@
 {
-  "branch": "codex/todo6-workflow-security",
-  "verified_source_tree": "71d6da47cb8ce9d7e89281d1b5b379aeb511d999",
+  "task": 6,
   "command_id": "task-06-failure",
+  "branch": "codex/todo6-workflow-security-fixture-validation",
+  "implementation_commit": "f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66",
+  "implementation_tree": "5b07f87511a0768c49e59a2b64f16a9db0c26092",
   "exit": 0,
   "verdict": "PASS",
-  "fixtures": 12,
+  "tests": 12,
+  "fixture_policy_evaluation": "REJECTED codes asserted independently of fixture expected_result or reason",
   "secret_output": "REDACTED"
 }

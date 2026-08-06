@@ -1,19 +1,26 @@
 {
-  "branch": "codex/todo6-workflow-security",
-  "verified_source_tree": "71d6da47cb8ce9d7e89281d1b5b379aeb511d999",
-  "verdict": "PASS",
-  "manual_qa_channel": "terminal static contract test",
-  "fixture_results": {
-    "malformed_input": "REJECTED",
-    "invalid_date": "REJECTED",
-    "oversized_range": "REJECTED",
-    "shell_metacharacter": "REJECTED",
-    "unauthorized_branch": "REJECTED",
-    "unauthorized_environment": "REJECTED",
-    "unauthorized_dispatcher": "REJECTED",
-    "missing_old_or_expired_token": "REJECTED",
-    "replay_or_conflict": "REJECTED"
+  "task": 6,
+  "branch": "codex/todo6-workflow-security-fixture-validation",
+  "implementation_commit": "f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66",
+  "implementation_tree": "5b07f87511a0768c49e59a2b64f16a9db0c26092",
+  "verdict": "PASS_LOCAL_REJECTION",
+  "manual_qa": {
+    "command": "node scripts/validate_workflow_security_fixture.mjs <fixture>",
+    "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-helper-cli-matrix.json",
+    "result": "all 14 redacted fixtures produced their independently asserted ACCEPTED or REJECTED policy code"
   },
+  "blocked_before_secret_bearing_step": [
+    "invalid_date_range",
+    "injection_attempt",
+    "unauthorized_branch",
+    "unauthorized_environment",
+    "unauthorized_dispatcher",
+    "missing_token",
+    "old_token",
+    "expired_token",
+    "replay",
+    "payload_conflict"
+  ],
   "secret_output": "REDACTED",
   "protected_step_execution": false,
   "external_workflow_execution": false
