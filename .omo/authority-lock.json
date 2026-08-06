@@ -9,12 +9,12 @@
     "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
     "preparation_branch": "codex/prep-v4-1",
     "implementation_candidate": {
-      "preparation_head": "e094f534de5b25c4098159cb26d2eb4525758fec",
-      "preparation_tree": "dda59e145381663cd385753eac77d497f9ff2bd8"
+      "preparation_head": "be7b09c3dd49b65933fc856ba1a795c1bf1c3c7d",
+      "preparation_tree": "6fedf63e9c5497540c48e521f3641eda817cd45f"
     },
     "plan": {
       "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
-      "sha256": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1"
+      "sha256": "4b608ffbbb4164a7fc7bef925dab6e36ca773534cdc1e04f58ada19a80aa581d"
     },
     "amendment": {
       "path": "docs/execution/AMENDMENT-v4.1.md",
