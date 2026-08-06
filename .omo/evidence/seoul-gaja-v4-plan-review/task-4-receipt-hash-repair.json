@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "work_item": "receipt-hash-repair",
+  "verdict": "PASS",
+  "repair_base": {
+    "commit": "54174f28eee396ed5e2d5fb745f6ecf6081a29b4",
+    "tree": "5422c155a0a1df125d157b7b2e54e9491a4e2b8d",
+    "source": "git show HEAD:<path> tracked bytes"
+  },
+  "red": {
+    "command": "for p in server/phase-00-capability-probe.mjs db/schema.ts migrations/0004_phase_00_capability_probe.sql app/api/internal/capability-probe/health/route.js; do git show HEAD:$p | sha256sum; done",
+    "exit": 1,
+    "reason": "The audit exits non-zero while any receipt hash differs from the exact tracked bytes.",
+    "artifacts": [
+      {
+        "path": "server/phase-00-capability-probe.mjs",
+        "receipt_sha256_before": "3c59c169e3e3cc26c71425a5089ebdbb81b769cfe21e2aa71e606f5270117cf0",
+        "git_show_head_sha256": "4fe52488e2268043c06cb4c913e22498ebf872ca289ee4c6d463f5789cebf2f3",
+        "receipt_sha256_after": "4fe52488e2268043c06cb4c913e22498ebf872ca289ee4c6d463f5789cebf2f3",
+        "state_before": "MISMATCH"
+      },
+      {
+        "path": "db/schema.ts",
+        "receipt_sha256_before": "06e4fb03268c0921098a126a343e528b44eb84c38521d1aae5e56f24314cca11",
+        "git_show_head_sha256": "6fc0c3c010450439573f9268097c10f9885de8985c8e413f08d387cdbb4e7852",
+        "receipt_sha256_after": "6fc0c3c010450439573f9268097c10f9885de8985c8e413f08d387cdbb4e7852",
+        "state_before": "MISMATCH"
+      },
+      {
+        "path": "migrations/0004_phase_00_capability_probe.sql",
+        "receipt_sha256": "bd066c9b14b0836138127596e42a2b6f12e8f2e9bbf80e4cb2a9e35a37ae7b75",
+        "state_before": "MATCH"
+      },
+      {
+        "path": "app/api/internal/capability-probe/health/route.js",
+        "receipt_sha256": "b47e1fc33982f215848542b6b1aaef8c1b657cd7a22ce3c8a7e555b16cd00394",
+        "state_before": "MATCH"
+      }
+    ]
+  },
+  "green": {
+    "tracked_byte_audit_exit": 0,
+    "receipt_validator": {
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 2a8815643a7cd780b1ac80567e6ebad14fce53f5 --expected-tree 6b2f95b946dab3ae8de1a19a9af414a314bb5151",
+      "exit": 0
+    },
+    "authority_validator": {
+      "command": "python docs/execution/scripts/validate_authority_lock.py",
+      "exit": 0
+    },
+    "command_map_validator": {
+      "command": "python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json",
+      "exit": 0,
+      "summary": "PASS: 30 command entries validated"
+    },
+    "command_map_ids": [
+      {
+        "id": "task-04-happy",
+        "exit": 0,
+        "verdict": "PASS"
+      },
+      {
+        "id": "task-04-failure",
+        "exit": 0,
+        "verdict": "PASS"
+      }
+    ],
+    "node_suite": {
+      "command": "node --test tests/gates/task-04-happy.test.mjs tests/gates/task-04-failure.test.mjs tests/gates/task-04-route.test.mjs",
+      "runs": 2,
+      "tests_per_run": 17,
+      "exits": [0, 0]
+    },
+    "receipt_identity_preserved": {
+      "commit": "2a8815643a7cd780b1ac80567e6ebad14fce53f5",
+      "tree": "6b2f95b946dab3ae8de1a19a9af414a314bb5151"
+    },
+    "external_gate": "NOT_RUN_BLOCKED unchanged"
+  },
+  "active_task_04_hash_scan": {
+    "command": "rg -l 'phase-00-capability-probe\\.mjs|db/schema\\.ts' .omo/evidence/seoul-gaja-v4-plan-review --glob '*.json'",
+    "result": "Only task-4-executor.json references the artifact paths and it contains no sha256 fields; no active Task 04 evidence JSON repeated the stale hashes."
+  },
+  "ultraqa": {
+    "stale_state": "PASS: the two old hashes caused RED and are absent from the repaired receipt.",
+    "dirty_worktree": "PASS: parent dirty state was preserved by using a new isolated worktree; this task wrote no parent files.",
+    "malformed_prompt_timeout_semantics": "PASS: command-map failure and both 17-test suite runs passed without source changes.",
+    "hung_bounded": "PASS: the repeated suite includes the bounded hung-health cleanup assertion.",
+    "flaky_repeat": "PASS: identical 17/17 suite result twice.",
+    "misleading_output": "PASS: CP949 reader tracebacks on wrapper stderr were recorded separately; the wrapper exit was 0 and both explicit Node summaries reported 17 pass, 0 fail.",
+    "repeated_interruptions": "PASS: no partial staged state was created; no interruption was issued during this bounded artifact repair.",
+    "cancel_resume": "NOT_APPLICABLE: no cancellable long-running process was started.",
+    "cleanup": {
+      "servers": 0,
+      "ports": 0,
+      "temporary_files": 0,
+      "external_calls": 0
+    }
+  },
+  "cp949_wrapper_caveat": "The Git Bash wrapper emitted Python reader-thread UnicodeDecodeError messages for byte 0xe2 under CP949 while relaying Node checkmarks. This did not change the wrapper exit (0) or the parsed 17-pass/0-fail Node results; use UTF-8 output handling for future wrapper transcript capture.",
+  "scope": {
+    "allowed_changed_paths": [
+      "docs/evidence/phase-00/phase-receipt.json",
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-4-receipt-hash-repair.json"
+    ],
+    "product_code_changed": false,
+    "routes_changed": false,
+    "migrations_changed": false,
+    "plans_ledgers_authority_readiness_changed": false,
+    "external_actions": 0,
+    "secrets_logged": false
+  }
+}

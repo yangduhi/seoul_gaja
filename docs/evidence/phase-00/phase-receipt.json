@@ -20,7 +20,7 @@
   "evidence": [
     {
       "path": "server/phase-00-capability-probe.mjs",
-      "sha256": "3c59c169e3e3cc26c71425a5089ebdbb81b769cfe21e2aa71e606f5270117cf0"
+      "sha256": "4fe52488e2268043c06cb4c913e22498ebf872ca289ee4c6d463f5789cebf2f3"
     },
     {
       "path": "app/api/internal/capability-probe/ingest/route.js",
@@ -36,7 +36,7 @@
     },
     {
       "path": "db/schema.ts",
-      "sha256": "06e4fb03268c0921098a126a343e528b44eb84c38521d1aae5e56f24314cca11"
+      "sha256": "6fc0c3c010450439573f9268097c10f9885de8985c8e413f08d387cdbb4e7852"
     }
   ],
   "blockers": [
