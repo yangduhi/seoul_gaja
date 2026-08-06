@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { openInAppPlaceDetail } from "../places/[areaCode]/PlaceDetailClient";
 import styles from "./CatalogSurface.module.css";
 
@@ -53,11 +53,29 @@ function displaySource(row: CatalogRow): string {
   return `${new Intl.DateTimeFormat("ko-KR", { hour: "2-digit", minute: "2-digit" }).format(new Date(value))} · ${basis}`;
 }
 
+function eventSelection(event: Event): string | null {
+  if (!(event instanceof CustomEvent)) return null;
+  const detail: unknown = event.detail;
+  if (typeof detail !== "object" || detail === null) return null;
+  const selection = Reflect.get(detail, "areaCode") ?? Reflect.get(detail, "selection");
+  return typeof selection === "string" ? selection : null;
+}
+
 export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason }: CatalogSurfaceProps) {
   const [query, setQuery] = useState("");
   const [purpose, setPurpose] = useState<(typeof purposes)[number]["id"]>("family");
+  const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(null);
   const [geoState, setGeoState] = useState<"idle" | "denied" | "timeout">("idle");
   const [mapRetry, setMapRetry] = useState(0);
+  useEffect(() => {
+    const onSelection = (event: Event) => setSelectedAreaCode(eventSelection(event));
+    window.addEventListener("seoul-gaja:detail-selection", onSelection);
+    window.addEventListener("seoul-gaja:detail-restored", onSelection);
+    return () => {
+      window.removeEventListener("seoul-gaja:detail-selection", onSelection);
+      window.removeEventListener("seoul-gaja:detail-restored", onSelection);
+    };
+  }, []);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ko-KR");
     return normalized.length === 0 ? catalog : catalog.filter((row) => row.areaName.toLocaleLowerCase("ko-KR").includes(normalized));
@@ -69,6 +87,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
   }
 
   function openPlace(row: CatalogRow) {
+    setSelectedAreaCode(row.areaCode);
     openInAppPlaceDetail(row.areaCode, { selection: row.areaCode, scrollY: window.scrollY, focusTarget: `place-${row.areaCode}` });
   }
 
@@ -98,7 +117,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
           <div className={styles.placeList} aria-label="공식 장소 목록">
             {status === "UNAVAILABLE" && <p className={styles.empty}>현재 데이터 연결이 지연되고 있습니다.<br />지도와 목록은 연결 후 자동으로 갱신됩니다.</p>}
             {status === "READY" && filtered.length === 0 && <p className={styles.empty}>검색 결과가 없습니다. 다른 공식 장소명을 입력해 보세요.</p>}
-            {status === "READY" && filtered.map((row) => <button key={row.areaCode} id={`place-${row.areaCode}`} className={styles.placeButton} type="button" onClick={() => openPlace(row)} aria-label={`${row.areaName} 상세 보기`}>
+            {status === "READY" && filtered.map((row) => <button key={row.areaCode} id={`place-${row.areaCode}`} className={styles.placeButton} data-selected={selectedAreaCode === row.areaCode} type="button" onClick={() => openPlace(row)} aria-current={selectedAreaCode === row.areaCode ? "true" : undefined} aria-label={`${row.areaName} 상세 보기`}>
               <span className={styles.placeName}>{row.areaName}</span><span className={styles.placeLevel} data-level={row.crowdLevel}>{displayLevel(row.crowdLevel)}</span>
               <span className={row.availability === "unavailable" ? styles.placeUnavailable : styles.placeRange}>{row.availability === "unavailable" ? "최근 데이터 확인 불가" : displayRange(row)}</span><span className={styles.placeMeta}>{displaySource(row)}</span>
             </button>)}

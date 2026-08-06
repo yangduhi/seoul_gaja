@@ -17,4 +17,6 @@ test("catalog surface exposes the family planning failure-safe interactions", ()
   }
   assert.match(surface, /event\.key === \"Escape\"/);
   assert.match(surface, /openInAppPlaceDetail/);
+  assert.match(surface, /seoul-gaja:detail-restored/);
+  assert.match(surface, /selectedAreaCode/);
 });

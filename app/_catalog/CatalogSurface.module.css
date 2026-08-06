@@ -100,6 +100,7 @@
 .placeButton { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; width: 100%; padding: 13px 14px; text-align: left; color: #0d1726; background: rgba(255, 255, 255, .64); border: 1px solid transparent; }
 .placeButton:hover,
 .placeButton:focus-visible { border-color: rgba(10, 132, 255, .48); outline: 2px solid transparent; box-shadow: 0 8px 20px rgba(10, 132, 255, .1); }
+.placeButton[data-selected="true"] { border-color: rgba(10, 132, 255, .68); background: rgba(224, 240, 255, .88); }
 .placeName { min-width: 0; overflow: hidden; font-size: 15px; font-weight: 760; text-overflow: ellipsis; white-space: nowrap; }
 .placeMeta { color: #657387; font-size: 12px; }
 .placeLevel { align-self: start; padding: 4px 8px; border-radius: 999px; color: #146f65; background: #e4f5d1; font-size: 11px; font-weight: 800; white-space: nowrap; }
