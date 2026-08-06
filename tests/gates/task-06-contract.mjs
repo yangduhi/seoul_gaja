@@ -17,9 +17,20 @@ export async function assertWorkflowSecurityBoundary() {
   assert.equal(policy.ingest.secret_locations.sites_hosted_secret_store, true);
   assert.equal(policy.ingest.secret_locations.github_environment, 'production-ingest');
   assert.deepEqual(policy.github_environment.protected_branches, ['main']);
+  assert.equal(policy.github_environment.protected_branch_ref, 'refs/heads/main');
   assert.equal(policy.github_environment.required_reviewers, true);
+  assert.deepEqual(policy.github_environment.required_reviewer_logins, ['yangduhi']);
   assert.deepEqual(policy.maintainer_allowlist, ['yangduhi']);
   assert.equal(policy.rotation.maximum_overlap_minutes, 30);
+  assert.deepEqual(policy.rotation.metadata_fields, ['token_id', 'issued_at', 'cut_over_at', 'revoked_at']);
+  assert.deepEqual(policy.ingest.token_boundary, {
+    name: 'SITE_INGEST_TOKEN',
+    allowed_branch_ref: 'refs/heads/main',
+    allowed_environment: 'production-ingest',
+    allowed_method: 'POST',
+    allowed_path: '/api/internal/ingest/snapshot',
+    rejected_states: ['missing', 'prior', 'expired'],
+  });
   assert.deepEqual(policy.receipts.permitted_token_fields, ['token_id', 'issued_at', 'revoked_at']);
   assert.equal(policy.replay.duplicate_request, 'idempotent_receipt');
   assert.equal(policy.replay.payload_conflict, 'reject_409');
@@ -30,19 +41,23 @@ export async function assertWorkflowSecurityBoundary() {
     assert.match(workflow, /python-version: "3\.11\.11"/);
     assert.match(workflow, /pip install --require-hashes --only-binary=:all: -r collector\/requirements\.lock/);
     assert.doesNotMatch(workflow, /\b(?:contents|actions|id-token|packages|pull-requests):\s*write\b/);
+    assert.match(workflow, /if: github\.ref == 'refs\/heads\/main'/);
     for (const match of workflow.matchAll(/^\s*- uses: [^@\s]+@([^\s]+)$/gm)) {
       assert.match(match[1], fullCommitSha, `un-pinned action: ${match[0]}`);
     }
   }
 
   const manualBackfill = workflows[1];
+  assert.match(manualBackfill, /if: github\.actor == 'yangduhi'/);
   assert.match(manualBackfill, /BACKFILL_START_DATE: \$\{\{ inputs\.start_date \}\}/);
   assert.match(manualBackfill, /node scripts\/validate_backfill_inputs\.mjs --github-output "\$GITHUB_OUTPUT"/);
   const secretJob = manualBackfill.slice(manualBackfill.indexOf('  ingest:'));
   assert.match(secretJob, /environment: production-ingest/);
+  assert.match(secretJob, /if: github\.ref == 'refs\/heads\/main' && github\.actor == 'yangduhi'/);
   assert.match(secretJob, /SITE_INGEST_TOKEN: \$\{\{ secrets\.SITE_INGEST_TOKEN \}\}/);
   assert.match(secretJob, /SITE_INGEST_PATH: \/api\/internal\/ingest\/snapshot/);
   assert.doesNotMatch(secretJob, /\$\{\{\s*(?:inputs|github\.event\.inputs)\./);
+  assert.doesNotMatch(secretJob, /run:[\s\S]*\$\{\{\s*(?:inputs|github\.event\.inputs)\./);
   assert.match(secretJob, /--start "\$BACKFILL_START_DATE"/);
   assert.match(secretJob, /--end "\$BACKFILL_END_DATE"/);
   assert.match(secretJob, /--path "\$SITE_INGEST_PATH"/);

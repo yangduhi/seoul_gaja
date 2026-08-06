@@ -20,7 +20,11 @@ for (const name of readdirSync(negativeRoot)) {
       assert.throws(() => validateBackfillRange(fixture.input, '2026-08-31'));
       return;
     }
+    if (fixture.kind === 'malformed_json') {
+      assert.throws(() => JSON.parse(fixture.raw_payload));
+      return;
+    }
     assert.equal(fixture.expected_result, 'REJECTED');
-    assert.match(fixture.reason, /(?:environment|branch|token|replay|conflict|injection)/i);
+    assert.match(fixture.reason, /(?:environment|branch|token|replay|conflict|injection|dispatcher|maintainer)/i);
   });
 }

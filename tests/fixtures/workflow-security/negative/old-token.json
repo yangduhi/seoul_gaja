@@ -1,6 +1,11 @@
 {
   "kind": "old_token",
   "token_id": "ingest-token-prior-redacted",
+  "issued_at": "2026-08-06T00:00:00Z",
+  "cut_over_at": "2026-08-06T00:10:00Z",
+  "revoked_at": "2026-08-06T00:30:00Z",
+  "requested_at": "2026-08-06T00:31:00Z",
+  "token_state": "prior",
   "secret_status": "REDACTED",
   "expected_result": "REJECTED",
   "reason": "token was revoked after the 30-minute rotation overlap"

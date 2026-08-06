@@ -1,0 +1,7 @@
+{
+  "kind": "unauthorized_dispatcher",
+  "dispatcher": "unreviewed-user",
+  "secret_status": "REDACTED",
+  "expected_result": "REJECTED",
+  "reason": "dispatcher is not in the maintainer allowlist"
+}
