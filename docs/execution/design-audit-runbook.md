@@ -55,6 +55,7 @@ Run `mengto-skills` and store its recommendation beside the audit evidence. Use 
 - `codex/audit-verify-explain-grade-5`
 
 Use `ui/design-taste-frontend` only as a secondary anti-slop lens. Use `codex/screenshot` only when the browser capture path is unavailable.
+If MengTo selection fails, record `UNVERIFIED`; the evidence-completeness component cannot earn its 10 points, so the loop cannot reach 100 until a fresh recommendation is recorded.
 
 ### D2. Inspect contracts and implementation
 

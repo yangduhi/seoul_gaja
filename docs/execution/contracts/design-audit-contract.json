@@ -182,7 +182,7 @@
       "name": "MengTo pack selection",
       "required_action": "Run mengto-skills and record the recommendation output and selected pack.",
       "success": "Only the approved diagnostic and comparison lenses are active.",
-      "failure": "Use the last known pack only as a non-authoritative hint and mark selection UNVERIFIED."
+      "failure": "Use the last known pack only as a non-authoritative hint, mark selection UNVERIFIED, and prevent C10 from earning points until a fresh successful recommendation is recorded."
     },
     {
       "id": "D2_INSPECT",
