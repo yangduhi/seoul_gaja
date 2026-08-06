@@ -86,6 +86,11 @@ export async function handleIngestSnapshot(request, expectedToken, database) {
       derived_key: snapshot.snapshotId,
       receipt,
     });
+    await persistDerivedSourceBinding(database, {
+      derived_kind: "profile",
+      derived_key: snapshot.snapshotId,
+      receipt,
+    });
   } catch (error) {
     if (error instanceof ProvenancePolicyError && /CONFLICT$/.test(error.code)) return jsonError("provenance_conflict", 409);
     if (error instanceof ProvenancePolicyError) return jsonError("provenance_storage_unavailable", 503);

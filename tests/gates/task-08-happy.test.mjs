@@ -82,6 +82,11 @@ test('Given accepted provenance metadata and a D1 binding, When the canonical in
     source_receipt_version: provenanceReceipt.receipt_version,
     bound_at: provenanceReceipt.accepted_at,
   });
+  assert.deepEqual(database.bindings.get('profile:snapshot-local-0001'), {
+    source_receipt_id: provenanceReceipt.receipt_id,
+    source_receipt_version: provenanceReceipt.receipt_version,
+    bound_at: provenanceReceipt.accepted_at,
+  });
   const body = await response.json();
   assert.equal(body.canonicalPayloadSha256, database.receipts.values().next().value.canonical_payload_sha256);
 });
@@ -120,4 +125,18 @@ test('Given migration 0003, When provenance storage is inspected, Then append-on
   assert.match(bindingTable, /derived_kind[\s\S]*source_receipt_id[\s\S]*source_receipt_version/);
   assert.match(migration, /provenance_receipts_no_update[\s\S]*provenance_receipts_no_delete/);
   assert.doesNotMatch(migration, /DROP\s+TABLE|RENAME\s+TABLE/i);
+});
+
+test('Given the durable Todo 8 receipt, When observed D1 hashes are audited, Then canonical, persisted, and readback hashes are explicit and equal', async () => {
+  // Given
+  const evidence = JSON.parse(await readFile('.omo/evidence/seoul-gaja-v4-plan-review/task-8-d1-persistence-fix.json', 'utf8'));
+
+  // When
+  const hashes = evidence.observed_hashes;
+
+  // Then
+  assert.match(hashes.canonical_payload_sha256, /^[a-f0-9]{64}$/);
+  assert.equal(hashes.persisted_canonical_payload_sha256, hashes.canonical_payload_sha256);
+  assert.equal(hashes.readback_canonical_payload_sha256, hashes.canonical_payload_sha256);
+  assert.equal(hashes.canonical_persisted_readback_equal, true);
 });

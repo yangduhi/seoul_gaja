@@ -16,10 +16,17 @@
     "behavior": [
       "accepted canonical ingest persists one redacted provenance_receipts row through env.DB before returning 202",
       "identical receipt content is idempotent and conflicting content fails closed",
-      "materialization source binding persists source_receipt_id and source_receipt_version",
+      "materialization and profile source bindings persist source_receipt_id and source_receipt_version",
       "missing D1 binding returns 503 provenance_storage_unavailable",
       "migration 0003 additively creates append-only receipt and dedicated derived-source binding tables"
     ]
+  },
+  "observed_hashes": {
+    "canonical_payload_sha256": "0d3f7e7a54fb37b4dd31c42297b5ec516b7fa1cd1f2d7f249187f09c512098a1",
+    "persisted_canonical_payload_sha256": "0d3f7e7a54fb37b4dd31c42297b5ec516b7fa1cd1f2d7f249187f09c512098a1",
+    "readback_canonical_payload_sha256": "0d3f7e7a54fb37b4dd31c42297b5ec516b7fa1cd1f2d7f249187f09c512098a1",
+    "canonical_persisted_readback_equal": true,
+    "artifact": ".omo/evidence/task-8-profile-hash-observed.json"
   },
   "verification": [
     {
