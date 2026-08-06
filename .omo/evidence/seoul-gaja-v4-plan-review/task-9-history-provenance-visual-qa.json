@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "task": "Todo 9 fresh history-provenance visual and interaction QA",
+  "qa_verdict": "PASS",
+  "design_oracle_closeout": "NOT_RUN_BLOCKED",
+  "design_oracle_blocker": "Two required independent read-only visual reviewers did not return a usable PASS|REVISE|FAIL verdict; their responses were continuation-hook acknowledgements. This does not alter the direct browser observations below.",
+  "binding": {
+    "semantic_implementation_sha": "c9befa736e02a7f15f9b38661c198264cc715dc5",
+    "semantic_implementation_tree": "fda3f8bb69801138dfdafe174c6dfd01cf48b97f",
+    "evidence_head_sha": "2abdc4a72f56e5d5e9216ec1cabb7b30d2cc7764",
+    "evidence_tree_sha": "5220194e9836c1fc02ba2adbbdd79b11b04e9c5b",
+    "semantic_implementation_is_ancestor": true,
+    "stale_evidence_rejected": {
+      "head_sha": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+      "reason": "different candidate identity"
+    }
+  },
+  "preflight": {
+    "worktree_clean_before_evidence": true,
+    "node_modules_available": true,
+    "playwright_python_import": "PASS",
+    "in_app_browser": {
+      "attempted_first": true,
+      "result": "UNAVAILABLE",
+      "error": "agent is not defined"
+    }
+  },
+  "real_surface": {
+    "command": "npm run dev -- --host 127.0.0.1 --port 3199",
+    "requested_binding": "127.0.0.1:3199",
+    "actual_listener": "[::1]:3199 (PID 112116)",
+    "url": "http://localhost:3199/?visualFixture=ready-v1",
+    "http_statuses": [200, 200, 200, 200],
+    "browser": {
+      "driver": "Python Playwright sync API",
+      "binary": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "version": "150.0.7871.187",
+      "headless": true,
+      "context_cleanup": "PASS"
+    },
+    "navigation_timeout_ms": 30000,
+    "hung_server_timeout": "PASS: every route navigation completed HTTP 200 within the configured 30000 ms timeout"
+  },
+  "viewport_observables": {
+    "390x844": {"documentWidth": 390, "bodyWidth": 390, "recommendationCardCount": 2, "nowNextCardCount": 2, "purposePresetCount": 0, "rawAggregateScoreText": false, "rawAggregateScoreKey": false, "clippedPrimaryActions": []},
+    "430x932": {"documentWidth": 430, "bodyWidth": 430, "recommendationCardCount": 2, "nowNextCardCount": 2, "purposePresetCount": 0, "rawAggregateScoreText": false, "rawAggregateScoreKey": false, "clippedPrimaryActions": []},
+    "768x1024": {"documentWidth": 768, "bodyWidth": 768, "recommendationCardCount": 2, "nowNextCardCount": 2, "purposePresetCount": 0, "rawAggregateScoreText": false, "rawAggregateScoreKey": false, "clippedPrimaryActions": []},
+    "1616x923": {"documentWidth": 1616, "bodyWidth": 1616, "recommendationCardCount": 2, "nowNextCardCount": 2, "purposePresetCount": 0, "rawAggregateScoreText": false, "rawAggregateScoreKey": false, "clippedPrimaryActions": []}
+  },
+  "recommendation_dom": {
+    "exact_now_next_cards": true,
+    "visible_variant_maturity": "PROVISIONAL history-enhanced",
+    "selected_datetime_values": {"NOW": "2026-08-06T01:00:00Z", "NEXT": "2026-08-06T01:00:00Z"},
+    "source_datetime_values": ["2026-08-06T00:00:00Z", "2026-08-06T00:10:00Z"],
+    "raw_aggregate_score_claim_or_key": false
+  },
+  "interaction_390x844": {
+    "pointer_summary_click": {"details_open": true, "summary_height_px": 44, "fixed_reason_count": 3},
+    "keyboard": {"summary_focused": true, "enter_opens_details": true},
+    "source_timestamps": {"initially_in_dom": true, "visible_after_internal_details_scroll": true, "count": 4, "scrollport": {"clientHeight": 180, "scrollHeight": 410, "scrollTop_for_source_visibility": 230}}
+  },
+  "errors": {
+    "page_errors": [],
+    "product_or_route_console_errors": [],
+    "ignored_dev_font_load_errors": {
+      "count": 55,
+      "criterion": "all matched Not allowed to load local resource: file://.../.vinext/fonts/.../*.woff2",
+      "reason": "external local dev font asset loads only; no route JavaScript or product error"
+    }
+  },
+  "screenshots": [
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/390x844.png", "bytes": 148309, "sha256": "45d93743c06385c17631da245c6616588cc565506660a9ec32da68fc6c1fd56b", "png_signature": "89504e470d0a1a0a", "dimensions": [390,844]},
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/430x932.png", "bytes": 177314, "sha256": "e0de92dfdc10e708a4a0c9d3991fe8effe837538a24c384d6bda537b6603e70d", "png_signature": "89504e470d0a1a0a", "dimensions": [430,932]},
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/768x1024.png", "bytes": 278433, "sha256": "ac1193831b6f6e27bb222d1a7b66fe0e5dfaa4a451ea54047a4d24a255cd0230", "png_signature": "89504e470d0a1a0a", "dimensions": [768,1024]},
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/1616x923.png", "bytes": 453839, "sha256": "90e34eaded1534c982f6926742a57ab0e30931c189124273e0773ab6c42602c6", "png_signature": "89504e470d0a1a0a", "dimensions": [1616,923]},
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/390x844-expanded.png", "bytes": 133034, "sha256": "17b72152b5386151369d78669aeaec0ba9dcc12fce93c388621ec1c4293293db", "png_signature": "89504e470d0a1a0a", "dimensions": [390,844]},
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/390x844-repeat.png", "bytes": 133400, "sha256": "2f133478b2b0e6b287a44d6ecbdef8be94485a7b97c1e1a6292db2a097a6c956", "png_signature": "89504e470d0a1a0a", "dimensions": [390,844]},
+    {"path": ".omo/evidence/design-audit/task-09-history-provenance-fresh/390x844-source-times.png", "bytes": 130734, "sha256": "53e3cfad28ed4d7ca86a953f0b6cf72a2305c5a9fe93ad012d33022f898bf69b", "png_signature": "89504e470d0a1a0a", "dimensions": [390,844]}
+  ],
+  "auxiliary_probe": {
+    "invocation": "node tests/gates/task-09-surface-probe.mjs",
+    "result": "PASS",
+    "recursive_forbidden_score_key": false,
+    "accumulating": "base/ACCUMULATING",
+    "provisional": "history-enhanced/PROVISIONAL",
+    "stable": "history-enhanced/STABLE",
+    "mature": "history-enhanced/MATURE",
+    "artifacts": [".omo/evidence/design-audit/task-09-history-provenance-fresh/task-09-surface-probe.json", ".omo/evidence/design-audit/task-09-history-provenance-fresh/task-09-auxiliary-assertions.json"]
+  },
+  "adversarial_matrix": {
+    "stale_state": "PASS: 8997574 capture set rejected; all listed PNGs were created for 2abdc4a evidence HEAD/tree.",
+    "dirty_worktree": "PASS: clean before evidence; post-run changes are only this assigned evidence payload.",
+    "hung_server": "PASS: bounded navigation and explicit post-stop port check.",
+    "misleading_success": "PASS: direct HTTP 200, DOM, console and page-error checks recorded.",
+    "flaky_viewport": "PASS: 390x844 repeated capture created with direct DOM recheck.",
+    "repeated_interruption_cleanup": "PASS: browser contexts closed; listener PID 112116 stopped; port 3199 closed.",
+    "malformed_prompt_cancel": "N/A: this is visual-only local route QA; no prompt, cancellation, or malformed-input flow is present."
+  },
+  "cleanup": {"browser_context_closed": true, "dev_server_stopped": true, "port_3199_closed": true},
+  "evidence_artifacts": [
+    ".omo/evidence/design-audit/task-09-history-provenance-fresh/browser-observations.raw.json",
+    ".omo/evidence/design-audit/task-09-history-provenance-fresh/source-visibility.json",
+    ".omo/evidence/design-audit/task-09-history-provenance-fresh/cleanup-registration.json"
+  ]
+}

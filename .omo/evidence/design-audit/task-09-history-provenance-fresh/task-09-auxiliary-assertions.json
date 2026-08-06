@@ -1,0 +1,8 @@
+{
+  "verdict": "PASS",
+  "recursive_score_key": false,
+  "accumulating": "base/ACCUMULATING",
+  "provisional": "history-enhanced/PROVISIONAL",
+  "stable": "history-enhanced/STABLE",
+  "mature": "history-enhanced/MATURE"
+}
