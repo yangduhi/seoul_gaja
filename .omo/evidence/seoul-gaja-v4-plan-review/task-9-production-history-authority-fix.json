@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "task": "SC-T9-HISTORY-AUTHORITY",
+  "status": "PASS_LOCAL",
+  "verification_candidate": {
+    "head_sha": "ec704e0d31521d507a171688f3c62bac030b450a",
+    "tree_sha": "3dc867f02352b49016a8fc7d33aebd2ab689d889",
+    "branch": "codex/todo9-recommendations"
+  },
+  "scope": [
+    "server/product-read-model.ts",
+    "server/product-read-model-parsers.ts",
+    "app/_visual-evidence/ready-fixture.ts",
+    "tests/product/data/product-read-model.test.mjs",
+    "tests/product/data/recommendation-route-model.test.mjs"
+  ],
+  "pin_and_red": {
+    "authority": [
+      ".omo/authority-lock.json",
+      "docs/execution/AMENDMENT-v4.1.md",
+      ".omo/plans/seoul-gaja-v4-plan-review.md Todo 9",
+      "docs/codex-pack-v4/contracts/storage-schema.sql",
+      "docs/codex-pack-v4/contracts/history-maturity-contract.yaml"
+    ],
+    "red_invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+    "red_observable": "Before production changes, two added ProductViewModel tests failed: forged eligible weekday_hour_profile without raw rows was history-enhanced instead of base; eligible raw rows while profiles were ineligible did not enhance.",
+    "red_exit": 1
+  },
+  "derivation": {
+    "authority_query": "SELECT area_code, observation_bucket, crowd_level, population_min, population_max, availability, source_updated_at FROM raw_observation_15m",
+    "ignored_profile_fields": ["local_time_bucket", "elapsed_days", "coverage", "sample_count", "maturity", "computed_at", "crowd_rank_median"],
+    "time_basis": "Asia/Seoul weekday plus exact HH:00 or HH:30 from observation_bucket",
+    "rank": "At each normalized observation timestamp, rank valid categorical crowd values as count(cohort value < place value) / max(1, cohort size - 1).",
+    "metrics": "sampleCount is valid matching-bucket rows; missingCount is recognized unavailable/carried missing rows; coverage=sampleCount/(sampleCount+missingCount); elapsedDays=(max valid observation timestamp-min valid observation timestamp)/86400000; computedAt=max valid source_updated_at; median/IQR are derived server-side.",
+    "maturity": "minimum four valid samples; PROVISIONAL >=7 elapsed days and >=0.70 coverage; STABLE >=28 and >=0.80; MATURE >=56 and >=0.90; otherwise ACCUMULATING.",
+    "fail_closed": "Absent table/rows, malformed ISO/category/population rows, future raw timestamps, duplicate normalized area/bucket keys, sparse cells, and stale computedAt make history unavailable or base while catalog/current/forecast browsing remains READY."
+  },
+  "green": [
+    {
+      "scenario": "forged weekday_hour_profile cannot enable history",
+      "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+      "binary_observable": "ProductViewModel READY; history UNAVAILABLE; NOW results all base",
+      "artifact": "this record"
+    },
+    {
+      "scenario": "authoritative raw history at Seoul Thursday 09:30 derives enhancement",
+      "invocation": "node --input-type=module - (D1-like fixture probe)",
+      "binary_observable": "sampleCount=5, elapsedDays=28, coverage=1, STABLE, exact localTimeBucket=09:30, NOW history-enhanced, recursive public score key count=0",
+      "artifact": "this record"
+    },
+    {
+      "scenario": "duplicate/malformed raw observations fail closed without losing browsing",
+      "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+      "binary_observable": "ProductViewModel READY; history UNAVAILABLE; NOW base results",
+      "artifact": "this record"
+    }
+  ],
+  "automated_verification": [
+    {"invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy", "exit": 0, "observable": "7/7 passed"},
+    {"invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure", "exit": 0, "observable": "8/8 passed"},
+    {"invocation": "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/gates/task-09-repeat-probe.mjs tests/product/data/product-read-model.test.mjs tests/product/data/recommendation-route-model.test.mjs", "exit": 0, "observable": "34/34 passed; repeat probe green"},
+    {"invocation": "npx tsc --noEmit", "exit": 0, "observable": "type check clean"},
+    {"invocation": "npm run lint", "exit": 0, "observable": "no errors; only four pre-existing Todo 8 unused-variable warnings"},
+    {"invocation": "npm run build", "exit": 0, "observable": "vinext build complete"},
+    {"invocation": "git diff --check", "exit": 0, "observable": "no whitespace errors before evidence write"},
+    {"invocation": "python docs/execution/scripts/validate_authority_lock.py", "exit": 0, "observable": "PASS on ec704e0d31521d507a171688f3c62bac030b450a"}
+  ],
+  "manual_surface": {
+    "invocation": "node --input-type=module - (repo-native D1-like catalog/current/forecast/raw_observation_15m/forged weekday_hour_profile fixture through readProductViewModel and buildRecommendationSurface)",
+    "observable": "Forged profile plus absent raw produced READY/base; five authoritative raw observations per area produced exact 09:30 STABLE history-enhanced results; duplicate raw produced READY/base; recursive score key count was zero in every JSON result.",
+    "artifact": "this record"
+  },
+  "browser": {
+    "target": "http://localhost:3199/?visualFixture=ready-v1",
+    "in_app_browser": "NOT_RUN_BLOCKED: selected first, but local webview did not attach.",
+    "fallback": "Playwright loaded the route and checked 390x844, 430x932, 768x1024, and 1616x923; screenshot and DOM overflow probes were returned by the browser tool.",
+    "console": "11 errors were pre-existing dev-server file:// .vinext Geist font loads; no recommendation route runtime error was observed.",
+    "visual_gate": "NOT_RUN_BLOCKED for a 100-point design PASS because mengto-skills is unavailable and the fallback console contains font-load errors outside this Todo's owned files."
+  },
+  "adversarial_matrix": [
+    "forged profile authority fields ignored",
+    "malformed crowd-level prompt-like value fails closed",
+    "duplicate raw observation key fails closed",
+    "malformed non-ISO observation timestamp fails closed",
+    "stale raw-derived computedAt suppresses history-enhanced results",
+    "no public score key",
+    "repeat probe completes twice without flake"
+  ],
+  "boundaries": [
+    "NOT_RUN_BLOCKED: live D1 migration/backfill was not authorized and was not executed.",
+    "NOT_RUN_BLOCKED: live API, secret, push, merge, deploy, and Sites actions remain owner-controlled and untouched.",
+    "NOT_RUN_BLOCKED: no persisted local browser capture path was returned by the browser tool; browser observations above are tool-captured output."
+  ],
+  "cleanup": {
+    "dev_server": "stopped",
+    "port_3199": "closed",
+    "temporary_probe_files": "none created",
+    "preserved_untracked_receipt": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-current-head-final-verification.json"
+  },
+  "done_claim": {
+    "status": "PASS_LOCAL",
+    "criteria": ["raw-derived authority distinguished from forged profile fields", "required local gates exit 0", "no public score", "evidence non-empty", "only preserved existing untracked receipt before this evidence record"],
+    "next_owner_action": "Integration owner may review and cherry-pick the two implementation commits plus this evidence commit; live D1 migration remains explicitly blocked."
+  }
+}
