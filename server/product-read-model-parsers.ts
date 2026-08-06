@@ -62,7 +62,8 @@ export function parseSnapshot(rows: readonly D1Row[], catalog: readonly CatalogP
     const populationMin = nullableInteger(row.population_min);
     const populationMax = nullableInteger(row.population_max);
     const rawHash = nullableString(row.raw_hash);
-    if (place === undefined || seen.has(areaCode ?? "") || currentSnapshotId === null || currentCatalogVersion === null || availability === null || provenance === null || crowdLevel === null || sourceUpdatedAt === undefined || fetchedAt === null || storedAt === null || populationMin === undefined || populationMax === undefined || rawHash === undefined || (row.snapshot_status !== "accepted" && row.snapshot_status !== "replayed") || currentCatalogVersion !== place.catalogVersion || !validRange(populationMin, populationMax)) return { status: "REJECTED", reason: "MALFORMED_SNAPSHOT_ROW" };
+    if (areaCode === null || place === undefined || seen.has(areaCode)) return { status: "REJECTED", reason: "MALFORMED_SNAPSHOT_ROW" };
+    if (currentSnapshotId === null || currentCatalogVersion === null || availability === null || provenance === null || crowdLevel === null || sourceUpdatedAt === undefined || fetchedAt === null || storedAt === null || populationMin === undefined || populationMax === undefined || rawHash === undefined || (row.snapshot_status !== "accepted" && row.snapshot_status !== "replayed") || currentCatalogVersion !== place.catalogVersion || !validRange(populationMin, populationMax)) return { status: "REJECTED", reason: "MALFORMED_SNAPSHOT_ROW" };
     if (snapshotId !== null && currentSnapshotId !== snapshotId || catalogVersion !== null && currentCatalogVersion !== catalogVersion) return { status: "REJECTED", reason: "MISMATCHED_SNAPSHOT" };
     snapshotId = currentSnapshotId;
     catalogVersion = currentCatalogVersion;

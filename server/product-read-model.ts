@@ -153,9 +153,9 @@ export async function readProductViewModel(
     const snapshotResult = parseSnapshot(snapshotRows, catalogResult.places, now);
     if (snapshotResult.status !== "READY") return snapshotResult;
     const forecastResult = parseForecast(forecastRows, catalogResult.places, snapshotResult.view.snapshotId, now);
-    if (forecastResult.status === "REJECTED") return forecastResult;
+    if (forecastResult.status !== "READY") return forecastResult;
     const historyResult = parseHistory(historyRows, catalogResult.places);
-    if (historyResult.status === "REJECTED") return historyResult;
+    if (historyResult.status !== "READY") return historyResult;
     return {
       status: "READY",
       data: {
