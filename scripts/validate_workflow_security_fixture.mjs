@@ -149,7 +149,9 @@ async function main() {
     readFile(resolve(root, 'docs/execution/contracts/workflow-security-policy.json'), 'utf8'),
     readFile(resolve(process.cwd(), fixturePath), 'utf8'),
   ]);
-  process.stdout.write(`${JSON.stringify(evaluateWorkflowSecurityFixture(JSON.parse(fixtureText), JSON.parse(policyText)))}\n`);
+  const result = evaluateWorkflowSecurityFixture(JSON.parse(fixtureText), JSON.parse(policyText));
+  process.stdout.write(`${JSON.stringify(result)}\n`);
+  process.exitCode = result.verdict === 'ACCEPTED' ? 0 : 1;
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import test from 'node:test';
@@ -8,6 +9,7 @@ import { evaluateWorkflowSecurityFixture } from '../../scripts/validate_workflow
 
 const negativeRoot = resolve(process.cwd(), 'tests/fixtures/workflow-security/negative');
 const policyPath = resolve(process.cwd(), 'docs/execution/contracts/workflow-security-policy.json');
+const fixtureEvaluatorPath = resolve(process.cwd(), 'scripts/validate_workflow_security_fixture.mjs');
 const expectedCodes = Object.freeze({
   'expired-token.json': 'TOKEN_STATE_REJECTED',
   'invalid-date.json': 'INVALID_BACKFILL_RANGE',
@@ -31,6 +33,9 @@ for (const name of readdirSync(negativeRoot)) {
     assert.doesNotMatch(JSON.stringify(fixture), /(?:Bearer\s+[^\s]+|SITE_INGEST_TOKEN\s*=|sk-[a-z0-9_-]{8,})/i);
     const evaluation = evaluateWorkflowSecurityFixture(fixture, policy);
     assert.deepEqual(evaluation, { verdict: 'REJECTED', code: expectedCodes[name] });
+    const cliResult = spawnSync(process.execPath, [fixtureEvaluatorPath, resolve(negativeRoot, name)], { encoding: 'utf8' });
+    assert.notEqual(cliResult.status, 0, `rejected fixture CLI exit: ${name}`);
+    assert.match(cliResult.stdout, /"verdict":"REJECTED"/);
     if (fixture.kind === 'invalid_date_range') {
       assert.throws(() => validateBackfillRange(fixture.start_date, fixture.end_date));
     }

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import test from 'node:test';
@@ -8,6 +9,7 @@ import { evaluateWorkflowSecurityFixture } from '../../scripts/validate_workflow
 import { assertWorkflowSecurityBoundary } from './task-06-contract.mjs';
 
 const policyPath = resolve(process.cwd(), 'docs/execution/contracts/workflow-security-policy.json');
+const fixtureEvaluatorPath = resolve(process.cwd(), 'scripts/validate_workflow_security_fixture.mjs');
 
 test('accepts a strict ordered manual-backfill range within the policy bound', () => {
   const range = validateBackfillRange('2026-08-01', '2026-08-31');
@@ -24,6 +26,17 @@ test('accepts the redacted authorized workflow fixture', async () => {
     code: 'AUTHORIZED_MANUAL_BACKFILL',
   });
   assert.equal(fixture.secret_status, 'REDACTED');
+});
+
+test('CLI exits zero only for accepted redacted fixtures', () => {
+  for (const fixture of [
+    'tests/fixtures/workflow-security/positive/valid-manual-backfill.json',
+    'tests/fixtures/workflow-security/positive/rotation-cutover.json',
+  ]) {
+    const result = spawnSync(process.execPath, [fixtureEvaluatorPath, fixture], { encoding: 'utf8' });
+    assert.equal(result.status, 0, `accepted fixture CLI exit: ${fixture}`);
+    assert.match(result.stdout, /"verdict":"ACCEPTED"/);
+  }
 });
 
 test('rejects an authorized fixture when its canonical ingest method or path changes', async () => {
