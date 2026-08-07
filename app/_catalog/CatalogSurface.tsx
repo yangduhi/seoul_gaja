@@ -200,7 +200,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
                     summary="추천에 사용된 원천별 기준 시각입니다. 수치 점수는 표시하지 않습니다."
                     title={`${item.mode} 추천 근거`}
                   />
-                  {recommendedRow && <button className={`${styles.detailAction} sg-current-decision-cta`} data-current-decision={item.mode === "NOW" ? "true" : undefined} type="button" onClick={() => openPlace(recommendedRow)}>추천 장소 자세히 보기</button>}
+                  {recommendedRow && <button className={`${styles.detailAction}${item.mode === "NOW" ? " sg-current-decision-cta" : ""}`} data-current-decision={item.mode === "NOW" ? "true" : undefined} type="button" onClick={() => openPlace(recommendedRow)}>추천 장소 자세히 보기</button>}
                 </> : <ChartAlternatives
                   emptyMessage={item.browseCopy ?? "필수 원천값이 없어 추천을 보류합니다. 장소 목록은 계속 둘러볼 수 있습니다."}
                   rows={[]}

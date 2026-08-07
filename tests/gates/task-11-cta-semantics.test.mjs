@@ -70,7 +70,8 @@ async function renderedRecommendationCards() {
     const cardHtml = html.slice(match.index, starts[index + 1]?.index ?? html.length);
     return {
       mode: match[1],
-      ctaCount: (cardHtml.match(/sg-current-decision-cta/g) ?? []).length,
+      ctaCount: (cardHtml.match(/추천 장소 자세히 보기/g) ?? []).length,
+      currentClassCount: (cardHtml.match(/sg-current-decision-cta/g) ?? []).length,
       currentMarkerCount: (cardHtml.match(/data-current-decision="true"/g) ?? []).length,
     };
   });
@@ -96,4 +97,7 @@ test("the current-decision marker is unique to the NOW CTA while NEXT stays reac
   assert.equal(cards.reduce((sum, card) => sum + card.currentMarkerCount, 0), 1);
   assert.deepEqual(markerCards.map(({ mode }) => mode), ["NOW"]);
   assert.equal(cards.find(({ mode }) => mode === "NEXT")?.ctaCount, 1);
+  assert.equal(cards.reduce((sum, card) => sum + card.currentClassCount, 0), 1);
+  assert.equal(cards.find(({ mode }) => mode === "NOW")?.currentClassCount, 1);
+  assert.equal(cards.find(({ mode }) => mode === "NEXT")?.currentClassCount, 0);
 });
