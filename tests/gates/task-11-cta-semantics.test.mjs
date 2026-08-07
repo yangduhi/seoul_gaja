@@ -231,6 +231,10 @@ test("Given the recommendation surface, when each supported viewport activates N
     await page.waitForFunction(() => window.location.pathname === "/places/alpha");
     assert.deepEqual(await page.evaluate(() => history.state), { entry: "sheet" }, `${viewport.width}x${viewport.height}: canonical history state is preserved`);
     assert.equal(await page.locator("[data-detail-surface]").count(), 1, `${viewport.width}x${viewport.height}: activation renders one real detail surface`);
+    await page.keyboard.press("Escape");
+    await page.waitForFunction(() => window.location.pathname === "/");
+    await page.waitForFunction(() => document.activeElement?.id === "place-alpha");
+    assert.equal(await page.evaluate(() => document.activeElement?.id), "place-alpha", `${viewport.width}x${viewport.height}: Escape restores focus to the originating place control`);
     await page.close();
   }
 });
