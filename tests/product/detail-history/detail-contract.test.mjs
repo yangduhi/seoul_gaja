@@ -5,6 +5,9 @@ import test from "node:test";
 const route = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetailClient.tsx", import.meta.url), "utf8");
 const page = await readFile(new URL("../../../app/places/[areaCode]/page.tsx", import.meta.url), "utf8");
 const styles = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetail.module.css", import.meta.url), "utf8");
+const catalog = await readFile(new URL("../../../app/_catalog/CatalogSurface.tsx", import.meta.url), "utf8");
+const detailState = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetailClient.tsx", import.meta.url), "utf8");
+const detailSheet = await readFile(new URL("../../../app/_design/PlaceDetailSheet.tsx", import.meta.url), "utf8");
 
 test("detail route is bound to the truthful D1 read model", () => {
   assert.match(page, /readProductViewModel/);
@@ -38,4 +41,23 @@ test("detail material and hierarchy consume canonical design tokens", () => {
   assert.match(styles, /line-height: var\(--sg-typography-body-line-height\)/);
   assert.match(styles, /saturate\(var\(--sg-glass-(?:strong|floating)-saturation\)\)/);
   assert.doesNotMatch(styles, /blur\(26px\) saturate\(145%\)/);
+});
+
+test("catalog selection renders a real transient detail sheet and restores the prior selection", () => {
+  assert.match(catalog, /PlaceDetailSheet/);
+  assert.match(catalog, /const priorSelection = selectedAreaCode/);
+  assert.match(catalog, /selection: priorSelection/);
+  assert.match(catalog, /openInAppPlaceDetail/);
+  assert.match(detailState, /history\.pushState\(\{ entry: "sheet" \}/);
+  assert.doesNotMatch(catalog, /id: "saved"/);
+  assert.doesNotMatch(catalog, /id: "settings"/);
+  assert.doesNotMatch(route, /id: "saved"/);
+  assert.doesNotMatch(route, /id: "settings"/);
+});
+
+test("transient detail sheet traps keyboard focus and makes the background inert", () => {
+  assert.match(detailSheet, /event\.key === "Tab"/);
+  assert.match(detailSheet, /sibling\.inert = true/);
+  assert.match(detailSheet, /lastElement\.focus\(\)/);
+  assert.match(detailSheet, /firstElement\.focus\(\)/);
 });

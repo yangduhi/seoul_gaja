@@ -9,6 +9,7 @@ import {
   createShareRequest,
   resolveDetailEntry,
 } from '../../server/detail-state.mjs';
+import * as detailState from '../../server/detail-state.mjs';
 
 const fixturePath = resolve(import.meta.dirname, '..', 'fixtures', 'task-10', 'detail-state.json');
 
@@ -53,4 +54,34 @@ test('Given unavailable or expired snapshots, When detail navigation is created,
     warningCopy: 'Recent data cannot be confirmed.',
     disabledActions: ['forecast', 'better-time'],
   });
+});
+
+test('Given simultaneous failures, When state precedence resolves, Then invalid selection and source availability win retry and announcement', () => {
+  assert.equal(typeof detailState.resolveUiState, 'function');
+  const invalid = detailState.resolveUiState({ snapshot: 'unavailable', map: 'unavailable', history: 'ACCUMULATING', geolocation: 'timeout', selection: 'invalid' });
+  assert.equal(invalid.retryTarget, 'catalog');
+  assert.equal(invalid.announcement, 'Place not found. The current official catalog is available.');
+
+  const unavailable = detailState.resolveUiState({ snapshot: 'unavailable', map: 'unavailable', history: 'MATURE', geolocation: 'timeout', selection: 'valid' });
+  assert.equal(unavailable.retryTarget, 'snapshot');
+});
+
+test('Given no official-place results and hostile text, When search resolves, Then it returns inert data with a clear action', async () => {
+  const record = await fixture();
+  assert.equal(typeof detailState.resolveOfficialSearch, 'function');
+  assert.deepEqual(detailState.resolveOfficialSearch(record.catalog, '<img src=x onerror=alert(1)>'), {
+    kind: 'NO_RESULTS',
+    query: '<img src=x onerror=alert(1)>',
+    places: [],
+    clearAvailable: true,
+    announcement: 'No official places found. Clear search to browse the catalog.',
+  });
+});
+
+test('Given every share outcome, When it resolves, Then success, cancellation, clipboard fallback, and retry are explicit', () => {
+  assert.equal(typeof detailState.resolveShareOutcome, 'function');
+  assert.deepEqual(detailState.resolveShareOutcome('shared'), { status: 'SUCCESS', announcement: 'Canonical place link shared.', retryTarget: 'none' });
+  assert.deepEqual(detailState.resolveShareOutcome('cancelled'), { status: 'CANCELLED', announcement: 'Sharing cancelled.', retryTarget: 'share' });
+  assert.deepEqual(detailState.resolveShareOutcome('clipboard'), { status: 'SUCCESS', announcement: 'Canonical place link copied.', retryTarget: 'none' });
+  assert.deepEqual(detailState.resolveShareOutcome('failed'), { status: 'FAILED', announcement: 'Sharing failed. Copy the canonical URL from the address bar.', retryTarget: 'share' });
 });

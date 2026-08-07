@@ -38,7 +38,7 @@ export function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: st
   const closeRef = useRef<HTMLButtonElement>(null);
   const [announcement, setAnnouncement] = useState("");
   useEffect(() => { const prior = document.activeElement instanceof HTMLElement ? document.activeElement : null; closeRef.current?.focus(); return () => { if (prior?.isConnected) prior.focus(); }; }, []);
-  useEffect(() => { const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") window.history.back(); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, []);
+  useEffect(() => { const onKey = (event: KeyboardEvent) => { if (event.key === "Escape" && currentSurface() !== "FULL_SCREEN") window.history.back(); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, []);
   function handleDialogKeyDown(event: ReactKeyboardEvent<HTMLElement>): void {
     if (event.key !== "Tab") return;
     const focusable = dialogFocusableElements(event.currentTarget);
@@ -54,9 +54,39 @@ export function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: st
   const forecast = isUnavailable ? [] : payload.forecast;
   const history = payload.history;
   const panelClass = surface === "FULL_SCREEN" ? styles.panel : `${styles.panel} ${styles.sheet}`;
-  async function share() { const url = new URL(`/places/${encodeURIComponent(areaCode)}`, window.location.origin).toString(); try { if (navigator.share !== undefined) { await navigator.share({ title: payload.areaName ?? "서울 공식 장소", url }); setAnnouncement("공식 장소 링크를 공유했습니다."); } else { await navigator.clipboard.writeText(url); setAnnouncement("공식 장소 링크를 복사했습니다."); } } catch (error) { if (error instanceof DOMException && error.name === "AbortError") setAnnouncement("공유를 취소했습니다."); else setAnnouncement("공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요."); } }
+  async function copyCanonicalUrl(url: string): Promise<boolean> {
+    if (navigator.clipboard === undefined) return false;
+    try {
+      await navigator.clipboard.writeText(url);
+      return true;
+    } catch (error) {
+      if (error instanceof DOMException) return false;
+      throw error;
+    }
+  }
+  async function share() {
+    const url = new URL(`/places/${encodeURIComponent(areaCode)}`, window.location.origin).toString();
+    if (navigator.share === undefined) {
+      setAnnouncement(await copyCanonicalUrl(url) ? "공식 장소 링크를 복사했습니다." : "공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요.");
+      return;
+    }
+    try {
+      await navigator.share({ title: payload.areaName ?? "서울 공식 장소", url });
+      setAnnouncement("공식 장소 링크를 공유했습니다.");
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        setAnnouncement("공유를 취소했습니다.");
+        return;
+      }
+      setAnnouncement(await copyCanonicalUrl(url) ? "공유 대신 공식 장소 링크를 복사했습니다." : "공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요.");
+    }
+  }
+  function closeDetail(): void {
+    if (surface === "FULL_SCREEN") window.location.assign("/");
+    else window.history.back();
+  }
   return <main className={styles.surface} data-detail-surface={surface} data-area-code={areaCode} aria-live="polite"><section className={panelClass} role={surface === "FULL_SCREEN" ? undefined : "dialog"} aria-modal={surface === "FULL_SCREEN" ? undefined : true} aria-label={`${payload.areaName ?? areaCode} 상세`} onKeyDown={surface === "FULL_SCREEN" ? undefined : handleDialogKeyDown}>
-    <header className={styles.header}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h1 className={styles.title}>{payload.areaName ?? areaCode}</h1><p className={styles.subtitle}>{snapshot === null ? "원천 데이터 연결 대기" : source(snapshot)}</p></div><button ref={closeRef} className={styles.close} type="button" onClick={() => window.history.back()}>닫기</button></header>
+    <header className={styles.header}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h1 className={styles.title}>{payload.areaName ?? areaCode}</h1><p className={styles.subtitle}>{snapshot === null ? "원천 데이터 연결 대기" : source(snapshot)}</p></div><button ref={closeRef} className={styles.close} type="button" onClick={closeDetail}>{surface === "FULL_SCREEN" ? "목록으로" : "닫기"}</button></header>
     <p className={styles.announcement} aria-live="polite">{announcement}</p>
     <GlassPanel depth="floating" className={styles.surfaceHint}>원천 데이터와 선택 상태를 공유하는 공식 장소 상세입니다.</GlassPanel>
     <section className={styles.statusCard} aria-label="현재 혼잡도"><div className={styles.statusLine}><span className={styles.badge} data-level={snapshot?.crowdLevel ?? "UNKNOWN"}>{level(snapshot?.crowdLevel ?? "UNKNOWN")}</span><span className={styles.caption}>{snapshot?.freshness ?? "확인 대기"}</span></div><p className={styles.range}>{range(snapshot)}</p><p className={styles.caption}>{snapshot?.availability === "carried_forward" ? "가장 최근에 확인된 관측을 표시합니다." : snapshot?.availability === "expired" ? "최근 데이터를 확인할 수 없습니다." : snapshot?.availability === "unavailable" ? "현재 혼잡 데이터가 없습니다." : "추정 범위 · 실제 현장과 차이가 있을 수 있습니다."}</p></section>
@@ -65,5 +95,5 @@ export function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: st
     <section className={styles.section} aria-label="생활 정보"><h2>주변 생활 정보</h2><dl className={styles.metricGrid}>{["주차", "따릉이", "사고", "행사"].map((label) => <div key={label} className={styles.metric}><dt>{label}</dt><dd>연결 대기</dd></div>)}</dl></section>
     <div className={styles.actions}><a className={styles.mapLink} href={`https://map.kakao.com/?q=${encodeURIComponent(payload.areaName ?? areaCode)}`} target="_blank" rel="noreferrer">카카오맵</a><a className={styles.mapLink} href={`https://map.naver.com/p/search/${encodeURIComponent(payload.areaName ?? areaCode)}`} target="_blank" rel="noreferrer">네이버지도</a><button className={styles.share} type="button" onClick={share}>가족과 공유</button><Link className={styles.back} href="/">목록으로 돌아가기</Link></div><p className={styles.caption}>이 링크는 공식 장소만 식별하며 현재 위치를 포함하지 않습니다.</p>
     <section className={styles.section} aria-label="히스토리 인사이트"><div className={styles.sectionHeader}><h2>히스토리 인사이트</h2><span className={styles.caption}>{history[0]?.maturity ?? "UNAVAILABLE"}</span></div>{history.length === 0 ? <p className={styles.notice}>데이터가 축적되면 요일×시간 패턴을 표시합니다. 결측값은 0으로 대체하지 않습니다.</p> : <><p className={styles.caption}>공식 관측 패턴 · 유효 샘플 {history.reduce((sum, row) => sum + row.sampleCount, 0).toLocaleString("ko-KR")}개</p><div className={styles.heatmap} aria-label="요일별 히스토리 패턴">{history.slice(0, 28).map((row, index) => <div key={`${row.weekday}-${row.hour}-${index}`}><span className={styles.cell} data-missing={row.crowdRankMedian === null} title={`${row.weekday}요일 ${row.hour}시`} /><span className={styles.cellLabel}>{row.crowdRankMedian === null ? "—" : `${row.hour}시`}</span></div>)}</div></>}</section>
-  </section><Navigation activeId="map" items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }, { id: "saved", label: "저장" }, { id: "settings", label: "설정" }]} label="주요 화면" onSelect={(item) => { if (item.id === "list") window.location.assign("/"); }} /></main>;
+  </section><Navigation activeId="map" items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }]} label="주요 화면" onSelect={(item) => { if (item.id === "list") window.location.assign("/"); }} /></main>;
 }

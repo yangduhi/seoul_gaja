@@ -1,0 +1,1569 @@
+{
+  "schema_version": 1,
+  "origin": "http://[::1]:41710",
+  "chrome": "150.0.7871.187",
+  "observations": [
+    {
+      "scenario": "in-app-sheet-back-focus-scroll-repeat",
+      "viewport": {
+        "name": "390x844",
+        "width": 390,
+        "height": 844
+      },
+      "initialHttpStatus": 200,
+      "initialHistoryLength": 2,
+      "initialScrollY": 0,
+      "sheetState": {
+        "pathname": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "historyLength": 3
+      },
+      "focusTrap": {
+        "initialFocus": "상세 닫기",
+        "wrappedBackward": "공유 가능한 전체 화면 링크",
+        "wrappedForward": "상세 닫기",
+        "inertBackgroundCount": 10
+      },
+      "expandDidNotAddHistory": true,
+      "focusedAfterTab": "공유 가능한 전체 화면 링크",
+      "restored": {
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "secondRestore": {
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "minTouchTarget": 44,
+      "undersizedTargets": [],
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "fonts": {
+        "status": "loaded",
+        "bodyFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans KR\", sans-serif"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses": [
+        {
+          "url": "http://[::1]:41710/?visualFixture=ready-v1",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/entry-browser",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/globals.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@vite/client",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@react-refresh",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vite/dist/client/env.mjs",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vinext-app-browser-entry",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-entry.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/headers.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-render-mode.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-safety.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/window-next.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-cache-busting.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements-wire.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/error-boundary.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/slot.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-action-result.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-stream.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-error.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-hydration.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay-store.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-navigation-controller.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/server-action-not-found.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/navigation.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/hash.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/navigation-signal.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-mounted-slots-header.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/empty-module.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/base-path.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-trace.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/artifact-compatibility.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/react/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/core/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-references",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-planner.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-visible-commit.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-utils.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/readonly-url-search-params.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/chunk-CO3PsZeE.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/shared-BViDMJTQ.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/dist-rz-Bnebz.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom_client.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786066524078",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/layout-segment-context.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/GlassPanel.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/Navigation.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetailClient.tsx?t=1786066681422",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/next_link.js?v=750df1db",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/headers-CGA_5UsR.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/query-B9-u6EDb.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/PlaceDetailSheet.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/.rsc?visualFixture=ready-v1&_rsc",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "scenario": "in-app-sheet-back-focus-scroll-repeat",
+      "viewport": {
+        "name": "430x932",
+        "width": 430,
+        "height": 932
+      },
+      "initialHttpStatus": 200,
+      "initialHistoryLength": 2,
+      "initialScrollY": 0,
+      "sheetState": {
+        "pathname": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "historyLength": 3
+      },
+      "focusTrap": {
+        "initialFocus": "상세 닫기",
+        "wrappedBackward": "공유 가능한 전체 화면 링크",
+        "wrappedForward": "상세 닫기",
+        "inertBackgroundCount": 10
+      },
+      "expandDidNotAddHistory": true,
+      "focusedAfterTab": "공유 가능한 전체 화면 링크",
+      "restored": {
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "secondRestore": {
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "minTouchTarget": 44,
+      "undersizedTargets": [],
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "fonts": {
+        "status": "loaded",
+        "bodyFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans KR\", sans-serif"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses": [
+        {
+          "url": "http://[::1]:41710/?visualFixture=ready-v1",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/globals.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/entry-browser",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@vite/client",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vite/dist/client/env.mjs",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@react-refresh",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vinext-app-browser-entry",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-entry.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/headers.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-safety.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-render-mode.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/window-next.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements-wire.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-cache-busting.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/slot.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-action-result.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/error-boundary.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-stream.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-error.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay-store.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-hydration.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-navigation-controller.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/server-action-not-found.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/navigation.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-mounted-slots-header.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/hash.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/artifact-compatibility.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/empty-module.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-visible-commit.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-trace.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-planner.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/core/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/navigation-signal.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-references",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/base-path.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/react/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-utils.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/readonly-url-search-params.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/chunk-CO3PsZeE.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/dist-rz-Bnebz.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/shared-BViDMJTQ.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom_client.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786066524078",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/layout-segment-context.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/GlassPanel.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/Navigation.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/PlaceDetailSheet.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetailClient.tsx?t=1786066681422",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/next_link.js?v=750df1db",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/headers-CGA_5UsR.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/query-B9-u6EDb.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/.rsc?visualFixture=ready-v1&_rsc",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "scenario": "in-app-sheet-back-focus-scroll-repeat",
+      "viewport": {
+        "name": "768x1024",
+        "width": 768,
+        "height": 1024
+      },
+      "initialHttpStatus": 200,
+      "initialHistoryLength": 2,
+      "initialScrollY": 0,
+      "sheetState": {
+        "pathname": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "historyLength": 3
+      },
+      "focusTrap": {
+        "initialFocus": "상세 닫기",
+        "wrappedBackward": "공유 가능한 전체 화면 링크",
+        "wrappedForward": "상세 닫기",
+        "inertBackgroundCount": 10
+      },
+      "expandDidNotAddHistory": true,
+      "focusedAfterTab": "공유 가능한 전체 화면 링크",
+      "restored": {
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "secondRestore": {
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "minTouchTarget": 44,
+      "undersizedTargets": [],
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "fonts": {
+        "status": "loaded",
+        "bodyFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans KR\", sans-serif"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [],
+      "responses": [
+        {
+          "url": "http://[::1]:41710/?visualFixture=ready-v1",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/globals.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/entry-browser",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@react-refresh",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@vite/client",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vite/dist/client/env.mjs",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vinext-app-browser-entry",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-entry.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/headers.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-safety.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-stream.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-action-result.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-render-mode.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/slot.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/window-next.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-cache-busting.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements-wire.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-error.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/navigation.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-navigation-controller.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-hydration.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay-store.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/error-boundary.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/server-action-not-found.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-mounted-slots-header.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/core/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/base-path.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-planner.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-visible-commit.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-references",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/navigation-signal.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/hash.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/artifact-compatibility.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-trace.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/empty-module.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/react/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-utils.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/chunk-CO3PsZeE.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/readonly-url-search-params.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/dist-rz-Bnebz.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/shared-BViDMJTQ.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom_client.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/layout-segment-context.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786066524078",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/GlassPanel.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/Navigation.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/PlaceDetailSheet.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetailClient.tsx?t=1786066681422",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/next_link.js?v=750df1db",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/headers-CGA_5UsR.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/query-B9-u6EDb.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/.rsc?visualFixture=ready-v1&_rsc",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "scenario": "in-app-sheet-back-focus-scroll-repeat",
+      "viewport": {
+        "name": "1616x923",
+        "width": 1616,
+        "height": 923
+      },
+      "initialHttpStatus": 200,
+      "initialHistoryLength": 2,
+      "initialScrollY": 0,
+      "sheetState": {
+        "pathname": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "historyLength": 3
+      },
+      "focusTrap": null,
+      "expandDidNotAddHistory": true,
+      "focusedAfterTab": "Beta Place 상세 보기",
+      "restored": {
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "secondRestore": {
+        "activeId": "place-alpha",
+        "scrollY": 0
+      },
+      "minTouchTarget": 44,
+      "undersizedTargets": [],
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "fonts": {
+        "status": "loaded",
+        "bodyFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Noto Sans KR\", sans-serif"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedRequests": [
+        {
+          "url": "http://[::1]:41710/.rsc?visualFixture=ready-v1&_rsc",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "responses": [
+        {
+          "url": "http://[::1]:41710/?visualFixture=ready-v1",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/globals.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/entry-browser",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@vite/client",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@react-refresh",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vite/dist/client/env.mjs",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vinext-app-browser-entry",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-entry.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/headers.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-render-mode.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-safety.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements-wire.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-elements.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/window-next.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-rsc-cache-busting.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/instrumentation-client.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/slot.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-action-result.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-stream.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/error-boundary.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-hydration.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-state.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-error.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/server-action-not-found.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay-store.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-navigation-controller.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/navigation.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/dev-error-overlay.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/artifact-compatibility.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/client/empty-module.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-mounted-slots-header.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/base-path.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/hash.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/utils/navigation-signal.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-trace.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/core/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/react/browser.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/navigation-planner.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-references",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/url-utils.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/server/app-browser-visible-commit.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/readonly-url-search-params.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/chunk-CO3PsZeE.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/shared-BViDMJTQ.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/@vitejs/plugin-rsc/dist/dist-rz-Bnebz.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom_client.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-dom.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react-server-dom-webpack_client__browser.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786066524078",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/@fs/D:/vscode/seoul_gaja-worktrees/prep-v4-1/node_modules/vinext/dist/shims/layout-segment-context.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/GlassPanel.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/Navigation.tsx",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_design/PlaceDetailSheet.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d1c57ae9",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetailClient.tsx?t=1786066681422",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/_catalog/CatalogSurface.tsx?t=1786068267500",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/app/places/[areaCode]/PlaceDetail.module.css",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/next_link.js?v=750df1db",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/headers-CGA_5UsR.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/node_modules/.vite/deps/query-B9-u6EDb.js?v=9e48ff1b",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/.rsc?visualFixture=ready-v1&_rsc",
+          "status": 200
+        },
+        {
+          "url": "http://[::1]:41710/favicon.svg",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "scenario": "direct-reload-share-invalid",
+      "directHttpStatus": 200,
+      "direct": {
+        "pathname": "/places/alpha",
+        "state": null,
+        "surface": "FULL_SCREEN",
+        "dialogs": 0
+      },
+      "reloaded": {
+        "state": null,
+        "surface": "FULL_SCREEN"
+      },
+      "shareSuccess": {
+        "payload": {
+          "title": "서울 공식 장소",
+          "url": "http://[::1]:41710/places/alpha"
+        },
+        "announcement": "공식 장소 링크를 공유했습니다."
+      },
+      "shareCancelled": "공유를 취소했습니다.",
+      "shareClipboardFallback": {
+        "value": "http://[::1]:41710/places/alpha",
+        "announcement": "공유 대신 공식 장소 링크를 복사했습니다."
+      },
+      "invalid": {
+        "pathname": "/places/does-not-exist",
+        "copy": "공식 장소를 찾을 수 없습니다현재 공식 목록에서 사라진 장소입니다. 최신 카탈로그에서 다시 선택해 주세요.공식 장소 목록으로",
+        "robots": "noindex, nofollow"
+      },
+      "consoleErrors": []
+    },
+    {
+      "scenario": "hostile-search-clear-geolocation-map-failures",
+      "noResults": "공식 장소 검색 결과가 없습니다. 검색어를 지우면 전체 목록을 볼 수 있습니다. ",
+      "hostileMarkupCount": 0,
+      "geoAnnouncement": [
+        "공식 장소 2곳을 표시합니다. 위치 요청 시간이 초과되었습니다. 내 주변 다시 시도를 선택하세요.",
+        "서울 전체 분위기2곳 확인데이터 있는 곳내 주변 다시 시도주소 검색오전 09:00 · 원천 시각 기준",
+        "NOW기본 · 현재와 공식 예보Alpha Place · 8. 6. 오전 10:00근거와 원천 시각같은 시각의 현재 혼잡도 비교 · 8. 6. 오전 09:00같은 예보 구간의 공식 혼잡도 비교 · 8. 6. 오전 09:00activeSnapshot: 8. 6. 오전 09:00currentCrowd: 8. 6. 오전 09:00officialForecast: 8. 6. 오전 09:00NEXT기본 · 현재와 공식 예보Alpha Place · 8. 6. 오전 10:00근거와 원천 시각같은 시각의 현재 혼잡도 비교 · 8. 6. 오전 09:00같은 예보 구간의 공식 혼잡도 비교 · 8. 6. 오전 09:00activeSnapshot: 8. 6. 오전 09:00currentCrowd: 8. 6. 오전 09:00officialForecast: 8. 6. 오전 09:00"
+      ],
+      "retryVisible": true,
+      "deniedAnnouncement": "공식 장소 2곳을 표시합니다. 위치 권한이 없어 공식 목록으로 계속합니다.",
+      "addressNavigation": "https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8",
+      "mapFailure": {
+        "copy": "지도를 불러오지 못했습니다",
+        "retryTarget": true,
+        "catalogStillPresent": true
+      }
+    }
+  ]
+}

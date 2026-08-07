@@ -9,6 +9,7 @@ import {
   createShareRequest,
   resolveDetailEntry,
 } from '../../server/detail-state.mjs';
+import * as detailState from '../../server/detail-state.mjs';
 
 const fixturePath = resolve(import.meta.dirname, '..', 'fixtures', 'task-10', 'detail-state.json');
 
@@ -61,4 +62,35 @@ test('Given implemented state axes, When the matrix is generated, Then every com
     assert.equal(typeof entry.retryTarget, 'string');
     assert.equal(typeof entry.announcement, 'string');
   }
+});
+
+test('Given official-place search input, When it is resolved, Then results and clear affordance remain catalog-only', async () => {
+  const record = await fixture();
+  assert.equal(typeof detailState.resolveOfficialSearch, 'function');
+
+  assert.deepEqual(detailState.resolveOfficialSearch(record.catalog, ' alpha '), {
+    kind: 'RESULTS',
+    query: 'alpha',
+    places: [record.catalog[0]],
+    clearAvailable: true,
+    announcement: '1 official place found.',
+  });
+  assert.deepEqual(detailState.resolveOfficialSearch(record.catalog, ''), {
+    kind: 'CATALOG',
+    query: '',
+    places: record.catalog,
+    clearAvailable: false,
+    announcement: '2 official places available.',
+  });
+});
+
+test('Given detail expansion or address lookup, When the action resolves, Then no duplicate app history route is created', () => {
+  assert.equal(typeof detailState.toggleDetailExpansion, 'function');
+  assert.equal(typeof detailState.createAddressNavigation, 'function');
+  assert.deepEqual(detailState.toggleDetailExpansion(false), { expanded: true, historyCommand: 'NONE' });
+  assert.deepEqual(detailState.createAddressNavigation('Seoul Station'), {
+    kind: 'EXTERNAL_NAVIGATION',
+    url: 'https://map.kakao.com/?q=Seoul%20Station',
+    appRoute: null,
+  });
 });

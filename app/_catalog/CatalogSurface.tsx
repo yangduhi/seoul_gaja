@@ -2,8 +2,9 @@
 
 import { GlassPanel } from "../_design/GlassPanel";
 import { Navigation } from "../_design/Navigation";
+import { PlaceDetailSheet } from "../_design/PlaceDetailSheet";
 import { useEffect, useMemo, useState } from "react";
-import { openInAppPlaceDetail } from "../places/[areaCode]/PlaceDetailClient";
+import { openInAppPlaceDetail, restorePriorPlaceContext } from "../places/[areaCode]/PlaceDetailClient";
 import styles from "./CatalogSurface.module.css";
 
 export type CatalogRow = Readonly<{
@@ -82,21 +83,38 @@ function eventSelection(event: Event): string | null {
 export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason, initialSelectedAreaCode }: CatalogSurfaceProps) {
   const [query, setQuery] = useState("");
   const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(initialSelectedAreaCode ?? null);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [compactDetail, setCompactDetail] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [availableOnly, setAvailableOnly] = useState(false);
   const [geoState, setGeoState] = useState<"idle" | "denied" | "timeout">("idle");
   const [mapRetry, setMapRetry] = useState(0);
   useEffect(() => {
     const onSelection = (event: Event) => setSelectedAreaCode(eventSelection(event));
+    const onHistoryRestore = () => {
+      const restore = restorePriorPlaceContext();
+      setSelectedAreaCode(restore?.selection ?? null);
+      setSheetOpen(false);
+      setExpanded(false);
+    };
     window.addEventListener("seoul-gaja:detail-selection", onSelection);
-    window.addEventListener("seoul-gaja:detail-restored", onSelection);
+    window.addEventListener("popstate", onHistoryRestore);
     return () => {
       window.removeEventListener("seoul-gaja:detail-selection", onSelection);
-      window.removeEventListener("seoul-gaja:detail-restored", onSelection);
+      window.removeEventListener("popstate", onHistoryRestore);
     };
+  }, []);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1460px)");
+    const update = () => setCompactDetail(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
   }, []);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ko-KR");
-    return normalized.length === 0 ? catalog : catalog.filter((row) => row.areaName.toLocaleLowerCase("ko-KR").includes(normalized));
-  }, [catalog, query]);
+    return catalog.filter((row) => (!availableOnly || row.availability !== "unavailable") && (normalized.length === 0 || row.areaName.toLocaleLowerCase("ko-KR").includes(normalized)));
+  }, [availableOnly, catalog, query]);
   const selectedRow = useMemo(() => catalog.find((row) => row.areaCode === selectedAreaCode) ?? filtered[0] ?? null, [catalog, filtered, selectedAreaCode]);
 
   function requestLocation() {
@@ -105,8 +123,14 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
   }
 
   function openPlace(row: CatalogRow) {
+    const priorSelection = selectedAreaCode;
     setSelectedAreaCode(row.areaCode);
-    openInAppPlaceDetail(row.areaCode, { selection: row.areaCode, scrollY: window.scrollY, focusTarget: `place-${row.areaCode}` });
+    setSheetOpen(true);
+    openInAppPlaceDetail(row.areaCode, { selection: priorSelection, scrollY: window.scrollY, focusTarget: `place-${row.areaCode}` });
+  }
+
+  function closePlace() {
+    window.history.back();
   }
 
   return (
@@ -124,14 +148,20 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
             <input id="place-search" className={styles.searchInput} value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Escape") setQuery(""); }} placeholder="명소나 동네를 찾아보세요" />
             {query.length > 0 && <button className={styles.clearButton} type="button" aria-label="검색어 지우기" onClick={() => setQuery("")}>×</button>}
           </label>
+          <p className={styles.srOnly} aria-live="polite">{filtered.length === 0 ? "공식 장소 검색 결과가 없습니다. 검색어를 지우면 전체 목록을 볼 수 있습니다." : `공식 장소 ${filtered.length}곳을 표시합니다.`} {geoState === "denied" ? "위치 권한이 없어 공식 목록으로 계속합니다." : geoState === "timeout" ? "위치 요청 시간이 초과되었습니다. 내 주변 다시 시도를 선택하세요." : ""}</p>
           <GlassPanel depth="floating" className={styles.statusBanner} aria-live="polite">
             <div className={styles.statusLine}><span className={styles.statusPill} data-state={status === "READY" ? "READY" : "UNAVAILABLE"}><span className={styles.statusDot} aria-hidden="true" />{status === "READY" ? (snapshotStatus === "PARTIAL" ? "일부 공식 데이터" : "서울 전체 분위기") : "공식 데이터 연결 대기"}</span><strong>{status === "READY" ? `${catalog.length}곳 확인` : "확인 필요"}</strong></div>
+            <div className={styles.chipRow} aria-label="공식 장소 필터와 위치 도구">
+              <button className={styles.chip} data-selected={availableOnly} type="button" onClick={() => setAvailableOnly((value) => !value)}>데이터 있는 곳</button>
+              <button className={styles.chip} type="button" onClick={requestLocation}>{geoState === "timeout" ? "내 주변 다시 시도" : "내 주변"}</button>
+              <a aria-label="주소 검색은 외부 지도에서 열기" className={styles.externalMap} href={`https://map.kakao.com/?q=${encodeURIComponent(query.trim() || "서울")}`} target="_blank" rel="noreferrer">주소 검색</a>
+            </div>
             <p className={styles.caption}>{sourceTime ? `${displaySource({ sourceUpdatedAt: sourceTime, fetchedAt: sourceTime, freshnessBasis: "source_updated_at" } as CatalogRow)}` : unavailableReason ?? "D1 연결 후 공식 장소 목록이 표시됩니다."}</p>
           </GlassPanel>
           <div className={styles.listHeader}><h2 className={styles.sectionTitle}>공식 장소 둘러보기</h2><p className={styles.caption}>{filtered.length}곳</p></div>
           <div id="catalog-list" className={styles.placeList} aria-label="공식 장소 목록">
             {status === "UNAVAILABLE" && <p className={styles.empty}>현재 데이터 연결이 지연되고 있습니다.<br />지도와 목록은 연결 후 자동으로 갱신됩니다.</p>}
-            {status === "READY" && filtered.length === 0 && <p className={styles.empty}>검색 결과가 없습니다. 다른 공식 장소명을 입력해 보세요.</p>}
+            {status === "READY" && filtered.length === 0 && <p className={styles.empty}>공식 장소 검색 결과가 없습니다. <button className={styles.clearButton} type="button" onClick={() => { setQuery(""); setAvailableOnly(false); }}>검색과 필터 지우기</button></p>}
             {status === "READY" && filtered.map((row) => <button key={row.areaCode} id={`place-${row.areaCode}`} className={styles.placeButton} data-selected={selectedAreaCode === row.areaCode} type="button" onClick={() => openPlace(row)} aria-current={selectedAreaCode === row.areaCode ? "true" : undefined} aria-label={`${row.areaName} 상세 보기`}>
               <span className={styles.placeName}>{row.areaName}</span><span className={styles.placeLevel} data-level={row.crowdLevel}>{displayLevel(row.crowdLevel)}</span>
               <span className={row.availability === "unavailable" ? styles.placeUnavailable : styles.placeRange}>{row.availability === "unavailable" ? "최근 데이터 확인 불가" : displayRange(row)}</span><span className={styles.placeMeta}>{displaySource(row)}</span>
@@ -168,13 +198,21 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
           </div>
         </section>
         <GlassPanel depth="strong" className={styles.detailPane} aria-label="선택한 장소 상세">
-          <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>PLACE DETAIL</p><h2>{selectedRow?.areaName ?? "장소를 선택하세요"}</h2></div>{selectedRow && <span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span>}</div>
+          <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>PLACE DETAIL</p><h2>{selectedRow?.areaName ?? "장소를 선택하세요"}</h2></div>{selectedAreaCode ? <button aria-label="상세 닫기" className={styles.clearButton} type="button" onClick={closePlace}>닫기</button> : selectedRow && <span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span>}</div>
           <div className={styles.detailStatusCard}><span className={styles.badge} data-level={selectedRow?.crowdLevel ?? "UNKNOWN"}>{selectedRow ? displayLevel(selectedRow.crowdLevel) : "정보 없음"}</span><strong>{selectedRow ? displayRange(selectedRow) : "인구 범위 확인 불가"}</strong><p className={styles.caption}>{selectedRow ? displaySource(selectedRow) : "공식 데이터가 연결되면 선택한 장소의 혼잡도와 예측을 표시합니다."}</p></div>
           <div className={styles.detailMeta}><span>공식 예측</span><strong>연결 대기</strong><span>히스토리 인사이트</span><strong>UNAVAILABLE</strong></div>
           {selectedRow && <button className={styles.detailAction} type="button" onClick={() => openPlace(selectedRow)}>상세 열기</button>}
         </GlassPanel>
       </div>
-      <Navigation activeId="map" items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }, { id: "saved", label: "저장" }, { id: "settings", label: "설정" }]} label="주요 화면" onSelect={(item) => { if (item.id === "list") document.getElementById("catalog-list")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
+      {sheetOpen && compactDetail && selectedRow && <PlaceDetailSheet label={`${selectedRow.areaName} 상세`} onRequestClose={closePlace}>
+        <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h2>{selectedRow.areaName}</h2></div><span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span></div>
+        <div className={styles.detailStatusCard}><strong>{displayRange(selectedRow)}</strong><p className={styles.caption}>{displaySource(selectedRow)}</p></div>
+        <p className={styles.caption}>{selectedRow.availability === "expired" ? "최근 데이터가 만료되어 공식 예보와 다음 시간 안내를 숨깁니다." : selectedRow.availability === "unavailable" ? "현재 혼잡 데이터를 확인할 수 없습니다." : "공식 장소 링크에는 현재 위치가 포함되지 않습니다."}</p>
+        <button className={styles.detailAction} type="button" aria-expanded={expanded} onClick={() => setExpanded((value) => !value)}>{expanded ? "간단히 보기" : "상세 정보 펼치기"}</button>
+        {expanded && <div className={styles.detailMeta}><span>공식 예보</span><strong>{selectedRow.availability === "available" ? "원천 데이터 기준" : "사용 불가"}</strong><span>히스토리</span><strong>축적 상태 확인</strong></div>}
+        <a className={styles.externalMap} href={`/places/${encodeURIComponent(selectedRow.areaCode)}`}>공유 가능한 전체 화면 링크</a>
+      </PlaceDetailSheet>}
+      <Navigation activeId="map" items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }]} label="주요 화면" onSelect={(item) => { if (item.id === "list") document.getElementById("catalog-list")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
     </main>
   );
 }

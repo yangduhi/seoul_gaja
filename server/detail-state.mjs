@@ -98,11 +98,76 @@ export function closeSheet(restore) {
 export function createShareRequest(input) {
   const place = catalogPlace(input.catalog, input.areaCode);
   if (place === null || typeof input.origin !== 'string') return null;
+  let url;
+  try {
+    url = new URL(canonicalPath(place.areaCode), input.origin).toString();
+  } catch (error) {
+    if (error instanceof TypeError) return null;
+    throw error;
+  }
   return {
     kind: 'SHARE',
-    url: new URL(canonicalPath(place.areaCode), input.origin).toString(),
+    url,
     disclosure: 'This link identifies only the official place and does not include your current location.',
   };
+}
+
+export function resolveOfficialSearch(catalog, input) {
+  const places = Array.isArray(catalog) ? catalog : [];
+  const query = typeof input === 'string' ? input.trim() : '';
+  if (query.length === 0) {
+    return {
+      kind: 'CATALOG',
+      query,
+      places,
+      clearAvailable: false,
+      announcement: `${places.length} official places available.`,
+    };
+  }
+  const normalized = query.toLocaleLowerCase('ko-KR');
+  const results = places.filter((place) => typeof place?.areaName === 'string' && place.areaName.toLocaleLowerCase('ko-KR').includes(normalized));
+  if (results.length === 0) {
+    return {
+      kind: 'NO_RESULTS',
+      query,
+      places: [],
+      clearAvailable: true,
+      announcement: 'No official places found. Clear search to browse the catalog.',
+    };
+  }
+  return {
+    kind: 'RESULTS',
+    query,
+    places: results,
+    clearAvailable: true,
+    announcement: `${results.length} official place${results.length === 1 ? '' : 's'} found.`,
+  };
+}
+
+export function createAddressNavigation(input) {
+  const query = typeof input === 'string' ? input.trim() : '';
+  return {
+    kind: 'EXTERNAL_NAVIGATION',
+    url: `https://map.kakao.com/?q=${encodeURIComponent(query)}`,
+    appRoute: null,
+  };
+}
+
+export function toggleDetailExpansion(expanded) {
+  return { expanded: !expanded, historyCommand: 'NONE' };
+}
+
+export function resolveShareOutcome(outcome) {
+  switch (outcome) {
+    case 'shared':
+      return { status: 'SUCCESS', announcement: 'Canonical place link shared.', retryTarget: 'none' };
+    case 'clipboard':
+      return { status: 'SUCCESS', announcement: 'Canonical place link copied.', retryTarget: 'none' };
+    case 'cancelled':
+      return { status: 'CANCELLED', announcement: 'Sharing cancelled.', retryTarget: 'share' };
+    default:
+      return { status: 'FAILED', announcement: 'Sharing failed. Copy the canonical URL from the address bar.', retryTarget: 'share' };
+  }
 }
 
 function stateEntry(snapshot, map, history, geolocation, selection) {
@@ -121,13 +186,15 @@ function stateEntry(snapshot, map, history, geolocation, selection) {
   if (history === 'PROVISIONAL') warnings.push('History pattern is provisional.');
   if (selection === 'invalid') warnings.push('The selected place is no longer in the official catalog.');
 
-  const retryTarget = map === 'unavailable'
-    ? 'map'
-    : geolocation === 'timeout'
-      ? 'geolocation'
-      : snapshot === 'unavailable'
-        ? 'snapshot'
-        : 'none';
+  const retryTarget = selection === 'invalid'
+    ? 'catalog'
+    : snapshot === 'unavailable'
+      ? 'snapshot'
+      : map === 'unavailable'
+        ? 'map'
+        : geolocation === 'timeout'
+          ? 'geolocation'
+          : 'none';
   const announcement = selection === 'invalid'
     ? 'Place not found. The current official catalog is available.'
     : warnings.filter(Boolean).join(' ') || 'Official place data is ready.';
@@ -140,6 +207,10 @@ function stateEntry(snapshot, map, history, geolocation, selection) {
     retryTarget,
     announcement,
   };
+}
+
+export function resolveUiState(input) {
+  return stateEntry(input.snapshot, input.map, input.history, input.geolocation, input.selection);
 }
 
 export function createStateMatrix() {
