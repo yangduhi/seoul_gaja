@@ -5,7 +5,7 @@ import { ChartAlternatives } from "../_design/ChartAlternatives";
 import { Navigation } from "../_design/Navigation";
 import { PlaceDetailSheet } from "../_design/PlaceDetailSheet";
 import { useEffect, useMemo, useState } from "react";
-import { closeInAppPlaceDetail, ensureCatalogHistorySentinel, isCatalogHistorySentinel, openInAppPlaceDetail, restorePriorPlaceContext } from "../places/[areaCode]/PlaceDetailClient";
+import { closeInAppPlaceDetail, ensureCatalogHistorySentinel, installCatalogReplayNavigationGuard, isCatalogHistorySentinel, openInAppPlaceDetail, restorePriorPlaceContext } from "../places/[areaCode]/PlaceDetailClient";
 import styles from "./CatalogSurface.module.css";
 
 export type CatalogRow = Readonly<{
@@ -107,6 +107,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
       onHistoryRestore();
     };
     ensureCatalogHistorySentinel();
+    const removeCatalogReplayNavigationGuard = installCatalogReplayNavigationGuard();
     window.addEventListener("seoul-gaja:detail-selection", onSelection);
     window.addEventListener("popstate", onCatalogReplay, true);
     window.addEventListener("popstate", onHistoryRestore);
@@ -116,6 +117,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
       window.removeEventListener("popstate", onCatalogReplay, true);
       window.removeEventListener("popstate", onHistoryRestore);
       window.removeEventListener("seoul-gaja:detail-close", onHistoryRestore);
+      removeCatalogReplayNavigationGuard();
     };
   }, []);
   useEffect(() => {

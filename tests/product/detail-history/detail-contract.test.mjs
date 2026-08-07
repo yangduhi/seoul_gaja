@@ -75,7 +75,7 @@ test("Given a transient sheet, When close and Back replay overlap, Then close re
   assert.doesNotMatch(catalog, /function closePlace\(\) \{\s*window\.history\.back\(\)/);
 });
 
-test("Given a closed transient detail, When browser Back replays the catalog, Then a capture-phase catalog sentinel prevents route-data navigation", () => {
+test("Given a transient detail, When browser Back reaches the catalog sentinel, Then the installed traversal guard prevents route-data navigation", () => {
   assert.match(detailState, /export function ensureCatalogHistorySentinel/);
   assert.match(detailState, /entry: "catalog-root"/);
   assert.match(detailState, /entry: "catalog-replay"/);
@@ -83,8 +83,10 @@ test("Given a closed transient detail, When browser Back replays the catalog, Th
   assert.match(catalog, /window\.addEventListener\("popstate", onCatalogReplay, true\)/);
   assert.match(catalog, /window\.removeEventListener\("popstate", onCatalogReplay, true\)/);
   assert.match(detailState, /const vinextNavigateKey = "__VINEXT_RSC_NAVIGATE__"/);
-  assert.match(detailState, /armCatalogReplayNavigationGuard\(\)/);
-  assert.match(detailState, /if \(isCatalogHistorySentinel\(window\.history\.state\)\) return Promise\.resolve\(\)/);
+  assert.match(detailState, /export function installCatalogReplayNavigationGuard/);
+  assert.match(detailState, /navigationKind === "traverse"/);
+  assert.match(catalog, /installCatalogReplayNavigationGuard\(\)/);
+  assert.doesNotMatch(detailState, /armCatalogReplayNavigationGuard/);
 });
 
 test("Given a desktop detail pane, When Escape is pressed, Then the same idempotent close path restores the catalog", () => {
