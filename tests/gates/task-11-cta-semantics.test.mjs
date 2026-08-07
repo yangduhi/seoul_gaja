@@ -118,6 +118,49 @@ test("only NOW CTA carries the decision gradient while NEXT stays neutral", asyn
   assert.doesNotMatch(styles.NEXT?.backgroundImage ?? "", /linear-gradient/);
 });
 
+function relativeLuminance([red, green, blue]) {
+  const channel = (value) => {
+    const normalized = value / 255;
+    return normalized <= 0.03928 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+  };
+  return (0.2126 * channel(red)) + (0.7152 * channel(green)) + (0.0722 * channel(blue));
+}
+
+function contrastRatio(foreground, background) {
+  const foregroundLuminance = relativeLuminance(foreground);
+  const backgroundLuminance = relativeLuminance(background);
+  return (Math.max(foregroundLuminance, backgroundLuminance) + 0.05) / (Math.min(foregroundLuminance, backgroundLuminance) + 0.05);
+}
+
+function parseGradientEndpoints(backgroundImage) {
+  return [...backgroundImage.matchAll(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/g)].map(([, red, green, blue]) => [Number(red), Number(green), Number(blue)]);
+}
+
+test("the NOW decision gradient keeps every rendered endpoint at the body-text contrast threshold", async () => {
+  for (const viewport of [
+    { width: 390, height: 844 },
+    { width: 430, height: 932 },
+    { width: 768, height: 1024 },
+    { width: 1616, height: 923 },
+  ]) {
+    const page = await browser.newPage({ viewport });
+    await page.goto(`http://localhost:${serverPort}/?visualFixture=ready-v1`, { waitUntil: "networkidle" });
+    const observed = await page.locator(".sg-recommendation").first().locator("[data-current-decision]").evaluate((button) => {
+      const style = getComputedStyle(button);
+      return { foreground: style.color, backgroundImage: style.backgroundImage };
+    });
+    await page.close();
+
+    const endpoints = parseGradientEndpoints(observed.backgroundImage);
+    assert.equal(endpoints.length, 2, `${viewport.width}x${viewport.height}: NOW exposes two computed gradient endpoints`);
+    const foregroundRgb = parseGradientEndpoints(observed.foreground)[0];
+    assert.ok(foregroundRgb, `${viewport.width}x${viewport.height}: NOW exposes computed foreground color`);
+    for (const endpoint of endpoints) {
+      assert.ok(contrastRatio(foregroundRgb, endpoint) >= 4.5, `${viewport.width}x${viewport.height}: ${observed.foreground} against rgb(${endpoint.join(",")}) must be >= 4.5:1`);
+    }
+  }
+});
+
 test("Given the recommendation surface, when each supported viewport activates NEXT, then the CTA stays visible and opens canonical detail", async () => {
   for (const viewport of [
     { width: 390, height: 844, layout: "mobile" },

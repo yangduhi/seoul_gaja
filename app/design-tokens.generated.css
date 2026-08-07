@@ -31,6 +31,7 @@
   --sg-semantic-history-hatch: #C8D0DA;
   --sg-semantic-ready-dot: #8CC63F;
   --sg-semantic-unavailable-dot: #D87945;
+  --sg-semantic-decision-blue: #0066CC;
   --sg-semantic-hover-blue: rgba(10,132,255,.08);
   --sg-semantic-focus-blue: rgba(10,132,255,.48);
   --sg-semantic-selected-blue: rgba(10,132,255,.68);
@@ -92,7 +93,7 @@
   --sg-typography-eyebrow-tracking: .14em;
   --sg-typography-strong-weight: 800;
   --sg-typography-emphasis-weight: 760;
-  --sg-gradient-decision: linear-gradient(135deg,var(--sg-brand-blue),var(--sg-brand-indigo));
+  --sg-gradient-decision: linear-gradient(135deg,var(--sg-semantic-decision-blue),var(--sg-brand-indigo));
   --sg-gradient-page: linear-gradient(135deg,var(--sg-surface),var(--sg-surface-secondary) 52%,var(--sg-surface-mint));
   --sg-gradient-map: linear-gradient(145deg,color-mix(in srgb,var(--sg-surface-map) 76%,var(--sg-surface-mint)),color-mix(in srgb,var(--sg-surface-map) 42%,var(--sg-surface-secondary)));
   --sg-gradient-map-roads: linear-gradient(var(--sg-semantic-map-grid) 1px,transparent 1px),linear-gradient(90deg,var(--sg-semantic-map-grid) 1px,transparent 1px),radial-gradient(circle at 18% 30%,var(--sg-semantic-map-park) 0 12%,transparent 13%),radial-gradient(circle at 82% 72%,var(--sg-semantic-map-park) 0 10%,transparent 11%);
