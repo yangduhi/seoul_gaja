@@ -57,7 +57,7 @@
   line-height: var(--sg-typography-body-line-height);
 }
 
-.subtitle { margin: 10px 0 0; }
+.subtitle { margin: 10px 0 0; overflow-wrap: normal; word-break: keep-all; }
 .caption { margin: 0; }
 .source { margin: 4px 0 0; }
 
@@ -86,6 +86,10 @@
 .chipRow { display: flex; gap: 8px; overflow-x: auto; padding: 2px 1px 5px; scrollbar-width: thin; }
 .chip { flex: 0 0 auto; padding: 0 var(--sg-space-md); color: var(--sg-text-strong); background: color-mix(in srgb, var(--sg-surface-elevated) 72%, transparent); border: 1px solid var(--sg-border-soft); }
 .chip[data-selected="true"] { color: var(--sg-text-inverse); background: var(--sg-brand-blue); border-color: var(--sg-brand-blue); }
+.chip:focus-visible,
+.retryButton:focus-visible,
+.geoButton:focus-visible,
+.externalMap:focus-visible { outline: var(--sg-focus-ring); outline-offset: 2px; }
 
 .statusBanner { display: grid; gap: 6px; padding: 14px 16px; }
 .statusLine { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
@@ -152,7 +156,7 @@
 .mapActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .retryButton { padding: 0 var(--sg-space-md); color: var(--sg-text-inverse); background: var(--sg-gradient-decision); box-shadow: var(--sg-shadow-control); }
 .geoButton { padding: 0 var(--sg-space-md); color: var(--sg-text-primary); background: var(--sg-glass-floating); border: 1px solid var(--sg-border-subtle); }
-.externalMap { display: inline-flex; align-items: center; min-height: var(--sg-touch-target); padding: 0 var(--sg-space-md); border: 1px solid var(--sg-border-subtle); border-radius: var(--sg-radius-sm); color: var(--sg-text-primary); background: var(--sg-glass-floating); font: inherit; text-decoration: none; }
+.externalMap { display: inline-flex; flex: 0 0 auto; align-items: center; min-height: var(--sg-touch-target); padding: 0 var(--sg-space-md); border: 1px solid var(--sg-border-subtle); border-radius: var(--sg-radius-sm); color: var(--sg-text-primary); background: var(--sg-glass-floating); font: inherit; text-decoration: none; white-space: nowrap; }
 .recommendations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sg-space-md); }
 .recommendation { min-width: 0; padding: 18px; }
 .recommendation h2 { margin: 0; color: var(--sg-text-primary); font-size: 17px; }
