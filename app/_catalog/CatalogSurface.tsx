@@ -46,6 +46,7 @@ export type CatalogSurfaceProps = Readonly<{
   recommendations: Readonly<{ now: RecommendationSummary; next: RecommendationSummary }>;
   unavailableReason?: string;
   initialSelectedAreaCode?: string;
+  placeNotFound?: boolean;
 }>;
 
 function displayRange(row: CatalogRow): string {
@@ -81,11 +82,12 @@ function eventSelection(event: Event): string | null {
   return typeof selection === "string" ? selection : null;
 }
 
-export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason, initialSelectedAreaCode }: CatalogSurfaceProps) {
+export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason, initialSelectedAreaCode, placeNotFound = false }: CatalogSurfaceProps) {
   const [query, setQuery] = useState("");
   const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(initialSelectedAreaCode ?? null);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [compactDetail, setCompactDetail] = useState(true);
+  const [detailSurface, setDetailSurface] = useState<"BOTTOM_SHEET" | "DETAIL_PANE">("BOTTOM_SHEET");
   const [expanded, setExpanded] = useState(false);
   const [availableOnly, setAvailableOnly] = useState(false);
   const [geoState, setGeoState] = useState<"idle" | "denied" | "timeout">("idle");
@@ -108,11 +110,18 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
   }, []);
   useEffect(() => {
     const media = window.matchMedia("(max-width: 1460px)");
-    const update = () => setCompactDetail(media.matches);
+    const update = () => {
+      setCompactDetail(media.matches);
+      setDetailSurface(window.innerWidth >= 768 ? "DETAIL_PANE" : "BOTTOM_SHEET");
+    };
     update();
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
   }, []);
+  useEffect(() => {
+    if (!placeNotFound) return;
+    window.history.replaceState(null, "", "/");
+  }, [placeNotFound]);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ko-KR");
     return catalog.filter((row) => (!availableOnly || row.availability !== "unavailable") && (normalized.length === 0 || row.areaName.toLocaleLowerCase("ko-KR").includes(normalized)));
@@ -139,6 +148,10 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
     <main className={styles.surface}>
       <div className={styles.shell}>
         <section className={styles.explorer} aria-label="서울 공식 장소 탐색">
+          {placeNotFound && <GlassPanel depth="floating" data-catalog-not-found role="status" aria-live="polite">
+            <strong>선택한 공식 장소를 더 이상 찾을 수 없습니다.</strong>
+            <p>현재 공식 카탈로그에서 다른 장소를 선택해 주세요.</p>
+          </GlassPanel>}
           <header>
             <p className={styles.eyebrow}>SEOUL / LIVE CITY PULSE</p>
             <h1 className={styles.title}>오늘, 어디가<br /><span>편안할까요?</span></h1>
@@ -211,14 +224,14 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
             })}
           </div>
         </section>
-        <GlassPanel depth="strong" className={styles.detailPane} aria-label="선택한 장소 상세">
+        <GlassPanel depth="strong" className={styles.detailPane} aria-label="선택한 장소 상세" data-detail-surface={sheetOpen && !compactDetail ? "DETAIL_PANE" : undefined}>
           <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>PLACE DETAIL</p><h2>{selectedRow?.areaName ?? "장소를 선택하세요"}</h2></div>{selectedAreaCode ? <button aria-label="상세 닫기" className={styles.clearButton} type="button" onClick={closePlace}>닫기</button> : selectedRow && <span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span>}</div>
           <div className={styles.detailStatusCard}><span className={styles.badge} data-level={selectedRow?.crowdLevel ?? "UNKNOWN"}>{selectedRow ? displayLevel(selectedRow.crowdLevel) : "정보 없음"}</span><strong>{selectedRow ? displayRange(selectedRow) : "인구 범위 확인 불가"}</strong><p className={styles.caption}>{selectedRow ? displaySource(selectedRow) : "공식 데이터가 연결되면 선택한 장소의 혼잡도와 예측을 표시합니다."}</p></div>
           <div className={styles.detailMeta}><span>공식 예측</span><strong>연결 대기</strong><span>히스토리 인사이트</span><strong>UNAVAILABLE</strong></div>
           {selectedRow && <button className={styles.detailAction} type="button" onClick={() => openPlace(selectedRow)}>상세 열기</button>}
         </GlassPanel>
       </div>
-      {sheetOpen && compactDetail && selectedRow && <PlaceDetailSheet label={`${selectedRow.areaName} 상세`} onRequestClose={closePlace}>
+      {sheetOpen && compactDetail && selectedRow && <PlaceDetailSheet label={`${selectedRow.areaName} 상세`} onRequestClose={closePlace} surface={detailSurface}>
         <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h2>{selectedRow.areaName}</h2></div><span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span></div>
         <div className={styles.detailStatusCard}><strong>{displayRange(selectedRow)}</strong><p className={styles.caption}>{displaySource(selectedRow)}</p></div>
         <p className={styles.caption}>{selectedRow.availability === "expired" ? "최근 데이터가 만료되어 공식 예보와 다음 시간 안내를 숨깁니다." : selectedRow.availability === "unavailable" ? "현재 혼잡 데이터를 확인할 수 없습니다." : "공식 장소 링크에는 현재 위치가 포함되지 않습니다."}</p>

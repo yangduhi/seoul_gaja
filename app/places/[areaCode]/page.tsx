@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { env } from "cloudflare:workers";
+import { redirect } from "next/navigation";
 
 import { PlaceDetailClient } from "./PlaceDetailClient";
 import type { DetailPayload } from "./PlaceDetailClient";
@@ -7,6 +8,7 @@ import { readProductViewModel } from "../../../server/product-read-model";
 import { resolveVisualEvidenceFixture, type VisualEvidenceSearchParams } from "../../_visual-evidence/resolve";
 
 const safeAreaCode = /^[A-Za-z0-9_-]+$/;
+const notFoundFallback = { status: "NOT_FOUND", path: "/?placeNotFound=1" } as const;
 
 type PlacePageProps = Readonly<{
   params: Promise<Readonly<{ areaCode: string }>>;
@@ -34,7 +36,7 @@ export default async function PlacePage({ params, searchParams }: PlacePageProps
     return <PlaceDetailClient areaCode={areaCode} payload={payload} />;
   }
   const place = result.data.catalog.find((item) => item.areaCode === areaCode);
-  if (place === undefined) return <PlaceDetailClient areaCode={areaCode} payload={{ status: "NOT_FOUND", areaCode, areaName: null, snapshot: null, forecast: [], history: [] }} />;
+  if (place === undefined) redirect(notFoundFallback.path);
   const row = result.data.snapshot.rows.find((item) => item.areaCode === areaCode) ?? null;
   const forecast = result.data.officialForecast.status === "READY" ? result.data.officialForecast.byAreaCode[areaCode]?.points ?? [] : [];
   const history = result.data.history.status === "READY" ? result.data.history.byAreaCode[areaCode]?.profiles ?? [] : [];

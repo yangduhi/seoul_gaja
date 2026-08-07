@@ -16,10 +16,11 @@ type PlaceDetailSheetProps = PropsWithChildren<
   Readonly<{
     readonly label: string;
     readonly onRequestClose: () => void;
+    readonly surface: "BOTTOM_SHEET" | "DETAIL_PANE";
   }>
 >;
 
-export function PlaceDetailSheet({ children, label, onRequestClose }: PlaceDetailSheetProps) {
+export function PlaceDetailSheet({ children, label, onRequestClose, surface }: PlaceDetailSheetProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -85,6 +86,7 @@ export function PlaceDetailSheet({ children, label, onRequestClose }: PlaceDetai
       aria-label={label}
       aria-modal="true"
       className="sg-place-detail-sheet"
+      data-detail-surface={surface}
       onKeyDown={handleKeyDown}
       ref={sheetRef}
       role="dialog"

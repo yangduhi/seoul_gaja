@@ -1,0 +1,9 @@
+{
+  "browserClosed": true,
+  "serverStopped": true,
+  "port": 53666,
+  "portFree": true,
+  "tempScriptsRemoved": true,
+  "dependencyIsolation": "local npm ci; temporary shared junction removed",
+  "playwrightMcpProcesses": "NO_ACTIVE_PLAYWRIGHT_MCP_PROCESSES"
+}

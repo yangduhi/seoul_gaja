@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "classes": {
+    "malformed_input": "invalid/removed area route fell back to catalog; hostile search remained inert",
+    "prompt_injection": "hostile img/onerror text remained an input value and created no img node",
+    "stale_state": "direct and reload were FULL_SCREEN; in-app entry was sheet/detail pane; Back restored state",
+    "dirty_worktree": "isolated branch was created from exact parent; parent dirty files were not copied or edited",
+    "hung_or_long_commands": "server and browser were bounded; port 53666 was free after teardown",
+    "flaky_tests": "four-viewport click/Enter matrix passed twice",
+    "misleading_success_output": "DOM, URL, history.state, focus, scroll, hit target, meta robots, and response status were asserted",
+    "repeated_interruptions": "browser close and server/port probes completed after the final run",
+    "cancel_resume": "not applicable: no resumable operation"
+  }
+}

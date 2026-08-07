@@ -8,6 +8,7 @@ const styles = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetai
 const catalog = await readFile(new URL("../../../app/_catalog/CatalogSurface.tsx", import.meta.url), "utf8");
 const detailState = await readFile(new URL("../../../app/places/[areaCode]/PlaceDetailClient.tsx", import.meta.url), "utf8");
 const detailSheet = await readFile(new URL("../../../app/_design/PlaceDetailSheet.tsx", import.meta.url), "utf8");
+const home = await readFile(new URL("../../../app/page.tsx", import.meta.url), "utf8");
 
 test("detail route is bound to the truthful D1 read model", () => {
   assert.match(page, /readProductViewModel/);
@@ -25,6 +26,14 @@ test("detail surface exposes source-backed forecast, history, and recovery contr
 test("invalid or removed places are excluded from indexing", () => {
   assert.match(page, /robots: \{ index: isOfficialPlace, follow: isOfficialPlace \}/);
   assert.match(page, /catalog\.some\(\(place\) => place\.areaCode === areaCode\)/);
+});
+
+test("invalid or removed places resolve to the catalog fallback surface", () => {
+  assert.match(page, /path: "\/\?placeNotFound=1"/);
+  assert.match(page, /redirect\(notFoundFallback\.path\)/);
+  assert.match(home, /placeNotFound/);
+  assert.match(home, /robots: isPlaceNotFound \? \{ index: false, follow: false \} : undefined/);
+  assert.match(catalog, /data-catalog-not-found/);
 });
 
 test("full-screen detail is centered on desktop while in-app detail remains a drawer dialog", () => {
