@@ -1,0 +1,12 @@
+{
+  "candidate": { "head": "886bf000b25acb84463cf9a04f50dac08302f5cf", "tree": "a5d80d21771e60bc8911e6110a97cac66066c5a7" },
+  "malformed_input": { "status": "PASS", "observable": "all four direct /places/does-not-exist visits resolve to pathname /, catalog not-found copy, noindex,nofollow, and no invalid share" },
+  "prompt_injection": { "status": "PASS", "observable": "hostile img/onerror search remains literal input; image count and injected flag remain zero" },
+  "stale_state": { "status": "PASS", "observable": "two passes per viewport preserve catalog-root -> sheet -> catalog-replay -> catalog-root for click and NEXT; direct/reload remain FULL_SCREEN" },
+  "dirty_worktree": { "status": "PASS", "observable": "implementation candidate is a committed ancestor; only candidate-bound evidence is staged for the descendant evidence commit" },
+  "hung_or_long_commands": { "status": "PASS", "observable": "Vinext runner has a 60s startup deadline, Playwright action timeouts, and bounded 5s teardown" },
+  "flaky_tests": { "status": "PASS", "observable": "browser matrix and focused suite each run twice with identical zero-failure outcome" },
+  "misleading_success_output": { "status": "PASS", "observable": "verdict derives from URL, DOM, history, focus, scroll, requestfailed, response, and console collections rather than server stdout" },
+  "repeated_interruptions": { "status": "PASS", "observable": "diagnostic and full runs each terminate their server/browser; final port and process counts are zero" },
+  "cancel_resume": { "status": "NOT_APPLICABLE", "reason": "no resumable upload, external mutation, live API call, or deployment was started" }
+}

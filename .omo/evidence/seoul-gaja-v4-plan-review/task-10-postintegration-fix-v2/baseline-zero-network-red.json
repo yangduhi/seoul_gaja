@@ -1,0 +1,11 @@
+﻿{
+    "parent_head":  "2e9dd1d2059e72f9d2a63cb8a152d853c5fb9cd9",
+    "parent_tree":  "fa3b8fd1f4b95a294c53a127566db12bcdbfa562",
+    "runner_exit":  0,
+    "browser_verdict":  "PASS_WITH_BOUNDED_RUNTIME_ISSUE",
+    "failedCount":  7,
+    "hardFailureCount":  0,
+    "rscFailureCount":  7,
+    "consoleErrorCount":  0,
+    "zero_failed_assertion":  false
+}

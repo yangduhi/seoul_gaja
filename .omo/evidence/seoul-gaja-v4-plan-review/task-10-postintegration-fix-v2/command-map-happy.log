@@ -1,0 +1,28 @@
+candidate_head=886bf000b25acb84463cf9a04f50dac08302f5cf
+candidate_tree=a5d80d21771e60bc8911e6110a97cac66066c5a7
+python : Exception in thread Thread-1 (_readerthread):
+At line:2 char:243
++ ... oding utf8; python docs/execution/scripts/run_command_map.py --map do ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Exception in th..._readerthread)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Traceback (most recent call last):
+  File "C:\Users\congd\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\congd\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\congd\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1550, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xe2 in position 0: illegal multibyte sequence
+{
+  "id": "task-10-happy",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "assertions": [
+    "detail route, sheet, history, sharing, state, and failure-flow browser gates pass",
+    "happy-path assertions pass on source-backed fixtures"
+  ],
+  "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-10-happy.json"
+}

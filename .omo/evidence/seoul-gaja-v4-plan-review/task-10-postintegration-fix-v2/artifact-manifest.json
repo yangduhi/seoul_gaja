@@ -1,0 +1,295 @@
+﻿{
+    "candidate":  {
+                      "head":  "886bf000b25acb84463cf9a04f50dac08302f5cf",
+                      "tree":  "a5d80d21771e60bc8911e6110a97cac66066c5a7"
+                  },
+    "algorithm":  "sha256",
+    "fileCount":  57,
+    "entries":  [
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/audit-manifest.json",
+                        "sha256":  "6bb58d7de238511854c2315e057276dbb3b7933e7f48b4fc956db6409abbdeee",
+                        "bytes":  797
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/capture-manifest.json",
+                        "sha256":  "a455e1c2be77d54904f59b197d4e43b09ab877cd7cc7399c847d59368bd810f8",
+                        "bytes":  1998
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/contract-matrix.json",
+                        "sha256":  "9f32f4bc384f2b7ffb50213ac2003d927f20407f4a9ca1486dbe4bb11bc36002",
+                        "bytes":  794
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/findings.json",
+                        "sha256":  "52dd86019ab9db3f38e06a4df851934add3602b691bacc7de91a147f454b99a8",
+                        "bytes":  549
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/improvement-plan.json",
+                        "sha256":  "ac432aa07c82e5e2e4e682fc71ec13b56682b261141b8321341aada1ad9ef61e",
+                        "bytes":  523
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/loop-ledger.json",
+                        "sha256":  "5fc393b795cddb75ab73a7414845de689b4f61248c0441f4e05bd8ec5a527a2f",
+                        "bytes":  773
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/mengto-recommendation.json",
+                        "sha256":  "6af58c8d004e89fc175c652665d598cbbc2359cb2a0a6cbd3dd157a9b7a914f8",
+                        "bytes":  393
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/responsive-acceptance.json",
+                        "sha256":  "9c41c6aacc474dbf94f55c67b03554f86f0963877bff89e79cfdcf8d76311abb",
+                        "bytes":  793
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/scorecard.json",
+                        "sha256":  "83bffcf40e8b0302d634d9853c0eb74e4a51aa99ffb2b2f6e61fc64fd9623507",
+                        "bytes":  851
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/state-transition-matrix.json",
+                        "sha256":  "d3f04b80cd6acc70fd2e2946b8a4ed1a33086e14d2b5f862a89484fabf0f6828",
+                        "bytes":  674
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/verdict.json",
+                        "sha256":  "0695e1c52c1c3d1fe07ccde54fc4dd86972736a92e216a4adf4c85fba9d70d47",
+                        "bytes":  306
+                    },
+                    {
+                        "path":  ".omo/evidence/design-audit/task-10-postintegration-fix-v2/worktree-snapshot.json",
+                        "sha256":  "1dd6648db8a6eaeb366d2acbd7ebe3f8e4d54e67f094c1396144a497f038b849",
+                        "bytes":  334
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/authority.log",
+                        "sha256":  "4451516b4eb2faf768d90af3f6f66fcd14843af5b70c0b6a62ca609489d0f624",
+                        "bytes":  498
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/baseline-browser-matrix.json",
+                        "sha256":  "6d93b38902915d195e5d06ddc13a906a87ffa5028576542017f835d1af04dda4",
+                        "bytes":  368809
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/baseline-browser-network-diagnostic.json",
+                        "sha256":  "4b439c76bd127fa7d895480e56e325d6fc1b7a0760fa557c87ed1ae84de42305",
+                        "bytes":  5082
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/baseline-browser-vinext.log",
+                        "sha256":  "74fa4b2c4c5b2a10724b4afb859207a4ce31d1be5c9ac829bc92953b992be8c3",
+                        "bytes":  3400
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/baseline-zero-network-red.json",
+                        "sha256":  "762daef591457df37d21252c2f4c08e1827c15b3bf1e936c9a67993cc2c571c9",
+                        "bytes":  371
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/browser-matrix.json",
+                        "sha256":  "3cf66cde9681e6d4d5ea7f83bdcd7acdbc6204b78ac3d263ae1c8cff769f9d54",
+                        "bytes":  367538
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/browser-matrix.mjs",
+                        "sha256":  "2de59201b5e37c69ee3b2226ea583ef6d912ecc2fc2c6644babb97165f258278",
+                        "bytes":  14575
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/browser-network-diagnostic.json",
+                        "sha256":  "fc478ff41d77c69ebbc66b7a0cb4cf6fadf175b0af257b8c66a44b31134678ab",
+                        "bytes":  274
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/browser-vinext.log",
+                        "sha256":  "c47da2577e2b00f055b24f63ee0b3037710ad427073a7623e72bff7457c6e8c8",
+                        "bytes":  2715
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/build.log",
+                        "sha256":  "615098a040f4407fc5b987ee14bba0e805d64b4b0dd149f40dccbcb5874e6b06",
+                        "bytes":  2384
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/candidate-binding.json",
+                        "sha256":  "d4a78d13233945ef949c9b1f541a1455feb694a80912ed8fefd3f87cb2749654",
+                        "bytes":  372
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/cleanup-receipt.json",
+                        "sha256":  "5bc07bca4fe7edc39bb92e6a737dd886427548687d4b9147fea11c74ccf4b3c7",
+                        "bytes":  417
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/command-map-failure.log",
+                        "sha256":  "dba7c69c23c78524e235d4374762ba164297538ccd0831f1db9cf8557c41939a",
+                        "bytes":  1460
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/command-map-happy.log",
+                        "sha256":  "be0f7e23bd76d60fe45ef2c970152c99159c595ce3aa317842c2322a295a1c72",
+                        "bytes":  1419
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/contract-rationale.md",
+                        "sha256":  "97b2a567ca8c35b6393c3942475acbf1b879decb071ccde833f1fef698e36c57",
+                        "bytes":  1212
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/design-audit-validator.log",
+                        "sha256":  "bab57f0a9be638e48d4d8aa524771bc8598ab948c1f25d09db4589ba3b48fbca",
+                        "bytes":  338
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/final-report.json",
+                        "sha256":  "c6a1571aa1efd8b9bb1da9c4d4efbe2483c1d98a6decfd18ef3ae3909811eb28",
+                        "bytes":  1119
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/focused-two-pass.log",
+                        "sha256":  "4fcfadede324c3165c0f247288b232527cd9ad1bc53f9498ec86550370a44cc3",
+                        "bytes":  7081
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/invalid-1616x923.png",
+                        "sha256":  "190408027315c24e94d0403f9e7862460516677839d9f5240bffad316b196196",
+                        "bytes":  482738
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/invalid-390x844.png",
+                        "sha256":  "b1eb9f3e3d0fbf27e7137f3e4160a763764c2fc724f132854877d692f6b9ad49",
+                        "bytes":  126871
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/invalid-430x932.png",
+                        "sha256":  "b0390ba991c7850b9517c5f1181a69037c8bde4f0ef13d65f12b9d3d2ea46b78",
+                        "bytes":  136160
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/invalid-768x1024.png",
+                        "sha256":  "3954f4b8007993da0fd1fdc4c0737dd47fb2ab40d0f3878687b2e5d7137d6f4c",
+                        "bytes":  177858
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/lint.log",
+                        "sha256":  "4c997924d62300358b65f0b14a8f69426af67f520f2524fe8655a924faf79450",
+                        "bytes":  1594
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/map-retry-1616x923.png",
+                        "sha256":  "34dd40f1cd8a147a839f78af0eb73b21b736051a15275aef01795d2b6650e309",
+                        "bytes":  464178
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/map-retry-390x844.png",
+                        "sha256":  "527034a8b412bcc87dbda0a5bf861e5066baa68803a1716ed61a327e0d96ad22",
+                        "bytes":  126681
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/map-retry-430x932.png",
+                        "sha256":  "3594e472a839a9f7df39413fe8580efb3e227df03c0660c6cee1a4060b758a2b",
+                        "bytes":  136051
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/map-retry-768x1024.png",
+                        "sha256":  "57a8f87f310c39ebfaa730c923004b9675cde988fd164cde78344af843f62a72",
+                        "bytes":  177781
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-1616x923-catalog-restored.png",
+                        "sha256":  "2bdd46d3ec9b3a4d89c4374ef57f0aa35d5e61584c3dc2068dbde009860ad208",
+                        "bytes":  440363
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-1616x923-detail.png",
+                        "sha256":  "cf56102da30a8cb5bacd41b2262d88dd60be1b4afa710ffa0be82b7191a09c7b",
+                        "bytes":  440139
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-390x844-catalog-restored.png",
+                        "sha256":  "b2efdb8815558d562755b13ef8159c8278b4fa93eac70cf25866ac06397457c5",
+                        "bytes":  135504
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-390x844-detail.png",
+                        "sha256":  "22ea02fec005dc9694f80bceedb841308ebe0d909e7db8c115fa6dff7d3e5b84",
+                        "bytes":  141305
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-430x932-catalog-restored.png",
+                        "sha256":  "b71a11515fed97c26d3987b8e78079db93dbc00967d78d9d537dac6d89957dfc",
+                        "bytes":  146242
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-430x932-detail.png",
+                        "sha256":  "d9400ac2ff30ad41fb375d01456e0d92fdb4974cfa9fd1755f99c7972e99fd22",
+                        "bytes":  152382
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-768x1024-catalog-restored.png",
+                        "sha256":  "4c8f200c26880a73f17b687ecc8ff0d7d285a52ca4e8c9e78a089f58e74bbd12",
+                        "bytes":  208209
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-1-768x1024-detail.png",
+                        "sha256":  "a42a18beab5fbc615b439f00e126933de787ae5484480c12106f3a08e52cd3ff",
+                        "bytes":  214074
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-1616x923-catalog-restored.png",
+                        "sha256":  "2bdd46d3ec9b3a4d89c4374ef57f0aa35d5e61584c3dc2068dbde009860ad208",
+                        "bytes":  440363
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-1616x923-detail.png",
+                        "sha256":  "cf56102da30a8cb5bacd41b2262d88dd60be1b4afa710ffa0be82b7191a09c7b",
+                        "bytes":  440139
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-390x844-catalog-restored.png",
+                        "sha256":  "b2efdb8815558d562755b13ef8159c8278b4fa93eac70cf25866ac06397457c5",
+                        "bytes":  135504
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-390x844-detail.png",
+                        "sha256":  "22ea02fec005dc9694f80bceedb841308ebe0d909e7db8c115fa6dff7d3e5b84",
+                        "bytes":  141305
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-430x932-catalog-restored.png",
+                        "sha256":  "b71a11515fed97c26d3987b8e78079db93dbc00967d78d9d537dac6d89957dfc",
+                        "bytes":  146242
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-430x932-detail.png",
+                        "sha256":  "d9400ac2ff30ad41fb375d01456e0d92fdb4974cfa9fd1755f99c7972e99fd22",
+                        "bytes":  152382
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-768x1024-catalog-restored.png",
+                        "sha256":  "4c8f200c26880a73f17b687ecc8ff0d7d285a52ca4e8c9e78a089f58e74bbd12",
+                        "bytes":  208209
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/pass-2-768x1024-detail.png",
+                        "sha256":  "a42a18beab5fbc615b439f00e126933de787ae5484480c12106f3a08e52cd3ff",
+                        "bytes":  214074
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/ultraqa.json",
+                        "sha256":  "48fc3f58a2d23ae08a742ef3d0132ee4d2278de0aaaf89c9868281cb513be86f",
+                        "bytes":  1666
+                    },
+                    {
+                        "path":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-postintegration-fix-v2/zero-network-seam-red.log",
+                        "sha256":  "cd9b954682d56be31f6d2507d7f34af606700d505bc01db36690bc474ab3297c",
+                        "bytes":  24856
+                    }
+                ]
+}

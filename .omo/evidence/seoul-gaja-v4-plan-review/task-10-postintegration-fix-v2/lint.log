@@ -1,0 +1,28 @@
+candidate_head=886bf000b25acb84463cf9a04f50dac08302f5cf
+candidate_tree=a5d80d21771e60bc8911e6110a97cac66066c5a7
+node.exe : npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help
+ npmrc` for supported config options.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn Unknow...config options.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+> site-creator-vinext-starter@0.1.0 lint
+> eslint . --ignore-pattern dist --ignore-pattern .next
+
+
+D:\vscode\seoul_gaja-worktrees\todo10-postintegration-fix-v2\tests\gates\design-audit-contract.test.mjs
+  28:9  warning  'contractPath' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\vscode\seoul_gaja-worktrees\todo10-postintegration-fix-v2\tests\gates\task-08-failure.test.mjs
+  54:28  warning  '_acceptedStatus' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  54:64  warning  '_canonicalPayload' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+D:\vscode\seoul_gaja-worktrees\todo10-postintegration-fix-v2\tests\gates\task-08-happy.test.mjs
+  65:28  warning  '_acceptedStatus' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  65:64  warning  '_canonicalPayload' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+' 5 problems (0 errors, 5 warnings)
+

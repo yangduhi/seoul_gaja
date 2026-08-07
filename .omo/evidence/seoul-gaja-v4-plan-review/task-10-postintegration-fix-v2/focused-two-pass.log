@@ -1,0 +1,74 @@
+candidate_head=886bf000b25acb84463cf9a04f50dac08302f5cf
+candidate_tree=a5d80d21771e60bc8911e6110a97cac66066c5a7
+PASS=1
+' Given an invalid or removed area code, When detail navigation resolves, Then it falls back to noindex catalog browse (8.4664ms)
+' Given an open sheet, When it closes, Then it goes back once and restores selection, scroll, and focus without a new history entry (1.5552ms)
+' Given unavailable or expired snapshots, When detail navigation is created, Then it preserves identity but disables unsupported detail actions (2.0575ms)
+' Given simultaneous failures, When state precedence resolves, Then invalid selection and source availability win retry and announcement (0.5856ms)
+' Given no official-place results and hostile text, When search resolves, Then it returns inert data with a clear action (3.2293ms)
+' Given every share outcome, When it resolves, Then success, cancellation, clipboard fallback, and retry are explicit (0.4692ms)
+' Given an in-app official selection, When detail navigation begins, Then it emits the canonical sheet pushState command (8.6158ms)
+' Given a canonical route opened directly or reloaded, When detail entry resolves, Then it uses the full-screen surface (1.776ms)
+' Given a valid official place, When share is requested, Then the request contains only the canonical detail URL (1.6282ms)
+' Given implemented state axes, When the matrix is generated, Then every combination names data, warning, disabled actions, retry, and announcement (3.1164ms)
+' Given official-place search input, When it is resolved, Then results and clear affordance remain catalog-only (1.8781ms)
+' Given detail expansion or address lookup, When the action resolves, Then no duplicate app history route is created (0.4021ms)
+(node:235136) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+' Given an unavailable map, when retry is activated across supported viewports, then its target owns the hit point and updates the notice (12559.2721ms)
+' detail route is bound to the truthful D1 read model (1.4165ms)
+' detail surface exposes source-backed forecast, history, and recovery controls (0.2973ms)
+' invalid or removed places are excluded from indexing (0.1392ms)
+' invalid or removed places resolve to the catalog fallback surface (0.1944ms)
+' Given a malformed direct area code, When the read model is unavailable, Then the server resolves the catalog fallback before rendering detail (0.2853ms)
+' full-screen detail is centered on desktop while in-app detail remains a drawer dialog (0.1906ms)
+' detail material and hierarchy consume canonical design tokens (0.27ms)
+' catalog selection renders a real transient detail sheet and restores the prior selection (1.3105ms)
+' Given a transient sheet, When close and Back replay overlap, Then close replaces the sheet entry once and replays catalog restoration idempotently (0.4695ms)
+' Given a closed transient detail, When browser Back replays the catalog, Then a capture-phase catalog sentinel prevents route-data navigation (0.3749ms)
+' Given a desktop detail pane, When Escape is pressed, Then the same idempotent close path restores the catalog (0.2451ms)
+' transient detail sheet traps keyboard focus and makes the background inert (0.1424ms)
+9! tests 25
+9! suites 0
+9! pass 25
+9! fail 0
+9! cancelled 0
+9! skipped 0
+9! todo 0
+9! duration_ms 22002.8317
+PASS=2
+' Given an invalid or removed area code, When detail navigation resolves, Then it falls back to noindex catalog browse (8.2594ms)
+' Given an open sheet, When it closes, Then it goes back once and restores selection, scroll, and focus without a new history entry (1.6461ms)
+' Given unavailable or expired snapshots, When detail navigation is created, Then it preserves identity but disables unsupported detail actions (1.8245ms)
+' Given simultaneous failures, When state precedence resolves, Then invalid selection and source availability win retry and announcement (0.4782ms)
+' Given no official-place results and hostile text, When search resolves, Then it returns inert data with a clear action (2.7338ms)
+' Given every share outcome, When it resolves, Then success, cancellation, clipboard fallback, and retry are explicit (0.4379ms)
+' Given an in-app official selection, When detail navigation begins, Then it emits the canonical sheet pushState command (7.7782ms)
+' Given a canonical route opened directly or reloaded, When detail entry resolves, Then it uses the full-screen surface (1.6204ms)
+' Given a valid official place, When share is requested, Then the request contains only the canonical detail URL (1.6964ms)
+' Given implemented state axes, When the matrix is generated, Then every combination names data, warning, disabled actions, retry, and announcement (2.6518ms)
+' Given official-place search input, When it is resolved, Then results and clear affordance remain catalog-only (1.8895ms)
+' Given detail expansion or address lookup, When the action resolves, Then no duplicate app history route is created (0.3803ms)
+(node:214272) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+' Given an unavailable map, when retry is activated across supported viewports, then its target owns the hit point and updates the notice (12151.5745ms)
+' detail route is bound to the truthful D1 read model (1.1383ms)
+' detail surface exposes source-backed forecast, history, and recovery controls (0.2858ms)
+' invalid or removed places are excluded from indexing (0.1461ms)
+' invalid or removed places resolve to the catalog fallback surface (0.1274ms)
+' Given a malformed direct area code, When the read model is unavailable, Then the server resolves the catalog fallback before rendering detail (0.2319ms)
+' full-screen detail is centered on desktop while in-app detail remains a drawer dialog (0.1533ms)
+' detail material and hierarchy consume canonical design tokens (0.2315ms)
+' catalog selection renders a real transient detail sheet and restores the prior selection (0.1677ms)
+' Given a transient sheet, When close and Back replay overlap, Then close replaces the sheet entry once and replays catalog restoration idempotently (0.3359ms)
+' Given a closed transient detail, When browser Back replays the catalog, Then a capture-phase catalog sentinel prevents route-data navigation (0.382ms)
+' Given a desktop detail pane, When Escape is pressed, Then the same idempotent close path restores the catalog (0.1901ms)
+' transient detail sheet traps keyboard focus and makes the background inert (0.1104ms)
+9! tests 25
+9! suites 0
+9! pass 25
+9! fail 0
+9! cancelled 0
+9! skipped 0
+9! todo 0
+9! duration_ms 19665.222

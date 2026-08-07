@@ -1,0 +1,8 @@
+{
+  "candidate": { "head": "886bf000b25acb84463cf9a04f50dac08302f5cf", "tree": "a5d80d21771e60bc8911e6110a97cac66066c5a7" },
+  "red": { "parent_head": "2e9dd1d2059e72f9d2a63cb8a152d853c5fb9cd9", "parent_tree": "fa3b8fd1f4b95a294c53a127566db12bcdbfa562", "failedCount": 7, "rscFailureCount": 7, "artifact": "baseline-zero-network-red.json" },
+  "green": { "viewports": ["390x844", "430x932", "768x1024", "1616x923"], "repetitions": 2, "readyJourneys": 8, "directInvalidJourneys": 4, "mapRetryJourneys": 4, "failedCount": 0, "hardFailureCount": 0, "rscFailureCount": 0, "consoleErrorCount": 0, "verdict": "PASS", "artifact": "browser-matrix.json" },
+  "manual_channel": { "adapter": "cached Playwright Node API", "browser": "installed Chrome 150.0.7871.187", "actions": "page.click place, NEXT focus+Enter, Escape, page.goBack, reload, invalid goto, retry center click, hostile fill", "browser_mcp_used": false },
+  "automated": { "focused_two_pass": "PASS", "command_map_happy": "PASS", "command_map_failure": "PASS", "lint": "PASS", "build": "PASS", "authority": "PASS", "design_audit": "PASS" },
+  "verdict": "PASS"
+}
