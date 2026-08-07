@@ -214,7 +214,7 @@
   .listHeader { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: calc(var(--sg-nav-height) + 212px); left: var(--sg-space-sm); padding: var(--sg-space-md) var(--sg-space-lg) 0; border-radius: var(--sg-radius-sheet) var(--sg-radius-sheet) 0 0; background: var(--sg-glass-strong); }
   .placeList { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: var(--sg-nav-height); left: var(--sg-space-sm); display: grid; max-height: 212px; padding: var(--sg-space-sm) var(--sg-space-lg) var(--sg-space-md); border-radius: 0 0 var(--sg-radius-sheet) var(--sg-radius-sheet); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); backdrop-filter: blur(var(--sg-glass-strong-blur)) saturate(var(--sg-glass-strong-saturation)); }
   .placeButton { min-height: 60px; padding-block: var(--sg-space-sm); background: transparent; border-radius: var(--sg-radius-sm); }
-  .mapNotice { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top) + 278px); left: var(--sg-space-lg); right: var(--sg-space-lg); max-width: none; }
+  .mapNotice { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top) + 400px); left: var(--sg-space-lg); right: var(--sg-space-lg); max-width: none; }
   .surface :global(.sg-navigation) { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; display: block; padding: var(--sg-space-xs) var(--sg-space-md) calc(var(--sg-space-xs) + env(safe-area-inset-bottom)); border-top: 1px solid var(--sg-glass-border-content); background: color-mix(in srgb, var(--sg-glass-strong) 96%, transparent); backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation)); }
   .surface :global(.sg-navigation__list) { justify-content: space-around; }
   .surface :global(.sg-navigation__item) { border: 0; border-radius: var(--sg-radius-sm); color: var(--sg-text-secondary); background: transparent; font: inherit; padding-inline: 14px; }
@@ -226,7 +226,7 @@
   .search { top: calc(env(safe-area-inset-top) + 98px); }
   .recommendations { top: calc(env(safe-area-inset-top) + 144px); }
   .statusBanner { top: calc(env(safe-area-inset-top) + 280px); }
-  .mapNotice { top: calc(env(safe-area-inset-top) + 255px); }
+  .mapNotice { top: calc(env(safe-area-inset-top) + 400px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
