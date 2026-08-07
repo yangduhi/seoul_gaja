@@ -5,6 +5,3 @@ parent_source_line:
           <p>Keyboard-closeable detail state.</p>
         </PlaceDetailSheet>
       </section>
-
-
-
