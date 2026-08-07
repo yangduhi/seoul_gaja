@@ -90,6 +90,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
   const [availableOnly, setAvailableOnly] = useState(false);
   const [geoState, setGeoState] = useState<"idle" | "denied" | "timeout">("idle");
   const [mapRetry, setMapRetry] = useState(0);
+  const [activeNavigationId, setActiveNavigationId] = useState("map");
   useEffect(() => {
     const onSelection = (event: Event) => setSelectedAreaCode(eventSelection(event));
     const onHistoryRestore = () => {
@@ -225,7 +226,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
         {expanded && <div className={styles.detailMeta}><span>공식 예보</span><strong>{selectedRow.availability === "available" ? "원천 데이터 기준" : "사용 불가"}</strong><span>히스토리</span><strong>축적 상태 확인</strong></div>}
         <a className={styles.externalMap} href={`/places/${encodeURIComponent(selectedRow.areaCode)}`}>공유 가능한 전체 화면 링크</a>
       </PlaceDetailSheet>}
-      <Navigation activeId="map" items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }]} label="주요 화면" onSelect={(item) => { if (item.id === "list") document.getElementById("catalog-list")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
+      <Navigation activeId={activeNavigationId} items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }]} label="주요 화면" onSelect={(item) => { setActiveNavigationId(item.id); if (item.id === "list") document.getElementById("catalog-list")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
     </main>
   );
 }
