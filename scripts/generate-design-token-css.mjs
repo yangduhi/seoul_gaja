@@ -75,6 +75,10 @@ export function buildDesignTokenCss(tokens) {
   return lines.join("\n");
 }
 
+export function isCurrentGeneratedCss(actual, expected) {
+  return actual.replaceAll("\r\n", "\n") === expected;
+}
+
 async function main() {
   const root = resolve(import.meta.dirname, "..");
   const tokenPath = resolve(root, "design", "design-tokens.json");
@@ -82,7 +86,7 @@ async function main() {
   const expected = buildDesignTokenCss(JSON.parse(await readFile(tokenPath, "utf8")));
   if (process.argv.includes("--check")) {
     const actual = await readFile(outputPath, "utf8");
-    if (actual !== expected) throw new Error("app/design-tokens.generated.css is stale; run npm run tokens:generate");
+    if (!isCurrentGeneratedCss(actual, expected)) throw new Error("app/design-tokens.generated.css is stale; run npm run tokens:generate");
     return;
   }
   await writeFile(outputPath, expected, "utf8");
