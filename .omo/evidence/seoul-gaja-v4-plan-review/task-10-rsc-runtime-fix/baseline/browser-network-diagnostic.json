@@ -1,0 +1,86 @@
+{
+  "candidate": {
+    "head": "323717c167111eea5f652ccaea7baf4c31a8a6e0",
+    "tree": "4b9845e0133962620f7ad78701b62292a86a3902"
+  },
+  "failedCount": 6,
+  "hardFailureCount": 6,
+  "consoleErrorCount": 0,
+  "failedNetwork": [
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    }
+  ],
+  "consoleErrors": [],
+  "rscFailures": [
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    },
+    {
+      "kind": "requestfailed",
+      "failure": "net::ERR_ABORTED",
+      "resourceType": "fetch",
+      "url": "http://localhost:53823/.rsc?visualFixture=ready-v1&_rsc"
+    }
+  ]
+}

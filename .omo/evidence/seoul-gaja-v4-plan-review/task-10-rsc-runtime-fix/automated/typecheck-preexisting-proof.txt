@@ -1,0 +1,10 @@
+﻿implementation_diff:
+parent_source_line:
+
+>       <PlaceDetailSheet label="Showcase detail" onRequestClose={onDismissSheet}>
+          <p>Keyboard-closeable detail state.</p>
+        </PlaceDetailSheet>
+      </section>
+
+
+

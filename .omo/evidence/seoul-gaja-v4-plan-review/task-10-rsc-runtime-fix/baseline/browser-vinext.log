@@ -1,0 +1,47 @@
+
+  vinext dev  (Vite 8.0.13)
+
+  ➜  Local:   http://localhost:53823/
+  ➜  Debug:   http://localhost:53823/__debug
+ GET /?visualFixture=ready-v1 200 in 1.1s (compile: 1786121495.2s, render: 1.1s)
+ GET /?visualFixture=ready-v1 200 in 69ms (compile: 1786121495.2s, render: 30ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 37ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 76ms (compile: 1786121495.2s, render: 37ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 38ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 69ms (compile: 1786121495.2s, render: 36ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 43ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 62ms (compile: 1786121495.2s, render: 30ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 36ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 70ms (compile: 1786121495.2s, render: 34ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 33ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 69ms (compile: 1786121495.2s, render: 37ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 37ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 60ms (compile: 1786121495.2s, render: 30ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 31ms (compile: 1786121495.2s, render: 0ms)
+ GET /?visualFixture=ready-v1 200 in 67ms (compile: 1786121495.2s, render: 32ms)
+ GET /?visualFixture=ready-v1&_rsc 200 in 35ms (compile: 1786121495.2s, render: 0ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 98ms (compile: 1786121495.2s, render: 55ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 70ms (compile: 1786121495.2s, render: 33ms)
+ GET /places/does-not-exist?visualFixture=ready-v1 307 in 52ms
+ GET /?placeNotFound=1 200 in 78ms (compile: 1786121495.2s, render: 41ms)
+ GET / 200 in 72ms (compile: 1786121495.2s, render: 41ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 68ms (compile: 1786121495.2s, render: 28ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 60ms (compile: 1786121495.2s, render: 25ms)
+ GET /places/does-not-exist?visualFixture=ready-v1 307 in 51ms
+ GET /?placeNotFound=1 200 in 64ms (compile: 1786121495.2s, render: 36ms)
+ GET / 200 in 68ms (compile: 1786121495.2s, render: 36ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 82ms (compile: 1786121495.2s, render: 35ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 67ms (compile: 1786121495.2s, render: 33ms)
+ GET /places/does-not-exist?visualFixture=ready-v1 307 in 74ms
+ GET /?placeNotFound=1 200 in 68ms (compile: 1786121495.2s, render: 35ms)
+ GET / 200 in 74ms (compile: 1786121495.2s, render: 36ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 69ms (compile: 1786121495.2s, render: 32ms)
+ GET /places/alpha?visualFixture=ready-v1 200 in 61ms (compile: 1786121495.2s, render: 25ms)
+ GET /places/does-not-exist?visualFixture=ready-v1 307 in 52ms
+ GET /?placeNotFound=1 200 in 64ms (compile: 1786121495.2s, render: 32ms)
+ GET / 200 in 72ms (compile: 1786121495.2s, render: 36ms)
+ GET /?visualFixture=ready-v1 200 in 66ms (compile: 1786121495.2s, render: 32ms)
+오전 1:52:11 [vite] (rsc) hmr update /app/globals.css
+오전 1:52:11 [vite] (client) hmr update /app/globals.css?direct
+오전 1:52:11 [vite] (rsc) hmr update /app/globals.css
+오전 1:52:11 [vite] (client) hmr update /app/globals.css?direct

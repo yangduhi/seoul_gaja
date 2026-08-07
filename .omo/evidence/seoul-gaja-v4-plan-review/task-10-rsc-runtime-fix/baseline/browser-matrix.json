@@ -1,0 +1,12 @@
+{
+  "candidate": {
+    "head": "323717c167111eea5f652ccaea7baf4c31a8a6e0",
+    "tree": "4b9845e0133962620f7ad78701b62292a86a3902"
+  },
+  "failure": {
+    "name": "Error",
+    "message": "Browser matrix recorded 6 failed network events and 0 console errors.",
+    "stack": "Error: Browser matrix recorded 6 failed network events and 0 console errors.\n    at file:///D:/vscode/seoul_gaja-worktrees/todo10-rsc-runtime-fix/.omo/evidence/seoul-gaja-v4-plan-review/task-10-rsc-runtime-fix/browser-matrix.mjs:213:67"
+  },
+  "verdict": "FAIL"
+}

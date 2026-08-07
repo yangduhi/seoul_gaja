@@ -1,0 +1,63 @@
+﻿{
+    "candidate":  {
+                      "head":  "802a27e979c5698c53543aa3b1dd2394a2dbcc18",
+                      "tree":  "036711dda15d6edf61fe47ee8d8294712ae7456d"
+                  },
+    "verdict":  "PASS",
+    "registered":  {
+                       "qaPorts":  [
+                                       53823,
+                                       53824
+                                   ],
+                       "baselineAndGreenHarness":  ".omo/evidence/seoul-gaja-v4-plan-review/task-10-rsc-runtime-fix/browser-matrix.mjs",
+                       "interruptionPids":  [
+                                                132684,
+                                                120840
+                                            ],
+                       "nodeModulesJunctionTarget":  "D:\\vscode\\seoul_gaja-worktrees\\prep-v4-1\\node_modules",
+                       "browser":  "installed Chrome via cached Playwright"
+                   },
+    "observables":  {
+                        "listenersOnTaskPorts":  0,
+                        "taskOwnedRuntimeProcesses":  0,
+                        "browserContextsClosed":  true,
+                        "taskOwnedPlaywrightMcpProcesses":  0,
+                        "tempPaths":  [
+                                          {
+                                              "path":  ".wrangler",
+                                              "exists":  false
+                                          },
+                                          {
+                                              "path":  "dist",
+                                              "exists":  false
+                                          },
+                                          {
+                                              "path":  "node_modules",
+                                              "exists":  false
+                                          },
+                                          {
+                                              "path":  "docs/execution/scripts/__pycache__",
+                                              "exists":  false
+                                          },
+                                          {
+                                              "path":  "tests/gates/__pycache__",
+                                              "exists":  false
+                                          },
+                                          {
+                                              "path":  "playwright-report",
+                                              "exists":  false
+                                          },
+                                          {
+                                              "path":  "test-results",
+                                              "exists":  false
+                                          }
+                                      ],
+                        "nodeModulesJunctionRemoved":  true,
+                        "generatedPycacheRemoved":  true,
+                        "taskPortsFree":  true,
+                        "interruptedAndRestartedServerCleanupArtifact":  "automated/interruption-cleanup.json"
+                    },
+    "processes":  [
+
+                  ]
+}

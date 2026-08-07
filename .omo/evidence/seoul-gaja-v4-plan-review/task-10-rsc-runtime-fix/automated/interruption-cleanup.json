@@ -1,0 +1,18 @@
+﻿[
+    {
+        "label":  "interrupted",
+        "pid":  132684,
+        "ready":  true,
+        "statusCode":  200,
+        "port":  53824,
+        "portFreeAfterStop":  true
+    },
+    {
+        "label":  "restarted",
+        "pid":  120840,
+        "ready":  true,
+        "statusCode":  200,
+        "port":  53824,
+        "portFreeAfterStop":  true
+    }
+]

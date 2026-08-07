@@ -1,0 +1,9 @@
+{
+  "schema_version": 3,
+  "findings": [],
+  "head_sha": "802a27e979c5698c53543aa3b1dd2394a2dbcc18",
+  "head_tree_sha": "036711dda15d6edf61fe47ee8d8294712ae7456d",
+  "plan_sha256": "7974ee83ac2f4bfedbb37b3e9c29e8d92978f7f8edaca80c1a439f255c8510b9",
+  "authority_lock_sha256": "db939f67b3f85438fb9e472d89825fd37c1bbad11992c82450253c7e31e078f5",
+  "worktree_snapshot_sha256": "2271400e4c61b44bfc18b1c9310def4accb8b151003e3b36faed22f08ef4b06a"
+}
