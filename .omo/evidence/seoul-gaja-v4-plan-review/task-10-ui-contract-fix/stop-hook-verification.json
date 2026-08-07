@@ -1,0 +1,43 @@
+{
+  "verdict": "PASS",
+  "verified_at": "2026-08-07T22:40:00+09:00",
+  "commit_sha": "2ffed69d9360579eca3efe173cf4b888f778298e",
+  "tree_sha": "e077facfd6389b01f33a784b1f715d8af90e4b52",
+  "scenarios": [
+    {
+      "invocation": "node --test tests/gates/task-10-happy.test.mjs tests/gates/task-10-failure.test.mjs tests/product/detail-history/detail-contract.test.mjs tests/gates/task-10-map-retry-hit-test.test.mjs",
+      "observable": "21 tests, 21 pass, 0 fail, exit 0",
+      "artifact": "stop-hook-focused-tests.log"
+    },
+    {
+      "invocation": "npm run build",
+      "observable": "Vinext five build stages complete, exit 0",
+      "artifact": "stop-hook-build.log"
+    },
+    {
+      "invocation": "node browser-matrix artifact verifier",
+      "observable": "8 in-app matrix entries, 10 valid PNGs, 0 failed responses",
+      "artifact": "stop-hook-artifact-verifier.log"
+    },
+    {
+      "invocation": "owned runtime process and TCP port probes",
+      "observable": "0 owned runtime processes; port 53666 free",
+      "artifact": "stop-hook-cleanup-verifier.log"
+    }
+  ],
+  "adversarial_verify": {
+    "verdict": "confirmed",
+    "confidence": 1.0,
+    "classes": [
+      "malformed_input",
+      "prompt_injection",
+      "stale_state",
+      "dirty_worktree",
+      "hung_or_long_commands",
+      "flaky_tests",
+      "misleading_success_output",
+      "repeated_interruptions"
+    ],
+    "cancel_resume": "not applicable: no resumable operation"
+  }
+}
