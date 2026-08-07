@@ -14,7 +14,7 @@
     },
     "plan": {
       "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
-      "sha256": "4b608ffbbb4164a7fc7bef925dab6e36ca773534cdc1e04f58ada19a80aa581d"
+        "sha256": "f5359c2a91169a66195383ac935259b56780c8069d1e0fd85de641141138dc3e"
     },
     "amendment": {
       "path": "docs/execution/AMENDMENT-v4.1.md",
