@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { env } from "cloudflare:workers";
-import { redirect } from "next/navigation";
 
+import { InvalidPlaceFallback } from "./InvalidPlaceFallback";
 import { PlaceDetailClient } from "./PlaceDetailClient";
 import type { DetailPayload } from "./PlaceDetailClient";
 import { readProductViewModel } from "../../../server/product-read-model";
 import { resolveVisualEvidenceFixture, type VisualEvidenceSearchParams } from "../../_visual-evidence/resolve";
 
 const safeAreaCode = /^[A-Za-z0-9_-]+$/;
-const notFoundFallback = { status: "NOT_FOUND", path: "/?placeNotFound=1" } as const;
 
 type PlacePageProps = Readonly<{
   params: Promise<Readonly<{ areaCode: string }>>;
@@ -27,16 +26,18 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
 
 export default async function PlacePage({ params, searchParams }: PlacePageProps) {
   const { areaCode } = await params;
+  if (!safeAreaCode.test(areaCode)) return <InvalidPlaceFallback />;
   const visualFixture = resolveVisualEvidenceFixture(await searchParams);
   const result = visualFixture === null
     ? await readProductViewModel(env?.DB, { expectedCatalogCount: 121 })
     : { status: "READY", data: visualFixture } as const;
-  if (result.status !== "READY") {
+  if (result.status === "UNAVAILABLE") {
     const payload: DetailPayload = { status: "UNAVAILABLE", areaCode, areaName: null, snapshot: null, forecast: [], history: [], reason: result.reason };
     return <PlaceDetailClient areaCode={areaCode} payload={payload} />;
   }
+  if (result.status !== "READY") return <InvalidPlaceFallback />;
   const place = result.data.catalog.find((item) => item.areaCode === areaCode);
-  if (place === undefined) redirect(notFoundFallback.path);
+  if (place === undefined) return <InvalidPlaceFallback />;
   const row = result.data.snapshot.rows.find((item) => item.areaCode === areaCode) ?? null;
   const forecast = result.data.officialForecast.status === "READY" ? result.data.officialForecast.byAreaCode[areaCode]?.points ?? [] : [];
   const history = result.data.history.status === "READY" ? result.data.history.byAreaCode[areaCode]?.profiles ?? [] : [];
