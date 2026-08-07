@@ -18,7 +18,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-390x844.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-390x844.png"
     },
     {
       "pass": 1,
@@ -36,7 +36,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-430x932.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-430x932.png"
     },
     {
       "pass": 1,
@@ -54,7 +54,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-768x1024.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-768x1024.png"
     },
     {
       "pass": 1,
@@ -72,7 +72,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-1616x923.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass1-1616x923.png"
     },
     {
       "pass": 2,
@@ -90,7 +90,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-390x844.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-390x844.png"
     },
     {
       "pass": 2,
@@ -108,7 +108,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-430x932.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-430x932.png"
     },
     {
       "pass": 2,
@@ -126,7 +126,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-768x1024.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-768x1024.png"
     },
     {
       "pass": 2,
@@ -144,7 +144,7 @@
         },
         "rscRequests": []
       },
-      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/prep-v4-1/.omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-1616x923.png"
+      "unavailableScreenshot": ".omo/evidence/task-10-unavailable-branch-fix/browser/current-c75e736/unavailable/unavailable-pass2-1616x923.png"
     }
   ],
   "failures": [],
