@@ -39,7 +39,7 @@ export function PrimitiveShowcase({ onDismissSheet, onSelectSection }: Primitive
       <ul aria-label="Presentation modes" className="sg-primitive-showcase__modes">
         {presentationModes.map((mode) => <li key={mode}>{presentationByMode[mode].mode}</li>)}
       </ul>
-      <PlaceDetailSheet label="Showcase detail" onRequestClose={onDismissSheet}>
+      <PlaceDetailSheet label="Showcase detail" onRequestClose={onDismissSheet} surface="BOTTOM_SHEET">
         <p>Keyboard-closeable detail state.</p>
       </PlaceDetailSheet>
     </section>
