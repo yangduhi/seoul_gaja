@@ -35,7 +35,7 @@ export function PrimitiveShowcase({ onDismissSheet, onSelectSection }: Primitive
         onSelect={(item) => onSelectSection(item.id === "map" ? "map" : "list")}
       />
       <Phase03CatalogSurface announcement="Current catalog is available." onSelectSection={onSelectSection} />
-      <ChartAlternatives rows={chartRows} summary="Official forecast remains available." title="Forecast alternative" />
+      <ChartAlternatives emptyMessage="No source-backed forecast is available." rows={chartRows} summary="Official forecast remains available." title="Forecast alternative" />
       <ul aria-label="Presentation modes" className="sg-primitive-showcase__modes">
         {presentationModes.map((mode) => <li key={mode}>{presentationByMode[mode].mode}</li>)}
       </ul>

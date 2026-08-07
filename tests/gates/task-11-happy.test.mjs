@@ -26,7 +26,7 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   assert.ok(await exists("app/_design/Presentation.ts"), "A shared readonly presentation model is required.");
   assert.ok(await exists("app/_design/PrimitiveShowcase.tsx"), "A route-less primitive showcase is required.");
 
-  const [design, tokensText, contractText, css, panel, navigation, sheet, chart, phase03, presentation, showcase, fixtureText] = await Promise.all([
+  const [design, tokensText, contractText, css, panel, navigation, sheet, chart, phase03, presentation, showcase, catalogSurface, fixtureText] = await Promise.all([
     text("DESIGN.md"),
     text("design/design-tokens.json"),
     text("docs/execution/contracts/design-system-contract.json"),
@@ -38,6 +38,7 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
     text("app/_design/Phase03CatalogSurface.tsx"),
     text("app/_design/Presentation.ts"),
     text("app/_design/PrimitiveShowcase.tsx"),
+    text("app/_catalog/CatalogSurface.tsx"),
     text("tests/fixtures/task-11/screens.json"),
   ]);
   const tokens = JSON.parse(tokensText);
@@ -56,7 +57,19 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   ]);
   assert.equal(tokens.emphasis.gradient, "current-decision-cta-only");
   assert.equal(tokens.emphasis.maximum_glass_depths, 3);
+  assert.equal(tokens.typography.fontFamily, '"Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif');
   assert.equal(contract.authoritative_token_file, "design/design-tokens.json");
+  assert.equal(contract.first_phase03_consumer, "app/_catalog/CatalogSurface.tsx");
+  assert.deepEqual(contract.chart_alternative, {
+    row_sources: ["recommendation.reason.kind", "recommendation.reason.sourceTimestamp"],
+    empty_behavior: "explanation-without-table",
+    forbidden_values: ["raw-score", "fabricated-value"],
+  });
+  assert.deepEqual(contract.typography, {
+    font_family: "Pretendard",
+    font_family_token: "--sg-typography-font-family",
+    fallbacks: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Noto Sans KR", "sans-serif"],
+  });
   assert.deepEqual(contract.authority_order, [
     "docs/codex-pack-v4/design/design.md",
     "design/design-tokens.json",
@@ -71,6 +84,9 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   assert.match(navigation, /<nav aria-label=\{label\}/);
   assert.match(navigation, /aria-current=/);
   assert.match(navigation, /type="button"/);
+  assert.match(navigation, /ArrowRight/);
+  assert.match(navigation, /ArrowLeft/);
+  assert.match(navigation, /\.focus\(\)/);
   assert.doesNotMatch(navigation, /href=|next\/link|router\./i);
   assert.match(sheet, /role="dialog"/);
   assert.match(sheet, /aria-modal="true"/);
@@ -79,8 +95,14 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   assert.match(sheet, /const previouslyFocusedElement =\s*document\.activeElement instanceof HTMLElement/);
   assert.match(sheet, /previouslyFocusedElement\?\.isConnected/);
   assert.match(sheet, /previouslyFocusedElement\.focus\(\)/);
-  assert.match(chart, /<table>/);
+  assert.match(chart, /<table(?:\s|>)/);
   assert.match(chart, /<caption>/);
+  assert.match(chart, /rows\.length === 0/);
+  assert.match(chart, /data-source-backed="true"/);
+  assert.match(catalogSurface, /import \{ ChartAlternatives \}/);
+  assert.match(catalogSurface, /<ChartAlternatives/);
+  assert.match(catalogSurface, /reason\.sourceTimestamp/);
+  assert.match(catalogSurface, /data-current-decision="true"/);
   assert.match(phase03, /aria-live="polite"/);
   assert.match(phase03, /<GlassPanel/);
   assert.match(presentation, /readonly mode: "sheet" \| "drawer" \| "full-screen"/);
@@ -104,4 +126,7 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /min-height: 44px/);
   assert.match(css, /outline-offset: 2px/);
+  assert.match(css, /\*,\s*\*::before,\s*\*::after\s*\{\s*box-sizing:\s*border-box/);
+  assert.match(css, /--font-sans: var\(--sg-typography-font-family\);/);
+  assert.match(css, /font-family: var\(--sg-typography-font-family\);/);
 });

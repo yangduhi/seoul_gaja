@@ -4,21 +4,26 @@ export type ChartRow = Readonly<{
 }>;
 
 type ChartAlternativesProps = Readonly<{
+  readonly emptyMessage: string;
   readonly rows: readonly ChartRow[];
   readonly summary: string;
   readonly title: string;
 }>;
 
-export function ChartAlternatives({ rows, summary, title }: ChartAlternativesProps) {
+export function ChartAlternatives({ emptyMessage, rows, summary, title }: ChartAlternativesProps) {
   return (
-    <section aria-labelledby="chart-alternative-title" className="sg-chart-alternative">
-      <h2 id="chart-alternative-title">{title}</h2>
-      <p>{summary}</p>
-      <table>
-        <caption>{title} data table</caption>
-        <thead><tr><th scope="col">Time</th><th scope="col">Forecast</th></tr></thead>
-        <tbody>{rows.map((row) => <tr key={row.label}><th scope="row">{row.label}</th><td>{row.value}</td></tr>)}</tbody>
-      </table>
+    <section aria-label={title} className="sg-chart-alternative">
+      <h3>{title}</h3>
+      <p className="sg-chart-alternative__summary">{summary}</p>
+      {rows.length === 0 ? (
+        <p className="sg-chart-alternative__empty" role="status">{emptyMessage}</p>
+      ) : (
+        <table data-source-backed="true">
+          <caption>{title} data table</caption>
+          <thead><tr><th scope="col">Source</th><th scope="col">Time</th></tr></thead>
+          <tbody>{rows.map((row) => <tr key={`${row.label}-${row.value}`}><th scope="row">{row.label}</th><td>{row.value}</td></tr>)}</tbody>
+        </table>
+      )}
     </section>
   );
 }

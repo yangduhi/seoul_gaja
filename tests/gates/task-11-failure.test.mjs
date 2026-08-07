@@ -18,13 +18,14 @@ async function isPresent(path) {
 }
 
 test("negative design fixtures require the contracted fallback and reject unauthorized navigation", async () => {
-  const [negative, contract, css, navigation, chart, showcase, page] = await Promise.all([
+  const [negative, contract, css, navigation, chart, showcase, catalogSurface, page] = await Promise.all([
     fixture("tests/fixtures/task-11/negative.json"),
     fixture("docs/execution/contracts/design-system-contract.json"),
     readFile(new URL("app/globals.css", root), "utf8"),
     readFile(new URL("app/_design/Navigation.tsx", root), "utf8"),
     readFile(new URL("app/_design/ChartAlternatives.tsx", root), "utf8"),
     readFile(new URL("app/_design/PrimitiveShowcase.tsx", root), "utf8"),
+    readFile(new URL("app/_catalog/CatalogSurface.tsx", root), "utf8"),
     readFile(new URL("app/page.tsx", root), "utf8"),
   ]);
   const expectations = new Map(negative.fixtures.map((item) => [item.id, item.expect]));
@@ -38,6 +39,10 @@ test("negative design fixtures require the contracted fallback and reject unauth
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(css, /\.sg-current-decision-cta/);
   assert.match(chart, /data table/);
+  assert.match(chart, /rows\.length === 0/);
+  assert.match(chart, /role="status"/);
+  assert.match(catalogSurface, /item\.status === "READY"/);
+  assert.match(catalogSurface, /rows=\{\[\]\}/);
   assert.doesNotMatch(navigation, /href=|window\.location|router\.|pushState/i);
   assert.doesNotMatch(showcase, /href=|window\.location|router\.|pushState/i);
   assert.doesNotMatch(page, /PrimitiveShowcase/);

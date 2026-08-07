@@ -85,6 +85,7 @@
   --sg-type-detail-title: 24px;
   --sg-type-screen-title: 28px;
   --sg-type-detail-range: 30px;
+  --sg-typography-font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
   --sg-typography-body-line-height: 1.5;
   --sg-typography-title-tracking: -.05em;
   --sg-typography-section-tracking: -.04em;

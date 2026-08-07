@@ -19,7 +19,18 @@
     "app/_design/PrimitiveShowcase.tsx"
   ],
   "screens": ["home-map", "place-detail", "family-recommendations", "history-insight", "desktop-dashboard"],
+  "typography": {
+    "font_family": "Pretendard",
+    "font_family_token": "--sg-typography-font-family",
+    "fallbacks": ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Noto Sans KR", "sans-serif"]
+  },
   "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+  "first_phase03_consumer": "app/_catalog/CatalogSurface.tsx",
+  "chart_alternative": {
+    "row_sources": ["recommendation.reason.kind", "recommendation.reason.sourceTimestamp"],
+    "empty_behavior": "explanation-without-table",
+    "forbidden_values": ["raw-score", "fabricated-value"]
+  },
   "required_accessibility": [
     "keyboard-operable navigation and sheet close",
     "visible focus ring with 2px offset",

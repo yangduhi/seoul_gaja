@@ -22,11 +22,11 @@ Use `design/design-tokens.json` as the machine-readable source. Light surfaces u
 
 ## 4. Typography, spacing, and motion
 
-Use the system Korean-capable sans stack declared in `app/globals.css`. Spacing tokens are 8, 10, 14, 18, and 28px. Panel and sheet radii are 22px and 28px. Motion uses 160ms, 240ms, or 360ms with `cubic-bezier(.2,.8,.2,1)` and is suppressed for `prefers-reduced-motion`.
+Use `Pretendard` as the primary Korean-capable sans through `--sg-typography-font-family`; the token keeps deterministic platform fallbacks when the host does not provide the face. Spacing tokens are 8, 10, 14, 18, and 28px. Panel and sheet radii are 22px and 28px. Motion uses 160ms, 240ms, or 360ms with `cubic-bezier(.2,.8,.2,1)` and is suppressed for `prefers-reduced-motion`.
 
 ## 5. Primitives and states
 
-`GlassPanel` supports the three depth states and optional current-decision emphasis. `Navigation` is button-only and has default and active states. `PlaceDetailSheet` is keyboard-dismissible and modal. `ChartAlternatives` always pairs a summary with a table. `Phase03CatalogSurface` announces state changes through polite `aria-live`.
+`GlassPanel` supports the three depth states and optional current-decision emphasis. `Navigation` is button-only, has default and active states, and supports arrow/Home/End key movement. `PlaceDetailSheet` is keyboard-dismissible and modal. `ChartAlternatives` pairs a summary with source-backed table rows; when no rows exist it explains the missing data and omits the empty table. `Phase03CatalogSurface` announces state changes through polite `aria-live`.
 
 `PrimitiveShowcase` is test-only and route-less. It exercises each primitive and its declared presentation modes without adding public navigation, a Settings route, Help route, or design route.
 
@@ -40,4 +40,4 @@ Visible focus uses a 2px blue ring with a 2px offset. Keyboard users can operate
 
 ## 8. Verification and accepted debt
 
-The task-11 gates verify authority binding, deterministic mockup names, token/primitives-before-screen order, required states, responsive geometry, and route isolation. Visual QA is intentionally deferred to a consuming product route: this foundation has no authorized public route and mockups alone are not a visual PASS.
+The task-11 gates verify authority binding, deterministic mockup names, token/primitives-before-screen order, required states, responsive geometry, and route isolation. The existing catalog route is the first Phase 03 consumer: it builds chart-alternative rows only from recommendation reason kinds and their existing source timestamps, never from raw scores or fabricated values. Visual PASS requires direct browser evidence from that route; mockups alone are not a visual PASS.

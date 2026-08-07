@@ -1,6 +1,7 @@
 "use client";
 
 import { GlassPanel } from "../_design/GlassPanel";
+import { ChartAlternatives } from "../_design/ChartAlternatives";
 import { Navigation } from "../_design/Navigation";
 import { PlaceDetailSheet } from "../_design/PlaceDetailSheet";
 import { useEffect, useMemo, useState } from "react";
@@ -179,20 +180,32 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
               {status === "UNAVAILABLE" ? <div className={styles.mapNotice} role="status"><strong>지도를 불러오지 못했습니다</strong><p>목록과 장소 상세는 유지됩니다. 연결이 되면 {mapRetry > 0 ? "다시 시도했습니다." : "자동으로 갱신됩니다."}</p><div className={styles.mapActions}><button className={styles.retryButton} type="button" onClick={() => setMapRetry((value) => value + 1)}>다시 시도</button><button className={styles.geoButton} type="button" onClick={requestLocation}>내 주변</button><a className={styles.externalMap} href="https://map.kakao.com/?q=서울" target="_blank" rel="noreferrer">카카오 지도</a></div>{geoState !== "idle" && <p className={styles.source}>{geoState === "timeout" ? "위치 요청 시간이 초과되었습니다." : "위치 권한이 없어 공식 목록으로 계속합니다."}</p>}</div> : <div className={styles.mapLegend} aria-label="혼잡도 범례"><span data-level="RELAXED">여유</span><span data-level="NORMAL">보통</span><span data-level="BUSY">약간 붐빔</span></div>}
             </div>
           </GlassPanel>
-          <div className={styles.recommendations} aria-label="공식 혼잡도 기반 시간 안내" aria-live="polite">
+          <div className={`${styles.recommendations} sg-recommendations`} aria-label="공식 혼잡도 기반 시간 안내" aria-live="polite">
             {[recommendations.now, recommendations.next].map((item) => {
               const result = item.results[0];
-              return <GlassPanel depth="content" key={item.mode} className={styles.recommendation}>
+              const recommendedRow = result ? catalog.find((place) => place.areaCode === result.areaCode) : undefined;
+              const chartRows = result?.reasons.slice(0, 3).map((reason) => ({
+                label: reasonLabel(reason.kind),
+                value: displayRecommendationTime(reason.sourceTimestamp),
+              })) ?? [];
+              return <GlassPanel depth="content" key={item.mode} className={`${styles.recommendation} sg-recommendation`}>
                 <h2>{item.mode}</h2>
                 {item.status === "READY" && result ? <>
                   <p className={styles.recommendationStatus}>{result.variant === "history-enhanced" ? `${result.historyMaturity} · 과거 패턴 포함` : "기본 · 현재와 공식 예보"}</p>
-                  <p><strong>{catalog.find((place) => place.areaCode === result.areaCode)?.areaName ?? result.areaCode}</strong> · <time dateTime={result.selectedTimestamp}>{displayRecommendationTime(result.selectedTimestamp)}</time></p>
-                  <details className={styles.recommendationDetails}>
-                    <summary>근거와 원천 시각</summary>
-                    <ul>{result.reasons.slice(0, 3).map((reason) => <li key={reason.kind}>{reasonLabel(reason.kind)} · <time dateTime={reason.sourceTimestamp}>{displayRecommendationTime(reason.sourceTimestamp)}</time></li>)}</ul>
-                    <p>{Object.entries(result.sourceTimestamps).map(([source, timestamp]) => <span key={source}>{source}: <time dateTime={timestamp}>{displayRecommendationTime(timestamp)}</time></span>)}</p>
-                  </details>
-                </> : <p className={styles.recommendationReason}>{item.browseCopy ?? "필수 원천값이 없어 추천을 보류합니다. 장소 목록은 계속 둘러볼 수 있습니다."}</p>}
+                  <p><strong>{recommendedRow?.areaName ?? result.areaCode}</strong> · <time dateTime={result.selectedTimestamp}>{displayRecommendationTime(result.selectedTimestamp)}</time></p>
+                  <ChartAlternatives
+                    emptyMessage="추천을 설명할 원천 시각이 없습니다."
+                    rows={chartRows}
+                    summary="추천에 사용된 원천별 기준 시각입니다. 수치 점수는 표시하지 않습니다."
+                    title={`${item.mode} 추천 근거`}
+                  />
+                  {recommendedRow && <button className={`${styles.detailAction} sg-current-decision-cta`} data-current-decision="true" type="button" onClick={() => openPlace(recommendedRow)}>추천 장소 자세히 보기</button>}
+                </> : <ChartAlternatives
+                  emptyMessage={item.browseCopy ?? "필수 원천값이 없어 추천을 보류합니다. 장소 목록은 계속 둘러볼 수 있습니다."}
+                  rows={[]}
+                  summary="표시할 수 있는 원천 기반 추천이 없습니다."
+                  title={`${item.mode} 추천 근거`}
+                />}
               </GlassPanel>;
             })}
           </div>
