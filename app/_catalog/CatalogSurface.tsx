@@ -167,7 +167,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
     <main className={styles.surface}>
       <div className={styles.shell}>
         <section className={styles.explorer} aria-label="서울 공식 장소 탐색">
-          {placeNotFound && <GlassPanel depth="floating" data-catalog-not-found role="status" aria-live="polite">
+          {placeNotFound && <GlassPanel depth="floating" className={styles.notFoundNotice} data-catalog-not-found role="status" aria-live="polite">
             <strong>선택한 공식 장소를 더 이상 찾을 수 없습니다.</strong>
             <p>현재 공식 카탈로그에서 다른 장소를 선택해 주세요.</p>
           </GlassPanel>}

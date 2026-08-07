@@ -114,6 +114,7 @@
 .placeRange { color: var(--sg-text-primary); font-variant-numeric: tabular-nums; font-size: var(--sg-type-caption); }
 .placeUnavailable { color: var(--sg-semantic-unavailable-text); font-size: var(--sg-type-eyebrow); }
 .empty { padding: var(--sg-radius-panel) var(--sg-space-xs); color: var(--sg-text-secondary); font-size: var(--sg-type-body); text-align: center; }
+.notFoundNotice { position: relative; z-index: 1; }
 
 .main {
   display: grid;
@@ -199,6 +200,7 @@
   .surface { min-height: 100dvh; padding: 0; overflow: hidden; }
   .shell { position: relative; display: block; height: 100dvh; min-height: 0; }
   .explorer { display: contents; }
+  .notFoundNotice { position: absolute; z-index: 6; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); left: var(--sg-space-lg); }
   .main { position: absolute; inset: 0; display: block; margin: 0; }
   .mapPane { height: 100%; min-height: 100%; padding: 0; border: 0; border-radius: 0; }
   .mapContent { min-height: 100%; }

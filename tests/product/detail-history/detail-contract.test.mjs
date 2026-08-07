@@ -12,8 +12,7 @@ const home = await readFile(new URL("../../../app/page.tsx", import.meta.url), "
 
 test("detail route is bound to the truthful D1 read model", () => {
   assert.match(page, /readProductViewModel/);
-  assert.match(page, /status: \"UNAVAILABLE\"/);
-  assert.match(page, /status: \"NOT_FOUND\"/);
+  assert.match(page, /InvalidPlaceFallback/);
 });
 
 test("detail surface exposes source-backed forecast, history, and recovery controls", () => {
@@ -29,8 +28,9 @@ test("invalid or removed places are excluded from indexing", () => {
 });
 
 test("invalid or removed places resolve to the catalog fallback surface", () => {
-  assert.match(page, /path: "\/\?placeNotFound=1"/);
-  assert.match(page, /redirect\(notFoundFallback\.path\)/);
+  assert.match(page, /if \(result\.status !== "READY"\) return <InvalidPlaceFallback \/>/);
+  assert.match(page, /if \(place === undefined\) return <InvalidPlaceFallback \/>/);
+  assert.doesNotMatch(page, /redirect\(/);
   assert.match(home, /placeNotFound/);
   assert.match(home, /robots: isPlaceNotFound \? \{ index: false, follow: false \} : undefined/);
   assert.match(catalog, /data-catalog-not-found/);
