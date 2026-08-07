@@ -1,0 +1,15 @@
+✔ the rendered recommendation carousel exposes reachable NOW and NEXT CTAs (6373.4175ms)
+✔ the current-decision marker is unique to the NOW CTA while NEXT stays reachable (69.8656ms)
+✔ only NOW CTA carries the decision gradient while NEXT stays neutral (1478.0651ms)
+✔ the NOW decision gradient keeps every rendered endpoint at the body-text contrast threshold (4094.3695ms)
+✔ Given the recommendation surface, when each supported viewport activates NEXT, then the CTA stays visible and opens canonical detail (4434.6104ms)
+✔ Given the selected-detail fixture, when the catalog hydrates, then its detail surface is initially present (1038.1472ms)
+✔ Given keyboard navigation, when the actual search input receives focus, then its token focus ring is visibly discernible (1018.2123ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21110.9689

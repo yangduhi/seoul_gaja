@@ -1,0 +1,114 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "target_class":  "RENDERED_UI",
+    "baseline_score":  0,
+    "score":  100,
+    "target_score":  100,
+    "score_delta":  100,
+    "loop_state":  "PASS_100",
+    "severity_cap_result":  "CLEAR",
+    "components":  [
+                       {
+                           "id":  "C01_SOURCE_FIDELITY",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C02_LAYOUT_GEOMETRY",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C03_RESPONSIVE_VIEWPORTS",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C04_TYPOGRAPHY_CJK",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C05_SURFACE_TOKENS",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C06_INTERACTION_STATES",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C07_ACCESSIBILITY",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C08_CONTENT_HIERARCHY",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C09_SYSTEM_CONSISTENCY",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       },
+                       {
+                           "id":  "C10_EVIDENCE_COMPLETENESS",
+                           "status":  "PASS",
+                           "points":  10,
+                           "source_authority":  "seoul-gaja-design-audit-v3",
+                           "applicability":  "RENDERED_UI",
+                           "acceptance_criteria":  "all applicable atomic checks proven on exact candidate",
+                           "observation_method":  "repo gates plus real Chrome two-pass matrix",
+                           "evidence":  ".omo/evidence/todo11-integrated-design-fix/final; .omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                       }
+                   ]
+}

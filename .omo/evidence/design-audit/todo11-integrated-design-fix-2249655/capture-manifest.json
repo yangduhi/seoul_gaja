@@ -1,0 +1,1371 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "captures":  [
+                     {
+                         "capture_id":  "home-map-390x844-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "c003878772956dcb01492ff1f5eaf9e42ae5efb7c4afe2b7b1681d3fb1656db7",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-390x844-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "785dc47962a169f3ba51a4862791350978221642d496377c1f0d4d4e0700335d",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-390x844-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "d8aeab4648b2352c0353705e605bb242ce0e9f18a1dfd4f447226ff2d784aa50",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-390x844-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "f9e995b452d54fffdb1ec9cdf4fac9a684093a148a5b14f43c7dad333acc42f8",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-390x844-p1-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "31f0833b9e9b78b3e0922f0a0811b1a29bef2d0450c9c1943fdc9344bad4b447",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-430x932-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "8cc1b0361a8a109c79827f7e08ea29f33ff20828729bea85e34245083466ab08",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-430x932-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "305c70dc28f8cde05d4584cb2aa6197748dba9617132b39a3d9606de190a44f6",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-430x932-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "3f099683e551c7be45131c273690cf8e76ef89c683149251fdeccbb2da851f67",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-430x932-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "fd5ecacdb49f51ccc88e8b61f060a58efcbec2cc746ce6d716268a0ed54070ac",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-430x932-p1-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "17ba784367d8cba9837ea831f0be4c9034531c6f2986d822854a7f5aea006f0d",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-768x1024-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "146acb6555314b3d39619ce26e45c7e6f793a2b0bb32ccc4d9703277140b87e0",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-768x1024-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "dabac9aead4add3d372f3155f09353ac99900eccd9d3f1e2b4c4cd88d6285038",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-768x1024-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "edf4f17c3782fbe66c79e654a452fb4a78cd2ef7e8b085982bae410086045033",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-768x1024-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "1e5359e27a829b67cd5fb27f226b4ab4915a84be8e3ea70f30395efd3b15dac1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-768x1024-p1-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "5e749a4c676b1bad2251db28d0d064cff040442ce90bb8d9b46d62d625b9a257",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-1616x923-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-1616x923-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "bc26e4b77b571f89c7abba0e79b3694845347ea0a0518a117d72aab93f8fb3a1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "desktop-dashboard-1616x923-p1-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p1-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-1616x923-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "d1d66b19ef48f7254cdfb7cedb6b17aa7b3406be27448875c763480ace4add79",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-1616x923-p1-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "a0266aabfb7870dc2cfb414526f0a72f5e2e97b61b260bd621d6ad089dad4402",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p1-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-1616x923-p1-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "f6ab196c3d931db1b75cf5f3a90f330f15d5e52b51565857983930ab8449d394",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-390x844-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "c003878772956dcb01492ff1f5eaf9e42ae5efb7c4afe2b7b1681d3fb1656db7",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-390x844-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "785dc47962a169f3ba51a4862791350978221642d496377c1f0d4d4e0700335d",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-390x844-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "d8aeab4648b2352c0353705e605bb242ce0e9f18a1dfd4f447226ff2d784aa50",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-390x844-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "f9e995b452d54fffdb1ec9cdf4fac9a684093a148a5b14f43c7dad333acc42f8",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-390x844-p2-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "390x844",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "31f0833b9e9b78b3e0922f0a0811b1a29bef2d0450c9c1943fdc9344bad4b447",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-430x932-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "8cc1b0361a8a109c79827f7e08ea29f33ff20828729bea85e34245083466ab08",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-430x932-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "305c70dc28f8cde05d4584cb2aa6197748dba9617132b39a3d9606de190a44f6",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-430x932-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "3f099683e551c7be45131c273690cf8e76ef89c683149251fdeccbb2da851f67",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-430x932-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "fd5ecacdb49f51ccc88e8b61f060a58efcbec2cc746ce6d716268a0ed54070ac",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-430x932-p2-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "430x932",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "17ba784367d8cba9837ea831f0be4c9034531c6f2986d822854a7f5aea006f0d",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-768x1024-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "146acb6555314b3d39619ce26e45c7e6f793a2b0bb32ccc4d9703277140b87e0",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-768x1024-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "dabac9aead4add3d372f3155f09353ac99900eccd9d3f1e2b4c4cd88d6285038",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-768x1024-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "edf4f17c3782fbe66c79e654a452fb4a78cd2ef7e8b085982bae410086045033",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-768x1024-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "1e5359e27a829b67cd5fb27f226b4ab4915a84be8e3ea70f30395efd3b15dac1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-768x1024-p2-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "768x1024",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "5e749a4c676b1bad2251db28d0d064cff040442ce90bb8d9b46d62d625b9a257",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-unavailable.png"
+                     },
+                     {
+                         "capture_id":  "home-map-1616x923-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "family-recommendations-1616x923-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "bc26e4b77b571f89c7abba0e79b3694845347ea0a0518a117d72aab93f8fb3a1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "desktop-dashboard-1616x923-p2-ready",
+                         "route":  "/",
+                         "state":  "ready",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p2-ready.png"
+                     },
+                     {
+                         "capture_id":  "place-detail-1616x923-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "d1d66b19ef48f7254cdfb7cedb6b17aa7b3406be27448875c763480ace4add79",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "history-insight-1616x923-p2-selected",
+                         "route":  "/places/alpha",
+                         "state":  "selected",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "a0266aabfb7870dc2cfb414526f0a72f5e2e97b61b260bd621d6ad089dad4402",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p2-selected.png"
+                     },
+                     {
+                         "capture_id":  "home-map-1616x923-p2-unavailable",
+                         "route":  "/",
+                         "state":  "unavailable",
+                         "viewport":  "1616x923",
+                         "dpr":  1,
+                         "browser":  "Google Chrome via cached Playwright",
+                         "candidate_snapshot":  {
+                                                    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                                                    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                                                    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c"
+                                                },
+                         "evidence_kind":  "real_surface",
+                         "evidence_sha256":  "f6ab196c3d931db1b75cf5f3a90f330f15d5e52b51565857983930ab8449d394",
+                         "source_anchors":  [
+                                                "docs/codex-pack-v4/design/screen-specs.md",
+                                                ".omo/plans/seoul-gaja-v4-plan-review.md:166-171"
+                                            ],
+                         "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-unavailable.png"
+                     }
+                 ],
+    "browser_observations":  {
+                                 "rows":  [
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  390,
+                                                                   "height":  844
+                                                               },
+                                                  "pass":  1,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  33,
+                                                                               "right":  357,
+                                                                               "top":  443,
+                                                                               "bottom":  491,
+                                                                               "width":  324,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  390,
+                                                                   "height":  844
+                                                               },
+                                                  "pass":  1,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  33,
+                                                                            "y":  474,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  430,
+                                                                   "height":  932
+                                                               },
+                                                  "pass":  1,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  33,
+                                                                               "right":  397,
+                                                                               "top":  531,
+                                                                               "bottom":  579,
+                                                                               "width":  364,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  430,
+                                                                   "height":  932
+                                                               },
+                                                  "pass":  1,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  33,
+                                                                            "y":  474.5,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  768,
+                                                                   "height":  1024
+                                                               },
+                                                  "pass":  1,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  33,
+                                                                               "right":  735,
+                                                                               "top":  623,
+                                                                               "bottom":  671,
+                                                                               "width":  702,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  768,
+                                                                   "height":  1024
+                                                               },
+                                                  "pass":  1,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  33,
+                                                                            "y":  474.5,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  1616,
+                                                                   "height":  923
+                                                               },
+                                                  "pass":  1,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  824,
+                                                                               "right":  1159,
+                                                                               "top":  842,
+                                                                               "bottom":  890,
+                                                                               "width":  335,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  1616,
+                                                                   "height":  923
+                                                               },
+                                                  "pass":  1,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  462,
+                                                                            "y":  643.5,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  390,
+                                                                   "height":  844
+                                                               },
+                                                  "pass":  2,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  33,
+                                                                               "right":  357,
+                                                                               "top":  443,
+                                                                               "bottom":  491,
+                                                                               "width":  324,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  390,
+                                                                   "height":  844
+                                                               },
+                                                  "pass":  2,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  33,
+                                                                            "y":  474,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  430,
+                                                                   "height":  932
+                                                               },
+                                                  "pass":  2,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  33,
+                                                                               "right":  397,
+                                                                               "top":  531,
+                                                                               "bottom":  579,
+                                                                               "width":  364,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  430,
+                                                                   "height":  932
+                                                               },
+                                                  "pass":  2,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  33,
+                                                                            "y":  474.5,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  768,
+                                                                   "height":  1024
+                                                               },
+                                                  "pass":  2,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  33,
+                                                                               "right":  735,
+                                                                               "top":  623,
+                                                                               "bottom":  671,
+                                                                               "width":  702,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  768,
+                                                                   "height":  1024
+                                                               },
+                                                  "pass":  2,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  33,
+                                                                            "y":  474.5,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              },
+                                              {
+                                                  "type":  "ready",
+                                                  "viewport":  {
+                                                                   "width":  1616,
+                                                                   "height":  923
+                                                               },
+                                                  "pass":  2,
+                                                  "focusRing":  {
+                                                                    "active":  true,
+                                                                    "outlineWidth":  "2px",
+                                                                    "outlineStyle":  "solid"
+                                                                },
+                                                  "reducedMotion":  {
+                                                                        "matches":  true,
+                                                                        "transition":  "1e-05s"
+                                                                    },
+                                                  "geometry":  {
+                                                                   "box":  {
+                                                                               "left":  824,
+                                                                               "right":  1159,
+                                                                               "top":  842,
+                                                                               "bottom":  890,
+                                                                               "width":  335,
+                                                                               "height":  48
+                                                                           },
+                                                                   "fivePointOwnership":  true,
+                                                                   "background":  "rgba(255, 255, 255, 0.62)",
+                                                                   "color":  "rgb(13, 23, 38)",
+                                                                   "overflow":  false
+                                                               },
+                                                  "foreground_luminance":  0.008382984741266242,
+                                                  "background_luminance":  1,
+                                                  "contrastRatio":  17.98469202376766,
+                                                  "allTargets44":  true,
+                                                  "restoredFocus":  true,
+                                                  "directReload":  true,
+                                                  "repeatedBackBounded":  true
+                                              },
+                                              {
+                                                  "type":  "adverse",
+                                                  "viewport":  {
+                                                                   "width":  1616,
+                                                                   "height":  923
+                                                               },
+                                                  "pass":  2,
+                                                  "noMatch":  {
+                                                                  "placeControls":  0,
+                                                                  "clearControl":  1
+                                                              },
+                                                  "injection":  {
+                                                                    "imageCount":  0,
+                                                                    "inputValue":  "\u003cimg src=x onerror=alert(\"inert\")\u003e",
+                                                                    "dialogs":  0
+                                                                },
+                                                  "retry":  {
+                                                                "box":  {
+                                                                            "x":  462,
+                                                                            "y":  643.5,
+                                                                            "width":  87.328125,
+                                                                            "height":  44
+                                                                        },
+                                                                "announcement":  1
+                                                            }
+                                              }
+                                          ],
+                                 "invalid":  {
+                                                 "path":  "/",
+                                                 "imageCount":  0,
+                                                 "noindex":  "noindex, nofollow"
+                                             },
+                                 "errors":  [
+
+                                            ]
+                             }
+}

@@ -1,0 +1,95 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "rows":  [
+                 {
+                     "viewport":  "390x844",
+                     "pass":  1,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "430x932",
+                     "pass":  1,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "768x1024",
+                     "pass":  1,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "1616x923",
+                     "pass":  1,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "390x844",
+                     "pass":  2,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "430x932",
+                     "pass":  2,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "768x1024",
+                     "pass":  2,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 },
+                 {
+                     "viewport":  "1616x923",
+                     "pass":  2,
+                     "foreground":  "rgb(13, 23, 38)",
+                     "background":  "rgba(255, 255, 255, 0.62)",
+                     "foreground_luminance":  0.008382984741266242,
+                     "background_luminance":  1,
+                     "contrast_ratio":  17.98469202376766,
+                     "threshold":  4.5,
+                     "verdict":  "PASS"
+                 }
+             ],
+    "verdict":  "PASS"
+}

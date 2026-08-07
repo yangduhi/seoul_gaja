@@ -1,0 +1,39 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "findings":  [
+                     {
+                         "finding_id":  "TODO11-BASELINE-390-NEXT-CTA",
+                         "severity":  "P1",
+                         "status":  "MATCH",
+                         "classification":  "MATCH",
+                         "observed":  "Primary v2 two-pass geometry and five-point ownership prove NEXT visible and reachable at 390x844.",
+                         "evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                     },
+                     {
+                         "finding_id":  "T11-AC-170-TYPECHECK",
+                         "severity":  "P1",
+                         "status":  "MATCH",
+                         "classification":  "MATCH",
+                         "observed":  "Required Showcase surface supplied; tsc exits 0.",
+                         "evidence":  ".omo/evidence/todo11-integrated-design-fix/final-v2/tsc.log"
+                     },
+                     {
+                         "finding_id":  "T11-FOCUS-PRIMARY",
+                         "severity":  "P1",
+                         "status":  "MATCH",
+                         "classification":  "MATCH",
+                         "observed":  "Primary v2 itself records restoredFocus true in all 8/8 ready rows; gate awaits and asserts the animation-frame restoration.",
+                         "evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                     },
+                     {
+                         "finding_id":  "T11-ADVERSE-EVIDENCE",
+                         "severity":  "P1",
+                         "status":  "MATCH",
+                         "classification":  "MATCH",
+                         "observed":  "Primary v2 exact DOM selectors prove zero place controls, retry click and polite announcement, hostile input inert.",
+                         "evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                     }
+                 ]
+}

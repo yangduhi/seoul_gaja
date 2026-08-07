@@ -1,0 +1,17 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "router":  "mengto-skills",
+    "status":  "PASS",
+    "command":  "python D:\\DevWorkCache\\.codex\\skills\\mengto-skills\\scripts\\recommend_skills.py --repo D:\\vscode\\seoul_gaja-worktrees\\todo11-integrated-design-fix --task \u003cTodo11 integrated design fix\u003e --lang ko",
+    "output":  ".omo/evidence/todo11-integrated-design-fix/mengto-recommendation.txt",
+    "lenses":  [
+                   "ui/redesign-existing-projects",
+                   "web-design/framed-grid-layout",
+                   "web-design/split-layout-technical",
+                   "web-design/nested-container-frames",
+                   "codex/playwright",
+                   "codex/audit-verify-explain-grade-5"
+               ]
+}

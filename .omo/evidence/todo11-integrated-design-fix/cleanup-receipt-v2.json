@@ -1,0 +1,22 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "verdict":  "PASS",
+    "observables":  {
+                        "port_listeners":  0,
+                        "task_owned_node_chrome_processes":  0,
+                        "node_modules_junction_exists":  false,
+                        "external_temp_exists":  false,
+                        "temp_scripts_exist":  false,
+                        "pycache_exists":  false,
+                        "unexpected_git_entries":  [
+
+                                                   ],
+                        "intentional_evidence_entries":  [
+                                                             "?? .omo/evidence/design-audit/todo11-integrated-design-fix-1df289d/",
+                                                             "?? .omo/evidence/design-audit/todo11-integrated-design-fix-2249655/",
+                                                             "?? .omo/evidence/todo11-integrated-design-fix/"
+                                                         ],
+                        "parent_head":  "a07b7ebc11b7ca9c39ca78aa48faa99fe72e4fdf"
+                    }
+}

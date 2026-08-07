@@ -1,0 +1,157 @@
+{
+    "verdict":  "FAIL",
+    "candidate_head_sha":  "1df289d029f1bd5ca442a7d809466b9f7ad3c615",
+    "candidate_head_tree_sha":  "45dd0f3ce908cc61fbf6d69fa3046ddf82aa304d",
+    "source_artifact":  ".omo/evidence/todo11-integrated-design-fix/manual-qa/manual-qa.json",
+    "failed_rows":  [
+                        {
+                            "viewport":  {
+                                             "width":  768,
+                                             "height":  1024
+                                         },
+                            "pass":  1,
+                            "focus":  {
+                                          "active":  true,
+                                          "outlineWidth":  "2px",
+                                          "outlineStyle":  "solid"
+                                      },
+                            "reducedMotion":  {
+                                                  "matches":  true,
+                                                  "transition":  "1e-05s"
+                                              },
+                            "geometry":  {
+                                             "box":  {
+                                                         "left":  33,
+                                                         "right":  735,
+                                                         "top":  623,
+                                                         "bottom":  671,
+                                                         "width":  702,
+                                                         "height":  48
+                                                     },
+                                             "fivePointOwnership":  true,
+                                             "background":  "rgba(255, 255, 255, 0.62)",
+                                             "color":  "rgb(13, 23, 38)",
+                                             "overflow":  false
+                                         },
+                            "allTargets44":  true,
+                            "restoredFocus":  false,
+                            "directReload":  true,
+                            "repeatedBackBounded":  true
+                        },
+                        {
+                            "viewport":  {
+                                             "width":  1616,
+                                             "height":  923
+                                         },
+                            "pass":  2,
+                            "focus":  {
+                                          "active":  true,
+                                          "outlineWidth":  "2px",
+                                          "outlineStyle":  "solid"
+                                      },
+                            "reducedMotion":  {
+                                                  "matches":  true,
+                                                  "transition":  "1e-05s"
+                                              },
+                            "geometry":  {
+                                             "box":  {
+                                                         "left":  824,
+                                                         "right":  1159,
+                                                         "top":  842,
+                                                         "bottom":  890,
+                                                         "width":  335,
+                                                         "height":  48
+                                                     },
+                                             "fivePointOwnership":  true,
+                                             "background":  "rgba(255, 255, 255, 0.62)",
+                                             "color":  "rgb(13, 23, 38)",
+                                             "overflow":  false
+                                         },
+                            "allTargets44":  true,
+                            "restoredFocus":  false,
+                            "directReload":  true,
+                            "repeatedBackBounded":  true
+                        }
+                    ],
+    "fresh_exact_id_repro":  {
+                                 "head_sha":  "1df289d029f1bd5ca442a7d809466b9f7ad3c615",
+                                 "head_tree_sha":  "45dd0f3ce908cc61fbf6d69fa3046ddf82aa304d",
+                                 "verdict":  "PASS",
+                                 "rows":  [
+                                              {
+                                                  "viewport":  "768x1024",
+                                                  "pass":  1,
+                                                  "attempt":  1,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "768x1024",
+                                                  "pass":  1,
+                                                  "attempt":  2,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "768x1024",
+                                                  "pass":  1,
+                                                  "attempt":  3,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "768x1024",
+                                                  "pass":  1,
+                                                  "attempt":  4,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "768x1024",
+                                                  "pass":  1,
+                                                  "attempt":  5,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "1616x923",
+                                                  "pass":  2,
+                                                  "attempt":  1,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "1616x923",
+                                                  "pass":  2,
+                                                  "attempt":  2,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "1616x923",
+                                                  "pass":  2,
+                                                  "attempt":  3,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "1616x923",
+                                                  "pass":  2,
+                                                  "attempt":  4,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              },
+                                              {
+                                                  "viewport":  "1616x923",
+                                                  "pass":  2,
+                                                  "attempt":  5,
+                                                  "immediate":  true,
+                                                  "eventual":  true
+                                              }
+                                          ],
+                                 "failures":  [
+
+                                              ]
+                             },
+    "diagnosis":  "Primary v1 sampled before requestAnimationFrame focus restoration completed. The fresh exact-ID retry was nondeterministic PASS, confirming a flaky observation seam; v1 remains failed and is not promoted."
+}

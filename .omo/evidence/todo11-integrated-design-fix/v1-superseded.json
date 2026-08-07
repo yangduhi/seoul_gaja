@@ -1,0 +1,7 @@
+{
+    "verdict":  "SUPERSEDED_FAIL",
+    "artifact":  ".omo/evidence/todo11-integrated-design-fix/completion-report.json",
+    "reason":  "Primary v1 contradicted PASS with restoredFocus 6/8. Do not use for approval.",
+    "preserved_failure":  ".omo/evidence/todo11-integrated-design-fix/red/primary-v1-focus-failure.json",
+    "replacement":  ".omo/evidence/todo11-integrated-design-fix/completion-report-v2.json"
+}

@@ -1,0 +1,19 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "target_class":  "RENDERED_UI",
+    "verdict":  "PASS",
+    "score":  100,
+    "target_score":  100,
+    "loop_state":  "CLOSED_PASS_100",
+    "baseline_score":  0,
+    "score_delta":  100,
+    "improvements_applied":  [
+                                 "PrimitiveShowcase surface prop binding",
+                                 "focus restoration assertion in focused Chrome gate",
+                                 "primary v2 exact adverse-state and focus evidence"
+                             ],
+    "recheck_evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json",
+    "blocker":  null
+}

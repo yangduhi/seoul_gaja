@@ -1,0 +1,1017 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "checked":  126,
+    "passed":  126,
+    "failed":  0,
+    "artifacts":  [
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  131622,
+                          "expected_sha256":  "c003878772956dcb01492ff1f5eaf9e42ae5efb7c4afe2b7b1681d3fb1656db7",
+                          "actual_sha256":  "c003878772956dcb01492ff1f5eaf9e42ae5efb7c4afe2b7b1681d3fb1656db7",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "f9c7c2b8576e73b3e0326a081419bb5382d1ed2cfb66148ff166f201d9782161",
+                          "actual_sha256":  "f9c7c2b8576e73b3e0326a081419bb5382d1ed2cfb66148ff166f201d9782161",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132796,
+                          "expected_sha256":  "29148817172998a55261aff22abca80b8e093995d217c1c0f8ca435b4cf815ca",
+                          "actual_sha256":  "29148817172998a55261aff22abca80b8e093995d217c1c0f8ca435b4cf815ca",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  44950,
+                          "expected_sha256":  "785dc47962a169f3ba51a4862791350978221642d496377c1f0d4d4e0700335d",
+                          "actual_sha256":  "785dc47962a169f3ba51a4862791350978221642d496377c1f0d4d4e0700335d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "f9c7c2b8576e73b3e0326a081419bb5382d1ed2cfb66148ff166f201d9782161",
+                          "actual_sha256":  "f9c7c2b8576e73b3e0326a081419bb5382d1ed2cfb66148ff166f201d9782161",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132796,
+                          "expected_sha256":  "29148817172998a55261aff22abca80b8e093995d217c1c0f8ca435b4cf815ca",
+                          "actual_sha256":  "29148817172998a55261aff22abca80b8e093995d217c1c0f8ca435b4cf815ca",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  140470,
+                          "expected_sha256":  "d8aeab4648b2352c0353705e605bb242ce0e9f18a1dfd4f447226ff2d784aa50",
+                          "actual_sha256":  "d8aeab4648b2352c0353705e605bb242ce0e9f18a1dfd4f447226ff2d784aa50",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  51372,
+                          "expected_sha256":  "1df1be7badfb066d3e1df1bdb3142bfdcbe3aefdc5aef261976b9f89afddfa21",
+                          "actual_sha256":  "1df1be7badfb066d3e1df1bdb3142bfdcbe3aefdc5aef261976b9f89afddfa21",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40629,
+                          "expected_sha256":  "5f0f880a75e15effc40a5443bbe3d9a57de777d41e0e5112d3f0711c66aa8501",
+                          "actual_sha256":  "5f0f880a75e15effc40a5443bbe3d9a57de777d41e0e5112d3f0711c66aa8501",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  43398,
+                          "expected_sha256":  "f9e995b452d54fffdb1ec9cdf4fac9a684093a148a5b14f43c7dad333acc42f8",
+                          "actual_sha256":  "f9e995b452d54fffdb1ec9cdf4fac9a684093a148a5b14f43c7dad333acc42f8",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  51372,
+                          "expected_sha256":  "1df1be7badfb066d3e1df1bdb3142bfdcbe3aefdc5aef261976b9f89afddfa21",
+                          "actual_sha256":  "1df1be7badfb066d3e1df1bdb3142bfdcbe3aefdc5aef261976b9f89afddfa21",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40629,
+                          "expected_sha256":  "5f0f880a75e15effc40a5443bbe3d9a57de777d41e0e5112d3f0711c66aa8501",
+                          "actual_sha256":  "5f0f880a75e15effc40a5443bbe3d9a57de777d41e0e5112d3f0711c66aa8501",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-unavailable.png",
+                          "exists":  true,
+                          "bytes":  126855,
+                          "expected_sha256":  "31f0833b9e9b78b3e0922f0a0811b1a29bef2d0450c9c1943fdc9344bad4b447",
+                          "actual_sha256":  "31f0833b9e9b78b3e0922f0a0811b1a29bef2d0450c9c1943fdc9344bad4b447",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "7d2c92ea5f5e0cad6b77f58216d02106738230a87147d0a64338009e61c8eedd",
+                          "actual_sha256":  "7d2c92ea5f5e0cad6b77f58216d02106738230a87147d0a64338009e61c8eedd",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p1-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  78712,
+                          "expected_sha256":  "405db18fa65b6b13f87112eefaa790ed7d6d606c9a374107472de1b6d90f2f86",
+                          "actual_sha256":  "405db18fa65b6b13f87112eefaa790ed7d6d606c9a374107472de1b6d90f2f86",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  142569,
+                          "expected_sha256":  "8cc1b0361a8a109c79827f7e08ea29f33ff20828729bea85e34245083466ab08",
+                          "actual_sha256":  "8cc1b0361a8a109c79827f7e08ea29f33ff20828729bea85e34245083466ab08",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50266,
+                          "expected_sha256":  "f1e762373b680a6d8358f0c7d406b0a09a893f9c3e747c2e0a0a0a1fb8ebd91c",
+                          "actual_sha256":  "f1e762373b680a6d8358f0c7d406b0a09a893f9c3e747c2e0a0a0a1fb8ebd91c",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132812,
+                          "expected_sha256":  "33e1f6ddcef7a4d9e27d75d16531ebf0b62c03a40827ba2a722dc20c78c94e64",
+                          "actual_sha256":  "33e1f6ddcef7a4d9e27d75d16531ebf0b62c03a40827ba2a722dc20c78c94e64",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  49134,
+                          "expected_sha256":  "305c70dc28f8cde05d4584cb2aa6197748dba9617132b39a3d9606de190a44f6",
+                          "actual_sha256":  "305c70dc28f8cde05d4584cb2aa6197748dba9617132b39a3d9606de190a44f6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50266,
+                          "expected_sha256":  "f1e762373b680a6d8358f0c7d406b0a09a893f9c3e747c2e0a0a0a1fb8ebd91c",
+                          "actual_sha256":  "f1e762373b680a6d8358f0c7d406b0a09a893f9c3e747c2e0a0a0a1fb8ebd91c",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132812,
+                          "expected_sha256":  "33e1f6ddcef7a4d9e27d75d16531ebf0b62c03a40827ba2a722dc20c78c94e64",
+                          "actual_sha256":  "33e1f6ddcef7a4d9e27d75d16531ebf0b62c03a40827ba2a722dc20c78c94e64",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  151845,
+                          "expected_sha256":  "3f099683e551c7be45131c273690cf8e76ef89c683149251fdeccbb2da851f67",
+                          "actual_sha256":  "3f099683e551c7be45131c273690cf8e76ef89c683149251fdeccbb2da851f67",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  51365,
+                          "expected_sha256":  "c790245e058b5a8015490c80a2da7821e342ec63422e46a15d8f1576d3f8325d",
+                          "actual_sha256":  "c790245e058b5a8015490c80a2da7821e342ec63422e46a15d8f1576d3f8325d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40638,
+                          "expected_sha256":  "511ebb10da5b1f5030a141ceafad2e03e46f37599be30137ffd1cc6452196bc6",
+                          "actual_sha256":  "511ebb10da5b1f5030a141ceafad2e03e46f37599be30137ffd1cc6452196bc6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  45013,
+                          "expected_sha256":  "fd5ecacdb49f51ccc88e8b61f060a58efcbec2cc746ce6d716268a0ed54070ac",
+                          "actual_sha256":  "fd5ecacdb49f51ccc88e8b61f060a58efcbec2cc746ce6d716268a0ed54070ac",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  51365,
+                          "expected_sha256":  "c790245e058b5a8015490c80a2da7821e342ec63422e46a15d8f1576d3f8325d",
+                          "actual_sha256":  "c790245e058b5a8015490c80a2da7821e342ec63422e46a15d8f1576d3f8325d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40638,
+                          "expected_sha256":  "511ebb10da5b1f5030a141ceafad2e03e46f37599be30137ffd1cc6452196bc6",
+                          "actual_sha256":  "511ebb10da5b1f5030a141ceafad2e03e46f37599be30137ffd1cc6452196bc6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-unavailable.png",
+                          "exists":  true,
+                          "bytes":  136078,
+                          "expected_sha256":  "17ba784367d8cba9837ea831f0be4c9034531c6f2986d822854a7f5aea006f0d",
+                          "actual_sha256":  "17ba784367d8cba9837ea831f0be4c9034531c6f2986d822854a7f5aea006f0d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "0514f95fd73283c8f77343c6b11e5e22e1e5d12a9740b0ad7cad245d06d44382",
+                          "actual_sha256":  "0514f95fd73283c8f77343c6b11e5e22e1e5d12a9740b0ad7cad245d06d44382",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p1-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  78712,
+                          "expected_sha256":  "24ef4e509b4b4cf957a642bd8a1ba91266047698517da0845178cd7faa48809d",
+                          "actual_sha256":  "24ef4e509b4b4cf957a642bd8a1ba91266047698517da0845178cd7faa48809d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  203890,
+                          "expected_sha256":  "146acb6555314b3d39619ce26e45c7e6f793a2b0bb32ccc4d9703277140b87e0",
+                          "actual_sha256":  "146acb6555314b3d39619ce26e45c7e6f793a2b0bb32ccc4d9703277140b87e0",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "4a0e7383bb9b5c9a99f71685f56fb40bebc1b9c17c8ec3d945813a3e053e9a02",
+                          "actual_sha256":  "4a0e7383bb9b5c9a99f71685f56fb40bebc1b9c17c8ec3d945813a3e053e9a02",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132820,
+                          "expected_sha256":  "e7a138cc082acb6eed0f551c1714e8a1a28b1271a9810c23cf59e8d9594ff8d3",
+                          "actual_sha256":  "e7a138cc082acb6eed0f551c1714e8a1a28b1271a9810c23cf59e8d9594ff8d3",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  82863,
+                          "expected_sha256":  "dabac9aead4add3d372f3155f09353ac99900eccd9d3f1e2b4c4cd88d6285038",
+                          "actual_sha256":  "dabac9aead4add3d372f3155f09353ac99900eccd9d3f1e2b4c4cd88d6285038",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "4a0e7383bb9b5c9a99f71685f56fb40bebc1b9c17c8ec3d945813a3e053e9a02",
+                          "actual_sha256":  "4a0e7383bb9b5c9a99f71685f56fb40bebc1b9c17c8ec3d945813a3e053e9a02",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132820,
+                          "expected_sha256":  "e7a138cc082acb6eed0f551c1714e8a1a28b1271a9810c23cf59e8d9594ff8d3",
+                          "actual_sha256":  "e7a138cc082acb6eed0f551c1714e8a1a28b1271a9810c23cf59e8d9594ff8d3",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  212931,
+                          "expected_sha256":  "edf4f17c3782fbe66c79e654a452fb4a78cd2ef7e8b085982bae410086045033",
+                          "actual_sha256":  "edf4f17c3782fbe66c79e654a452fb4a78cd2ef7e8b085982bae410086045033",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  51371,
+                          "expected_sha256":  "77b67c71397619cf722ddfddef9ddaa166291bea5212c5daa3c614183e23642c",
+                          "actual_sha256":  "77b67c71397619cf722ddfddef9ddaa166291bea5212c5daa3c614183e23642c",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40643,
+                          "expected_sha256":  "99123ed1424fcdab21946ac34d758f66e1cf11aee7c00056544cc01e92718c3d",
+                          "actual_sha256":  "99123ed1424fcdab21946ac34d758f66e1cf11aee7c00056544cc01e92718c3d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  51600,
+                          "expected_sha256":  "1e5359e27a829b67cd5fb27f226b4ab4915a84be8e3ea70f30395efd3b15dac1",
+                          "actual_sha256":  "1e5359e27a829b67cd5fb27f226b4ab4915a84be8e3ea70f30395efd3b15dac1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  51371,
+                          "expected_sha256":  "77b67c71397619cf722ddfddef9ddaa166291bea5212c5daa3c614183e23642c",
+                          "actual_sha256":  "77b67c71397619cf722ddfddef9ddaa166291bea5212c5daa3c614183e23642c",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40643,
+                          "expected_sha256":  "99123ed1424fcdab21946ac34d758f66e1cf11aee7c00056544cc01e92718c3d",
+                          "actual_sha256":  "99123ed1424fcdab21946ac34d758f66e1cf11aee7c00056544cc01e92718c3d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-unavailable.png",
+                          "exists":  true,
+                          "bytes":  177903,
+                          "expected_sha256":  "5e749a4c676b1bad2251db28d0d064cff040442ce90bb8d9b46d62d625b9a257",
+                          "actual_sha256":  "5e749a4c676b1bad2251db28d0d064cff040442ce90bb8d9b46d62d625b9a257",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "bfb17b782a257de8da1526c142d91d563355c028577cb6fd38b3da96a90978a6",
+                          "actual_sha256":  "bfb17b782a257de8da1526c142d91d563355c028577cb6fd38b3da96a90978a6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p1-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  78712,
+                          "expected_sha256":  "0b9bbe9bf2b0f495f34f4995c0d17066cb4a88f0cd14938d2c61da85879bb45d",
+                          "actual_sha256":  "0b9bbe9bf2b0f495f34f4995c0d17066cb4a88f0cd14938d2c61da85879bb45d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  437465,
+                          "expected_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "actual_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "5c30f844126e1bba912053d7368390535fdac5a0b44877fab7efa3995375bb4a",
+                          "actual_sha256":  "5c30f844126e1bba912053d7368390535fdac5a0b44877fab7efa3995375bb4a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  151864,
+                          "expected_sha256":  "968b999eb80a3d07dd7193d99f3d526e25f85dadae4f161a1b4238c3b6af868e",
+                          "actual_sha256":  "968b999eb80a3d07dd7193d99f3d526e25f85dadae4f161a1b4238c3b6af868e",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  67289,
+                          "expected_sha256":  "bc26e4b77b571f89c7abba0e79b3694845347ea0a0518a117d72aab93f8fb3a1",
+                          "actual_sha256":  "bc26e4b77b571f89c7abba0e79b3694845347ea0a0518a117d72aab93f8fb3a1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "5c30f844126e1bba912053d7368390535fdac5a0b44877fab7efa3995375bb4a",
+                          "actual_sha256":  "5c30f844126e1bba912053d7368390535fdac5a0b44877fab7efa3995375bb4a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  151864,
+                          "expected_sha256":  "968b999eb80a3d07dd7193d99f3d526e25f85dadae4f161a1b4238c3b6af868e",
+                          "actual_sha256":  "968b999eb80a3d07dd7193d99f3d526e25f85dadae4f161a1b4238c3b6af868e",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p1-ready.png",
+                          "exists":  true,
+                          "bytes":  437465,
+                          "expected_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "actual_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p1-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "5c30f844126e1bba912053d7368390535fdac5a0b44877fab7efa3995375bb4a",
+                          "actual_sha256":  "5c30f844126e1bba912053d7368390535fdac5a0b44877fab7efa3995375bb4a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p1-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  151864,
+                          "expected_sha256":  "968b999eb80a3d07dd7193d99f3d526e25f85dadae4f161a1b4238c3b6af868e",
+                          "actual_sha256":  "968b999eb80a3d07dd7193d99f3d526e25f85dadae4f161a1b4238c3b6af868e",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  439736,
+                          "expected_sha256":  "d1d66b19ef48f7254cdfb7cedb6b17aa7b3406be27448875c763480ace4add79",
+                          "actual_sha256":  "d1d66b19ef48f7254cdfb7cedb6b17aa7b3406be27448875c763480ace4add79",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  50352,
+                          "expected_sha256":  "74b119447fa6efb898cfa873e466f130d745f33b432dabc49b3814ce01c95ba6",
+                          "actual_sha256":  "74b119447fa6efb898cfa873e466f130d745f33b432dabc49b3814ce01c95ba6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  186966,
+                          "expected_sha256":  "166c897b9f388f2b4a814626cb2f4fa138df4efa6a1fae6f52a9d720b6b6df42",
+                          "actual_sha256":  "166c897b9f388f2b4a814626cb2f4fa138df4efa6a1fae6f52a9d720b6b6df42",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p1-selected.png",
+                          "exists":  true,
+                          "bytes":  36904,
+                          "expected_sha256":  "a0266aabfb7870dc2cfb414526f0a72f5e2e97b61b260bd621d6ad089dad4402",
+                          "actual_sha256":  "a0266aabfb7870dc2cfb414526f0a72f5e2e97b61b260bd621d6ad089dad4402",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p1-selected.html",
+                          "exists":  true,
+                          "bytes":  50352,
+                          "expected_sha256":  "74b119447fa6efb898cfa873e466f130d745f33b432dabc49b3814ce01c95ba6",
+                          "actual_sha256":  "74b119447fa6efb898cfa873e466f130d745f33b432dabc49b3814ce01c95ba6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p1-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  186966,
+                          "expected_sha256":  "166c897b9f388f2b4a814626cb2f4fa138df4efa6a1fae6f52a9d720b6b6df42",
+                          "actual_sha256":  "166c897b9f388f2b4a814626cb2f4fa138df4efa6a1fae6f52a9d720b6b6df42",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-unavailable.png",
+                          "exists":  true,
+                          "bytes":  464457,
+                          "expected_sha256":  "f6ab196c3d931db1b75cf5f3a90f330f15d5e52b51565857983930ab8449d394",
+                          "actual_sha256":  "f6ab196c3d931db1b75cf5f3a90f330f15d5e52b51565857983930ab8449d394",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "2612b061d33ef8b23e34c3ba3524190108497de4a87567359e455312df2c0106",
+                          "actual_sha256":  "2612b061d33ef8b23e34c3ba3524190108497de4a87567359e455312df2c0106",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p1-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  95149,
+                          "expected_sha256":  "02170606752140da9726509bc1f90710eb11fe3e2b90a83d519300e88eb0b8cc",
+                          "actual_sha256":  "02170606752140da9726509bc1f90710eb11fe3e2b90a83d519300e88eb0b8cc",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  131622,
+                          "expected_sha256":  "c003878772956dcb01492ff1f5eaf9e42ae5efb7c4afe2b7b1681d3fb1656db7",
+                          "actual_sha256":  "c003878772956dcb01492ff1f5eaf9e42ae5efb7c4afe2b7b1681d3fb1656db7",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50266,
+                          "expected_sha256":  "d76531e403c4a63c8198049d2489530350c3bfcfa4932e9427493d9a278c73da",
+                          "actual_sha256":  "d76531e403c4a63c8198049d2489530350c3bfcfa4932e9427493d9a278c73da",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132817,
+                          "expected_sha256":  "25c582b5c9a7cc4a2df76ac8d0ede81f70a638cec59327fec0b3c898e6580331",
+                          "actual_sha256":  "25c582b5c9a7cc4a2df76ac8d0ede81f70a638cec59327fec0b3c898e6580331",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  44950,
+                          "expected_sha256":  "785dc47962a169f3ba51a4862791350978221642d496377c1f0d4d4e0700335d",
+                          "actual_sha256":  "785dc47962a169f3ba51a4862791350978221642d496377c1f0d4d4e0700335d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50266,
+                          "expected_sha256":  "d76531e403c4a63c8198049d2489530350c3bfcfa4932e9427493d9a278c73da",
+                          "actual_sha256":  "d76531e403c4a63c8198049d2489530350c3bfcfa4932e9427493d9a278c73da",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-390x844-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132817,
+                          "expected_sha256":  "25c582b5c9a7cc4a2df76ac8d0ede81f70a638cec59327fec0b3c898e6580331",
+                          "actual_sha256":  "25c582b5c9a7cc4a2df76ac8d0ede81f70a638cec59327fec0b3c898e6580331",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  140470,
+                          "expected_sha256":  "d8aeab4648b2352c0353705e605bb242ce0e9f18a1dfd4f447226ff2d784aa50",
+                          "actual_sha256":  "d8aeab4648b2352c0353705e605bb242ce0e9f18a1dfd4f447226ff2d784aa50",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  51365,
+                          "expected_sha256":  "48b392efc864226d18429430a958904d5d9c057df1adf5c8697d71313fc0115a",
+                          "actual_sha256":  "48b392efc864226d18429430a958904d5d9c057df1adf5c8697d71313fc0115a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-390x844-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40633,
+                          "expected_sha256":  "fec1b345c2475b7c74521e0f9f164e4143ccd2d57db61f3786f57a011d83f36d",
+                          "actual_sha256":  "fec1b345c2475b7c74521e0f9f164e4143ccd2d57db61f3786f57a011d83f36d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  43398,
+                          "expected_sha256":  "f9e995b452d54fffdb1ec9cdf4fac9a684093a148a5b14f43c7dad333acc42f8",
+                          "actual_sha256":  "f9e995b452d54fffdb1ec9cdf4fac9a684093a148a5b14f43c7dad333acc42f8",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  51365,
+                          "expected_sha256":  "48b392efc864226d18429430a958904d5d9c057df1adf5c8697d71313fc0115a",
+                          "actual_sha256":  "48b392efc864226d18429430a958904d5d9c057df1adf5c8697d71313fc0115a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-390x844-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40633,
+                          "expected_sha256":  "fec1b345c2475b7c74521e0f9f164e4143ccd2d57db61f3786f57a011d83f36d",
+                          "actual_sha256":  "fec1b345c2475b7c74521e0f9f164e4143ccd2d57db61f3786f57a011d83f36d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-unavailable.png",
+                          "exists":  true,
+                          "bytes":  126855,
+                          "expected_sha256":  "31f0833b9e9b78b3e0922f0a0811b1a29bef2d0450c9c1943fdc9344bad4b447",
+                          "actual_sha256":  "31f0833b9e9b78b3e0922f0a0811b1a29bef2d0450c9c1943fdc9344bad4b447",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "71f4e77a7c672e6cd384bb6e0ec860f186df0c3e66d5ae6d4c5d2076a31d0257",
+                          "actual_sha256":  "71f4e77a7c672e6cd384bb6e0ec860f186df0c3e66d5ae6d4c5d2076a31d0257",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-390x844-p2-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  78712,
+                          "expected_sha256":  "e35ac3dcedfeca394d796a967492111d6ba0ca3f522553704a8965fb015579c6",
+                          "actual_sha256":  "e35ac3dcedfeca394d796a967492111d6ba0ca3f522553704a8965fb015579c6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  142569,
+                          "expected_sha256":  "8cc1b0361a8a109c79827f7e08ea29f33ff20828729bea85e34245083466ab08",
+                          "actual_sha256":  "8cc1b0361a8a109c79827f7e08ea29f33ff20828729bea85e34245083466ab08",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50264,
+                          "expected_sha256":  "e149444bba5063bb32969a717d70e5dc8d6ea18c59dcf8e9e6e7efaff48b024a",
+                          "actual_sha256":  "e149444bba5063bb32969a717d70e5dc8d6ea18c59dcf8e9e6e7efaff48b024a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132820,
+                          "expected_sha256":  "e26df3e41ddee095b8018acfdddf0027406d81894497c203866ddb4253d33476",
+                          "actual_sha256":  "e26df3e41ddee095b8018acfdddf0027406d81894497c203866ddb4253d33476",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  49134,
+                          "expected_sha256":  "305c70dc28f8cde05d4584cb2aa6197748dba9617132b39a3d9606de190a44f6",
+                          "actual_sha256":  "305c70dc28f8cde05d4584cb2aa6197748dba9617132b39a3d9606de190a44f6",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50264,
+                          "expected_sha256":  "e149444bba5063bb32969a717d70e5dc8d6ea18c59dcf8e9e6e7efaff48b024a",
+                          "actual_sha256":  "e149444bba5063bb32969a717d70e5dc8d6ea18c59dcf8e9e6e7efaff48b024a",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-430x932-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132820,
+                          "expected_sha256":  "e26df3e41ddee095b8018acfdddf0027406d81894497c203866ddb4253d33476",
+                          "actual_sha256":  "e26df3e41ddee095b8018acfdddf0027406d81894497c203866ddb4253d33476",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  151845,
+                          "expected_sha256":  "3f099683e551c7be45131c273690cf8e76ef89c683149251fdeccbb2da851f67",
+                          "actual_sha256":  "3f099683e551c7be45131c273690cf8e76ef89c683149251fdeccbb2da851f67",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  51363,
+                          "expected_sha256":  "bc2fbd408121fc32e297e1f3d7b1b383f4cbd2a49d9117173dd08c92fa4f66a8",
+                          "actual_sha256":  "bc2fbd408121fc32e297e1f3d7b1b383f4cbd2a49d9117173dd08c92fa4f66a8",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-430x932-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40643,
+                          "expected_sha256":  "e7c8bb89bcdfa666c25af985a9d0a605c1a6cad8530e05bdd50fbd4ac4e41d83",
+                          "actual_sha256":  "e7c8bb89bcdfa666c25af985a9d0a605c1a6cad8530e05bdd50fbd4ac4e41d83",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  45013,
+                          "expected_sha256":  "fd5ecacdb49f51ccc88e8b61f060a58efcbec2cc746ce6d716268a0ed54070ac",
+                          "actual_sha256":  "fd5ecacdb49f51ccc88e8b61f060a58efcbec2cc746ce6d716268a0ed54070ac",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  51363,
+                          "expected_sha256":  "bc2fbd408121fc32e297e1f3d7b1b383f4cbd2a49d9117173dd08c92fa4f66a8",
+                          "actual_sha256":  "bc2fbd408121fc32e297e1f3d7b1b383f4cbd2a49d9117173dd08c92fa4f66a8",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-430x932-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40643,
+                          "expected_sha256":  "e7c8bb89bcdfa666c25af985a9d0a605c1a6cad8530e05bdd50fbd4ac4e41d83",
+                          "actual_sha256":  "e7c8bb89bcdfa666c25af985a9d0a605c1a6cad8530e05bdd50fbd4ac4e41d83",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-unavailable.png",
+                          "exists":  true,
+                          "bytes":  136078,
+                          "expected_sha256":  "17ba784367d8cba9837ea831f0be4c9034531c6f2986d822854a7f5aea006f0d",
+                          "actual_sha256":  "17ba784367d8cba9837ea831f0be4c9034531c6f2986d822854a7f5aea006f0d",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "129922d44f76c36dc9c7493d61919a4c2d55172535c970b17172a029a90d9ba3",
+                          "actual_sha256":  "129922d44f76c36dc9c7493d61919a4c2d55172535c970b17172a029a90d9ba3",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-430x932-p2-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  78712,
+                          "expected_sha256":  "67c63c1addf4e714283d3db13a50b43a8e6494641b9d6d97a1bf4807670aef25",
+                          "actual_sha256":  "67c63c1addf4e714283d3db13a50b43a8e6494641b9d6d97a1bf4807670aef25",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  203890,
+                          "expected_sha256":  "146acb6555314b3d39619ce26e45c7e6f793a2b0bb32ccc4d9703277140b87e0",
+                          "actual_sha256":  "146acb6555314b3d39619ce26e45c7e6f793a2b0bb32ccc4d9703277140b87e0",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "853285ddc95da3d22c9c34f1f7db9d51305186fa65034c1c242823f2a1d8e6d9",
+                          "actual_sha256":  "853285ddc95da3d22c9c34f1f7db9d51305186fa65034c1c242823f2a1d8e6d9",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132817,
+                          "expected_sha256":  "404b64dc8b9eb5b801747066a419ae54b38af802f5d1589c6c57d11b477174b2",
+                          "actual_sha256":  "404b64dc8b9eb5b801747066a419ae54b38af802f5d1589c6c57d11b477174b2",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  82863,
+                          "expected_sha256":  "dabac9aead4add3d372f3155f09353ac99900eccd9d3f1e2b4c4cd88d6285038",
+                          "actual_sha256":  "dabac9aead4add3d372f3155f09353ac99900eccd9d3f1e2b4c4cd88d6285038",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "853285ddc95da3d22c9c34f1f7db9d51305186fa65034c1c242823f2a1d8e6d9",
+                          "actual_sha256":  "853285ddc95da3d22c9c34f1f7db9d51305186fa65034c1c242823f2a1d8e6d9",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-768x1024-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  132817,
+                          "expected_sha256":  "404b64dc8b9eb5b801747066a419ae54b38af802f5d1589c6c57d11b477174b2",
+                          "actual_sha256":  "404b64dc8b9eb5b801747066a419ae54b38af802f5d1589c6c57d11b477174b2",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  212931,
+                          "expected_sha256":  "edf4f17c3782fbe66c79e654a452fb4a78cd2ef7e8b085982bae410086045033",
+                          "actual_sha256":  "edf4f17c3782fbe66c79e654a452fb4a78cd2ef7e8b085982bae410086045033",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  51371,
+                          "expected_sha256":  "d727e39aa5a87bd98e8694a294b580794b5f95aae59c952118878dca70da0a86",
+                          "actual_sha256":  "d727e39aa5a87bd98e8694a294b580794b5f95aae59c952118878dca70da0a86",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-768x1024-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40633,
+                          "expected_sha256":  "aee61b6136ea55e5662e883358c2f18f70acbcdfb12d16a41822503c5e0e0bfc",
+                          "actual_sha256":  "aee61b6136ea55e5662e883358c2f18f70acbcdfb12d16a41822503c5e0e0bfc",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  51600,
+                          "expected_sha256":  "1e5359e27a829b67cd5fb27f226b4ab4915a84be8e3ea70f30395efd3b15dac1",
+                          "actual_sha256":  "1e5359e27a829b67cd5fb27f226b4ab4915a84be8e3ea70f30395efd3b15dac1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  51371,
+                          "expected_sha256":  "d727e39aa5a87bd98e8694a294b580794b5f95aae59c952118878dca70da0a86",
+                          "actual_sha256":  "d727e39aa5a87bd98e8694a294b580794b5f95aae59c952118878dca70da0a86",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-768x1024-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  40633,
+                          "expected_sha256":  "aee61b6136ea55e5662e883358c2f18f70acbcdfb12d16a41822503c5e0e0bfc",
+                          "actual_sha256":  "aee61b6136ea55e5662e883358c2f18f70acbcdfb12d16a41822503c5e0e0bfc",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-unavailable.png",
+                          "exists":  true,
+                          "bytes":  177903,
+                          "expected_sha256":  "5e749a4c676b1bad2251db28d0d064cff040442ce90bb8d9b46d62d625b9a257",
+                          "actual_sha256":  "5e749a4c676b1bad2251db28d0d064cff040442ce90bb8d9b46d62d625b9a257",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "d6daecfa149ea9cad68fc2ad00a94a3923281b6329b54bb9117439fed06210ec",
+                          "actual_sha256":  "d6daecfa149ea9cad68fc2ad00a94a3923281b6329b54bb9117439fed06210ec",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-768x1024-p2-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  78712,
+                          "expected_sha256":  "9f0e9db07c2a038a94a6fb565edf0c11d3b55c3e9b592a3c377792715a4ae6d2",
+                          "actual_sha256":  "9f0e9db07c2a038a94a6fb565edf0c11d3b55c3e9b592a3c377792715a4ae6d2",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  437465,
+                          "expected_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "actual_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "96e709c82f80fde71c8e403a52668d5cb354158ef08261a5195152fbd5123f95",
+                          "actual_sha256":  "96e709c82f80fde71c8e403a52668d5cb354158ef08261a5195152fbd5123f95",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  151857,
+                          "expected_sha256":  "ac922a4020bce69cbf8bf78adacfc09214313304d688b5ffa5dcaa6f9e137ae7",
+                          "actual_sha256":  "ac922a4020bce69cbf8bf78adacfc09214313304d688b5ffa5dcaa6f9e137ae7",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  67289,
+                          "expected_sha256":  "bc26e4b77b571f89c7abba0e79b3694845347ea0a0518a117d72aab93f8fb3a1",
+                          "actual_sha256":  "bc26e4b77b571f89c7abba0e79b3694845347ea0a0518a117d72aab93f8fb3a1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "96e709c82f80fde71c8e403a52668d5cb354158ef08261a5195152fbd5123f95",
+                          "actual_sha256":  "96e709c82f80fde71c8e403a52668d5cb354158ef08261a5195152fbd5123f95",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/family-recommendations-1616x923-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  151857,
+                          "expected_sha256":  "ac922a4020bce69cbf8bf78adacfc09214313304d688b5ffa5dcaa6f9e137ae7",
+                          "actual_sha256":  "ac922a4020bce69cbf8bf78adacfc09214313304d688b5ffa5dcaa6f9e137ae7",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p2-ready.png",
+                          "exists":  true,
+                          "bytes":  437465,
+                          "expected_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "actual_sha256":  "c828f0d828515a036f43dbc5344d6611d11692a159b810c53b66ffbc0df0f1b1",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p2-ready.html",
+                          "exists":  true,
+                          "bytes":  50273,
+                          "expected_sha256":  "96e709c82f80fde71c8e403a52668d5cb354158ef08261a5195152fbd5123f95",
+                          "actual_sha256":  "96e709c82f80fde71c8e403a52668d5cb354158ef08261a5195152fbd5123f95",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/desktop-dashboard-1616x923-p2-ready.ax.json",
+                          "exists":  true,
+                          "bytes":  151857,
+                          "expected_sha256":  "ac922a4020bce69cbf8bf78adacfc09214313304d688b5ffa5dcaa6f9e137ae7",
+                          "actual_sha256":  "ac922a4020bce69cbf8bf78adacfc09214313304d688b5ffa5dcaa6f9e137ae7",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  439736,
+                          "expected_sha256":  "d1d66b19ef48f7254cdfb7cedb6b17aa7b3406be27448875c763480ace4add79",
+                          "actual_sha256":  "d1d66b19ef48f7254cdfb7cedb6b17aa7b3406be27448875c763480ace4add79",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  50352,
+                          "expected_sha256":  "b8d1ff0366319bf56b9c73315af586ac54256ac9da641b417efdd80ccf58c479",
+                          "actual_sha256":  "b8d1ff0366319bf56b9c73315af586ac54256ac9da641b417efdd80ccf58c479",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/place-detail-1616x923-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  186960,
+                          "expected_sha256":  "4c72e21dce23f1d29ab8b35697b158cd132386cf9899e2ff5d184f442f238baa",
+                          "actual_sha256":  "4c72e21dce23f1d29ab8b35697b158cd132386cf9899e2ff5d184f442f238baa",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p2-selected.png",
+                          "exists":  true,
+                          "bytes":  36904,
+                          "expected_sha256":  "a0266aabfb7870dc2cfb414526f0a72f5e2e97b61b260bd621d6ad089dad4402",
+                          "actual_sha256":  "a0266aabfb7870dc2cfb414526f0a72f5e2e97b61b260bd621d6ad089dad4402",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p2-selected.html",
+                          "exists":  true,
+                          "bytes":  50352,
+                          "expected_sha256":  "b8d1ff0366319bf56b9c73315af586ac54256ac9da641b417efdd80ccf58c479",
+                          "actual_sha256":  "b8d1ff0366319bf56b9c73315af586ac54256ac9da641b417efdd80ccf58c479",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/history-insight-1616x923-p2-selected.ax.json",
+                          "exists":  true,
+                          "bytes":  186960,
+                          "expected_sha256":  "4c72e21dce23f1d29ab8b35697b158cd132386cf9899e2ff5d184f442f238baa",
+                          "actual_sha256":  "4c72e21dce23f1d29ab8b35697b158cd132386cf9899e2ff5d184f442f238baa",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-unavailable.png",
+                          "exists":  true,
+                          "bytes":  464457,
+                          "expected_sha256":  "f6ab196c3d931db1b75cf5f3a90f330f15d5e52b51565857983930ab8449d394",
+                          "actual_sha256":  "f6ab196c3d931db1b75cf5f3a90f330f15d5e52b51565857983930ab8449d394",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-unavailable.html",
+                          "exists":  true,
+                          "bytes":  45862,
+                          "expected_sha256":  "8fa896b1e5945091d573c97f1d9ef7cf8074b89f0fd6c7d69f52a8bbcb651749",
+                          "actual_sha256":  "8fa896b1e5945091d573c97f1d9ef7cf8074b89f0fd6c7d69f52a8bbcb651749",
+                          "pass":  true
+                      },
+                      {
+                          "file":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/home-map-1616x923-p2-unavailable.ax.json",
+                          "exists":  true,
+                          "bytes":  95149,
+                          "expected_sha256":  "94a72655adbc836d9b788055c05d652b928b4b9df8e1d97f60b4415aa245106e",
+                          "actual_sha256":  "94a72655adbc836d9b788055c05d652b928b4b9df8e1d97f60b4415aa245106e",
+                          "pass":  true
+                      }
+                  ]
+}

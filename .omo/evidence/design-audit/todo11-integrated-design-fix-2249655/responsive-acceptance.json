@@ -1,0 +1,63 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "rows":  [
+                 {
+                     "viewport_or_range":  "390x844",
+                     "layout_mode":  "responsive-map",
+                     "visible_regions":  [
+                                             "map",
+                                             "NOW",
+                                             "NEXT",
+                                             "catalog list"
+                                         ],
+                     "sheet_or_drawer":  "BOTTOM_SHEET",
+                     "scroll_owner":  "bounded region",
+                     "primary_action_visibility":  "PASS five-point ownership",
+                     "evidence_id":  "manual-qa 390x844 two passes"
+                 },
+                 {
+                     "viewport_or_range":  "430x932",
+                     "layout_mode":  "responsive-map",
+                     "visible_regions":  [
+                                             "map",
+                                             "NOW",
+                                             "NEXT",
+                                             "catalog list"
+                                         ],
+                     "sheet_or_drawer":  "BOTTOM_SHEET",
+                     "scroll_owner":  "bounded region",
+                     "primary_action_visibility":  "PASS five-point ownership",
+                     "evidence_id":  "manual-qa 430x932 two passes"
+                 },
+                 {
+                     "viewport_or_range":  "768x1024",
+                     "layout_mode":  "responsive-map",
+                     "visible_regions":  [
+                                             "map",
+                                             "NOW",
+                                             "NEXT",
+                                             "catalog list"
+                                         ],
+                     "sheet_or_drawer":  "DETAIL_PANE",
+                     "scroll_owner":  "bounded region",
+                     "primary_action_visibility":  "PASS five-point ownership",
+                     "evidence_id":  "manual-qa 768x1024 two passes"
+                 },
+                 {
+                     "viewport_or_range":  "1616x923",
+                     "layout_mode":  "desktop-dashboard",
+                     "visible_regions":  [
+                                             "map",
+                                             "NOW",
+                                             "NEXT",
+                                             "catalog list"
+                                         ],
+                     "sheet_or_drawer":  "DETAIL_PANE",
+                     "scroll_owner":  "bounded region",
+                     "primary_action_visibility":  "PASS five-point ownership",
+                     "evidence_id":  "manual-qa 1616x923 two passes"
+                 }
+             ]
+}

@@ -1,0 +1,74 @@
+{
+    "verdict":  "PASS",
+    "supersedes":  ".omo/evidence/todo11-integrated-design-fix/completion-report.json",
+    "adversarial_failure_preserved":  ".omo/evidence/todo11-integrated-design-fix/red/primary-v1-focus-failure.json",
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "commits":  [
+                    {
+                        "sha":  "1df289d029f1bd5ca442a7d809466b9f7ad3c615",
+                        "message":  "fix(design): bind showcase detail surface",
+                        "paths":  [
+                                      "app/_design/PrimitiveShowcase.tsx"
+                                  ]
+                    },
+                    {
+                        "sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                        "message":  "test(design): await detail focus restoration",
+                        "paths":  [
+                                      "tests/gates/task-11-cta-semantics.test.mjs"
+                                  ]
+                    }
+                ],
+    "root_cause":  "Product restoration completes on requestAnimationFrame. Primary v1 sampled immediately and intermittently recorded false; the focused exact-ID retry was nondeterministic PASS. The gate and primary v2 now await the actual focus observable.",
+    "criteria":  [
+                     {
+                         "scenario":  "failing primary v1",
+                         "invocation":  "original primary Chrome matrix on 1df289d",
+                         "binary_observable":  "FAIL restoredFocus 6/8; false at 768x1024 pass1 and 1616x923 pass2",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/red/primary-v1-focus-failure.json"
+                     },
+                     {
+                         "scenario":  "focused candidate gate",
+                         "invocation":  "node --test tests/gates/task-11-cta-semantics.test.mjs",
+                         "binary_observable":  "exit 0, 7/7 including Escape focus restoration at all four viewports",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/final-v2/cta.log"
+                     },
+                     {
+                         "scenario":  "full primary v2 real Chrome",
+                         "invocation":  "candidate-bound Chrome harness",
+                         "binary_observable":  "PASS; primary restoredFocus 8/8, 16 rows, 126 captures, 0 errors",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json"
+                     },
+                     {
+                         "scenario":  "five screens and artifact integrity",
+                         "invocation":  "PNG/DOM/AX SHA-256 verification",
+                         "binary_observable":  "126/126 nonempty hashes; five screen IDs",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/artifact-integrity-v2.json"
+                     },
+                     {
+                         "scenario":  "contrast",
+                         "invocation":  "computed foreground/background luminance",
+                         "binary_observable":  "8/8 PASS, minimum 17.984692:1",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/contrast-summary.json"
+                     },
+                     {
+                         "scenario":  "automated gates",
+                         "invocation":  "focused test, tsc, command-map happy/failure, tokens, eslint, build, authority",
+                         "binary_observable":  "all exit 0",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/final-v2/"
+                     },
+                     {
+                         "scenario":  "design validator",
+                         "invocation":  "validate_design_audit.py --audit-dir .omo/evidence/design-audit/todo11-integrated-design-fix-2249655 twice",
+                         "binary_observable":  "PASS twice, score 100/100",
+                         "artifact":  ".omo/evidence/design-audit/todo11-integrated-design-fix-2249655/validator-pass-1.log"
+                     },
+                     {
+                         "scenario":  "post-validator cleanup",
+                         "invocation":  "port/PID/junction/temp/pycache/status checks",
+                         "binary_observable":  "PASS; zero resources and no unexpected status",
+                         "artifact":  ".omo/evidence/todo11-integrated-design-fix/cleanup-receipt-v2.json"
+                     }
+                 ]
+}

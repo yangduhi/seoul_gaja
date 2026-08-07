@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "observed": {
+    "repository_root": "D:\\vscode\\seoul_gaja-worktrees\\todo11-integrated-design-fix",
+    "remote": "https://github.com/yangduhi/seoul_gaja",
+    "branch": "codex/todo11-integrated-design-fix",
+    "head": "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "tree": "e2d483cf262e9279b02712be898e24c0fe8bf89d"
+  },
+  "failures": []
+}
