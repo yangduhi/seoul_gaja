@@ -1,0 +1,1269 @@
+{
+  "candidate": {
+    "head": "c75e7368dab758701865620328512560e9e467cb",
+    "tree": "f49b00bd38d1b5fb9f7200770ec372b31ddead31"
+  },
+  "browser": {
+    "adapter": "cached Playwright",
+    "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "version": "150.0.7871.187"
+  },
+  "server": {
+    "origin": "http://localhost:53940",
+    "command": "C:\\Program Files\\nodejs\\node.exe node_modules/vinext/dist/cli.js dev --host localhost --port 53940"
+  },
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 430,
+      "height": 932
+    },
+    {
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "width": 1616,
+      "height": 923
+    }
+  ],
+  "repetitions": 2,
+  "actions": [
+    "page.click",
+    "Enter",
+    "Escape",
+    "Back",
+    "direct",
+    "reload",
+    "invalid goto",
+    "malformed route/query",
+    "retry",
+    "share cancel",
+    "hostile input"
+  ],
+  "historyJourneys": [
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedSurface": "BOTTOM_SHEET",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 33,
+        "y": 443,
+        "width": 324,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "expectedSurface": "BOTTOM_SHEET",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 33,
+        "y": 531,
+        "width": 364,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "expectedSurface": "DETAIL_PANE",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 33,
+        "y": 623,
+        "width": 702,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "expectedSurface": "DETAIL_PANE",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "place-alpha",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 824,
+        "y": 842,
+        "width": 335,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedSurface": "BOTTOM_SHEET",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 33,
+        "y": 443,
+        "width": 324,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "expectedSurface": "BOTTOM_SHEET",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 33,
+        "y": 531,
+        "width": 364,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "BOTTOM_SHEET",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "expectedSurface": "DETAIL_PANE",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 33,
+        "y": 623,
+        "width": 702,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "상세 닫기",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "expectedSurface": "DETAIL_PANE",
+      "before": {
+        "activeElement": "BODY",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "openedByClick": {
+        "activeElement": "place-alpha",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterEscape": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-replay"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "afterReplayBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "nextBox": {
+        "x": 824,
+        "y": 842,
+        "width": 335,
+        "height": 48
+      },
+      "openedByEnter": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "",
+        "historyState": {
+          "entry": "sheet"
+        },
+        "detailSurface": "DETAIL_PANE",
+        "scrollY": 0
+      },
+      "afterDirectBack": {
+        "activeElement": "place-alpha",
+        "pathname": "/",
+        "search": "?visualFixture=ready-v1",
+        "historyState": {
+          "entry": "catalog-root"
+        },
+        "detailSurface": null,
+        "scrollY": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "directInvalidAndShare": [
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "direct": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "reload": {
+        "activeElement": "BUTTON",
+        "pathname": "/places/alpha",
+        "search": "?visualFixture=ready-v1",
+        "historyState": null,
+        "detailSurface": "FULL_SCREEN",
+        "scrollY": 0
+      },
+      "shareCancellation": true,
+      "goto": {
+        "status": 200,
+        "error": null
+      },
+      "invalid": {
+        "url": "http://localhost:53940/",
+        "pathname": "/",
+        "search": "",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0,
+        "copyPresent": true
+      },
+      "malformed": {
+        "url": "http://localhost:53940/",
+        "robots": "noindex, nofollow",
+        "notFoundCount": 1,
+        "detailCount": 0,
+        "shareCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "failureAndHostile": [
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "retryBox": {
+        "x": 33,
+        "y": 474,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "retryBox": {
+        "x": 33,
+        "y": 474.5,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "retryBox": {
+        "x": 33,
+        "y": 474.5,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 1,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "retryBox": {
+        "x": 462,
+        "y": 643.5,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "retryBox": {
+        "x": 33,
+        "y": 474,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "retryBox": {
+        "x": 33,
+        "y": 474.5,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "retryBox": {
+        "x": 33,
+        "y": 474.5,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "pass": 2,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "retryBox": {
+        "x": 462,
+        "y": 643.5,
+        "width": 87.328125,
+        "height": 44
+      },
+      "hostile": "<img src=x onerror=\"window.__injected=true\">",
+      "hostileResult": {
+        "imgCount": 0,
+        "injected": false,
+        "placeButtonCount": 0
+      },
+      "requestfailed": [],
+      "responseErrors": [],
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "diagnostics": {
+    "requestfailed": [],
+    "responseErrors": [],
+    "consoleErrors": [],
+    "pageErrors": [],
+    "rscFailures": []
+  },
+  "summary": {
+    "failedCount": 0,
+    "hardFailureCount": 0,
+    "rscFailureCount": 0,
+    "consoleErrorCount": 0,
+    "pageErrorCount": 0,
+    "unexpectedRequestErrors": 0
+  },
+  "verdict": "PASS"
+}

@@ -1,0 +1,64 @@
+{
+  "verdict": "PASS",
+  "implementation_head": "c75e7368dab758701865620328512560e9e467cb",
+  "implementation_tree": "f49b00bd38d1b5fb9f7200770ec372b31ddead31",
+  "plan_sha256": "f5359c2a91169a66195383ac935259b56780c8069d1e0fd85de641141138dc3e",
+  "authority_lock_sha256": "af138ab215937fb8737f690073eee8c8f27ecd777d506f4aed8badfb7cfb91d3",
+  "source_blobs": {
+    "app/_catalog/CatalogSurface.module.css": "fee645807601cb07d823935e755c78a29a575f8d",
+    "app/_catalog/CatalogSurface.tsx": "0ea6a1c6d94075bb65411a3ccc63758382c9b0f9",
+    "app/places/[areaCode]/InvalidPlaceFallback.tsx": "993eca51497c7b853d73822aa40aa09f448f4e62",
+    "app/places/[areaCode]/PlaceDetailClient.tsx": "de51d502d8acc0736c201b0d972317338e8e0d83",
+    "app/places/[areaCode]/page.tsx": "ae9dd6ff0bfdb011ac3d72f5481383fc56b3b94a",
+    "tests/product/detail-history/detail-contract.test.mjs": "16a8f3343c390ccf5455358d0032270dd616c225",
+    "tests/product/detail-history/route-safe-invalid-fallback.test.mjs": "2ad26265222e14251bbe7e5cbe38a06f9904899a",
+    "tests/product/detail-history/unavailable-detail-state.test.mjs": "b769439f448a1afdd47e07495bcaeeb7ffa17122"
+  },
+  "automated": {
+    "focused_detail_history": "14/14 PASS",
+    "tokens_check": "PASS",
+    "targeted_eslint": "exit 0",
+    "build": "exit 0",
+    "authority_validator": "PASS"
+  },
+  "real_surface": {
+    "browser": "cached Playwright with installed Chrome 150.0.7871.187",
+    "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+    "passes": 2,
+    "ready_invalid_matrix": "browser/matrix-ready-invalid/current-c75e736/browser-full-matrix.json",
+    "ready_invalid_summary": {
+      "failedCount": 0,
+      "hardFailureCount": 0,
+      "rscFailureCount": 0,
+      "consoleErrorCount": 0,
+      "pageErrorCount": 0,
+      "unexpectedRequestErrors": 0,
+      "verdict": "PASS"
+    },
+    "unavailable_matrix": "browser/current-c75e736/unavailable/browser-observations.json",
+    "unavailable_summary": {
+      "captures": 8,
+      "areaCode": "alpha",
+      "data_detail_unavailable": true,
+      "aria_live": "polite",
+      "retry_target_minimum": "44px",
+      "request_failures": 0,
+      "console_errors": 0,
+      "page_errors": 0,
+      "verdict": "PASS_UNAVAILABLE_ONLY"
+    }
+  },
+  "cleanup": {
+    "browser_closed": true,
+    "task_owned_server_stopped": true,
+    "ports": {"53940": "free", "51176": "free"},
+    "task_owned_qa_processes": 0,
+    "unrelated_processes_preserved": true
+  },
+  "owner_gates": {
+    "SITE_INGEST_TOKEN": "NOT_RUN_BLOCKED",
+    "live_api": "NOT_RUN_BLOCKED",
+    "Sites_Save_Deploy": "NOT_RUN_BLOCKED",
+    "push_or_default_branch_merge": "NOT_RUN_BLOCKED"
+  }
+}
