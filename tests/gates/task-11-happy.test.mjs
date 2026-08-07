@@ -102,7 +102,7 @@ test("Calm Glass tokens and primitives precede screen parity checks", async () =
   assert.match(catalogSurface, /import \{ ChartAlternatives \}/);
   assert.match(catalogSurface, /<ChartAlternatives/);
   assert.match(catalogSurface, /reason\.sourceTimestamp/);
-  assert.match(catalogSurface, /data-current-decision="true"/);
+  assert.match(catalogSurface, /data-current-decision=\{item\.mode === "NOW" \? "true" : undefined\}/);
   assert.match(phase03, /aria-live="polite"/);
   assert.match(phase03, /<GlassPanel/);
   assert.match(presentation, /readonly mode: "sheet" \| "drawer" \| "full-screen"/);
