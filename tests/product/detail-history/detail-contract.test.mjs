@@ -64,6 +64,33 @@ test("catalog selection renders a real transient detail sheet and restores the p
   assert.doesNotMatch(route, /id: "settings"/);
 });
 
+test("Given a transient sheet, When close and Back replay overlap, Then close replaces the sheet entry once and replays catalog restoration idempotently", () => {
+  assert.match(detailState, /export function closeInAppPlaceDetail/);
+  assert.match(detailState, /window\.history\.state\?\.entry !== "sheet"/);
+  assert.match(detailState, /returnPath: `\$\{window\.location\.pathname\}\$\{window\.location\.search\}`/);
+  assert.match(detailState, /window\.history\.replaceState\(\{ entry: "catalog-replay" \}, "", returnPath\)/);
+  assert.match(detailState, /new CustomEvent\(closeEvent\)/);
+  assert.match(catalog, /window\.addEventListener\("seoul-gaja:detail-close", onHistoryRestore\)/);
+  assert.match(catalog, /closeInAppPlaceDetail\(\)/);
+  assert.doesNotMatch(catalog, /function closePlace\(\) \{\s*window\.history\.back\(\)/);
+});
+
+test("Given a closed transient detail, When browser Back replays the catalog, Then a capture-phase catalog sentinel prevents route-data navigation", () => {
+  assert.match(detailState, /export function ensureCatalogHistorySentinel/);
+  assert.match(detailState, /entry: "catalog-root"/);
+  assert.match(detailState, /entry: "catalog-replay"/);
+  assert.match(catalog, /event\.stopImmediatePropagation\(\)/);
+  assert.match(catalog, /window\.addEventListener\("popstate", onCatalogReplay, true\)/);
+  assert.match(catalog, /window\.removeEventListener\("popstate", onCatalogReplay, true\)/);
+  assert.match(detailState, /const vinextNavigateKey = "__VINEXT_RSC_NAVIGATE__"/);
+  assert.match(detailState, /armCatalogReplayNavigationGuard\(\)/);
+  assert.match(detailState, /if \(isCatalogHistorySentinel\(window\.history\.state\)\) return Promise\.resolve\(\)/);
+});
+
+test("Given a desktop detail pane, When Escape is pressed, Then the same idempotent close path restores the catalog", () => {
+  assert.match(catalog, /event\.key === "Escape" && sheetOpen && !compactDetail/);
+  assert.match(catalog, /closeInAppPlaceDetail\(\)/);
+});
 test("transient detail sheet traps keyboard focus and makes the background inert", () => {
   assert.match(detailSheet, /event\.key === "Tab"/);
   assert.match(detailSheet, /sibling\.inert = true/);

@@ -5,7 +5,7 @@ import { ChartAlternatives } from "../_design/ChartAlternatives";
 import { Navigation } from "../_design/Navigation";
 import { PlaceDetailSheet } from "../_design/PlaceDetailSheet";
 import { useEffect, useMemo, useState } from "react";
-import { openInAppPlaceDetail, restorePriorPlaceContext } from "../places/[areaCode]/PlaceDetailClient";
+import { closeInAppPlaceDetail, ensureCatalogHistorySentinel, isCatalogHistorySentinel, openInAppPlaceDetail, restorePriorPlaceContext } from "../places/[areaCode]/PlaceDetailClient";
 import styles from "./CatalogSurface.module.css";
 
 export type CatalogRow = Readonly<{
@@ -101,11 +101,21 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
       setSheetOpen(false);
       setExpanded(false);
     };
+    const onCatalogReplay = (event: PopStateEvent) => {
+      if (!isCatalogHistorySentinel(event.state)) return;
+      event.stopImmediatePropagation();
+      onHistoryRestore();
+    };
+    ensureCatalogHistorySentinel();
     window.addEventListener("seoul-gaja:detail-selection", onSelection);
+    window.addEventListener("popstate", onCatalogReplay, true);
     window.addEventListener("popstate", onHistoryRestore);
+    window.addEventListener("seoul-gaja:detail-close", onHistoryRestore);
     return () => {
       window.removeEventListener("seoul-gaja:detail-selection", onSelection);
+      window.removeEventListener("popstate", onCatalogReplay, true);
       window.removeEventListener("popstate", onHistoryRestore);
+      window.removeEventListener("seoul-gaja:detail-close", onHistoryRestore);
     };
   }, []);
   useEffect(() => {
@@ -122,6 +132,13 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
     if (!placeNotFound) return;
     window.history.replaceState(null, "", "/");
   }, [placeNotFound]);
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && sheetOpen && !compactDetail) closeInAppPlaceDetail();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [compactDetail, sheetOpen]);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("ko-KR");
     return catalog.filter((row) => (!availableOnly || row.availability !== "unavailable") && (normalized.length === 0 || row.areaName.toLocaleLowerCase("ko-KR").includes(normalized)));
@@ -141,7 +158,7 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
   }
 
   function closePlace() {
-    window.history.back();
+    closeInAppPlaceDetail();
   }
 
   return (
