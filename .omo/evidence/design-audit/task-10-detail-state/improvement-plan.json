@@ -1,0 +1,14 @@
+{
+  "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+  "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+  "worktree_snapshot_sha256": "e7754d5c08d0f2bb34d2a2324984a85ee5deda43d3ea4a9672fa01ff54efda1f",
+  "target_class": "RENDERED_UI",
+  "status": "APPLIED",
+  "improvement_plan_id": "todo10-minimal-detail-state",
+  "applied_changes": [
+    "real transient sheet",
+    "direct full-screen state",
+    "focus trap and inert background",
+    "bounded recovery"
+  ]
+}

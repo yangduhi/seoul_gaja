@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "todo": 10,
+  "verdict": "PASS",
+  "candidate": {
+    "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+    "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+    "worktree_snapshot_sha256": "e7754d5c08d0f2bb34d2a2324984a85ee5deda43d3ea4a9672fa01ff54efda1f",
+    "plan_sha256": "7974ee83ac2f4bfedbb37b3e9c29e8d92978f7f8edaca80c1a439f255c8510b9",
+    "authority_lock_sha256": "db939f67b3f85438fb9e472d89825fd37c1bbad11992c82450253c7e31e078f5"
+  },
+  "scenarios": [
+    {
+      "scenario": "focused contract and state tests",
+      "invocation": "node --test tests/gates/task-10-happy.test.mjs tests/gates/task-10-failure.test.mjs tests/product/detail-history/detail-contract.test.mjs",
+      "binary_observable": "exit 0; 19/19 pass",
+      "artifact_path": ".omo/evidence/design-audit/task-10-detail-state/browser-observations.raw.json"
+    },
+    {
+      "scenario": "real Chrome responsive two-entry flow",
+      "invocation": "node .omo/tmp/qa-todo10.mjs against http://[::1]:41710",
+      "binary_observable": "four viewports; one history push; repeat back restore; 44px targets; zero console/page errors; focus trap wraps",
+      "artifact_path": ".omo/evidence/design-audit/task-10-detail-state"
+    },
+    {
+      "scenario": "production compilation",
+      "invocation": ".\\node_modules\\.bin\\vinext.cmd build",
+      "binary_observable": "exit 0; Build complete; /places/:areaCode emitted",
+      "artifact_path": ".omo/evidence/design-audit/task-10-detail-state/verdict.json"
+    }
+  ],
+  "independent_reviews": [
+    "pass-a-visual-integrity.md PASS",
+    "pass-b-visual-cjk.md PASS"
+  ],
+  "external_live_gates": "NOT_RUN_BLOCKED: local fixtures prove UI behavior only; no live APIs, Sites, or D1 migration authorized"
+}

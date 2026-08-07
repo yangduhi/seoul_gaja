@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "todo": 10,
+  "verdict": "PASS",
+  "candidate": {
+    "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+    "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+    "worktree_snapshot_sha256": "e7754d5c08d0f2bb34d2a2324984a85ee5deda43d3ea4a9672fa01ff54efda1f",
+    "plan_sha256": "7974ee83ac2f4bfedbb37b3e9c29e8d92978f7f8edaca80c1a439f255c8510b9",
+    "authority_lock_sha256": "db939f67b3f85438fb9e472d89825fd37c1bbad11992c82450253c7e31e078f5"
+  },
+  "adversarial": [
+    "invalid/removed areaCode -> noindex catalog fallback",
+    "expired/unavailable snapshot -> identity retained, unsupported actions disabled",
+    "hostile search text -> inert text, no markup",
+    "geolocation timeout/denied -> retry or catalog continuation",
+    "map failure -> retry with catalog preserved",
+    "share cancel/failure -> explicit cancel or canonical clipboard fallback",
+    "stale deep link/reload -> full-screen state",
+    "repeated close/back -> bounded navigation and focus restore"
+  ],
+  "not_applicable": [
+    "cancel/resume resumable operation: no resumable background operation exists"
+  ],
+  "artifact_path": ".omo/evidence/design-audit/task-10-detail-state/browser-observations.raw.json"
+}
