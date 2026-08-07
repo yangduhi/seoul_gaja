@@ -1,0 +1,154 @@
+{
+  "verdict": "PASS_UNAVAILABLE_ONLY",
+  "port": 51148,
+  "captures": [
+    {
+      "pass": 1,
+      "viewport": "390x844",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 34,
+          "y": 235.515625,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass1-390x844.png"
+    },
+    {
+      "pass": 1,
+      "viewport": "430x932",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 34,
+          "y": 238.59375,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass1-430x932.png"
+    },
+    {
+      "pass": 1,
+      "viewport": "768x1024",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 72,
+          "y": 309.78125,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass1-768x1024.png"
+    },
+    {
+      "pass": 1,
+      "viewport": "1616x923",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 496,
+          "y": 317.796875,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass1-1616x923.png"
+    },
+    {
+      "pass": 2,
+      "viewport": "390x844",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 34,
+          "y": 235.515625,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass2-390x844.png"
+    },
+    {
+      "pass": 2,
+      "viewport": "430x932",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 34,
+          "y": 238.59375,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass2-430x932.png"
+    },
+    {
+      "pass": 2,
+      "viewport": "768x1024",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 72,
+          "y": 309.78125,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass2-768x1024.png"
+    },
+    {
+      "pass": 2,
+      "viewport": "1616x923",
+      "unavailable": {
+        "areaCode": "alpha",
+        "detailVisible": true,
+        "live": "polite",
+        "retryVisible": true,
+        "retryBox": {
+          "x": 496,
+          "y": 317.796875,
+          "width": 87.328125,
+          "height": 44
+        },
+        "rscRequests": []
+      },
+      "unavailableScreenshot": "/D:/vscode/seoul_gaja-worktrees/todo10-unavailable-branch-fix/.omo/evidence/task-10-unavailable-branch-fix/browser/unavailable-pass2-1616x923.png"
+    }
+  ],
+  "failures": [],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "blocked": "READY catalog fixture is not exposed by this dev route; invalid/history journey cannot be observed without a real READY read model."
+}
