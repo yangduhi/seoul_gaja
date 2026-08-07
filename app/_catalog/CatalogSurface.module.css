@@ -203,8 +203,9 @@
   .mapContent { min-height: 100%; }
   .mapHeading { display: none; }
   .detailPane { display: none; }
-  .recommendations { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); left: var(--sg-space-lg); grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr) !important; overflow-x: visible; scroll-snap-type: none; }
-  .recommendation { padding: var(--sg-space-sm) var(--sg-space-md); }
+  .recommendations { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); bottom: calc(var(--sg-nav-height) + 212px); left: var(--sg-space-lg); grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: repeat(2, minmax(0, 1fr)); overflow-x: visible; scroll-snap-type: none; }
+  .recommendation { display: flex; flex-direction: column; min-height: 0; padding: var(--sg-space-sm) var(--sg-space-md); overflow-y: auto; }
+  .recommendation .detailAction { position: sticky; bottom: 0; flex-shrink: 0; }
   .recommendationDetails[open] { position: relative; z-index: 6; max-height: 180px; overflow: auto; padding: var(--sg-space-sm); border-radius: var(--sg-radius-sm); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); }
   .explorer > header { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + var(--sg-space-xl)); left: var(--sg-space-lg); right: var(--sg-space-lg); pointer-events: none; }
   .explorer > header > * { pointer-events: auto; }
@@ -215,6 +216,7 @@
   .statusBanner { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 292px); left: var(--sg-space-lg); right: var(--sg-space-lg); padding: var(--sg-space-sm) var(--sg-space-md); border-radius: var(--sg-radius-control); background: var(--sg-glass-floating); }
   .statusBanner .caption { display: none; }
   .listHeader { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: calc(var(--sg-nav-height) + 212px); left: var(--sg-space-sm); padding: var(--sg-space-md) var(--sg-space-lg) 0; border-radius: var(--sg-radius-sheet) var(--sg-radius-sheet) 0 0; background: var(--sg-glass-strong); }
+  .listHeader { pointer-events: none; }
   .placeList { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: var(--sg-nav-height); left: var(--sg-space-sm); display: grid; max-height: 212px; padding: var(--sg-space-sm) var(--sg-space-lg) var(--sg-space-md); border-radius: 0 0 var(--sg-radius-sheet) var(--sg-radius-sheet); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); backdrop-filter: blur(var(--sg-glass-strong-blur)) saturate(var(--sg-glass-strong-saturation)); }
   .placeButton { min-height: 60px; padding-block: var(--sg-space-sm); background: transparent; border-radius: var(--sg-radius-sm); }
   .mapNotice { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top) + 400px); left: var(--sg-space-lg); right: var(--sg-space-lg); max-width: none; }

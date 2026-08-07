@@ -120,3 +120,65 @@ test("only NOW CTA carries the decision gradient while NEXT stays neutral", asyn
   assert.match(styles.NOW?.backgroundImage ?? "", /linear-gradient/);
   assert.doesNotMatch(styles.NEXT?.backgroundImage ?? "", /linear-gradient/);
 });
+
+test("Given the recommendation surface, when each supported viewport activates NEXT, then the CTA stays visible and operable", async () => {
+  for (const viewport of [
+    { width: 390, height: 844, layout: "mobile" },
+    { width: 430, height: 932, layout: "mobile" },
+    { width: 768, height: 1024, layout: "mobile" },
+    { width: 1616, height: 923, layout: "desktop" },
+  ]) {
+    const page = await browser.newPage({ viewport });
+    await page.goto(`http://localhost:${serverPort}/?visualFixture=ready-v1`, { waitUntil: "networkidle" });
+
+    const observed = await page.evaluate(() => {
+      const cards = [...document.querySelectorAll(".sg-recommendation")];
+      const card = (mode) => cards.find((candidate) => candidate.querySelector("h2")?.textContent?.trim() === mode);
+      const button = (mode) => card(mode)?.querySelector("button");
+      const rect = (element) => {
+        const { bottom, height, left, right, top, width } = element.getBoundingClientRect();
+        return { bottom, height, left, right, top, width };
+      };
+      const now = button("NOW");
+      const next = button("NEXT");
+      const nowStyle = now ? getComputedStyle(now) : null;
+      const nextStyle = next ? getComputedStyle(next) : null;
+      const nextRect = next ? rect(next) : null;
+      const visibleTargets = [...document.querySelectorAll("button, a, summary, input, select, textarea")]
+        .filter((element) => element.getClientRects().length > 0)
+        .map(rect);
+      const recommendationRects = cards.map(rect);
+
+      return {
+        documentOverflow: document.documentElement.scrollWidth > window.innerWidth,
+        next: nextRect,
+        nextHitTarget: nextRect ? document.elementFromPoint(nextRect.left + (nextRect.width / 2), nextRect.top + (nextRect.height / 2))?.closest("button") === next : false,
+        nextCurrent: next?.dataset.currentDecision === "true",
+        nextGradient: nextStyle?.backgroundImage ?? "",
+        now: now ? rect(now) : null,
+        nowCurrent: now?.dataset.currentDecision === "true",
+        nowGradient: nowStyle?.backgroundImage ?? "",
+        oneColumn: recommendationRects.length === 2 && recommendationRects[0].left === recommendationRects[1].left,
+        targetsAtLeast44: visibleTargets.every((target) => target.width >= 44 && target.height >= 44),
+      };
+    });
+
+    assert.ok(observed.now, `${viewport.width}x${viewport.height}: NOW CTA is rendered`);
+    assert.ok(observed.next, `${viewport.width}x${viewport.height}: NEXT CTA is rendered`);
+    assert.equal(observed.next.left >= 0 && observed.next.right <= viewport.width && observed.next.top >= 0 && observed.next.bottom <= viewport.height, true, `${viewport.width}x${viewport.height}: NEXT CTA remains fully in the viewport`);
+    assert.equal(observed.nextHitTarget, true, `${viewport.width}x${viewport.height}: NEXT CTA owns its hit target`);
+    assert.equal(observed.documentOverflow, false, `${viewport.width}x${viewport.height}: no horizontal overflow`);
+    assert.match(observed.nowGradient, /linear-gradient/, `${viewport.width}x${viewport.height}: NOW keeps decision emphasis`);
+    assert.doesNotMatch(observed.nextGradient, /linear-gradient/, `${viewport.width}x${viewport.height}: NEXT remains neutral`);
+    assert.equal(observed.nowCurrent, true, `${viewport.width}x${viewport.height}: NOW remains current`);
+    assert.equal(observed.nextCurrent, false, `${viewport.width}x${viewport.height}: NEXT is not current`);
+    assert.equal(observed.targetsAtLeast44, true, `${viewport.width}x${viewport.height}: visible controls retain touch size`);
+    assert.equal(observed.oneColumn, viewport.layout === "mobile", `${viewport.width}x${viewport.height}: recommendation layout matches the responsive contract`);
+
+    await page.click(".sg-recommendation:nth-child(2) button");
+    await page.waitForFunction(() => window.location.pathname === "/places/alpha");
+    await page.keyboard.press("Tab");
+    assert.notEqual(await page.evaluate(() => document.activeElement?.tagName), "BODY", `${viewport.width}x${viewport.height}: keyboard focus remains operable after CTA activation`);
+    await page.close();
+  }
+});
