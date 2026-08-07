@@ -75,6 +75,7 @@
 .search:focus-within { outline: var(--sg-focus-ring); outline-offset: 2px; }
 .searchIcon { color: var(--sg-semantic-teal); font-size: 20px; }
 .searchInput { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: var(--sg-text-primary); font: inherit; }
+.searchInput:focus-visible { border-radius: var(--sg-radius-small); outline: var(--sg-focus-ring); outline-offset: 2px; }
 .clearButton,
 .retryButton,
 .geoButton,
@@ -203,7 +204,7 @@
   .mapContent { min-height: 100%; }
   .mapHeading { display: none; }
   .detailPane { display: none; }
-  .recommendations { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); bottom: calc(var(--sg-nav-height) + 212px); left: var(--sg-space-lg); grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: repeat(2, minmax(0, 1fr)); overflow-x: visible; scroll-snap-type: none; }
+  .recommendations { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); bottom: calc(var(--sg-nav-height) + 272px); left: var(--sg-space-lg); grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: repeat(2, minmax(0, 1fr)); overflow-x: visible; scroll-snap-type: none; }
   .recommendation { display: flex; flex-direction: column; min-height: 0; padding: var(--sg-space-sm) var(--sg-space-md); overflow-y: auto; }
   .recommendations { pointer-events: none; }
   .recommendation :is(button, summary) { pointer-events: auto; }

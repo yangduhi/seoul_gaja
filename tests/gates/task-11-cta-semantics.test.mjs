@@ -1,11 +1,15 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import test from "node:test";
-import { chromium } from "playwright";
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
+
+const cachedPlaywright = createRequire("D:\\DevWorkCache\\npm\\_npx\\a5b920f00216d246\\node_modules\\playwright\\package.json");
+const { chromium } = cachedPlaywright("playwright");
 
 const root = new URL("../../", import.meta.url);
 const rootPath = decodeURIComponent(root.pathname).replace(/^\/(?:[A-Za-z]:)/, (match) => match.slice(1));
-const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+const vinextCli = new URL("../../node_modules/vinext/dist/cli.js", import.meta.url);
 let server;
 let serverOutput = "";
 let serverPort;
@@ -36,11 +40,11 @@ async function waitForServer(port) {
 
 async function startServer() {
   serverPort = choosePort();
-  server = spawn(npmCommand, ["run", "dev", "--", "--host", "localhost", "--port", String(serverPort)], {
+  server = spawn(process.execPath, [fileURLToPath(vinextCli), "dev", "--host", "localhost", "--port", String(serverPort)], {
     cwd: rootPath,
     env: { ...process.env, WRANGLER_LOG_PATH: ".wrangler/task-11-cta-semantics.log" },
     stdio: ["ignore", "pipe", "pipe"],
-    shell: process.platform === "win32",
+    shell: false,
     windowsHide: true,
   });
   server.stdout.setEncoding("utf8");
@@ -52,15 +56,8 @@ async function startServer() {
 
 async function stopServer() {
   if (!server || server.exitCode !== null) return;
-  if (process.platform === "win32") {
-    spawn("taskkill", ["/PID", String(server.pid), "/T", "/F"], { windowsHide: true });
-  } else {
-    server.kill("SIGTERM");
-  }
-  await Promise.race([
-    new Promise((resolve) => server.once("exit", resolve)),
-    sleep(5_000),
-  ]);
+  server.kill("SIGKILL");
+  await sleep(250);
 }
 
 async function renderedRecommendationCards() {
@@ -121,7 +118,7 @@ test("only NOW CTA carries the decision gradient while NEXT stays neutral", asyn
   assert.doesNotMatch(styles.NEXT?.backgroundImage ?? "", /linear-gradient/);
 });
 
-test("Given the recommendation surface, when each supported viewport activates NEXT, then the CTA stays visible and operable", async () => {
+test("Given the recommendation surface, when each supported viewport activates NEXT, then the CTA stays visible and opens canonical detail", async () => {
   for (const viewport of [
     { width: 390, height: 844, layout: "mobile" },
     { width: 430, height: 932, layout: "mobile" },
@@ -152,7 +149,13 @@ test("Given the recommendation surface, when each supported viewport activates N
       return {
         documentOverflow: document.documentElement.scrollWidth > window.innerWidth,
         next: nextRect,
-        nextHitTarget: nextRect ? document.elementFromPoint(nextRect.left + (nextRect.width / 2), nextRect.top + (nextRect.height / 2))?.closest("button") === next : false,
+        nextHitTarget: nextRect ? [
+          [nextRect.left + (nextRect.width / 2), nextRect.top + (nextRect.height / 2)],
+          [nextRect.left + (nextRect.width / 2), nextRect.top + 2],
+          [nextRect.left + (nextRect.width / 2), nextRect.bottom - 2],
+          [nextRect.left + 2, nextRect.top + (nextRect.height / 2)],
+          [nextRect.right - 2, nextRect.top + (nextRect.height / 2)],
+        ].every(([x, y]) => document.elementFromPoint(x, y)?.closest("button") === next) : false,
         nextCurrent: next?.dataset.currentDecision === "true",
         nextGradient: nextStyle?.backgroundImage ?? "",
         now: now ? rect(now) : null,
@@ -175,10 +178,42 @@ test("Given the recommendation surface, when each supported viewport activates N
     assert.equal(observed.targetsAtLeast44, true, `${viewport.width}x${viewport.height}: visible controls retain touch size`);
     assert.equal(observed.oneColumn, viewport.layout === "mobile", `${viewport.width}x${viewport.height}: recommendation layout matches the responsive contract`);
 
-    await page.click(".sg-recommendation:nth-child(2) button");
+    const nextCta = page.locator(".sg-recommendation:nth-child(2) button");
+    if (viewport.width === 390) {
+      await nextCta.click();
+    } else {
+      await nextCta.focus();
+      await page.keyboard.press("Enter");
+    }
     await page.waitForFunction(() => window.location.pathname === "/places/alpha");
-    await page.keyboard.press("Tab");
-    assert.notEqual(await page.evaluate(() => document.activeElement?.tagName), "BODY", `${viewport.width}x${viewport.height}: keyboard focus remains operable after CTA activation`);
+    assert.deepEqual(await page.evaluate(() => history.state), { entry: "sheet" }, `${viewport.width}x${viewport.height}: canonical history state is preserved`);
+    assert.equal(await page.locator("[data-detail-surface]").count(), 1, `${viewport.width}x${viewport.height}: activation renders one real detail surface`);
     await page.close();
   }
+});
+
+test("Given the selected-detail fixture, when the catalog hydrates, then its detail surface is initially present", async () => {
+  const page = await browser.newPage({ viewport: { width: 430, height: 932 } });
+  await page.goto(`http://localhost:${serverPort}/?visualFixture=ready-v1&visualState=selected-detail`, { waitUntil: "networkidle" });
+  assert.equal(await page.locator("[data-detail-surface]").count(), 1);
+  await page.close();
+});
+
+test("Given keyboard navigation, when the actual search input receives focus, then its token focus ring is visibly discernible", async () => {
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await page.goto(`http://localhost:${serverPort}/?visualFixture=ready-v1`, { waitUntil: "networkidle" });
+  await page.keyboard.press("Tab");
+  const focus = await page.locator("#place-search").evaluate((input) => {
+    const style = getComputedStyle(input);
+    return {
+      active: document.activeElement === input,
+      outlineStyle: style.outlineStyle,
+      outlineWidth: style.outlineWidth,
+      boxShadow: style.boxShadow,
+    };
+  });
+  assert.equal(focus.active, true);
+  assert.notEqual(focus.outlineStyle, "none");
+  assert.notEqual(focus.outlineWidth, "0px");
+  await page.close();
 });

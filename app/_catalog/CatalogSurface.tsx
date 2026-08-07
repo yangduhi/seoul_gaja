@@ -85,7 +85,7 @@ function eventSelection(event: Event): string | null {
 export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, recommendations, unavailableReason, initialSelectedAreaCode, placeNotFound = false }: CatalogSurfaceProps) {
   const [query, setQuery] = useState("");
   const [selectedAreaCode, setSelectedAreaCode] = useState<string | null>(initialSelectedAreaCode ?? null);
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(initialSelectedAreaCode !== undefined);
   const [compactDetail, setCompactDetail] = useState(true);
   const [detailSurface, setDetailSurface] = useState<"BOTTOM_SHEET" | "DETAIL_PANE">("BOTTOM_SHEET");
   const [expanded, setExpanded] = useState(false);
