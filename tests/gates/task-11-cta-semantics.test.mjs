@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import test from "node:test";
+import { chromium } from "playwright";
 
 const root = new URL("../../", import.meta.url);
 const rootPath = decodeURIComponent(root.pathname).replace(/^\/(?:[A-Za-z]:)/, (match) => match.slice(1));
@@ -8,6 +9,7 @@ const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 let server;
 let serverOutput = "";
 let serverPort;
+let browser;
 
 function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -79,9 +81,11 @@ async function renderedRecommendationCards() {
 
 test.before(async () => {
   await startServer();
+  browser = await chromium.launch({ executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe", headless: true });
 });
 
 test.after(async () => {
+  await browser?.close();
   await stopServer();
 });
 
@@ -100,4 +104,19 @@ test("the current-decision marker is unique to the NOW CTA while NEXT stays reac
   assert.equal(cards.reduce((sum, card) => sum + card.currentClassCount, 0), 1);
   assert.equal(cards.find(({ mode }) => mode === "NOW")?.currentClassCount, 1);
   assert.equal(cards.find(({ mode }) => mode === "NEXT")?.currentClassCount, 0);
+});
+
+test("only NOW CTA carries the decision gradient while NEXT stays neutral", async () => {
+  const page = await browser.newPage({ viewport: { width: 430, height: 932 } });
+  await page.goto(`http://localhost:${serverPort}/?visualFixture=ready-v1`, { waitUntil: "networkidle" });
+  const styles = await page.evaluate(() => Object.fromEntries([...document.querySelectorAll(".sg-recommendation")].map((card) => {
+    const mode = card.querySelector("h2")?.textContent?.trim();
+    const button = mode === "NOW" ? card.querySelector("[data-current-decision]") : card.querySelector("button[class*='detailAction']");
+    const computed = button ? getComputedStyle(button) : null;
+    return [mode, { backgroundImage: computed?.backgroundImage ?? "", backgroundColor: computed?.backgroundColor ?? "" }];
+  })));
+  await page.close();
+  assert.notEqual(styles.NOW?.backgroundImage, styles.NEXT?.backgroundImage);
+  assert.match(styles.NOW?.backgroundImage ?? "", /linear-gradient/);
+  assert.doesNotMatch(styles.NEXT?.backgroundImage ?? "", /linear-gradient/);
 });

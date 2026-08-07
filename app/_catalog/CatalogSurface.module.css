@@ -179,7 +179,8 @@
 .badge[data-level="UNKNOWN"] { color: var(--sg-text-secondary); background: var(--sg-semantic-unknown-fill); }
 .detailMeta { display: grid; grid-template-columns: 1fr auto; gap: var(--sg-space-sm) var(--sg-space-md); padding-block: var(--sg-space-md); border-top: 1px solid var(--sg-border-soft); border-bottom: 1px solid var(--sg-border-soft); color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); }
 .detailMeta strong { color: var(--sg-text-primary); font-size: 13px; }
-.detailAction { min-height: var(--sg-control-height); margin-top: auto; border: 0; border-radius: var(--sg-radius-control); color: var(--sg-text-inverse); background: var(--sg-gradient-decision); font: inherit; font-weight: var(--sg-typography-emphasis-weight); cursor: pointer; }
+.detailAction { min-height: var(--sg-control-height); margin-top: auto; border: 0; border-radius: var(--sg-radius-control); color: var(--sg-text-primary); background: var(--sg-glass-floating); font: inherit; font-weight: var(--sg-typography-emphasis-weight); cursor: pointer; }
+.detailAction:global(.sg-current-decision-cta) { color: var(--sg-text-inverse); background: var(--sg-gradient-decision); }
 .detailAction:focus-visible { outline: var(--sg-focus-ring); outline-offset: 2px; }
 
 .surface :global(.sg-navigation) { display: none; }
