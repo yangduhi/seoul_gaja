@@ -229,6 +229,10 @@
   .mapNotice { top: calc(env(safe-area-inset-top) + 400px); }
 }
 
+@media (max-width: 400px) {
+  .mapNotice { top: calc(env(safe-area-inset-top) + 380px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .placeButton { transition: none; }
 }
