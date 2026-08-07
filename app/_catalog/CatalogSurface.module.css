@@ -83,7 +83,7 @@
 .clearButton { color: var(--sg-text-secondary); background: transparent; }
 .clearButton:hover { background: var(--sg-semantic-hover-blue); }
 
-.chipRow { display: flex; gap: 8px; overflow-x: auto; padding: 2px 1px 5px; scrollbar-width: thin; }
+.chipRow { display: flex; gap: 8px; overflow-x: auto; padding: 4px; scrollbar-width: thin; }
 .chip { flex: 0 0 auto; padding: 0 var(--sg-space-md); color: var(--sg-text-strong); background: color-mix(in srgb, var(--sg-surface-elevated) 72%, transparent); border: 1px solid var(--sg-border-soft); }
 .chip[data-selected="true"] { color: var(--sg-text-inverse); background: var(--sg-brand-blue); border-color: var(--sg-brand-blue); }
 .chip:focus,
