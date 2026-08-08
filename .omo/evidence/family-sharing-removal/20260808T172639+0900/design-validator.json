@@ -1,0 +1,2 @@
+{"command":"python docs/execution/scripts/validate_design_audit.py --audit-dir .omo/evidence/design-audit/family-sharing-removal-20260808T172639+0900","exit_code":0,"verdict":"PASS","failures":[],"target_class":"RENDERED_UI","score":100}
+

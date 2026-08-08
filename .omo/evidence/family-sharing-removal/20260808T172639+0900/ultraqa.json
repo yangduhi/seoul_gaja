@@ -1,0 +1,15 @@
+{
+  "candidate_head": "c24833d744db9d540d8a665b804bf9aec42d142b",
+  "candidate_tree": "4c4edfe545676f8259e9fc9f91232b7934e6cccf",
+  "classes": {
+    "malformed_input": {"status":"PASS","observable":"focused failure gates retained malformed/direct unavailable state handling"},
+    "prompt_injection_like_search": {"status":"PASS","observable":"browser search text remained inert and produced no-results without execution"},
+    "stale_state": {"status":"PASS","observable":"stale transient history reload resolved to FULL_SCREEN direct detail"},
+    "dirty_worktree": {"status":"PASS","observable":"implementation occurred only in isolated codex/family-sharing-removal worktree; parent changes untouched"},
+    "hung_or_long_command": {"status":"PASS","observable":"IPv6 ephemeral bind failure was bounded; tracked IPv4 QA server was stopped"},
+    "flaky_repeated_run": {"status":"PASS","observable":"focused 26-test suite passed twice"},
+    "misleading_success_output": {"status":"PASS","observable":"pre-existing authority hash mismatch is reported as failure rather than hidden"},
+    "interruption_cancel_resume": {"status":"PASS","observable":"server interruption teardown completed; no listener remained on port 55238"}
+  }
+}
+
