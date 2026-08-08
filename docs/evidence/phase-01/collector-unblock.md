@@ -27,3 +27,10 @@ Status: `LOCAL_IMPLEMENTATION_COMPLETE`; live quota evidence is `NOT_RUN_BLOCKED
 ## Cleanup
 
 Generated `collector/**/__pycache__` directories were removed after verification.
+
+## CITYDATA transport correction
+
+- Protected workflow run `31257100605` failed at `python -m collector.cli collect` with `CITYDATA network request failed` while the required secret was present.
+- RED: `python -m pytest collector/tests/test_seoul_api.py -q` exited `1` because the URL builder used `https://openapi.seoul.go.kr:8088` while the official smoke and source documentation use `http://openapi.seoul.go.kr:8088`.
+- GREEN: `CITYDATA_BASE_URL`, the source registry, and the focused endpoint expectation now use the official HTTP endpoint. `python -m pytest collector/tests -q` exited `0`; `13 passed in 0.37s`. `python -m compileall -q collector` exited `0`.
+- `npm run build` was attempted and exited `1` before the application build because `cross-env` is unavailable in this worktree. No dependency installation was attempted. This is `NOT_RUN_BLOCKED` for the unrelated frontend build environment, not a collector test failure.

@@ -14,7 +14,7 @@
     "identityFields": ["AREA_CD", "AREA_NM"]
   },
   "citydata": {
-    "endpointTemplate": "https://openapi.seoul.go.kr:8088/{SEOUL_OPEN_DATA_KEY}/json/citydata/1/5/{AREA_NM}",
+    "endpointTemplate": "http://openapi.seoul.go.kr:8088/{SEOUL_OPEN_DATA_KEY}/json/citydata/1/5/{AREA_NM}",
     "parserVersion": "1.0.0",
     "identityFields": ["AREA_CD", "AREA_NM"]
   }

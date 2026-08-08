@@ -11,7 +11,7 @@ from urllib.request import Request, urlopen
 from collector.domain.models import CatalogPlace, SourceDataError
 
 
-CITYDATA_BASE_URL = "https://openapi.seoul.go.kr:8088"
+CITYDATA_BASE_URL = "http://openapi.seoul.go.kr:8088"
 
 
 @dataclass(frozen=True, slots=True)
