@@ -1,0 +1,11 @@
+{
+  "response_status": 202,
+  "canonical_payload_sha256": "0d3f7e7a54fb37b4dd31c42297b5ec516b7fa1cd1f2d7f249187f09c512098a1",
+  "persisted_canonical_payload_sha256": "0d3f7e7a54fb37b4dd31c42297b5ec516b7fa1cd1f2d7f249187f09c512098a1",
+  "readback_canonical_payload_sha256": "0d3f7e7a54fb37b4dd31c42297b5ec516b7fa1cd1f2d7f249187f09c512098a1",
+  "canonical_persisted_readback_equal": true,
+  "source_bindings": [
+    "materialization:snapshot-local-0001",
+    "profile:snapshot-local-0001"
+  ]
+}

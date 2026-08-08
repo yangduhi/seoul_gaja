@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "report_type": "PostClaimVerification",
+  "task": "Todo 5 Phase 02 candidate-bound gate",
+  "verdict": "confirmed",
+  "implementation_candidate": {
+    "commit": "8f07c3db5ee991437360e603591363a519ef194b",
+    "tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7"
+  },
+  "evidence_commit_verified": "8a69555e5b0bb388b983cbea55466edf7a596695",
+  "automated": {
+    "focused_suite": {
+      "command": "node --test tests/gates/task-05-happy.test.mjs tests/gates/task-05-failure.test.mjs",
+      "runs": 2,
+      "observable": "12 passing, 0 failing on each run"
+    },
+    "command_map": {
+      "happy": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-05-happy => PASS / actual_exit 0",
+      "failure": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-05-failure => PASS / actual_exit 0"
+    },
+    "validators": [
+      "python docs/execution/scripts/validate_authority_lock.py => PASS",
+      "python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json => PASS: 30 command entries",
+      "python docs/execution/scripts/validate_phase_receipts.py => exit 0",
+      "git diff --check => exit 0"
+    ]
+  },
+  "manual_qa": {
+    "channel": "local Node CLI/data surface",
+    "exact_branch_local_binding": "evaluateBranchLocal(task-5-bound-local.json, implementation candidate binding) => PASS with exact candidate SHA, tree, and plan SHA-256",
+    "full_local_gate": "evaluateCandidateGate(bound record, implementation candidate binding) => NOT_RUN_BLOCKED / OWNER_AUTHORIZED_EXTERNAL_RUN_REQUIRED",
+    "template_cli": "node docs/execution/scripts/evaluate_phase02_candidate_gate.mjs tests/fixtures/task-05/happy.json => exit 3 / CANDIDATE_SHA_PLACEHOLDER"
+  },
+  "adversarial": {
+    "malformed_input": "PASS: focused failure suite observes MALFORMED_RECORD.",
+    "stale_state": "PASS: focused failure suite observes candidate, default-branch, workflow head, and workflow tree blockers.",
+    "dirty_worktree": "PASS: isolated task worktree has no uncommitted changes before this verification artifact is created.",
+    "misleading_success_output": "PASS: real CLI rejects static placeholders while branch-local and full-gate verdicts are separately observed.",
+    "flaky_tests": "PASS: two focused-suite runs both report 12 passing, 0 failing.",
+    "prompt_injection": "N/A: no untrusted prose input is consumed by this structured JSON evaluator.",
+    "cancel_resume": "N/A: no resumable operation exists.",
+    "hung_or_long": "N/A: no long-running process is created.",
+    "repeated_interruptions": "N/A: no interruption occurred."
+  },
+  "external_owner_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "owner_action": "Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge.",
+    "external_actions_attempted": 0
+  },
+  "cleanup": {
+    "processes": 0,
+    "ports": 0,
+    "temporary_directories": 0,
+    "isolated_worktree": "retained for parent integration disposition"
+  }
+}

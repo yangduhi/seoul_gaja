@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "binding": {
+    "tested_commit": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tested_tree": "d1661589ab32c4b977517db74c850d4560f7c828"
+  },
+  "checks": [
+    {"invocation": "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/recommendation-route-model.test.mjs", "observable": "17/17 pass", "exit": 0},
+    {"invocation": "node tests/gates/task-09-repeat-probe.mjs", "observable": "2 bounded repetitions; 1/1 harness pass; no flake", "exit": 0},
+    {"invocation": "npx tsc --noEmit", "observable": "no diagnostics", "exit": 0},
+    {"invocation": "npm run lint", "observable": "0 errors; 4 pre-existing Todo 8 warnings", "exit": 0},
+    {"invocation": "npm run build", "observable": "vinext 5/5 stages and route manifest complete", "exit": 0},
+    {"invocation": "git diff --check", "observable": "no whitespace errors", "exit": 0},
+    {"invocation": "PYTHONUTF8=1 python docs/execution/scripts/validate_authority_lock.py", "observable": "PASS at exact commit/tree", "exit": 0}
+  ],
+  "initial_runner_note": "A prior native Windows runner attempt emitted CP949 UnicodeDecodeError while misleadingly returning PASS. It was rejected as evidence; all recorded command-map results are fresh PYTHONUTF8=1 reruns."
+}

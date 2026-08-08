@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "scope": "Todo 5 local candidate-gate plan-hash runtime binding",
+  "redaction": "No secrets, tokens, live endpoints, or owner-proof values are present.",
+  "base": {
+    "parent_head": "97538d996949331352e96523272f7cf22d167546",
+    "parent_tree": "c96fd543d7077589e98186e48a01453fbb580405"
+  },
+  "authority": {
+    "plan_path": ".omo/plans/seoul-gaja-v4-plan-review.md",
+    "plan_sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98",
+    "authority_lock": ".omo/authority-lock.json"
+  },
+  "baseline": {
+    "scenario": "Windows working-tree bytes have CRLF conversion while the tracked plan blob remains authority-canonical.",
+    "invocation": "node --input-type=module -e \"import('./docs/execution/scripts/evaluate_phase02_candidate_gate.mjs').then(async m=>{const b=await m.readLocalCandidateBinding(); console.log(JSON.stringify(b));})\"",
+    "observable": {
+      "exit": 0,
+      "candidate_sha": "97538d996949331352e96523272f7cf22d167546",
+      "candidate_tree": "c96fd543d7077589e98186e48a01453fbb580405",
+      "working_tree_plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7",
+      "authority_plan_sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98",
+      "branch_local_b1df_record": "NOT_RUN_BLOCKED / PLAN_SHA256_MISMATCH",
+      "candidate_gate_b1df_record": "NOT_RUN_BLOCKED / PLAN_SHA256_MISMATCH"
+    }
+  },
+  "failing_first": {
+    "test": "reads the authority-bound plan hash from tracked plan bytes",
+    "invocation": "node --test tests/gates/task-05-happy.test.mjs tests/gates/task-05-failure.test.mjs",
+    "exit": 1,
+    "counts": { "pass": 12, "fail": 1, "total": 13 },
+    "failure": "actual d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7 != authority b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98"
+  },
+  "implementation": {
+    "commit": "9177e8e8e18ffc332c3518797e71d652fbf6aed3",
+    "tree": "2dd6566483a6d546d05791118d9a07e6b08ad607",
+    "changed_paths": [
+      "docs/execution/scripts/evaluate_phase02_candidate_gate.mjs",
+      "tests/gates/task-05-happy.test.mjs"
+    ],
+    "behavior": "readLocalCandidateBinding hashes `git show HEAD:.omo/plans/seoul-gaja-v4-plan-review.md` bytes, so working-tree line-ending conversion cannot alter the candidate binding; an unavailable Git authority source rejects and the CLI remains fail-closed."
+  },
+  "verification": {
+    "focused_suite": [
+      { "invocation": "node --test tests/gates/task-05-happy.test.mjs tests/gates/task-05-failure.test.mjs", "exit": 0, "counts": { "pass": 13, "fail": 0, "total": 13 } },
+      { "invocation": "node --test tests/gates/task-05-happy.test.mjs tests/gates/task-05-failure.test.mjs", "exit": 0, "counts": { "pass": 13, "fail": 0, "total": 13 } }
+    ],
+    "authority_lock": { "invocation": "python docs/execution/scripts/validate_authority_lock.py", "exit": 0, "verdict": "PASS" },
+    "command_map": { "invocation": "python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json", "exit": 0, "verdict": "PASS: 30 command entries validated" },
+    "current_command_map": [
+      { "invocation": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-05-happy", "exit": 0, "verdict": "PASS" },
+      { "invocation": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-05-failure", "exit": 0, "verdict": "PASS" }
+    ],
+    "requested_legacy_command_map": [
+      { "invocation": "python docs/codex-pack-v4/scripts/run_command_map.py --map docs/codex-pack-v4/contracts/execution-command-map.json --id task-05-happy", "exit": 1, "verdict": "NOT_RUN_BLOCKED", "reason": "The requested docs/codex-pack-v4/contracts/execution-command-map.json does not exist; current authority binds docs/execution/contracts/execution-command-map.json." },
+      { "invocation": "python docs/codex-pack-v4/scripts/run_command_map.py --map docs/codex-pack-v4/contracts/execution-command-map.json --id task-05-failure", "exit": 1, "verdict": "NOT_RUN_BLOCKED", "reason": "The requested docs/codex-pack-v4/contracts/execution-command-map.json does not exist; current authority binds docs/execution/contracts/execution-command-map.json." }
+    ],
+    "diff_check": { "invocation": "git diff --check", "exit": 0, "verdict": "PASS" }
+  },
+  "manual_qa": {
+    "channel": "terminal/CLI real local surface",
+    "runtime_invocation": "node --input-type=module -e \"import('./docs/execution/scripts/evaluate_phase02_candidate_gate.mjs').then(async m=>{const b=await m.readLocalCandidateBinding(); console.log(JSON.stringify(b));})\"",
+    "runtime_exit": 0,
+    "runtime_output": {
+      "candidate_sha": "9177e8e8e18ffc332c3518797e71d652fbf6aed3",
+      "candidate_tree": "2dd6566483a6d546d05791118d9a07e6b08ad607",
+      "plan_sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98"
+    },
+    "in_memory_record_driver": {
+      "exit": 0,
+      "branch_local": "PASS",
+      "candidate_gate": "NOT_RUN_BLOCKED / OWNER_AUTHORIZED_EXTERNAL_RUN_REQUIRED",
+      "stale_plan": "NOT_RUN_BLOCKED / PLAN_SHA256_MISMATCH",
+      "stale_head": "NOT_RUN_BLOCKED / CANDIDATE_SHA_MISMATCH",
+      "stale_tree": "NOT_RUN_BLOCKED / CANDIDATE_TREE_MISMATCH"
+    }
+  },
+  "ultraqa": {
+    "malformed_input": { "invocation": "node docs/execution/scripts/evaluate_phase02_candidate_gate.mjs tests/fixtures/task-05/malformed-record.json", "exit": 3, "observable": "NOT_RUN_BLOCKED / MALFORMED_RECORD" },
+    "stale_state": { "observable": "Old d218 plan hash, stale SHA, and stale tree each produce their corresponding mismatch blocker in the direct in-memory driver." },
+    "authority_source_unavailable": { "invocation": "readLocalCandidateBinding('D:/vscode/seoul_gaja-worktrees/not-a-checkout')", "exit": 0, "observable": "NOT_RUN_BLOCKED / LOCAL_CANDIDATE_BINDING_REQUIRED" },
+    "dirty_worktree": { "task_worktree_dirty_entries_before_evidence": 0, "parent_dirty_entries_observed_preserved": 52, "observable": "No parent changes staged or modified." },
+    "hung_or_long_commands": { "observable": "All local commands completed within bounded terminal calls; no server, process, or port was created." },
+    "flaky_tests": { "observable": "Two consecutive focused runs were both 13/13 PASS." },
+    "misleading_success_output": { "observable": "Direct runtime JSON and evaluator results were parsed from node output. The current command-map runner returned exit 0/PASS despite separate Windows cp949 reader-thread warnings, which are recorded here and not used as semantic proof." },
+    "repeated_interruptions": { "verdict": "N/A", "reason": "No resumable or long-running process was used." },
+    "prompt_injection": { "verdict": "N/A", "reason": "Inputs are structured local JSON records and Git metadata; no natural-language instruction channel is interpreted." },
+    "cancel_resume": { "verdict": "N/A", "reason": "This is a single-shot local evaluator with no resumable operation." }
+  },
+  "external_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "blocker_code": "OWNER_AUTHORIZED_EXTERNAL_RUN_REQUIRED",
+    "reason": "Default-branch merge, workflow run, and receipt remain owner-controlled external actions and were not attempted."
+  },
+  "cleanup": {
+    "temporary_files": "none",
+    "temporary_processes_or_ports": "none",
+    "worktree": "Retained at D:/vscode/seoul_gaja-worktrees/todo5-plan-hash-runtime-fix for integration handoff; clean immediately before this evidence artifact was added."
+  }
+}

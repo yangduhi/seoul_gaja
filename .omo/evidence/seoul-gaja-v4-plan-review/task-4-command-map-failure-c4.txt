@@ -1,0 +1,20 @@
+Exception in thread Thread-1 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\congd\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\congd\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\congd\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 1550, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+UnicodeDecodeError: 'cp949' codec can't decode byte 0xe2 in position 0: illegal multibyte sequence
+{
+  "id": "task-04-failure",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "assertions": [
+    "Phase 00 probe, auth rejection, cleanup, and owner gates fail closed",
+    "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+  ],
+  "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-failure.json"
+}

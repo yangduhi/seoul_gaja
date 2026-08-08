@@ -1,0 +1,5 @@
+{
+  "kind": "unauthorized_environment",
+  "environment": "unreviewed-ingest",
+  "secret_status": "REDACTED"
+}

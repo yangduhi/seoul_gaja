@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "observed_at": "2026-08-07T00:00:00+09:00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "branch": "codex/prep-v4-1",
+    "candidate_commit": "2a8815643a7cd780b1ac80567e6ebad14fce53f5",
+    "candidate_tree": "6b2f95b946dab3ae8de1a19a9af414a314bb5151"
+  },
+  "checked": [
+    "No owner-controlled Sites hosted secret was entered.",
+    "No Sites Save, Deploy, sharing, external POST, live D1 query, push, or merge was attempted.",
+    "Local cleanup-state and test-data-removal fixtures passed without a live capability claim."
+  ],
+  "redacted_token_id": "NOT_ENTERED",
+  "missing_owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+  "required_owner_sequence": "Enter the temporary Sites hosted secret, Save the probe version, explicitly approve Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no test data remains.",
+  "receipt": "docs/evidence/phase-00/phase-receipt.json"
+}

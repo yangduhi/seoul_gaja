@@ -1,0 +1,35 @@
+name: summarize-seoul-crowd-weekly-optional
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r collector/requirements.txt
+      - name: Fetch deterministic metrics and generate prose only
+        env:
+          SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
+          SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+        run: >-
+          python -m collector.cli ai-summary
+          --base-url "$SITE_INGEST_URL"
+          --token-env SITE_INGEST_TOKEN
+          --model-env OPENAI_MODEL
+          --output "$RUNNER_TEMP/weekly-summary.md"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: weekly-ai-summary-${{ github.run_id }}
+          path: ${{ runner.temp }}/weekly-summary.md
+          retention-days: 30

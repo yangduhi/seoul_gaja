@@ -1,0 +1,12 @@
+{
+    "workflow_files_scanned":  2,
+    "uses_entries":  6,
+    "all_uses_full_commit_sha":  true,
+    "write_permissions":  0,
+    "secret_bearing_raw_input_expression":  false,
+    "manual_presecret_date_validation":  true,
+    "actionlint":  {
+                       "verdict":  "NOT_RUN_BLOCKED",
+                       "reason":  "actionlint is not installed in this local environment"
+                   }
+}

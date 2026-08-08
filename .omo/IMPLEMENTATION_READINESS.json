@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-08-07T03:17:39+09:00",
+  "state": "IMPLEMENTING_LOCAL",
+  "implementation_allowed": true,
+  "implementation_approval": {
+    "status": "APPROVED",
+    "approved_at": "2026-08-04T20:13:08+09:00",
+    "source": "explicit user approval in the current operating task",
+    "scope": "safe local product implementation, isolated codex worktrees, local commits, local candidate integration, and routine local verification"
+  },
+  "repository": {
+    "url": "https://github.com/yangduhi/seoul_gaja",
+    "default_branch": "main",
+    "base_commit": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
+    "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
+    "checkout": "D:\\vscode\\seoul_gaja-checkout",
+    "preparation_worktree": "D:\\vscode\\seoul_gaja-worktrees\\prep-v4-1",
+    "preparation_branch": "codex/prep-v4-1"
+  },
+  "authority": {
+    "plan_path": ".omo/plans/seoul-gaja-v4-plan-review.md",
+    "plan_sha256": "c16a70431c9ece882844a05be9fc38dd1ee61a0e8553800857605061e892094f",
+    "amendment_path": "docs/execution/AMENDMENT-v4.1.md",
+    "amendment_sha256": "b0da4eb07ddfe8a8be341a636085751cebc6967d57db726d7ff9219fa5592be1",
+    "command_map_path": "docs/execution/contracts/execution-command-map.json",
+    "command_map_sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
+    "authority_lock_path": ".omo/authority-lock.json",
+    "authority_lock_sha256": "0b1c963a201fab95fa38f643efcea468ebff1d7ecc7a4bfe2d00d34be3f04874",
+    "validator": "PASS"
+  },
+  "approval_scope": {
+    "status": "EXPLICIT_USER_IMPLEMENTATION_APPROVED",
+    "when_granted_allows": [
+      "safe local product implementation",
+      "isolated codex worktrees and local commits",
+      "local candidate integration or cherry-pick",
+      "routine local tests and reviews between approved Waves"
+    ],
+    "still_requires_explicit_owner_action": [
+      "secrets",
+      "live APIs",
+      "migration execution",
+      "workflow external activation",
+      "push or PR publication",
+      "merge to default or protected branch",
+      "Sites Save, Deploy, sharing, access, or domain changes",
+      "paid or destructive actions"
+    ]
+  },
+  "starter": {
+    "type": "Sites vinext starter",
+    "manifest": "package.json",
+    "manifest_sha256": "410e6f7b0dbf0fdc332306559dc3375f718bae8211662c4c539eee4272add2e3",
+    "lockfile": "package-lock.json",
+    "lockfile_sha256": "508e5e494cb77250db352459ed25e92614886e7f38c5739334649616976d9439",
+    "baseline_build": "PASS",
+    "baseline_tests": "PASS: 2",
+    "baseline_lint": "PASS",
+    "local_preview": "http://localhost:3000/",
+    "local_preview_status": "PASS: HTTP 200 for / and /__debug"
+  },
+  "threading": {
+    "desired_transport": "multi_agent_v2",
+    "status": "ACTIVE",
+    "team_id": "team-5e8b1c22",
+    "leader": "main operating task",
+    "required_members": [
+      "todo_04_phase00_capability",
+      "todo_05_candidate_gate",
+      "todo_06_workflow_security"
+    ],
+    "note": "MultiAgentV2 team initialized after explicit implementation approval; members are isolated and bound to the current prep snapshot.",
+    "standing_bootstrap_authority": true,
+    "retry_policy": "Probe once at the start of a later operating turn; create authority-bootstrap and readiness-gate immediately if the complete durable-task transport works, without another user prompt.",
+    "fallback_readiness_audit": {
+      "agent_id": "019fcb49-7203-7a11-9a6c-dadcb3db71ef",
+      "verdict": "APPROVE",
+      "p0_p1_blockers": 0,
+      "durable_team_member": false
+    }
+  },
+  "external_gates": {
+    "sites_phase00_capability": {
+      "verdict": "NOT_RUN_BLOCKED",
+      "reason": "Owner-controlled secret entry, Sites Save/Deploy, and live capability proof are not authorized in this task.",
+      "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+      "next_allowed_phase": "none"
+    },
+    "secrets_deploy_push": "FORBIDDEN_UNTIL_SEPARATE_OWNER_APPROVAL"
+  },
+  "remaining_preimplementation_gates": [],
+  "preimplementation_results": {
+    "actual_checkout_manifest_lockfile": "PASS",
+    "immutable_packet_validator": "STRUCTURAL_PASS_ONLY",
+    "command_map": "PASS: 30 entries",
+    "reference_only_failure_fixture": "PASS: observed blocked with zero mutation",
+    "unimplemented_task_02_gate": "NOT_RUN_BLOCKED: exit 3",
+    "concept_image_inventory": "PASS: 9 of 9 byte/hash pairs matched",
+    "independent_readiness_gate": "APPROVE"
+  },
+  "next_autonomous_action": "Advance safe local Waves under .omo/OPERATIONS_RUNBOOK.md; retain explicit owner gates and use serial fallback if durable thread transport remains unavailable."
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "head": "802a27e979c5698c53543aa3b1dd2394a2dbcc18",
+    "tree": "036711dda15d6edf61fe47ee8d8294712ae7456d",
+    "parent": "323717c167111eea5f652ccaea7baf4c31a8a6e0",
+    "parent_tree": "4b9845e0133962620f7ad78701b62292a86a3902"
+  },
+  "verdict": "PASS",
+  "root_cause": "The inherited one-shot Vinext wrapper was armed only by in-app close. Direct browser Back from a sheet reached the catalog-root sentinel without arming it, so Vinext started a redundant RSC traversal that Chrome later reported as net::ERR_ABORTED.",
+  "fix": "Install a reversible wrapper for the lifetime of CatalogSurface and bypass only navigationKind=traverse at the / catalog-root sentinel; delegate every other navigation to Vinext.",
+  "red": {
+    "failedCount": 6,
+    "rscFailureCount": 6,
+    "consoleErrorCount": 0,
+    "artifact": "baseline/browser-network-diagnostic.json",
+    "seam_artifact": "baseline/zero-rsc-seam-red.log"
+  },
+  "green": {
+    "failedCount": 0,
+    "hardFailureCount": 0,
+    "rscFailureCount": 0,
+    "consoleErrorCount": 0,
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 430,
+        "height": 932
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1616,
+        "height": 923
+      }
+    ],
+    "repetitions": 2,
+    "verdict": "PASS",
+    "artifact": "green/browser-matrix.json",
+    "network_artifact": "green/browser-network-diagnostic.json"
+  },
+  "claims": [
+    {
+      "criterion": "exact-parent RED",
+      "scenario": "close/Back plus direct browser Back at four viewports, two passes",
+      "invocation": "TASK10_PHASE=baseline node .omo/evidence/seoul-gaja-v4-plan-review/task-10-rsc-runtime-fix/browser-matrix.mjs",
+      "binary_observable": "6 requestfailed and 6 rsc failures",
+      "artifact": "baseline/browser-network-diagnostic.json"
+    },
+    {
+      "criterion": "zero-failure GREEN",
+      "scenario": "ready/selected/direct Back, direct/reload/invalid, retry, hostile search at 390x844, 430x932, 768x1024, 1616x923",
+      "invocation": "TASK10_PHASE=green node .omo/evidence/seoul-gaja-v4-plan-review/task-10-rsc-runtime-fix/browser-matrix.mjs",
+      "binary_observable": "failedCount=0, hardFailureCount=0, rscFailureCount=0, consoleErrorCount=0",
+      "artifact": "green/browser-network-diagnostic.json"
+    },
+    {
+      "criterion": "focused behavior",
+      "scenario": "Todo10 happy/failure/history seam/map retry",
+      "invocation": "node --test <five focused Todo10 files>, repeated twice",
+      "binary_observable": "25 tests passed, 0 failed on each pass",
+      "artifacts": [
+        "automated/focused-pass-1.log",
+        "automated/focused-pass-2.log"
+      ]
+    },
+    {
+      "criterion": "repo gates",
+      "scenario": "command map, lint, build, tokens, authority",
+      "invocation": "repo-native commands recorded in automated logs",
+      "binary_observable": "all required exit codes 0; lint has 0 errors",
+      "artifacts": [
+        "command-map-results.json",
+        "automated/lint.log",
+        "automated/build.log",
+        "automated/tokens.log",
+        "automated/authority.log"
+      ]
+    },
+    {
+      "criterion": "design audit",
+      "scenario": "navigation-only frontend provenance",
+      "invocation": "python docs/execution/scripts/validate_design_audit.py --audit-dir .omo/evidence/design-audit/todo10-rsc-runtime-fix-802a27e",
+      "binary_observable": "NOT_APPLICABLE exit_code=0 target_class=NON_RENDERING_FRONTEND",
+      "artifact": "automated/design-audit-validator.log"
+    }
+  ],
+  "typecheck": {
+    "status": "PRE_EXISTING_NOT_REPO_GATE",
+    "invocation": "npx tsc --noEmit",
+    "exit": 2,
+    "observable": "app/_design/PrimitiveShowcase.tsx(42,8) TS2741 missing surface",
+    "scope_proof": "PrimitiveShowcase.tsx is absent from the implementation diff",
+    "artifact": "automated/typecheck.log"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "task": 2,
+  "observed_at": "2026-08-04T20:38:00+09:00",
+  "code_commit": "d81630c9293d2a3f1dd82f8b1617122b143e0c77",
+  "code_tree": "f0e7c24c60c6d26e48e03d25b5c195fb3b8e08be",
+  "command_id": "task-02-failure",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "negative_fixtures": [
+    {
+      "path": "tests/fixtures/task-02/stale-route.md",
+      "line": 1,
+      "expected_rejection": "canonical-ingest-route",
+      "result": "rejected"
+    },
+    {
+      "path": "tests/fixtures/task-02/stale-receipt.md",
+      "line": 1,
+      "expected_rejection": "phase-receipt-path",
+      "result": "rejected"
+    }
+  ],
+  "meaning": "The failure gate passes only because each stale fixture is rejected with an explicit file and line."
+}

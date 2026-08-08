@@ -1,0 +1,6 @@
+
+  vinext dev  (Vite 8.0.13)
+
+  ➜  Local:   http://localhost:53824/
+  ➜  Debug:   http://localhost:53824/__debug
+ GET /?visualFixture=ready-v1 200 in 1.2s (compile: 1786122128.0s, render: 1.1s)

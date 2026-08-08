@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "worktree": "D:/vscode/seoul_gaja-worktrees/todo2-route",
+  "branch": "codex/todo2-route",
+  "base_commit": "223d5a24a2718d693d6588903c587952133141cd",
+  "implementation_commit": "a51ad880d9d15b26f0f9464d7a7a96acde7e53c6",
+  "implementation_tree": "8227970445582c3cc41ed86240135ae90253d60b",
+  "changed_paths": [
+    "app/api/internal/ingest/snapshot/route.js",
+    "server/ingest-snapshot-request.mjs",
+    "tests/gates/task-02-route.test.mjs"
+  ],
+  "failing_first": {
+    "scenario": "unchanged vinext runtime has no canonical snapshot ingest handler",
+    "invocation": "curl --max-time 10 -X POST http://localhost:43182/api/internal/ingest/snapshot -H 'content-type: application/json' --data '{}'",
+    "observable": "HTTP 404 with body Not Found",
+    "artifacts": [
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-2-red-headers.txt",
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-2-red-body.txt",
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-2-red-server.stdout.log"
+    ]
+  },
+  "automated_verification": [
+    {
+      "scenario": "canonical handler happy and boundary failures",
+      "invocation": "node --test tests/gates/task-02-route.test.mjs tests/gates/task-02-happy.test.mjs tests/gates/task-02-failure.test.mjs",
+      "observable": "6 tests, 6 pass, 0 fail",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-2-route-executor.json"
+    },
+    {
+      "scenario": "Todo 2 command-map happy/failure receipts",
+      "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-02-happy && PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-02-failure",
+      "observable": "both commands exit 0 with verdict PASS",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-2-happy.json"
+    },
+    {
+      "scenario": "changed-file lint and real route build",
+      "invocation": "eslint server/ingest-snapshot-request.mjs app/api/internal/ingest/snapshot/route.js tests/gates/task-02-route.test.mjs && vinext build",
+      "observable": "exit 0; build route table contains /api/internal/ingest/snapshot",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-server.stdout.log"
+    }
+  ],
+  "manual_http": {
+    "valid": {
+      "invocation": "curl --max-time 15 -X POST http://localhost:43184/api/internal/ingest/snapshot -H 'authorization: Bearer <local-fixture-token>' -H 'content-type: application/json' --data-binary @.omo/evidence/seoul-gaja-v4-plan-review/task-2-valid-payload.json",
+      "observable": "HTTP 202 and accepted receipt for snapshot-http-001",
+      "artifacts": [".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-valid-headers.txt", ".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-valid-body.json"]
+    },
+    "malformed_input": {
+      "observable": "invalid JSON HTTP 400; handler test also proves snake_case API rejection HTTP 422 and bearer rejection HTTP 401",
+      "artifacts": [".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-malformed-headers.txt", ".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-malformed-body.json"]
+    },
+    "method_and_old_route": {
+      "observable": "GET canonical route HTTP 405; POST /api/internal/ingest HTTP 404",
+      "artifacts": [".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-get-body.txt", ".omo/evidence/seoul-gaja-v4-plan-review/task-2-green-old-route-body.txt"]
+    }
+  },
+  "ultraqa": {
+    "stale_state": "receipt binds exact implementation commit/tree",
+    "dirty_worktree": "only scoped evidence remained before the evidence commit; parent worktree was never edited",
+    "hung_or_long_commands": "curl used 10/15 second max-time and local server was bounded to ports 43182-43184",
+    "misleading_success_output": "HTTP status and parsed JSON bodies were inspected, not inferred from process exit",
+    "repeated_interruptions": "all registered server processes were stopped and only TIME_WAIT sockets remained",
+    "flaky_tests": "route test is deterministic and does not use timing or network",
+    "prompt_injection": "not applicable: no untrusted prose or model input is consumed",
+    "cancel_resume": "not applicable: request handling is single-shot and stateless"
+  },
+  "cleanup": {
+    "server_pids": [43940, 126804, 194156, 97624, 114404],
+    "ports": [43182, 43183, 43184],
+    "observable": "all processes stopped; netstat showed no LISTENING socket and only TIME_WAIT; temporary .dev.vars removed",
+    "worktree_disposition": "retained for parent integration"
+  },
+  "external_actions": "none: no live API, secret, migration execution, deploy, push, merge, or workflow activation"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task": "Todo 3 - Harden verdict-safe phase receipts",
+  "observed_at": "2026-08-04T11:31:00+09:00",
+  "verdict": "PASS",
+  "base_commit": "313ba34350b2e9fb130971a09b368d8b5c13aee2",
+  "candidate_commit": "b794b34986bbc8e4ba5898a6d3da053f96db95bd",
+  "candidate_tree": "94d7d687b059b8a693f497b7d3377da237a30550",
+  "changed_contracts": [
+    "docs/execution/contracts/phase-receipt.schema.json",
+    "docs/execution/contracts/phase-receipt-template.json",
+    "docs/execution/scripts/validate_phase_receipts.py"
+  ],
+  "commands": [
+    {
+      "id": "task-03-happy",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-03-happy"],
+      "actual_exit": 0,
+      "result": "PASS: accepted PASS Phase 01/00/08, FAIL, and NOT_RUN_BLOCKED positive fixtures"
+    },
+    {
+      "id": "task-03-failure",
+      "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-03-failure"],
+      "actual_exit": 0,
+      "result": "PASS: rejected null PASS identity, empty PASS evidence, PASS blockers, missing Phase 00 cleanup, missing Phase 08 release, missing owner action, missing FAIL evidence, and unredacted Bearer token fixtures"
+    },
+    {
+      "argv": ["git", "diff", "HEAD~1", "--check"],
+      "actual_exit": 0,
+      "result": "PASS"
+    }
+  ],
+  "contract_coverage": {
+    "pass": "Requires non-null commit/tree/base identity, at least one zero-exit test, hashed evidence, no blockers, and phase proof.",
+    "not_run_blocked": "Requires non-empty blockers and an explicit owner_action.",
+    "fail": "Requires at least one hashed failure_evidence artifact.",
+    "phase_00": "Requires probe and cleanup commit/tree/saved-version/deployment bindings.",
+    "phase_08": "Requires the nested release object with saved version, deployment, deployed identity, workflow runs/head SHA, approval, migration, and rollback identifiers.",
+    "secrets": "Receipt text rejects common raw credential forms and every fixture records secret_status=REDACTED."
+  },
+  "packet_immutability": "docs/codex-pack-v4 is restored byte-for-byte to prep base 313ba34; active v4.1 receipt schema and template are sidecar files under docs/execution/contracts.",
+  "authority_command_map": "Restored docs/execution/contracts/execution-command-map.json byte/content to 313ba34; SHA-256 791d32fe1dc38dc3f850e5d23dce1f52dab9e60fa6ee63ec34a822e1c9d5d81f.",
+  "packet_validator": "FAIL_BASELINE: docs/codex-pack-v4/scripts/validate_packet.py reports the pre-existing MANIFEST.sha256 mismatch for 00_overview/00_final_decision.md. The Todo 3 packet paths compare byte-identically to 313ba34 and were not changed to mask this failure.",
+  "authority_read_only_check": "NOT_APPLICABLE_TO_MEMBER_BRANCH: validate_authority_lock.py correctly rejects team/team-5e8b1c22/B because it pins the preparation branch/base and frozen authority hashes, not an implementation member candidate.",
+  "runner_note": "The shared command-map runner returned PASS/exit 0 for both IDs. Its Windows CP949 capture emitted a UnicodeDecodeError while reading Node's Unicode reporter output; direct Node gate runs completed 1/1 and 8/8 passing tests."
+}

@@ -1,0 +1,12 @@
+{
+  "candidate": { "head": "886bf000b25acb84463cf9a04f50dac08302f5cf", "tree": "a5d80d21771e60bc8911e6110a97cac66066c5a7" },
+  "vinext_port": 53711,
+  "listening_process_count": 0,
+  "task_owned_process_count": 0,
+  "task_owned_playwright_mcp_count": 0,
+  "browser_contexts_closed": true,
+  "server_terminated": true,
+  "temp_junctions_created": 0,
+  "global_unrelated_processes_touched": false,
+  "status": "PASS"
+}

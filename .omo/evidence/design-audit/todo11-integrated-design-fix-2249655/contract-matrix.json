@@ -1,0 +1,40 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "rows":  [
+                 {
+                     "source_requirement_id":  "T11-NOW-NEXT",
+                     "source_anchor":  ".omo/plans/seoul-gaja-v4-plan-review.md:166-171",
+                     "applicable_route":  "/",
+                     "applicable_state":  "ready/selected",
+                     "applicable_viewport":  "390/430/768/1616",
+                     "expected_observable":  "NOW emphasized, NEXT reachable and unclipped",
+                     "observation_method":  "real Chrome geometry, contrast, five-point elementFromPoint, Enter",
+                     "actual_evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json",
+                     "classification":  "MATCH"
+                 },
+                 {
+                     "source_requirement_id":  "T11-ADVERSE",
+                     "source_anchor":  "docs/codex-pack-v4/design/component-contracts.md",
+                     "applicable_route":  "/",
+                     "applicable_state":  "empty/unavailable/hostile",
+                     "applicable_viewport":  "390/430/768/1616",
+                     "expected_observable":  "zero place controls, reachable retry, inert hostile text",
+                     "observation_method":  "exact DOM selectors, page.click, dialog/image inventory",
+                     "actual_evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/manual-qa.json rows",
+                     "classification":  "MATCH"
+                 },
+                 {
+                     "source_requirement_id":  "T11-A11Y",
+                     "source_anchor":  "docs/codex-pack-v4/design/design-review-checklist.md",
+                     "applicable_route":  "/ and /places/alpha",
+                     "applicable_state":  "ready/selected/reduced-motion",
+                     "applicable_viewport":  "390/430/768/1616",
+                     "expected_observable":  "focus, aria-live, 44px, chart table, reduced motion",
+                     "observation_method":  "keyboard plus computed style, AX and DOM capture",
+                     "actual_evidence":  ".omo/evidence/todo11-integrated-design-fix/manual-qa-v2/",
+                     "classification":  "MATCH"
+                 }
+             ]
+}

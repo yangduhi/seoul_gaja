@@ -1,0 +1,13 @@
+{
+  "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+  "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+  "worktree_snapshot_sha256": "d8041b950ebf51001a12661a1f1ee706ec0d3fc4b9129ec3479bca3c8361409d",
+  "findings": [
+    {
+      "finding_id": "TODO10-VISUAL",
+      "severity": "P1",
+      "status": "MATCH",
+      "summary": "Independent Pass A and Pass B are green after focus-trap correction."
+    }
+  ]
+}

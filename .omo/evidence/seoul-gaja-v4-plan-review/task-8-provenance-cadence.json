@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "task": 8,
+  "recorded_at": "2026-08-07T03:43:28.0494627+09:00",
+  "verdict": {
+    "local_implementation": "PASS",
+    "production_capacity": "NOT_RUN_BLOCKED",
+    "blockers": [
+      "OWNER_BOUND_QUOTA_EVIDENCE_REQUIRED",
+      "FOUR_LIVE_SCHEDULED_RUN_RECEIPTS_REQUIRED"
+    ],
+    "owner_action": "Provide a redacted owner/account/service quota receipt including observed rate-limit behavior and four consecutive live 121-place scheduled-run receipts at the selected 15-minute cadence."
+  },
+  "binding": {
+    "base_commit": "688f0437f0b6bf3c1d8ae5448a30f3181f2ad3b5",
+    "base_tree": "0c327269efb149634fcd6674b3e0effca874efa2",
+    "branch": "codex/todo8-provenance-cadence",
+    "authority_plan_sha256_git_lf": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
+    "authority_plan_sha256_worktree_crlf": "aa1d4a4972f6742a26830aa69d9d281f095c8c8e8e6941fd0acbcc4726dbb249",
+    "authority_validation": "PASS"
+  },
+  "validated_candidate": {
+    "implementation_commit": "84f002414b10552af5757ffa066e890fca5f66d5",
+    "implementation_tree": "803f7970ff7d4210651dc8347de0b6f89b844d30",
+    "verification_basis": "All final-state commands completed before the content-identical implementation commit; no source, test, fixture, contract, dependency, or environment input changed between the final green runs and this commit."
+  },
+  "artifacts": {
+    "server/provenance-cadence.mjs": "3424f6b4cd565614d5e1a5b18ee5763d00219fb4e898fc180cbd8c2fd70e0440",
+    "tests/gates/task-08-contract.mjs": "0e4def3b1f3fa042d3dae69797ca1b71284dbe434b9f01fbc29fd38b76fdbc53",
+    "tests/gates/task-08-happy.test.mjs": "48f190345e10e1c2cbd67e67f363958aee5c816e26aef41756145edf489dd8b4",
+    "tests/gates/task-08-failure.test.mjs": "54bb1bc42c4b1e542b9fa1130671b899b5159bd43db25080c9a29c3ee4d908fd",
+    "tests/fixtures/task-08/positive/whole-catalog-cadence.json": "147fd7a8290297def9cc8cc352df9b9846990d26671a7d590b45f11486a4a3cc",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-8-red.json": "0ad0c125579841fa4c63ddb6a0ae7755ccd4a367c963fa5a200759d5e4ab661d"
+  },
+  "scenarios": [
+    {
+      "name": "RED missing implementation",
+      "invocation": "node --test tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+      "binary_observable": "exit 1; ERR_MODULE_NOT_FOUND for server/provenance-cadence.mjs",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-red.json"
+    },
+    {
+      "name": "accepted local redacted receipt, hash, binding, and retention query",
+      "invocation": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-08-happy",
+      "binary_observable": "exit 0; 2 tests passed; canonical_payload_sha256=9bfc31c5178e9591369857cdbd02ef1461125e89d58733de6114a3aa62e13511; retention query at 8 days found receipt retained until 2026-11-02T00:00:10.000Z",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-happy.json"
+    },
+    {
+      "name": "negative provenance, sample, retry, overlap, and backfill matrix",
+      "invocation": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-08-failure",
+      "binary_observable": "exit 0; 12 tests passed; three-place, single-canary, missing provenance, unbounded retry, scheduled overlap, manual-backfill overlap, malformed input, prompt injection, and stale retention fail closed",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-failure.json"
+    },
+    {
+      "name": "focused suite repeat and flake check",
+      "invocation": "node --test tests/gates/task-08-contract.mjs tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+      "binary_observable": "exit 0 twice after implementation; 15 passed, 0 failed on each final-state run",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-provenance-cadence.json"
+    },
+    {
+      "name": "direct evaluator over every task-08 fixture",
+      "invocation": "node tests/gates/task-08-contract.mjs <positive fixture and every negative fixture>",
+      "binary_observable": "exit 0; every matches_expected=true; local 4x121 structure PASS; requests_per_run=242; requests_per_day=23232; max_concurrent_requests=4; production verdict NOT_RUN_BLOCKED with both exact blockers",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-provenance-cadence.json"
+    },
+    {
+      "name": "authority, static provenance, secret, and whitespace gates",
+      "invocation": "python docs/execution/scripts/validate_authority_lock.py; rg provenance fields; rg raw secret markers; git diff --check",
+      "binary_observable": "authority exit 0 PASS; all required provenance/binding fields present; NO_RAW_SECRET_MARKER_HITS; git diff --check exit 0",
+      "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-provenance-cadence.json"
+    }
+  ],
+  "ultraqa": {
+    "malformed_input": "PASS: MALFORMED_INPUT",
+    "prompt_injection_untrusted_upstream_text": "PASS: PROVENANCE_FORBIDDEN_FIELD and no raw body retained",
+    "stale_state": "PASS: query beyond declared receipt retention returns RECEIPT_RETENTION_HORIZON_FAILED",
+    "dirty_worktree": "PASS: validation ran with only Todo 8 owned paths dirty; path-scope audit recorded before commit",
+    "hung_or_long_commands": "PASS: all focused and command-map invocations completed under 1 second of test duration and under tool timeout",
+    "flaky_tests": "PASS: focused 15-test suite repeated twice on the final implementation state",
+    "misleading_success_output": "PASS: direct evaluator exit 0 JSON reports every matches_expected=true while production remains NOT_RUN_BLOCKED",
+    "cancel_resume_repeated_interruptions": "N/A: no resumable or long-running process was started"
+  },
+  "cleanup": {
+    "temporary_targets_created": [],
+    "temporary_targets_remaining": [],
+    "live_processes_started": [],
+    "live_resources_remaining": [],
+    "isolated_delivery_worktree": "retained only until leader integration disposition under the repository member contract"
+  },
+  "scope_note": "Fixtures prove deterministic local policy only. They do not fabricate or substitute for owner-bound quota evidence or live scheduled capacity."
+}

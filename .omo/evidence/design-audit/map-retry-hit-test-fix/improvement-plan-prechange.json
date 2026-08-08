@@ -1,0 +1,23 @@
+{
+  "improvement_plan_id": "map-retry-hit-test-v1",
+  "target_class": "RENDERED_UI",
+  "baseline_observation": "390x844 real Chrome retry center point resolves to a recommendation overlay instead of the retry button.",
+  "finding": {
+    "finding_id": "MAP-RETRY-HIT-TEST-390",
+    "severity": "P1",
+    "status": "DEVIATION",
+    "source_contract": ".omo/plans/seoul-gaja-v4-plan-review.md:Todo 10; DESIGN.md:6",
+    "expected_score_delta": 10
+  },
+  "improvements": [
+    {
+      "changed_path": "app/_catalog/CatalogSurface.module.css",
+      "change_class": "RESPONSIVE_LOCAL",
+      "requires_owner_gate": false,
+      "owner_gate_id": null,
+      "authorization_artifact": ".omo/IMPLEMENTATION_READINESS.json",
+      "decision": "Make only the non-actionable mobile recommendation surface click-through; preserve pointer events for recommendation buttons and summaries.",
+      "acceptance": "At 390x844, 430x932, 768x1024, and 1616x923, retry owns its center hit point and a real click changes the retry notice while the NEXT CTA remains operable."
+    }
+  ]
+}

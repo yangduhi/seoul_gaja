@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "chromePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "port": 53334,
+  "runs": [
+    {
+      "run": 1,
+      "retryObservations": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        },
+        {
+          "viewport": {
+            "width": 768,
+            "height": 1024
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        },
+        {
+          "viewport": {
+            "width": 1616,
+            "height": 923
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        }
+      ],
+      "nextObservations": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        },
+        {
+          "viewport": {
+            "width": 768,
+            "height": 1024
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        },
+        {
+          "viewport": {
+            "width": 1616,
+            "height": 923
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "retryObservations": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        },
+        {
+          "viewport": {
+            "width": 768,
+            "height": 1024
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        },
+        {
+          "viewport": {
+            "width": 1616,
+            "height": 923
+          },
+          "hitTarget": true,
+          "retryStateChanged": true,
+          "route": "/"
+        }
+      ],
+      "nextObservations": [
+        {
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        },
+        {
+          "viewport": {
+            "width": 430,
+            "height": 932
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        },
+        {
+          "viewport": {
+            "width": 768,
+            "height": 1024
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        },
+        {
+          "viewport": {
+            "width": 1616,
+            "height": 923
+          },
+          "hitTarget": true,
+          "route": "/places/alpha"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

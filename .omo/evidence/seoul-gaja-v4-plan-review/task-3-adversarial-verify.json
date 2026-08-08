@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "task": "Todo 3 independent adversarial verification",
+  "verdict": "needs-fix",
+  "confidence": "high",
+  "reviewed_commit": "67c7b36e369353eaf07f71e9d1dd8790199c911b",
+  "reviewed_tree": "d51a29158a7c5a131c4281ca3b08edf44db51060",
+  "branch": "codex/todo3-receipts",
+  "verification_base_commit": "4c9dd29de6a0d341574116bb63b5d357a4f943ff",
+  "verification_base_tree": "c9edde81994e4dcc02ef7a6d77134de46422be75",
+  "scope": {
+    "changed_path_count": 24,
+    "changed_path_scope": "PASS: all changed tracked paths are Todo 3 receipts, receipt contracts, validator, fixtures, or gates",
+    "git_diff_check_exit": 0,
+    "working_tree_clean_after_qa": true,
+    "untracked_paths_after_qa": []
+  },
+  "authority_binding": {
+    "readiness": "PASS: implementation_allowed=true; state=IMPLEMENTING_LOCAL",
+    "authority_lock_validator": {"command": "python docs/execution/scripts/validate_authority_lock.py", "exit": 0, "verdict": "PASS"},
+    "tracked_git_blob_hashes": {
+      "plan": "PASS: ea18ae8d55296cfc63f4ed853476809b87aff19bd283e038eef4f2367bcfaf39",
+      "amendment": "PASS: b0da4eb07ddfe8a8be341a636085751cebc6967d57db726d7ff9219fa5592be1",
+      "agents": "PASS: ba2f44cd4277f63ca896551cce954c9fb17bf5d259593fa12257ec55758788c3",
+      "runbook": "PASS: c328595eea8858d3ba296757f8bae8b20143110b50c3ea06b2060c2feb1ab180",
+      "command_map": "PASS: 81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba"
+    },
+    "line_ending_note": "Working-copy CRLF byte hashes differ from the authority lock. Git tracked blobs match exactly; this is not a stale-authority failure.",
+    "receipt_plan_binding": "PASS: explicit wrong expected commit/tree/plan bindings are rejected."
+  },
+  "required_commands": [
+    {"command": "python docs/execution/scripts/validate_phase_receipts.py", "exit": 0, "result": "PASS canonical receipts"},
+    {"command": "node --test tests/gates/task-03-happy.test.mjs tests/gates/task-03-failure.test.mjs", "exit": 0, "result": "PASS 13/13 first run"},
+    {"command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-03-happy", "exit": 0, "parsed_payload": {"verdict": "PASS", "actual_exit": 0}, "warning": "CP949 UnicodeDecodeError emitted by subprocess text capture; not used as semantic proof."},
+    {"command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-03-failure", "exit": 0, "parsed_payload": {"verdict": "PASS", "actual_exit": 0}, "warning": "CP949 UnicodeDecodeError emitted by subprocess text capture; not used as semantic proof."},
+    {"command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json tests/fixtures/phase-receipts/positive/*.json", "exit": 0, "result": "PASS all five positive fixtures"},
+    {"command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json <each negative fixture>", "exit": 0, "result": "PASS all ten negatives rejected with individual exit 1"},
+    {"command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json tests/fixtures/phase-receipts/positive/pass-phase-08.json --expected-commit 9999999999999999999999999999999999999999 --expected-tree 8888888888888888888888888888888888888888 --expected-plan-sha256 7777777777777777777777777777777777777777777777777777777777777777", "exit": 1, "result": "PASS named stale-binding rejection"}
+  ],
+  "contract_matrix": [
+    {"probe": "PASS null identity", "result": "PASS: pass-null-identity.json exit 1"},
+    {"probe": "PASS empty evidence", "result": "PASS: pass-empty-evidence.json exit 1"},
+    {"probe": "PASS blocker", "result": "PASS: pass-with-blocker.json exit 1"},
+    {"probe": "PASS phase proof", "result": "PASS: schema requires phase_proof; Phase 00 requires probe and cleanup"},
+    {"probe": "NOT_RUN_BLOCKED owner action", "result": "PASS: blocked-missing-owner-action.json exit 1"},
+    {"probe": "FAIL failure evidence", "result": "PASS: fail-missing-failure-evidence.json exit 1"},
+    {"probe": "Phase 00 cleanup/probe", "result": "PASS: phase-00-missing-cleanup.json exit 1"},
+    {"probe": "Phase 08 nested release identity", "result": "PASS: missing release and all three identity-mismatch fields reject exit 1"},
+    {"probe": "malformed input", "result": "PASS: malformed-json.json exit 1, named invalid JSON"},
+    {"probe": "stale state", "result": "PASS: explicit expected values exit 1"},
+    {"probe": "Bearer secret fixture", "result": "PASS: raw-secret.json exit 1"},
+    {"probe": "JSON api_key secret fixture", "result": "FAIL: regex only matches api[_-]?key followed by equals. json.dumps of a synthetic api_key property does not match, while phase_proof permits arbitrary properties."}
+  ],
+  "finding": {
+    "severity": "P1",
+    "title": "Secret scan misses JSON api_key properties in arbitrary phase_proof data",
+    "evidence": [
+      "docs/execution/scripts/validate_phase_receipts.py:12 applies the shared regex to serialized JSON",
+      "docs/execution/contracts/phase-receipt.schema.json:58 permits arbitrary phase_proof object properties and line 120 has the same equals-only API-key pattern",
+      "tests/fixtures/phase-receipts/negative/raw-secret.json tests only Bearer text"
+    ],
+    "impact": "A syntactically valid PASS receipt can retain a JSON API-key property despite secret_status=REDACTED.",
+    "required_remediation": "Recognize JSON key/value forms in both patterns, add a negative synthetic api_key property fixture under phase_proof, then repeat focused and direct validation."
+  },
+  "ultraqa": {
+    "malformed_input": "PASS",
+    "stale_state": "PASS",
+    "dirty_worktree": "PASS: clean after QA",
+    "hung_or_long_commands": "PASS: all commands ended within 120000 ms; suites took about 3.7 s",
+    "flaky_tests": "PASS: repeat was 13/13; first 3676.7887 ms, repeat 3616.0012 ms",
+    "misleading_success_output": "PASS: verdict derives from parsed exits and direct validator results, not runner prose",
+    "repeated_interruptions": "PASS: no staged or untracked state",
+    "prompt_injection": "NOT_APPLICABLE: no model or instruction-execution surface. The independent untrusted JSON secret-key check is FAIL.",
+    "cancel_resume": "NOT_APPLICABLE: single-shot local validator"
+  },
+  "cleanup": {"temporary_negative_outputs_removed": 10, "leftover_temp_artifacts": 0, "leftover_pycache_files": 0, "leftover_processes": 0, "leftover_ports": 0, "live_or_network_actions": 0, "secret_values_recorded": 0},
+  "artifact_paths_reviewed": [".omo/evidence/seoul-gaja-v4-plan-review/task-3-executor.json", ".omo/evidence/seoul-gaja-v4-plan-review/task-3-happy.json", ".omo/evidence/seoul-gaja-v4-plan-review/task-3-failure.json", ".omo/evidence/seoul-gaja-v4-plan-review/task-3-receipt-negative.json", ".omo/evidence/seoul-gaja-v4-plan-review/task-3-seoul-gaja-v4-plan-review.json", "docs/evidence/phase-00/phase-receipt.json"],
+  "integration_disposition": "DO_NOT_INTEGRATE until the P1 JSON secret-shaped receipt bypass is fixed and independently reverified on a new exact commit/tree."
+}

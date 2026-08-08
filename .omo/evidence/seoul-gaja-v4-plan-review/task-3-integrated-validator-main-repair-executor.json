@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "task": "Todo 3 integrated validator complete main-path repair",
+  "verdict": "PASS",
+  "branch": "codex/todo3-integrated-repair-round2",
+  "pre_candidate": {
+    "commit": "83119a21e4293b20453e106e1315bf2c4fb7e5e6",
+    "tree": "1b155c12cbedd10182781f25a4ff4a4d0ab62e04"
+  },
+  "restored_reference": {
+    "commit": "9fc6229805436948f7bb300d6ec7828c416636f8",
+    "source_blob": "2195484cbb6e7ccdd0c06b5c74d4094c46b943d0",
+    "source_only_tree": "0485ce14b9510a2e6b3087885735a14e31b09125",
+    "comparison": "The restored validator source matches the known-good reference exactly."
+  },
+  "scope": {
+    "modified_source": "docs/execution/scripts/validate_phase_receipts.py",
+    "restored_behavior": [
+      "optional schema and receipt arguments",
+      "canonical default receipt discovery",
+      "malformed JSON rejection",
+      "expected commit/tree/plan bindings",
+      "secret and Phase 08 semantic failure accumulation"
+    ],
+    "unchanged": [
+      "recursive detector",
+      "import re",
+      "receipt schema",
+      "fixtures",
+      "tests",
+      "authority and readiness files",
+      "parent checkout"
+    ]
+  },
+  "red": {
+    "canonical_default": {"command": "python docs/execution/scripts/validate_phase_receipts.py", "exit": 2, "observation": "Parent-derived CLI required schema and receipt positional arguments."},
+    "valid_nested_secret": {"exit": 0, "observation": "A schema-valid synthetic nested api_key receipt was incorrectly accepted because semantic_failures was never called."},
+    "phase08_identity_mismatch": {"exit": 0, "observation": "A schema-valid Phase 08 deployed_commit mismatch was incorrectly accepted because semantic_failures was never called."}
+  },
+  "green": {
+    "canonical_default": {"command": "python docs/execution/scripts/validate_phase_receipts.py", "exit": 0, "result": "PASS canonical receipt discovery and semantic validation"},
+    "positive_fixtures": {"count": 5, "exit": 0},
+    "negative_fixtures": {"count": 10, "each_exit": "nonzero"},
+    "semantic_fixture_outcomes": "PASS 15/15: five valid receipts accepted and ten invalid receipts rejected.",
+    "direct_adversarial": {
+      "valid_nested_secret_exit": 1,
+      "phase08_identity_mismatch_exit": 1,
+      "stale_expected_binding_exit": 1,
+      "malformed_json_exit": 1
+    },
+    "task_03_node_tap": ["PASS 11/11", "PASS 11/11"],
+    "command_map": {
+      "task_03_happy": {"exit": 0, "verdict": "PASS"},
+      "task_03_failure": {"exit": 0, "verdict": "PASS"}
+    },
+    "authority": {
+      "validate_command_map": {"exit": 0, "result": "PASS: 30 command entries validated"},
+      "validate_authority_lock": {"exit": 0, "verdict": "PASS"}
+    },
+    "diff_check": [0, 0]
+  },
+  "manual_qa": {
+    "channel": "mcp__git_bash__run",
+    "invocation": "python docs/execution/scripts/validate_phase_receipts.py",
+    "observable": "PASS: exit 0 with no traceback; canonical receipt was discovered without caller-supplied paths.",
+    "cp949_wrapper_warning": "run_command_map.py emitted its known CP949 child-output UnicodeDecodeError warning while both parsed task verdicts and exits were PASS/0; direct exits and TAP output establish the result."
+  },
+  "ultraqa": {
+    "malformed_input": "PASS: synthetic malformed JSON exited 1.",
+    "stale_state": "PASS: explicit wrong commit/tree/plan binding exited 1.",
+    "prompt_injection": "NOT_APPLICABLE: local JSON parsing has no model or instruction execution surface.",
+    "dirty_worktree": "PASS: base worktree remained untouched and this branch scopes product changes to the validator only.",
+    "hung_or_long_commands": "PASS: every command completed within the 120000 ms terminal bound.",
+    "flaky_tests": "PASS: focused Node TAP was green on two consecutive runs.",
+    "misleading_success_output": "PASS: direct process exits and parsed command-map results, not prose, determine the verdict.",
+    "repeated_interruptions": "PASS: no interrupted process or partial commit was retained.",
+    "cancel_resume": "NOT_APPLICABLE: single-shot local CLI has no resumable state."
+  },
+  "cleanup": {
+    "synthetic_red_fixtures_removed": 3,
+    "temporary_output_logs_removed": true,
+    "worker_created_pycache": "NONE_FOUND",
+    "leftover_processes": 0,
+    "network_live_api_deploy_push_merge_actions": 0,
+    "secret_values_recorded": 0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "registered_at": "2026-08-07T05:47:37+09:00",
+  "purpose": "Register Todo 9 visual-QA process cleanup before server launch.",
+  "server": {
+    "command": "npm run dev -- --host 127.0.0.1 --port 3199",
+    "port": 3199,
+    "expected_bindings": ["127.0.0.1", "[::1]"],
+    "pid": 112116,
+    "cleanup_action": "Stop-Process -Id <pid> -Force after browser closure; then verify no listening port 3199."
+  },
+  "browser": {
+    "binary": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    "cleanup_action": "Close Playwright browser and context in finally block."
+  },
+  "browser_closed": true,
+  "server_stopped": true,
+  "port_3199_closed": true,
+  "status": "CLEANUP_PASS"
+}

@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "implementation_head": "2ffed69d9360579eca3efe173cf4b888f778298e",
+  "implementation_tree": "e077facfd6389b01f33a784b1f715d8af90e4b52",
+  "implementation_parent_head": "a54a5fb63c7db58d5966cba358788a102050d4f6",
+  "implementation_parent_tree": "d31371eaee8ee729d54efc6329ae55f0c3cd8f45",
+  "evidence_commit": {
+    "kind": "single_evidence_only_follow_up",
+    "self_reference": false,
+    "sha256": "reported by git after commit; intentionally not embedded in this receipt"
+  },
+  "plan_sha256": "f5359c2a91169a66195383ac935259b56780c8069d1e0fd85de641141138dc3e",
+  "authority_lock_sha256": "af138ab215937fb8737f690073eee8c8f27ecd777d506f4aed8badfb7cfb91d3",
+  "automated": {
+    "focused_tests": "PASS 21/21",
+    "lint": "PASS with 5 pre-existing warnings",
+    "build": "PASS",
+    "authority_lock": "PASS",
+    "command_map_happy": "PASS exit 0; runner emitted a cp949 reader-thread warning",
+    "command_map_failure": "PASS exit 0; runner emitted a cp949 reader-thread warning"
+  },
+  "browser": {
+    "adapter": "cached Playwright with installed Chrome",
+    "fixture": "?visualFixture=ready-v1",
+    "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+    "passes": 2,
+    "matrix": "browser-matrix.json"
+  }
+}

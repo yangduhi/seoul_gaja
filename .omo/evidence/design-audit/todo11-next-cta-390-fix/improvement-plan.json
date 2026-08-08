@@ -1,0 +1,34 @@
+{
+  "plan_id": "T11-NEXT-CTA-390-001",
+  "target_class": "RENDERED_UI",
+  "baseline_score": 90,
+  "target_score": 100,
+  "findings": [
+    {
+      "finding_id": "T11-NEXT-CTA-390-001",
+      "severity": "P1",
+      "source_contract": "docs/execution/contracts/design-audit-contract.json",
+      "baseline_evidence": ".omo/evidence/design-audit/todo11-final-current-v2/capture-manifest.json",
+      "observed": "At 390x844, the neutral NEXT CTA rectangle ends at 894px and is clipped below the viewport.",
+      "expected_score_delta": 10
+    }
+  ],
+  "improvements": [
+    {
+      "order": 1,
+      "changed_paths": [
+        "app/_catalog/CatalogSurface.module.css"
+      ],
+      "change_class": "RESPONSIVE_LOCAL",
+      "requires_owner_gate": false,
+      "owner_gate_id": null,
+      "authorization_artifact": ".omo/IMPLEMENTATION_READINESS.json",
+      "authorization_candidate_snapshot": {
+        "head_sha": "7ccd08a41c6fea379dd43d666cef139c9b7b3197",
+        "head_tree_sha": "277b2b36809948a2131aed7cf8170edbd640dea4"
+      },
+      "decision": "At <=400px, make the existing one-column recommendation grid share the visible map space and scroll card internals without altering >=401px geometry, NOW emphasis, or NEXT neutrality.",
+      "acceptance": "The actual NEXT button rectangle is fully within 390x844; 430x932, 768x1024, and 1616x923 retain their required layout and CTA semantics."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "task": 9,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tested_tree": "d1661589ab32c4b977517db74c850d4560f7c828"
+  },
+  "scenario": "missing/UNKNOWN/expired inputs, empty horizons, interpolation/extrapolation, incomplete or mismatched cohorts, stale history, unsupported scoring fields, malformed input, and prompt-like reason text",
+  "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure",
+  "binary_observable": "actual_exit=0; every unavailable scoring path returns ZERO_ELIGIBLE with results=[] and truthful browse copy; untrusted reason text is absent",
+  "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-failure.json"
+}

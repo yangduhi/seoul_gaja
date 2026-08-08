@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "task": "Todo 5 stale external identity rejection",
+  "implementation_candidate": {
+    "commit": "8f07c3db5ee991437360e603591363a519ef194b",
+    "tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7"
+  },
+  "verdict": "PASS",
+  "observable": "Focused failure suite rejects stale default branch, stale workflow head/tree, malformed input, missing binding, fabricated proof, and canonical-target mismatch before semantic PASS."
+}

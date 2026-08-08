@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "workflow_runtime": {
+    "python": "3.11.11",
+    "node": "22.13.0",
+    "python_install": ["--require-hashes", "--only-binary=:all:", "-r", "collector/requirements.lock"]
+  },
+  "github_environment": {
+    "name": "production-ingest",
+    "protected_branches": ["main"],
+    "protected_branch_ref": "refs/heads/main",
+    "required_reviewers": true,
+    "required_reviewer_logins": ["yangduhi"]
+  },
+  "maintainer_allowlist": ["yangduhi"],
+  "ingest": {
+    "allowed_route": {
+      "method": "POST",
+      "path": "/api/internal/ingest/snapshot"
+    },
+    "scopes": ["ingest:snapshot"],
+    "forbidden_scopes": ["admin", "public:read"],
+    "token_boundary": {
+      "name": "SITE_INGEST_TOKEN",
+      "allowed_branch_ref": "refs/heads/main",
+      "allowed_environment": "production-ingest",
+      "allowed_method": "POST",
+      "allowed_path": "/api/internal/ingest/snapshot",
+      "rejected_states": ["missing", "prior", "expired"]
+    },
+    "secret_locations": {
+      "sites_hosted_secret_store": true,
+      "github_environment": "production-ingest",
+      "source_repository": false,
+      "logs": false,
+      "receipts": false
+    }
+  },
+  "rotation": {
+    "required_steps": ["install_next", "verify_next", "cut_over", "revoke_prior"],
+    "maximum_overlap_minutes": 30,
+    "old_token_rejection": true,
+    "expired_token_rejection": true,
+    "metadata_fields": ["token_id", "issued_at", "cut_over_at", "revoked_at"]
+  },
+  "receipts": {
+    "permitted_token_fields": ["token_id", "issued_at", "revoked_at"],
+    "raw_token_value": "forbidden"
+  },
+  "replay": {
+    "duplicate_request": "idempotent_receipt",
+    "payload_conflict": "reject_409"
+  }
+}

@@ -1,0 +1,65 @@
+contract_version: 1.0.0
+catalog:
+  exact_place_count: 121
+  identity_fields:
+    - areaCode
+    - areaName
+  constraints:
+    areaCode: unique_non_empty_string
+    areaName: unique_non_empty_string
+    latitude: number_or_null
+    longitude: number_or_null
+current_observation:
+  required_fields:
+    - areaCode
+    - sourceUpdatedAt
+    - fetchedAt
+    - availability
+    - provenance
+  availability_enum:
+    - available
+    - carried_forward
+    - unavailable
+    - expired
+  provenance_enum:
+    - refreshed
+    - carried_forward
+    - missing
+  crowd_level_enum:
+    - RELAXED
+    - NORMAL
+    - BUSY
+    - CROWDED
+    - UNKNOWN
+  population:
+    representation: range
+    min_field: populationMin
+    max_field: populationMax
+    constraints:
+      - both_null_or_both_present
+      - populationMin_greater_than_or_equal_to_zero
+      - populationMax_greater_than_or_equal_to_populationMin
+  timestamps:
+    timezone: Asia/Seoul
+    fields:
+      sourceUpdatedAt: upstream_observation_time
+      fetchedAt: collector_fetch_time
+      storedAt: database_commit_time
+  freshness:
+    fresh_max_minutes: 30
+    delayed_max_minutes: 90
+    stale_max_minutes: 180
+    expired_after_minutes: 180
+forecast:
+  authority: official_source_only
+  minimum_valid_future_points: 6
+  interpolation: forbidden
+  extrapolation: forbidden
+  synthetic_points: forbidden
+  duplicate_timestamp: reject
+history:
+  missing_value_policy: null_not_zero
+  raw_retention_days: 7
+  hourly_retention_days: 90
+  daily_retention_days: 730
+  profile_retention: indefinite

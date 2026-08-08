@@ -1,0 +1,36 @@
+contract_version: 1.0.0
+scheduler: github_actions
+timezone_basis: UTC
+principles:
+  - scheduled_runs_may_be_delayed
+  - jobs_must_be_idempotent
+  - avoid_minute_zero
+  - workflows_must_exist_on_default_branch
+workflows:
+  live_collection:
+    default_cron: "7,22,37,52 * * * *"
+    allowed_intervals_minutes: [15, 30, 60]
+    timeout_minutes: 12
+    concurrency_group: seoul-crowd-live-collection
+    cancel_in_progress: false
+  hourly_materialization:
+    cron: "17 * * * *"
+    timeout_minutes: 8
+    concurrency_group: seoul-crowd-hourly
+  daily_compaction:
+    cron: "27 18 * * *"
+    kst_description: "03:27 Asia/Seoul"
+    timeout_minutes: 12
+  weekly_quality:
+    cron: "37 19 * * 6"
+    kst_description: "Sunday 04:37 Asia/Seoul"
+    timeout_minutes: 15
+  manual_backfill:
+    trigger: workflow_dispatch
+    allowed_sources:
+      - stored_raw_observations
+      - stored_hourly_observations
+    fabricate_missing_history: false
+health:
+  delayed_after_minutes_without_success: 120
+  unavailable_after_minutes_without_success: 360

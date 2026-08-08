@@ -1,0 +1,42 @@
+{
+  "task": 9,
+  "status": "PASS_LOCAL",
+  "binding": {
+    "implementation_commit": "c9befa736e02a7f15f9b38661c198264cc715dc5",
+    "implementation_tree": "fda3f8bb69801138dfdafe174c6dfd01cf48b97f"
+  },
+  "red": {
+    "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+    "observable": [
+      "independent verifier reproduced history-enhanced output for a ProductViewModel profile with sample_count=0",
+      "before authoritative local_time_bucket and elapsed_days fixture fields were added, the route-facing test observed base output where its prior history-enhanced expectation failed"
+    ]
+  },
+  "green": {
+    "invocation": "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+    "observable": "30/30 pass, including missing local_time_bucket, mismatched exact 30-minute bucket, missing elapsed_days, and sample_count=0 fail-closed route cases",
+    "exit": 0
+  },
+  "browser": {
+    "invocation": "npm run dev -- --host 127.0.0.1 --port 3199",
+    "binding_workaround": "the server listened on [::1]:3199, so required http://127.0.0.1:3199 returned ERR_CONNECTION_REFUSED and http://localhost:3199 reached the same local server through IPv6 loopback",
+    "observable": "two cards; NOW/NEXT PROVISIONAL history-enhanced copy; Alpha detail navigation opened /places/alpha; zero raw score/purpose presets; four viewport overflow checks false. Fallback Playwright reported eleven local file:// font-load errors from the development server, with no route JavaScript error.",
+    "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+    "cleanup": "development listener stopped; PORT_3199_LISTENER_CLOSED"
+  },
+  "verification": {
+    "commands": [
+      "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy",
+      "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure",
+      "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/product-read-model.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+      "node tests/gates/task-09-repeat-probe.mjs",
+      "node tests/gates/task-09-surface-probe.mjs",
+      "npx tsc --noEmit",
+      "npm run lint",
+      "npm run build",
+      "git diff --check",
+      "PYTHONUTF8=1 python docs/execution/scripts/validate_authority_lock.py"
+    ],
+    "observable": "all exit 0; lint has four pre-existing Todo 8 warnings and zero errors"
+  }
+}

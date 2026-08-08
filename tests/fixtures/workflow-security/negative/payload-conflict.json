@@ -1,0 +1,7 @@
+{
+  "kind": "payload_conflict",
+  "request_id": "request-redacted",
+  "existing_payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "secret_status": "REDACTED"
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "todo": 10,
+  "verdict": "PASS",
+  "verified_candidate": {
+    "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+    "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3"
+  },
+  "fresh_checkout": "D:\\vscode\\seoul_gaja-worktrees\\todo10-doneclaim-verify",
+  "scenarios": [
+    {
+      "scenario": "candidate-bound design audit in a fresh detached checkout",
+      "invocation": "python docs/execution/scripts/validate_design_audit.py --audit-dir .omo/evidence/design-audit/task-10-detail-state",
+      "binary_observable": "exit 0; verdict PASS; failures [] ; target_class RENDERED_UI",
+      "artifact_path": ".omo/evidence/design-audit/task-10-detail-state/verdict.json"
+    },
+    {
+      "scenario": "Todo 10 happy, failure, state, history, sharing, and focus-trap contracts",
+      "invocation": "node --test tests/gates/task-10-happy.test.mjs tests/gates/task-10-failure.test.mjs tests/product/detail-history/detail-contract.test.mjs",
+      "binary_observable": "exit 0; tests 19; pass 19; fail 0; skipped 0",
+      "artifact_path": ".omo/evidence/seoul-gaja-v4-plan-review/task-10-doneclaim-reverify.json"
+    },
+    {
+      "scenario": "real Chrome capture integrity",
+      "invocation": "Node fs read of all seven PNG files with PNG signature and non-empty byte assertions",
+      "binary_observable": "exit 0; seven PNG_PASS lines; byte sizes 28258 through 460945",
+      "artifact_path": ".omo/evidence/design-audit/task-10-detail-state"
+    },
+    {
+      "scenario": "QA teardown",
+      "invocation": "Get-NetTCPConnection plus Test-Path checks; git worktree remove after validation",
+      "binary_observable": "port 41710 free; temporary Playwright, Wrangler, node_modules junction, and verifier worktree removed",
+      "artifact_path": ".omo/evidence/seoul-gaja-v4-plan-review/task-10-cleanup-receipt.json"
+    }
+  ],
+  "evidence_repair": {
+    "initial_observable": "SNAPSHOT_INPUT_MISMATCH: app/_catalog/CatalogSurface.tsx in a fresh CRLF checkout",
+    "diagnosis": "the original worktree snapshot included modified source working-tree bytes whose line endings change on checkout",
+    "fix": "bind the validator snapshot to stable authority-lock and approved-plan inputs while retaining the exact product HEAD/tree binding",
+    "recheck": "PASS in the fresh detached candidate checkout"
+  },
+  "external_live_gates": "NOT_RUN_BLOCKED: no authorization for live APIs, Sites, D1 migration, deploy, push, or merge"
+}

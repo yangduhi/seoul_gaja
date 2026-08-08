@@ -1,0 +1,3 @@
+candidate_head=886bf000b25acb84463cf9a04f50dac08302f5cf
+candidate_tree=a5d80d21771e60bc8911e6110a97cac66066c5a7
+{"verdict": "PASS", "exit_code": 0, "failures": [], "audit_dir": "D:\\vscode\\seoul_gaja-worktrees\\todo10-postintegration-fix-v2\\.omo\\evidence\\design-audit\\task-10-postintegration-fix-v2", "target_class": "RENDERED_UI"}

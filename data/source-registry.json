@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "catalog": {
+    "officialPage": "https://data.seoul.go.kr/dataList/OA-21285/A/1/datasetView.do",
+    "downloadUrl": "https://datafile.data.seoul.go.kr/bigfile/iot/inf/nio_download.do?&useCache=false",
+    "form": {
+      "infId": "OA-21285",
+      "seq": "23",
+      "seqNo": "23",
+      "infSeq": "2"
+    },
+    "rawSha256": "60aedf332efef1535623e22c14af2acd6b3ccfa35e60423fbbea8cc8188f1ff7",
+    "fetchedAt": "2026-08-08T12:06:40Z",
+    "identityFields": ["AREA_CD", "AREA_NM"]
+  },
+  "citydata": {
+    "endpointTemplate": "https://openapi.seoul.go.kr:8088/{SEOUL_OPEN_DATA_KEY}/json/citydata/1/5/{AREA_NM}",
+    "parserVersion": "1.0.0",
+    "identityFields": ["AREA_CD", "AREA_NM"]
+  }
+}

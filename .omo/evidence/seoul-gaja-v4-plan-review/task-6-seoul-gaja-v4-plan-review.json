@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "todo": 6,
+  "verdict": "PASS_LOCAL_CONTRACT",
+  "branch": "codex/todo6-workflow-security-fixture-validation",
+  "parent_base": {
+    "commit": "08ae1434a674e3f59452fca624a95613f25504df",
+    "tree": "db0fbfb4136f2b509a814c797d3507371ee253f8"
+  },
+  "implementation": {
+    "commit": "f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66",
+    "tree": "5b07f87511a0768c49e59a2b64f16a9db0c26092"
+  },
+  "authority": {
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7",
+    "authority_lock_sha256": "3bfa17899686b7d80831e4768e03bae27376c541fafaccc6d2dee3a65b1f9c2a",
+    "authority_lock_validator": "PASS",
+    "command_map_validator": "PASS: 30 command entries"
+  },
+  "baseline_red": {
+    "command": "node --test tests/gates/task-06-happy.test.mjs tests/gates/task-06-failure.test.mjs",
+    "candidate": "08ae1434a674e3f59452fca624a95613f25504df",
+    "result": "PASS: 16/16",
+    "finding": "tautological coverage: seven policy-negative fixture classes did not invoke policy validation",
+    "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-baseline-tautological-red.txt"
+  },
+  "verification": {
+    "command_map_happy": "PASS",
+    "command_map_failure": "PASS",
+    "focused_suite": "PASS: 18/18 twice",
+    "helper_cli_matrix": "PASS: 14/14 structured, redacted results",
+    "helper_syntax": "PASS",
+    "dependency_hash_install": "PASS",
+    "static_workflow_scan": "PASS: 6 SHA pins; zero write permissions; zero secret-bearing raw input expressions",
+    "git_diff_check": "PASS",
+    "command_map_windows_output": "actual_exit 0 with CP949 decode traceback recorded in task-6-command-map-happy.txt and task-6-command-map-failure.txt"
+  },
+  "ultraqa": {
+    "malformed_input": "PASS_NEGATIVE",
+    "stale_state": "PASS: authority and exact implementation identity validated first",
+    "dirty_worktree": "PASS: no tracked source change during verification; final worktree is checked after evidence commit",
+    "misleading_success_output": "PASS: direct focused suites and structured helper matrix independently verified runner result",
+    "flaky_tests": "PASS: focused suite repeated with 18/18 twice",
+    "prompt_injection": "NOT_APPLICABLE: the local evaluator accepts JSON fixtures and has no prompt surface",
+    "cancel_resume": "NOT_APPLICABLE: no resumable external job was started",
+    "hung_or_long": "NOT_APPLICABLE: all local commands completed without a server or workflow run",
+    "repeated_interruptions": "NOT_APPLICABLE: no external process or task required resumption"
+  },
+  "external_owner_gates": {
+    "actionlint": "NOT_RUN_BLOCKED: not installed",
+    "default_branch_workflow": "NOT_RUN_BLOCKED: owner authorization not granted",
+    "required_reviewer_environment_activation": "NOT_RUN_BLOCKED: GitHub Environment configuration is external and was not changed",
+    "secret_entry_or_rotation": "NOT_RUN_BLOCKED: secret values were neither supplied nor handled",
+    "live_ingest": "NOT_RUN_BLOCKED: no live API call or workflow dispatch was authorized"
+  },
+  "cleanup": {
+    "temporary_parent_baseline_worktree": "REMOVED: D:/vscode/seoul_gaja-worktrees/todo6-workflow-security-baseline",
+    "external_actions": 0,
+    "secrets_logged": false
+  }
+}

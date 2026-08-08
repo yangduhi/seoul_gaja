@@ -1,0 +1,71 @@
+{
+  "candidate": {
+    "head": "802a27e979c5698c53543aa3b1dd2394a2dbcc18",
+    "tree": "036711dda15d6edf61fe47ee8d8294712ae7456d",
+    "parent": "323717c167111eea5f652ccaea7baf4c31a8a6e0",
+    "parent_tree": "4b9845e0133962620f7ad78701b62292a86a3902"
+  },
+  "verdict": "PASS",
+  "probes": [
+    {
+      "trigger": "malformed_input",
+      "status": "PASS",
+      "observable": "invalid /places/does-not-exist?visualFixture=ready-v1 canonicalized to / with catalog not-found and noindex,nofollow at every viewport",
+      "artifact": "green/browser-matrix.json"
+    },
+    {
+      "trigger": "prompt_injection",
+      "status": "PASS",
+      "observable": "hostile <img onerror> search remained inert text; imgCount=0, injected=false",
+      "artifact": "green/browser-matrix.json"
+    },
+    {
+      "trigger": "cancel_resume",
+      "status": "NOT_APPLICABLE",
+      "reason": "Todo10 has no resumable asynchronous user workflow; share cancellation remains covered by task-10-failure."
+    },
+    {
+      "trigger": "stale_state",
+      "status": "PASS",
+      "observable": "direct/reload stayed FULL_SCREEN and 8 direct browser Back journeys restored / with catalog-root and no detail surface",
+      "artifact": "green/browser-matrix.json"
+    },
+    {
+      "trigger": "dirty_worktree",
+      "status": "PASS",
+      "observable": "task branch was created directly from the required exact parent; implementation diff contains only three owned paths",
+      "artifact": "candidate-binding.json"
+    },
+    {
+      "trigger": "hung_long_commands",
+      "status": "PASS",
+      "observable": "Vinext readiness was bounded to 60s and browser actions to explicit Playwright timeouts; task-owned servers were terminated",
+      "artifact": "green/browser-matrix.mjs"
+    },
+    {
+      "trigger": "flaky_tests",
+      "status": "PASS",
+      "observable": "focused suite passed 25/25 twice and real browser matrix passed all four viewports twice",
+      "artifacts": [
+        "automated/focused-pass-1.log",
+        "automated/focused-pass-2.log",
+        "green/browser-matrix.json"
+      ]
+    },
+    {
+      "trigger": "misleading_success_output",
+      "status": "PASS",
+      "observable": "exact-parent stdout-style behavior was rejected because requestfailed parsing found 6 .rsc ERR_ABORTED events; candidate parsing found 0",
+      "artifacts": [
+        "baseline/browser-network-diagnostic.json",
+        "green/browser-network-diagnostic.json"
+      ]
+    },
+    {
+      "trigger": "repeated_interruptions",
+      "status": "PASS",
+      "observable": "task-owned Vinext server was stopped and restarted on port 53824; both runs reached HTTP 200 and freed the port after stop",
+      "artifact": "automated/interruption-cleanup.json"
+    }
+  ]
+}

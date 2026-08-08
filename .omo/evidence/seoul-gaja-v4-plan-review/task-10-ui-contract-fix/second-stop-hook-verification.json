@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS",
+  "verified_head": "2ffed69d9360579eca3efe173cf4b888f778298e",
+  "verified_tree": "e077facfd6389b01f33a784b1f715d8af90e4b52",
+  "observables": {
+    "tests": "21 pass, 0 fail, exit 0",
+    "build": "Build complete, exit 0",
+    "browser": "8 matrix entries, 10 PNGs, 0 failed responses",
+    "cleanup": "0 owned runtime processes, port 53666 free"
+  },
+  "artifact_hashes": {
+    "stop-hook-focused-tests.log": "1eabcbcdeb391397dc41f2779b34f2de3d739029af8aee5495f734ba1d429180",
+    "stop-hook-build.log": "517c9464a492dc2e4bc91f15ea28dc1d6af35331e3e2fde41e5092921ec852d9",
+    "stop-hook-artifact-verifier.log": "fd90fdcbb6a0142cc805feb43d45cec22961e60b537095c6d8303d54fbe0cb76",
+    "stop-hook-cleanup-verifier.log": "06a8f6947b18e77c575387438ce15248b1cefe1a54aa4b3a74d50441ad5cd2d6",
+    "exact-head-binding.json": "0d9fc11456ddb282794b7d5a631cab83e34819e85fada48dea0c97fe4d5d6492",
+    "stop-hook-verification.json": "7e398323734997a74e57f817e5cb9c56045069ef84b7764c24223fd757dbd814"
+  },
+  "judgment": "The exact commit/tree binding, fresh command exit markers, browser matrix observables, PNG signatures, and cleanup probes independently agree. No empty artifact or owned runtime leak was found."
+}

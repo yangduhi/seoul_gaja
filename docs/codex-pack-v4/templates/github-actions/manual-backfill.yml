@@ -1,0 +1,47 @@
+name: backfill-seoul-crowd-aggregates
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Asia/Seoul date, YYYY-MM-DD"
+        required: true
+        type: string
+      end_date:
+        description: "Asia/Seoul date, YYYY-MM-DD"
+        required: true
+        type: string
+      dry_run:
+        description: "Validate only"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seoul-crowd-manual-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r collector/requirements.txt
+      - name: Rebuild only from stored observations
+        env:
+          SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
+          SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+        run: >-
+          python -m collector.cli backfill
+          --base-url "$SITE_INGEST_URL"
+          --token-env SITE_INGEST_TOKEN
+          --start "${{ inputs.start_date }}"
+          --end "${{ inputs.end_date }}"
+          ${{ inputs.dry_run && '--dry-run' || '' }}

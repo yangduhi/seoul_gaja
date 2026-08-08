@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "audit_id": "task-09-recommendation-surface",
+  "iterations": [
+    {"iteration": 1, "head_sha": "57cf39a2289c1dd7947eab3a8c89c9750e7fe97b", "tree_sha": "a0c9cf7de3e68507c360479b3ac7ace81f772c96", "score": 60, "state": "IMPROVEMENT_PLAN_REQUIRED"},
+    {"iteration": 2, "head_sha": "899757490fc571c5b939b5b2aef6321f53d8caf1", "tree_sha": "d1661589ab32c4b977517db74c850d4560f7c828", "score": 100, "state": "PASS_100"}
+  ],
+  "score_delta": 40
+}

@@ -1,0 +1,7 @@
+HTTP/1.1 400 Bad Request
+vary: RSC, Accept, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch, Next-Url, X-Vinext-Interception-Context, X-Vinext-Mounted-Slots, X-Vinext-Rsc-Render-Mode
+content-length: 24
+content-type: application/json
+Date: Thu, 06 Aug 2026 12:00:08 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5

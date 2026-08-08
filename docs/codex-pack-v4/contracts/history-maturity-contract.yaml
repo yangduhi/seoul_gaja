@@ -1,0 +1,36 @@
+contract_version: 1.0.0
+maturity:
+  ACCUMULATING:
+    minimum_elapsed_days: 0
+    minimum_coverage: 0.0
+    history_recommendation_weight: 0
+    ui_label: 데이터 축적 중
+  PROVISIONAL:
+    minimum_elapsed_days: 7
+    minimum_coverage: 0.70
+    history_recommendation_weight: 0.35
+    ui_label: 참고용 패턴
+  STABLE:
+    minimum_elapsed_days: 28
+    minimum_coverage: 0.80
+    history_recommendation_weight: 0.75
+    ui_label: 안정화된 패턴
+  MATURE:
+    minimum_elapsed_days: 56
+    minimum_coverage: 0.90
+    history_recommendation_weight: 1.0
+    ui_label: 높은 신뢰도의 반복 패턴
+profile:
+  key:
+    - areaCode
+    - weekday
+    - hour
+  metrics:
+    - crowdRankMedian
+    - populationMidpointMedian
+    - populationMidpointIqr
+    - sampleCount
+    - missingCount
+    - computedAt
+  minimum_samples_per_cell: 4
+  missing_as_zero: false

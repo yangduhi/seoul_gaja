@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "command_id": "task-03-happy",
+  "verdict": "PASS",
+  "actual_exit": 0,
+  "candidate_commit": "b794b34986bbc8e4ba5898a6d3da053f96db95bd",
+  "candidate_tree": "94d7d687b059b8a693f497b7d3377da237a30550",
+  "accepted_fixtures": [
+    "pass-phase-01.json",
+    "pass-phase-00.json",
+    "pass-phase-08.json",
+    "fail.json",
+    "not-run-blocked.json"
+  ],
+  "evidence_detail": ".omo/evidence/seoul-gaja-v4-plan-review/task-3-seoul-gaja-v4-plan-review.json"
+}

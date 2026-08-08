@@ -1,0 +1,47 @@
+{
+  "fixture_scope": "STATIC_TEMPLATE_NOT_CANDIDATE_BOUND",
+  "external_proof_scope": "SYNTHETIC_TEST_DATA_NOT_EXTERNAL_APPROVAL",
+  "branch_local": {
+    "candidate_sha": "1111111111111111111111111111111111111111",
+    "candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "reviewed_candidate_sha": "1111111111111111111111111111111111111111",
+    "reviewed_candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "reviewed_plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "tests": [{
+      "id": "task-05-happy",
+      "exit_code": 0,
+      "candidate_sha": "1111111111111111111111111111111111111111",
+      "candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }]
+  },
+  "default_branch_smoke": {
+    "owner_approved_merge": true,
+    "owner_merge_proof": "owner-approved-merge-001",
+    "approved_merge_sha": "2222222222222222222222222222222222222222",
+    "approved_merge_tree": "cccccccccccccccccccccccccccccccccccccccc",
+    "merged_candidate_sha": "1111111111111111111111111111111111111111",
+    "merged_candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "workflow_run": {
+      "workflow_present_on_default_branch": true,
+      "default_branch": "main",
+      "non_production_endpoint_available": true,
+      "run_id": "123456789",
+      "run_proof": "workflow-run-123456789",
+      "head_sha": "2222222222222222222222222222222222222222",
+      "head_tree": "cccccccccccccccccccccccccccccccccccccccc",
+      "ingest_target": "POST /api/internal/ingest/snapshot"
+    },
+    "receipt": {
+      "candidate_sha": "1111111111111111111111111111111111111111",
+      "candidate_tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "plan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "approved_merge_sha": "2222222222222222222222222222222222222222",
+      "approved_merge_tree": "cccccccccccccccccccccccccccccccccccccccc",
+      "workflow_head_sha": "2222222222222222222222222222222222222222",
+      "workflow_head_tree": "cccccccccccccccccccccccccccccccccccccccc",
+      "workflow_run_id": "123456789"
+    }
+  }
+}

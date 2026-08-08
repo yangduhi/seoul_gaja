@@ -1,0 +1,18 @@
+{
+  "fixture_scope": "EVIDENCE_BOUND_TO_IMPLEMENTATION_CANDIDATE",
+  "branch_local": {
+    "candidate_sha": "8f07c3db5ee991437360e603591363a519ef194b",
+    "candidate_tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7",
+    "reviewed_candidate_sha": "8f07c3db5ee991437360e603591363a519ef194b",
+    "reviewed_candidate_tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "reviewed_plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7",
+    "tests": [{
+      "id": "task-05-focused-suite",
+      "exit_code": 0,
+      "candidate_sha": "8f07c3db5ee991437360e603591363a519ef194b",
+      "candidate_tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+      "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7"
+    }]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "type": "DoneClaim",
+  "task": 6,
+  "verdict": "PASS_LOCAL_CONTRACT",
+  "implementation_commit": "651a3f5f977b567f3d6185a9eb69e2a146d21e55",
+  "implementation_tree": "1f20fabb2654ae28d94bae297253da8e4a04e463",
+  "parent_base_commit": "d99796b9c700c7c790b3113237dda834942e0be8",
+  "parent_base_tree": "51a115eab6500465311e0fe953ec7672583fe327",
+  "evidence_report": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-cli-exit-fix.json",
+  "verification": {
+    "baseline_cli_fail_open": "CAPTURED: 12 REJECTED results exited 0",
+    "focused_suite": "PASS: 19/19 twice",
+    "helper_cli_matrix": "PASS: accepted=0, rejected=1 for all 14 fixtures",
+    "command_map_happy_failure": "PASS",
+    "authority_command_map_receipt_validators": "PASS",
+    "static_scan": "PASS",
+    "dependency_hash": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "external_owner_gates": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "actionlint is unavailable; default-branch workflow, reviewer environment, secrets, and live ingest were not authorized or attempted."
+  },
+  "cleanup": {
+    "status": "PASS",
+    "temporary_resources_remaining": 0,
+    "parent_worktree_touched": false
+  }
+}

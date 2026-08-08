@@ -1,0 +1,25 @@
+{
+  "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+  "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+  "worktree_snapshot_sha256": "d8041b950ebf51001a12661a1f1ee706ec0d3fc4b9129ec3479bca3c8361409d",
+  "rows": [
+    {
+      "viewport_or_range": "390x844,430x932,768x1024",
+      "layout_mode": "compact/intermediate",
+      "visible_regions": "catalog map and detail sheet",
+      "sheet_or_drawer": "modal bottom sheet",
+      "scroll_owner": "detail sheet",
+      "primary_action_visibility": "visible",
+      "evidence_id": "390x844.png,430x932.png,768x1024.png"
+    },
+    {
+      "viewport_or_range": "1616x923",
+      "layout_mode": "desktop",
+      "visible_regions": "catalog, map, detail pane",
+      "sheet_or_drawer": "non-modal detail pane",
+      "scroll_owner": "detail pane",
+      "primary_action_visibility": "visible",
+      "evidence_id": "1616x923.png"
+    }
+  ]
+}

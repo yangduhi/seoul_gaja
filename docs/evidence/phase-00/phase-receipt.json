@@ -1,0 +1,51 @@
+{
+  "phase": "00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "commit": "1a0c5c1dad9be3ba04c6f0ee303d99d952a7e50d",
+  "tree": "e6225795867ca666141ae2d0223e32ecb827112c",
+  "base_commit": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
+  "base_tree": "d876c8389e82b9b772ae637731102923babb9d07",
+  "tests": [
+    {
+      "command": "task 04 happy command map",
+      "exitCode": 0,
+      "summary": "PASS: SQL-backed health, write/read/update/rollback, cleanup, timeout, and probe-state assertions"
+    },
+    {
+      "command": "task 04 failure command map",
+      "exitCode": 0,
+      "summary": "PASS: missing, invalid, expired, malformed, prompt-injection, and stale receipt boundaries"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "server/phase-00-capability-probe.mjs",
+      "sha256": "4fe52488e2268043c06cb4c913e22498ebf872ca289ee4c6d463f5789cebf2f3"
+    },
+    {
+      "path": "app/api/internal/capability-probe/ingest/route.js",
+      "sha256": "9b7f385e6222c38418d81f94655a32fec00d29308364cc9cba0f3eb27a49d1d9"
+    },
+    {
+      "path": "app/api/internal/capability-probe/health/route.js",
+      "sha256": "b47e1fc33982f215848542b6b1aaef8c1b657cd7a22ce3c8a7e555b16cd00394"
+    },
+    {
+      "path": "migrations/0004_phase_00_capability_probe.sql",
+      "sha256": "bd066c9b14b0836138127596e42a2b6f12e8f2e9bbf80e4cb2a9e35a37ae7b75"
+    },
+    {
+      "path": "db/schema.ts",
+      "sha256": "6fc0c3c010450439573f9268097c10f9885de8985c8e413f08d387cdbb4e7852"
+    }
+  ],
+  "blockers": [
+    "Owner must enter the temporary Sites hosted secret and future expiry, Save the probe version with state probe, explicitly approve Deploy, Save the cleanup version with state cleanup, explicitly approve cleanup Deploy, and verify no test data remains."
+  ],
+  "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+  "limitations": [
+    "Local fixtures prove disposable Phase 00 logic only; no live D1 or ChatGPT Sites capability was exercised.",
+    "No secret value, Sites action, external call, push, merge, deployment, sharing change, or migration execution occurred."
+  ],
+  "secret_status": "REDACTED"
+}

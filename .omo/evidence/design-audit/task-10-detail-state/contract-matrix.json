@@ -1,0 +1,18 @@
+{
+  "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+  "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+  "worktree_snapshot_sha256": "d8041b950ebf51001a12661a1f1ee706ec0d3fc4b9129ec3479bca3c8361409d",
+  "rows": [
+    {
+      "source_requirement_id": "TODO10-TWO-ENTRY",
+      "source_anchor": ".omo/plans/seoul-gaja-v4-plan-review.md:Todo 10",
+      "applicable_route": "/ and /places/:areaCode",
+      "applicable_state": "sheet/direct/invalid/failure",
+      "applicable_viewport": "390x844,430x932,768x1024,1616x923",
+      "expected_observable": "one pushed in-app sheet entry; direct full-screen route; bounded recovery",
+      "observation_method": "Chrome Playwright Node API plus focused node tests",
+      "actual_evidence": "browser-observations.raw.json and screenshots",
+      "classification": "MATCH"
+    }
+  ]
+}

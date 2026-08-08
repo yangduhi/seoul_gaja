@@ -1,0 +1,10 @@
+
+  vinext dev  (Vite 8.0.13)
+
+[2mDefault inspector port 9229 not available, using 9237 instead
+[22m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m51733[22m/[39m
+  [32m➜[39m  [1mDebug[22m:   [2m[33mhttp://localhost:[1m51733[22m[2m/__debug[39m[22m
+ GET /?visualFixture=ready-v1 200 in 1.2s (compile: 1786138523.6s, render: 1.1s)
+ GET /places/does-not-exist?visualFixture=ready-v1 200 in 74ms (compile: 1786138523.6s, render: 36ms)
+ GET /places/%2F%2Fevil 200 in 37ms (compile: 1786138523.6s, render: 20ms)

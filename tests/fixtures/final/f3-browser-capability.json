@@ -1,0 +1,5 @@
+{
+  "verdict": "NOT_RUN_BLOCKED",
+  "reason": "No browser is attached to the available browser runtime, so real local product and accessibility interaction cannot be observed.",
+  "forbidden_evidence": ["deterministic mockup", "screenshot-only", "source fixture"]
+}

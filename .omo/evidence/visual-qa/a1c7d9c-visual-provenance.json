@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "candidate": {
+    "commit": "a1c7d9c7beb9cd82f38aabe47801ad78216ca08d",
+    "tree": "81d435327f0aa1354317d88da04fb1a8a3f42c4f"
+  },
+  "captured_at": "2026-08-06T17:47:51.9122143+09:00",
+  "runner": {
+    "command": "npx playwright screenshot --browser chromium --channel msedge",
+    "browser": "Microsoft Edge",
+    "preview": "vinext dev at http://localhost:3002",
+    "production_preview": "NOT_RUN_BLOCKED: npm run start fails with ERR_UNSUPPORTED_ESM_URL_SCHEME for cloudflare:"
+  },
+  "screenshots": [
+    {
+      "file": "home-390x844.png",
+      "route": "/",
+      "state": "UNAVAILABLE: DB_TABLE_UNAVAILABLE",
+      "viewport": "390x844",
+      "sha256": "3910d58086465f3672f0a00fea2598caba96461c89ca7a6a465fc0cd0db1f1f5"
+    },
+    {
+      "file": "home-1616x923.png",
+      "route": "/",
+      "state": "UNAVAILABLE: DB_TABLE_UNAVAILABLE",
+      "viewport": "1616x923",
+      "sha256": "02c1c738a7d372cd890c85ff8a0417c26afc62c45eea15565ce618a919cd68d8"
+    },
+    {
+      "file": "detail-alpha-390x844.png",
+      "route": "/places/alpha",
+      "state": "UNAVAILABLE: source data not connected",
+      "viewport": "390x844",
+      "sha256": "676d2ebc377623f583b5d5976c4ed71301bb3d5c034228c39b7a77255b72fea3"
+    },
+    {
+      "file": "detail-alpha-1616x923.png",
+      "route": "/places/alpha",
+      "state": "UNAVAILABLE: source data not connected",
+      "viewport": "1616x923",
+      "sha256": "6664266312f6a763d5dc9f2e1cdd419444f6d8b8f1a581779512e2b681aa446a"
+    }
+  ],
+  "validation": {
+    "tsc": "PASS: npx tsc --noEmit --pretty false",
+    "product_tests": "PASS: 16",
+    "eslint": "PASS: targeted TypeScript files; CSS files have no supplied ESLint configuration",
+    "build": "PASS: npm run build"
+  }
+}

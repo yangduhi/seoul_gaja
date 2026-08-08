@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "task": 1,
+  "observed_at": "2026-08-04T14:45:22+09:00",
+  "verdict": "PASS",
+  "state_after_gate": "WAITING_IMPLEMENTATION_APPROVAL",
+  "binding": {
+    "repository": "https://github.com/yangduhi/seoul_gaja",
+    "branch": "codex/prep-v4-1",
+    "head": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
+    "tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
+    "authority_lock_sha256": "2db06cf33be43f90bc4c13b2507dda4087aee37c211d3907a9eb5fced031b987",
+    "preparation_state": "uncommitted local setup files bound by authority-lock hashes"
+  },
+  "checks": {
+    "actual_git_worktree": "PASS",
+    "root_manifest_and_lockfile": "PASS: package.json and package-lock.json",
+    "authority_lock": "PASS",
+    "command_map": "PASS: 30 entries",
+    "packet": "STRUCTURAL_PASS_ONLY: 106 files, 9 phases, 4 AI boards, 5 deterministic mockups",
+    "starter_baseline": "PASS: npm test, npm run lint",
+    "local_preview": "PASS: HTTP 200 for / and /__debug",
+    "reference_only_failure_fixture": "PASS: NOT_A_GIT_WORKTREE, no manifest, no lockfile",
+    "future_gate_fail_close": "PASS: task-02-happy returned NOT_RUN_BLOCKED exit 3",
+    "concept_images": "PASS: 9 of 9 inventory byte/hash pairs matched",
+    "independent_readiness_gate": "APPROVE"
+  },
+  "limitations": [
+    "Product implementation has not started and remains forbidden until separate explicit user approval.",
+    "Packet structural PASS is not semantic, browser, Sites, or live capability PASS.",
+    "Codex App durable task transport returned No handler registered, so requested durable team tasks were not fabricated."
+  ]
+}

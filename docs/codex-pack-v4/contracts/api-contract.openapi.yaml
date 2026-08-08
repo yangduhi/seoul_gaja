@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Seoul Crowd Radar API
+  version: 1.0.0
+servers:
+  - url: /
+paths:
+  /api/v1/snapshot:
+    get:
+      summary: Read the active 121-place snapshot
+      responses:
+        "200":
+          description: Active snapshot
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SnapshotResponse"
+        "503":
+          description: No usable snapshot
+  /api/v1/places/{areaCode}:
+    get:
+      summary: Read normalized place detail
+      parameters:
+        - in: path
+          name: areaCode
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Place detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceDetail"
+        "404": { description: Unknown official place }
+  /api/v1/history/{areaCode}:
+    get:
+      summary: Read history maturity and weekday-hour profile
+      parameters:
+        - in: path
+          name: areaCode
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: History profile
+  /api/v1/health:
+    get:
+      summary: Read non-secret service health
+      responses:
+        "200": { description: Health response }
+  /api/internal/ingest/snapshot:
+    post:
+      summary: Store an idempotent normalized snapshot
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngestSnapshot"
+      responses:
+        "200": { description: Accepted or idempotent replay }
+        "401": { description: Invalid token }
+        "409": { description: Snapshot ID conflict }
+        "413": { description: Payload too large }
+        "422": { description: Contract validation failure }
+  /api/internal/materialize/hourly:
+    post:
+      summary: Materialize missing hourly aggregates
+      security:
+        - bearerAuth: []
+      responses:
+        "200": { description: Materialization receipt }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    SnapshotRow:
+      type: object
+      required: [areaCode, areaName, availability, provenance, crowdLevel, fetchedAt]
+      properties:
+        areaCode: { type: string }
+        areaName: { type: string }
+        latitude: { type: [number, "null"] }
+        longitude: { type: [number, "null"] }
+        availability:
+          type: string
+          enum: [available, carried_forward, unavailable, expired]
+        provenance:
+          type: string
+          enum: [refreshed, carried_forward, missing]
+        crowdLevel:
+          type: string
+          enum: [RELAXED, NORMAL, BUSY, CROWDED, UNKNOWN]
+        populationMin: { type: [integer, "null"], minimum: 0 }
+        populationMax: { type: [integer, "null"], minimum: 0 }
+        sourceUpdatedAt: { type: [string, "null"], format: date-time }
+        fetchedAt: { type: string, format: date-time }
+    SnapshotResponse:
+      type: object
+      required: [contractVersion, snapshotId, catalogVersion, rows, meta]
+      properties:
+        contractVersion: { const: "1.0.0" }
+        snapshotId: { type: string }
+        catalogVersion: { type: string }
+        rows:
+          type: array
+          minItems: 121
+          maxItems: 121
+          items: { $ref: "#/components/schemas/SnapshotRow" }
+        meta:
+          type: object
+          required: [attempted, refreshed, carriedForward, unavailable]
+          properties:
+            attempted: { const: 121 }
+            refreshed: { type: integer, minimum: 0 }
+            carriedForward: { type: integer, minimum: 0 }
+            unavailable: { type: integer, minimum: 0 }
+    ForecastPoint:
+      type: object
+      required: [time, crowdLevel]
+      properties:
+        time: { type: string, format: date-time }
+        crowdLevel:
+          type: string
+          enum: [RELAXED, NORMAL, BUSY, CROWDED]
+        populationMin: { type: [integer, "null"] }
+        populationMax: { type: [integer, "null"] }
+    PlaceDetail:
+      type: object
+      required: [areaCode, areaName, current, sections]
+      properties:
+        areaCode: { type: string }
+        areaName: { type: string }
+        current: { $ref: "#/components/schemas/SnapshotRow" }
+        forecast:
+          type: array
+          items: { $ref: "#/components/schemas/ForecastPoint" }
+        sections: { type: object, additionalProperties: true }
+    IngestSnapshot:
+      type: object
+      required: [contractVersion, snapshotId, catalogVersion, rows, meta, payloadSha256]
+      properties:
+        contractVersion: { const: "1.0.0" }
+        snapshotId: { type: string, minLength: 8 }
+        catalogVersion: { type: string }
+        rows:
+          type: array
+          minItems: 121
+          maxItems: 121
+          items: { $ref: "#/components/schemas/SnapshotRow" }
+        meta: { type: object }
+        payloadSha256: { type: string, pattern: "^[a-f0-9]{64}$" }

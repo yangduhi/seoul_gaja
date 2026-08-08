@@ -1,0 +1,12 @@
+{
+  "candidate": {
+    "head": "802a27e979c5698c53543aa3b1dd2394a2dbcc18",
+    "tree": "036711dda15d6edf61fe47ee8d8294712ae7456d"
+  },
+  "failedCount": 0,
+  "hardFailureCount": 0,
+  "consoleErrorCount": 0,
+  "failedNetwork": [],
+  "consoleErrors": [],
+  "rscFailures": []
+}

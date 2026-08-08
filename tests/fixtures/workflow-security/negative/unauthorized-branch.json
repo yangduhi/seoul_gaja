@@ -1,0 +1,5 @@
+{
+  "kind": "unauthorized_branch",
+  "branch_ref": "refs/heads/feature/unreviewed",
+  "secret_status": "REDACTED"
+}

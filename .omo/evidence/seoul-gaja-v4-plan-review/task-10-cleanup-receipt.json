@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "todo": 10,
+  "verdict": "PASS",
+  "scenario": "Todo 10 browser QA teardown and workspace hygiene",
+  "invocation": "Stop-Process for the verified node listener on port 41710; delete the verified .omo/tmp, .wrangler, Python __pycache__, and node_modules junction targets",
+  "binary_observables": {
+    "port_41710_listening": false,
+    "browser_contexts_closed_by_finally": true,
+    "temporary_playwright_package_present": false,
+    "temporary_qa_script_present": false,
+    "node_modules_junction_present": false,
+    "temporary_wrangler_state_present": false
+  },
+  "artifact_path": ".omo/evidence/seoul-gaja-v4-plan-review/task-10-cleanup-receipt.json"
+}

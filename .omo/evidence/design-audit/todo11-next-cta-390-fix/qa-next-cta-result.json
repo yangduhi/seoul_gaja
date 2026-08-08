@@ -1,0 +1,139 @@
+{
+  "route": "http://localhost:43991/?visualFixture=ready-v1",
+  "status": "PASS",
+  "rows": [
+    {
+      "viewport": "390x844",
+      "status": "PASS",
+      "before": {
+        "overflow": false,
+        "next": {
+          "bottom": 551,
+          "height": 48,
+          "left": 33,
+          "right": 357,
+          "top": 503,
+          "width": 324
+        },
+        "nextCurrent": false,
+        "nextGradient": "none",
+        "now": {
+          "bottom": 335,
+          "height": 48,
+          "left": 33,
+          "right": 357,
+          "top": 287,
+          "width": 324
+        },
+        "nowCurrent": true,
+        "nowGradient": "linear-gradient(135deg, rgb(10, 132, 255), rgb(94, 92, 230))",
+        "oneColumn": true,
+        "targetsAtLeast44": true
+      },
+      "after": {
+        "activeElement": "BUTTON",
+        "path": "/places/alpha"
+      }
+    },
+    {
+      "viewport": "430x932",
+      "status": "PASS",
+      "before": {
+        "overflow": false,
+        "next": {
+          "bottom": 639,
+          "height": 48,
+          "left": 33,
+          "right": 397,
+          "top": 591,
+          "width": 364
+        },
+        "nextCurrent": false,
+        "nextGradient": "none",
+        "now": {
+          "bottom": 379,
+          "height": 48,
+          "left": 33,
+          "right": 397,
+          "top": 331,
+          "width": 364
+        },
+        "nowCurrent": true,
+        "nowGradient": "linear-gradient(135deg, rgb(10, 132, 255), rgb(94, 92, 230))",
+        "oneColumn": true,
+        "targetsAtLeast44": true
+      },
+      "after": {
+        "activeElement": "BUTTON",
+        "path": "/places/alpha"
+      }
+    },
+    {
+      "viewport": "768x1024",
+      "status": "PASS",
+      "before": {
+        "overflow": false,
+        "next": {
+          "bottom": 731,
+          "height": 48,
+          "left": 33,
+          "right": 735,
+          "top": 683,
+          "width": 702
+        },
+        "nextCurrent": false,
+        "nextGradient": "none",
+        "now": {
+          "bottom": 431,
+          "height": 48,
+          "left": 33,
+          "right": 735,
+          "top": 383,
+          "width": 702
+        },
+        "nowCurrent": true,
+        "nowGradient": "linear-gradient(135deg, rgb(10, 132, 255), rgb(94, 92, 230))",
+        "oneColumn": true,
+        "targetsAtLeast44": true
+      },
+      "after": {
+        "activeElement": "BUTTON",
+        "path": "/places/alpha"
+      }
+    },
+    {
+      "viewport": "1616x923",
+      "status": "PASS",
+      "before": {
+        "overflow": false,
+        "next": {
+          "bottom": 890,
+          "height": 48,
+          "left": 824,
+          "right": 1159,
+          "top": 842,
+          "width": 335
+        },
+        "nextCurrent": false,
+        "nextGradient": "none",
+        "now": {
+          "bottom": 890,
+          "height": 48,
+          "left": 437,
+          "right": 772,
+          "top": 842,
+          "width": 335
+        },
+        "nowCurrent": true,
+        "nowGradient": "linear-gradient(135deg, rgb(10, 132, 255), rgb(94, 92, 230))",
+        "oneColumn": false,
+        "targetsAtLeast44": true
+      },
+      "after": {
+        "activeElement": "BUTTON",
+        "path": "/places/alpha"
+      }
+    }
+  ],
+  "browser": "150.0.7871.187"
+}

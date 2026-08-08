@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "observed_at": "2026-08-07T00:00:00+09:00",
+  "verdict": "NOT_RUN_BLOCKED",
+  "binding": {
+    "branch": "codex/prep-v4-1",
+    "base_head": "0ddf94b25fc5c9542a77120db48d703f311ba4b0",
+    "base_tree": "d876c8389e82b9b772ae637731102923babb9d07",
+    "candidate_commit": "2a8815643a7cd780b1ac80567e6ebad14fce53f5",
+    "candidate_tree": "6b2f95b946dab3ae8de1a19a9af414a314bb5151",
+    "reason": "Candidate identity binds the implementation commit; evidence commit is separate so receipt identity is not self-referential. Parent integration must regenerate this binding if cherry-pick remaps the commit."
+  },
+  "baseline": {
+    "happy_command_map_exit": 0,
+    "failure_command_map_exit": 0,
+    "red_test": "Route fixture failed because createCapabilityProbeRouteHandlers was undefined; expected integrated receipt ea46d/170749 did not match the prior C1 receipt.",
+    "red_exit": 1
+  },
+  "local_checks": [
+    {
+      "command_id": "task-04-happy",
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
+      "actual_exit": 0,
+      "verdict": "PASS",
+      "summary": "PASS: 2 local D1-backed lifecycle tests plus route/auth assertions"
+    },
+    {
+      "command_id": "task-04-failure",
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-failure",
+      "actual_exit": 0,
+      "verdict": "PASS",
+      "summary": "PASS: invalid, expired, malformed, stale, timeout, and cleanup-state rejection"
+    },
+    {
+      "command_id": "task-04-route-direct",
+      "command": "node --test tests/gates/task-04-route.test.mjs",
+      "actual_exit": 0,
+      "verdict": "PASS",
+      "summary": "PASS: route factory health, SQL-backed POST lifecycle, auth/JSON rejection, unavailable D1, and cleanup-state disablement"
+    }
+  ],
+  "local_contract": {
+    "probe": "phase-00-capability-probe",
+    "route": "POST /api/internal/capability-probe/ingest",
+    "production_route_separation": "POST /api/internal/ingest/snapshot is not called or modified.",
+      "coverage": [
+      "health", "route-factory SQL-backed POST", "SQL-backed D1 write/read/update/rollback", "cleanup removes the probe record", "cleanup state disables probe and health routes", "missing/invalid/expired rejection", "strict malformed payload rejection", "untrusted payload cannot override header authorization", "server-only secret lookup", "bounded timeout and abort signalling"
+    ]
+  },
+  "external_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "redacted_token_id": "NOT_ENTERED",
+    "required_owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+    "required_owner_sequence": "Enter the temporary Sites hosted secret, Save the probe version, explicitly approve Deploy, Save the cleanup version, explicitly approve cleanup Deploy, and verify no test data remains.",
+    "sites_actions": 0,
+    "external_calls": 0
+  },
+  "ultraqa": {
+    "malformed_input": "PASS local strict payload fixture",
+    "prompt_injection": "PASS token-like payload cannot override header authorization",
+    "cancel_resume": "NOT_APPLICABLE single-shot disposable probe",
+    "stale_state": "PASS expired token and cleanup state rejection",
+    "dirty_worktree": "PASS baseline parent changes were not copied into this isolated worktree",
+    "hung_or_long_commands": "PASS bounded command-map and node test invocations plus 5ms hung-D1 fixture",
+    "flaky_tests": "PASS focused lifecycle suite repeated; route suite and command-map suites are deterministic",
+    "misleading_success_output": "PASS parsed command-map verdict and exit are recorded",
+    "repeated_interruptions": "PASS timeout fixture reaches cleanup; no server, port, or worker temp resource was created"
+  },
+  "build": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "command": "npm run build",
+    "exit": 1,
+    "blocker": "Pre-existing generated-token drift: app/design-tokens.generated.css is stale before application compilation. This Todo did not modify that file."
+  },
+  "receipt": "docs/evidence/phase-00/phase-receipt.json"
+}

@@ -1,0 +1,4 @@
+{
+  "phase": "08", "verdict": "NOT_RUN_BLOCKED", "commit": null, "tree": null, "base_commit": null, "base_tree": null,
+  "tests": [], "evidence": [], "blockers": ["Owner approval missing."], "secret_status": "REDACTED"
+}

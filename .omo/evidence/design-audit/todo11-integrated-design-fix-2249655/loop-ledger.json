@@ -1,0 +1,25 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "target_class":  "RENDERED_UI",
+    "iterations":  [
+                       {
+                           "iteration":  1,
+                           "baseline_score":  0,
+                           "target_score":  100,
+                           "improvement_plan_id":  "TODO11-INTEGRATED-DESIGN-FIX-1",
+                           "applied_changes":  [
+                                                   "app/_design/PrimitiveShowcase.tsx: surface=bottom-sheet",
+                                                   "tests/gates/task-11-cta-semantics.test.mjs: await and assert Escape focus restoration"
+                                               ],
+                           "score_after":  100,
+                           "score_delta":  100,
+                           "recheck_verdict":  "PASS",
+                           "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+                           "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+                           "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+                           "next_loop_state":  "CLOSED_PASS_100"
+                       }
+                   ]
+}

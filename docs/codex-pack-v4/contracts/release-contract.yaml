@@ -1,0 +1,25 @@
+contract_version: 1.0.0
+required_order:
+  - full_tests_pass
+  - design_screenshots_reviewed
+  - exact_commit_recorded
+  - sites_save_version
+  - family_preview
+  - user_approval
+  - kakao_production_domain_registered
+  - deploy
+  - incognito_smoke
+  - production_scheduler_smoke
+sharing_modes:
+  preferred_if_supported: selected_users
+  fallback: anyone_on_the_internet
+  public_link_warning: required
+rollback:
+  saved_previous_version_required: true
+  rollback_instructions_required: true
+prohibited_without_user_approval:
+  - deploy
+  - access_mode_change
+  - custom_domain
+  - paid_api_activation
+  - git_push

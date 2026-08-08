@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:45:22+09:00",
+  "command_id": "task-02-happy",
+  "verdict": "NOT_RUN_BLOCKED",
+  "actual_exit": 3,
+  "missing_paths": [
+    "tests/gates/task-02-happy.test.mjs"
+  ],
+  "meaning": "The command map fails closed before product implementation; this is not Todo 2 execution evidence."
+}

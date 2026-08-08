@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "task": 2,
+  "observed_at": "2026-08-04T20:42:00+09:00",
+  "command_id": "task-02-happy",
+  "argv": ["node", "--test", "tests/gates/task-02-happy.test.mjs"],
+  "expected_exit": 0,
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "binding": {
+    "code_commit": "d81630c9293d2a3f1dd82f8b1617122b143e0c77",
+    "code_tree": "f0e7c24c60c6d26e48e03d25b5c195fb3b8e08be"
+  },
+  "aggregate_evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-2-seoul-gaja-v4-plan-review.json"
+}

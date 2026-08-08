@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scope": "Todo 11 design baseline and deterministic accessibility parity",
+  "authority_order": [
+    "docs/codex-pack-v4/design/design.md",
+    "design/design-tokens.json",
+    "docs/codex-pack-v4/design/component-contracts.md",
+    "docs/codex-pack-v4/design/screen-specs.md",
+    "docs/codex-pack-v4/design/mockups/*.png"
+  ],
+  "authoritative_token_file": "design/design-tokens.json",
+  "primitive_files": [
+    "app/_design/GlassPanel.tsx",
+    "app/_design/Navigation.tsx",
+    "app/_design/PlaceDetailSheet.tsx",
+    "app/_design/ChartAlternatives.tsx",
+    "app/_design/Phase03CatalogSurface.tsx",
+    "app/_design/Presentation.ts",
+    "app/_design/PrimitiveShowcase.tsx"
+  ],
+  "screens": ["home-map", "place-detail", "family-recommendations", "history-insight", "desktop-dashboard"],
+  "typography": {
+    "font_family": "Pretendard",
+    "font_family_token": "--sg-typography-font-family",
+    "fallbacks": ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Noto Sans KR", "sans-serif"]
+  },
+  "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+  "first_phase03_consumer": "app/_catalog/CatalogSurface.tsx",
+  "chart_alternative": {
+    "row_sources": ["recommendation.reason.kind", "recommendation.reason.sourceTimestamp"],
+    "empty_behavior": "explanation-without-table",
+    "forbidden_values": ["raw-score", "fabricated-value"]
+  },
+  "required_accessibility": [
+    "keyboard-operable navigation and sheet close",
+    "visible focus ring with 2px offset",
+    "polite aria-live status",
+    "reduced-motion override",
+    "chart text summary and table alternative",
+    "44px minimum interactive target",
+    "no clipped primary action"
+  ],
+  "visual_receipt_policy": {
+    "mockups_are_not_pass": true,
+    "browser_or_screenshot_unavailable_verdict": "NOT_RUN_BLOCKED",
+    "forbidden": ["unauthorized-navigation", "concept-board-pixel-authority", "gradient-on-every-card"],
+    "showcase": "route-less-test-only"
+  }
+}

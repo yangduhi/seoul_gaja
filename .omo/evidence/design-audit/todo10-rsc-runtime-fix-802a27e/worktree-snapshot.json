@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "algorithm": "sha256-path-manifest-v1",
+  "aggregate_sha256": "2271400e4c61b44bfc18b1c9310def4accb8b151003e3b36faed22f08ef4b06a",
+  "entries": [
+    {
+      "path": ".omo/authority-lock.json",
+      "sha256": "db939f67b3f85438fb9e472d89825fd37c1bbad11992c82450253c7e31e078f5",
+      "role": "authority"
+    },
+    {
+      "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
+      "sha256": "7974ee83ac2f4bfedbb37b3e9c29e8d92978f7f8edaca80c1a439f255c8510b9",
+      "role": "authority"
+    },
+    {
+      "path": "docs/execution/AMENDMENT-v4.1.md",
+      "sha256": "a0a0af6191dc6b67cf479456d8683769f7487b38a373605061a2812910b1670d",
+      "role": "authority"
+    },
+    {
+      "path": "docs/execution/contracts/design-audit-contract.json",
+      "sha256": "7b5e6ec2b77bcd5ac3738e64e484687052bf8b97f01ba1721605222da900fa0f",
+      "role": "contract"
+    },
+    {
+      "path": "app/_catalog/CatalogSurface.tsx",
+      "sha256": "f206fe59fb10480d42de5c60b811e438b4f56eada760543d72f1603fc9c34622",
+      "role": "source"
+    },
+    {
+      "path": "app/places/[areaCode]/PlaceDetailClient.tsx",
+      "sha256": "a850e36b491c02d4cf264291bcc5d93d026af1275da746aae6f8c82fe97f273a",
+      "role": "source"
+    },
+    {
+      "path": "tests/product/detail-history/detail-contract.test.mjs",
+      "sha256": "d74e2fe194fb64ace3db9577b968a381c2f7e142787b44e2935371d042b672a2",
+      "role": "source"
+    }
+  ],
+  "excluded_paths": [
+    ".omo/evidence/design-audit/**"
+  ],
+  "head_sha": "802a27e979c5698c53543aa3b1dd2394a2dbcc18",
+  "head_tree_sha": "036711dda15d6edf61fe47ee8d8294712ae7456d",
+  "plan_sha256": "7974ee83ac2f4bfedbb37b3e9c29e8d92978f7f8edaca80c1a439f255c8510b9",
+  "authority_lock_sha256": "db939f67b3f85438fb9e472d89825fd37c1bbad11992c82450253c7e31e078f5",
+  "worktree_snapshot_sha256": "2271400e4c61b44bfc18b1c9310def4accb8b151003e3b36faed22f08ef4b06a"
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS_LOCAL_FIXTURE_ONLY",
+  "commit": "e498bcb938731e10b31066e972dfd814ad5ff70b",
+  "tree": "94deab8a3ccf205704a1e3e8f05f68f5ed4485e1",
+  "fixture": {
+    "id": "ready-v1",
+    "source": "tests/fixtures/product/data/ready.json",
+    "adapter": "app/_visual-evidence/ready-fixture.ts",
+    "guard": "process.env.NODE_ENV === development",
+    "classification": "deterministic fixture-only; never live or semantic capability proof"
+  },
+  "captures": [
+    {
+      "state": "home-ready",
+      "viewport": "390x844",
+      "route": "/?visualFixture=ready-v1",
+      "selector": "[data-selected-area-code]",
+      "path": "home-390x844.png",
+      "sha256": "d013b8f58b7efec7523921f889ca64964f87976332bd998f3c1c10480a19dcd8"
+    },
+    {
+      "state": "home-ready",
+      "viewport": "1616x923",
+      "route": "/?visualFixture=ready-v1",
+      "selector": "[data-selected-area-code]",
+      "path": "home-1616x923.png",
+      "sha256": "970e1f4b6f6abdc7839ffa383dd77c417c5b1e9e5b8532f2f0b7e0a84659cc74"
+    },
+    {
+      "state": "direct-detail-ready",
+      "viewport": "390x844",
+      "route": "/places/alpha?visualFixture=ready-v1",
+      "selector": "[data-detail-surface]",
+      "path": "detail-alpha-390x844.png",
+      "sha256": "9c1c985a210800dddaf8b9d4f3a227353651d29dd1f12062f1988dd72fe0bc64"
+    },
+    {
+      "state": "direct-detail-ready",
+      "viewport": "1616x923",
+      "route": "/places/alpha?visualFixture=ready-v1",
+      "selector": "[data-detail-surface]",
+      "path": "detail-alpha-1616x923.png",
+      "sha256": "d99e71af859fff9278a145b9a5f14c0db1df62fd2e53a792073dcb98675ad5fe"
+    },
+    {
+      "state": "desktop-dashboard-selected-detail",
+      "viewport": "1616x923",
+      "route": "/?visualFixture=ready-v1&visualState=selected-detail",
+      "selector": "[data-selected-area-code=alpha]",
+      "path": "dashboard-selected-alpha-1616x923.png",
+      "sha256": "acdf0c690844e9eb679ba95de18fead29e042e7a4f0db5aec2630e9c1788fb97"
+    }
+  ],
+  "validation": {
+    "playwright": "1.60.0",
+    "tokens_check": "PASS",
+    "tsc_no_emit": "PASS",
+    "targeted_tests": "PASS: 9",
+    "targeted_eslint": "PASS",
+    "build": "PASS",
+    "direct_component_color_literal_matches": 0,
+    "exact_head_product_diff": 0
+  },
+  "residual": {
+    "production_preview_ready_state": "NOT_RUN_BLOCKED",
+    "reason": "The controlled fixture is deliberately disabled outside development and cannot prove live D1, Sites, or production-preview capability."
+  }
+}

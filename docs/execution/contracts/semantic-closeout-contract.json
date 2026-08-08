@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "human_plan": "docs/reference/FINAL_IMPLEMENTATION_PLAN.md",
+  "authority_artifacts": [
+    ".omo/plans/seoul-gaja-v4-plan-review.md",
+    "docs/execution/AMENDMENT-v4.1.md"
+  ],
+  "packet": {
+    "root": "docs/codex-pack-v4",
+    "scope": "AUDIT_ONLY"
+  },
+  "canonical": {
+    "production_ingest": "POST /api/internal/ingest/snapshot",
+    "capability_probe": "POST /api/internal/capability-probe/ingest",
+    "evidence_pattern": "docs/evidence/phase-XX/phase-receipt.json",
+    "detail_route": "/places/{areaCode}",
+    "ui_time_fields": ["sourceUpdatedAt", "fetchedAt"],
+    "token_name": "SITE_INGEST_TOKEN",
+    "rotation_overlap_minutes": 30,
+    "cadence_minutes": 15,
+    "catalog_place_count": 121
+  },
+  "forbidden_human_plan_literals": [
+    "https://chatgpt.com/c/",
+    "project_reference/FINAL_IMPLEMENTATION_PLAN.md",
+    "SITE_INGEST_URL",
+    "source_updated_at",
+    "fetched_at",
+    "/settings",
+    "/help",
+    "/saved"
+  ],
+  "allowed_human_plan_contexts": {
+    "source_updated_at": ["D1 column"],
+    "fetched_at": ["D1 column"]
+  },
+  "owner_blockers": [
+    "Sites Phase00 owner approval",
+    "D1 migration execution/sequence collision authority",
+    "account/service quota plus four full 121-place cadence receipts",
+    "actionlint authoritative lint",
+    "protected default-branch workflow",
+    "browser/visual QA",
+    "baseline Cloudflare ambient TypeScript errors"
+  ]
+}

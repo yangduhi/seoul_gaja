@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-04T00:00:00+09:00",
+  "repository_root": "../../..",
+  "plan_sha256": "9ec41b95cdcc22c5d8f0135dcb8103d90f00e3610931b54d1c8015a88a0c4849",
+  "checkout": {
+    "remote": "https://github.com/yangduhi/seoul_gaja",
+    "default_branch": "main",
+    "preparation_branch": "codex/prep-v4-1",
+    "base_commit": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
+    "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
+    "manifest": "package.json",
+    "lockfile": "package-lock.json",
+    "lockfile_sha256": "e991413abfdf76b3f95990c11837a3942abca069ced94220ceb9f1d6f6162c1a"
+  },
+  "blocked_exit": 3,
+  "commands": [
+    {
+      "id": "task-01-packet",
+      "cwd": ".",
+      "argv": [
+        "python",
+        "docs/execution/scripts/validate_immutable_packet.py",
+        "--expected-git-blob-listing-sha256",
+        "0c981b539c823bdb4709b8ab24f9385fa6a154dbfc1812909df1f1fce2fbe1c2"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "docs/codex-pack-v4/MANIFEST.sha256",
+        "docs/codex-pack-v4/PACKET-INTEGRITY.json",
+        "docs/execution/scripts/validate_immutable_packet.py"
+      ],
+      "assertions": [
+        "v4.0.0 audit packet validates immutable Git blobs and archived canonical bytes structurally without implying semantic or live PASS"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-1-packet.json"
+    },
+    {
+      "id": "task-01-baseline",
+      "cwd": ".",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "package.json",
+        "package-lock.json",
+        "tests/rendered-html.test.mjs"
+      ],
+      "assertions": [
+        "Sites vinext starter builds and its baseline tests pass from the pinned lockfile"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-1-baseline.json"
+    },
+    {
+      "id": "task-01-reference-only",
+      "cwd": ".",
+      "argv": [
+        "python",
+        "docs/execution/scripts/check_checkout.py",
+        "--path",
+        "D:/vscode/seoul_gaja",
+        "--expect",
+        "blocked"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "docs/execution/scripts/check_checkout.py"
+      ],
+      "assertions": [
+        "the historical reference-only directory is detected as blocked without mutation"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-1-reference-only-blocked.json"
+    },
+    {
+      "id": "task-01-authority",
+      "cwd": ".",
+      "argv": [
+        "python",
+        "docs/execution/scripts/validate_authority_lock.py"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        ".omo/authority-lock.json",
+        ".omo/plans/seoul-gaja-v4-plan-review.md",
+        "docs/execution/AMENDMENT-v4.1.md",
+        "docs/execution/contracts/execution-command-map.json",
+        "package.json",
+        "package-lock.json"
+      ],
+      "assertions": [
+        "repository, base, plan, amendment, command tooling, packet, and lockfile match the exact authority lock"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-1-authority.json"
+    },
+    {
+      "id": "task-02-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-02-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-02-happy.test.mjs"
+      ],
+      "assertions": [
+        "canonical route, receipt, and terminology contracts agree",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-2-happy.json"
+    },
+    {
+      "id": "task-02-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-02-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-02-failure.test.mjs"
+      ],
+      "assertions": [
+        "canonical route, receipt, and terminology contracts agree",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-2-failure.json"
+    },
+    {
+      "id": "task-03-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-03-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-03-happy.test.mjs"
+      ],
+      "assertions": [
+        "verdict-safe phase receipt positive and negative fixtures pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-3-happy.json"
+    },
+    {
+      "id": "task-03-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-03-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-03-failure.test.mjs"
+      ],
+      "assertions": [
+        "verdict-safe phase receipt positive and negative fixtures pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-3-failure.json"
+    },
+    {
+      "id": "task-04-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-04-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-04-happy.test.mjs"
+      ],
+      "assertions": [
+        "Phase 00 probe, auth rejection, cleanup, and owner gates fail closed",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-happy.json"
+    },
+    {
+      "id": "task-04-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-04-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-04-failure.test.mjs"
+      ],
+      "assertions": [
+        "Phase 00 probe, auth rejection, cleanup, and owner gates fail closed",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-failure.json"
+    },
+    {
+      "id": "task-05-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-05-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-05-happy.test.mjs"
+      ],
+      "assertions": [
+        "candidate and default-branch workflow identities remain bound",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-happy.json"
+    },
+    {
+      "id": "task-05-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-05-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-05-failure.test.mjs"
+      ],
+      "assertions": [
+        "candidate and default-branch workflow identities remain bound",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-failure.json"
+    },
+    {
+      "id": "task-06-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-06-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-06-happy.test.mjs"
+      ],
+      "assertions": [
+        "workflow input, supply-chain, token, rotation, and revocation gates pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-happy.json"
+    },
+    {
+      "id": "task-06-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-06-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-06-failure.test.mjs"
+      ],
+      "assertions": [
+        "workflow input, supply-chain, token, rotation, and revocation gates pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-failure.json"
+    },
+    {
+      "id": "task-07-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-07-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-07-happy.test.mjs"
+      ],
+      "assertions": [
+        "migration, snapshot identity, freshness, counters, and activation rules pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-7-happy.json"
+    },
+    {
+      "id": "task-07-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-07-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-07-failure.test.mjs"
+      ],
+      "assertions": [
+        "migration, snapshot identity, freshness, counters, and activation rules pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-7-failure.json"
+    },
+    {
+      "id": "task-08-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-08-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-08-happy.test.mjs"
+      ],
+      "assertions": [
+        "provenance, quota math, overlap, backfill, and four-run cadence gates pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-happy.json"
+    },
+    {
+      "id": "task-08-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-08-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-08-failure.test.mjs"
+      ],
+      "assertions": [
+        "provenance, quota math, overlap, backfill, and four-run cadence gates pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-8-failure.json"
+    },
+    {
+      "id": "task-09-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-09-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-09-happy.test.mjs"
+      ],
+      "assertions": [
+        "NOW, NEXT, history, suppression, and prohibited-input recommendation rules pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-happy.json"
+    },
+    {
+      "id": "task-09-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-09-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-09-failure.test.mjs"
+      ],
+      "assertions": [
+        "NOW, NEXT, history, suppression, and prohibited-input recommendation rules pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-failure.json"
+    },
+    {
+      "id": "task-10-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-10-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-10-happy.test.mjs"
+      ],
+      "assertions": [
+        "detail route, sheet, history, sharing, state, and failure-flow browser gates pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-10-happy.json"
+    },
+    {
+      "id": "task-10-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-10-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-10-failure.test.mjs"
+      ],
+      "assertions": [
+        "detail route, sheet, history, sharing, state, and failure-flow browser gates pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-10-failure.json"
+    },
+    {
+      "id": "task-11-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-11-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-11-happy.test.mjs"
+      ],
+      "assertions": [
+        "tokens, responsive parity, keyboard, ARIA, reduced-motion, and visual gates pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-11-happy.json"
+    },
+    {
+      "id": "task-11-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-11-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-11-failure.test.mjs"
+      ],
+      "assertions": [
+        "tokens, responsive parity, keyboard, ARIA, reduced-motion, and visual gates pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-11-failure.json"
+    },
+    {
+      "id": "task-12-happy",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-12-happy.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-12-happy.test.mjs"
+      ],
+      "assertions": [
+        "semantic closeout, packet hashes, scope scan, and receipts pass",
+        "happy-path assertions pass on source-backed fixtures"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-12-happy.json"
+    },
+    {
+      "id": "task-12-failure",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/task-12-failure.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/task-12-failure.test.mjs"
+      ],
+      "assertions": [
+        "semantic closeout, packet hashes, scope scan, and receipts pass",
+        "negative fixtures are rejected or produce the contracted fallback/NOT_RUN_BLOCKED verdict"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/task-12-failure.json"
+    },
+    {
+      "id": "final-f1",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/final-f1.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/final-f1.test.mjs"
+      ],
+      "assertions": [
+        "authority, references, dependencies, and contradiction gates approve",
+        "missing owner/live capability remains NOT_RUN_BLOCKED and never becomes PASS"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/final-F1.json"
+    },
+    {
+      "id": "final-f2",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/final-f2.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/final-f2.test.mjs"
+      ],
+      "assertions": [
+        "security, data, migration, receipt, and cadence gates approve",
+        "missing owner/live capability remains NOT_RUN_BLOCKED and never becomes PASS"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/final-F2.json"
+    },
+    {
+      "id": "final-f3",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/final-f3.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/final-f3.test.mjs"
+      ],
+      "assertions": [
+        "real-surface product and accessibility journeys approve",
+        "missing owner/live capability remains NOT_RUN_BLOCKED and never becomes PASS"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/final-F3.json"
+    },
+    {
+      "id": "final-f4",
+      "cwd": ".",
+      "argv": [
+        "node",
+        "--test",
+        "tests/gates/final-f4.test.mjs"
+      ],
+      "expected_exit": [
+        0
+      ],
+      "required_paths": [
+        "tests/gates/final-f4.test.mjs"
+      ],
+      "assertions": [
+        "scope, candidate, release, migration, rollback, and owner bindings approve",
+        "missing owner/live capability remains NOT_RUN_BLOCKED and never becomes PASS"
+      ],
+      "evidence": ".omo/evidence/seoul-gaja-v4-plan-review/final-F4.json"
+    }
+  ]
+}

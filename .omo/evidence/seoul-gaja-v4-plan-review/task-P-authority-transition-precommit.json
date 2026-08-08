@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "gate": "authority-transition-fix",
+  "verdict": "PASS_PRE_COMMIT",
+  "binding": {
+    "base_commit": "6450006a2e07d20b77bd24aaa3fe75053e89ae02",
+    "base_tree": "7eae482176e5d6586505e7d9dee8585d7560dd03",
+    "state": "owned source changes staged before the local commit"
+  },
+  "red": {
+    "authority_validator": "FAIL: required exact pre-approval branch/head/tree and direct Windows byte hashes",
+    "immutable_packet_validator": "FAIL: direct working-tree CRLF byte hash mismatch",
+    "task_02_happy": "FAIL: missing required Phase 00 cannot-prove-Phase-02 terminology",
+    "task_02_failure": "PASS"
+  },
+  "green": {
+    "immutable_packet": "PASS: 106 files, 9 phases, 4 AI boards, 5 deterministic mockups via canonical committed Git blobs",
+    "immutable_packet_wrong_bound": "FAIL: wrong bound Git blob listing is rejected",
+    "task_02_happy": "PASS",
+    "task_02_failure": "PASS"
+  },
+  "owner_gates": [
+    "NOT_RUN_BLOCKED: no secret entry, live API, D1 migration, Sites Save/Deploy/share, push, PR, or merge was attempted"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "todo": 6,
+  "verdict": "CONFIRMED_LOCAL",
+  "verified_head": "c6819060ebb6711b3afdf7997d8e0149e30ca411",
+  "verified_tree": "3e756c1c0ce1a07f537360fbd3acae1561307a12",
+  "implementation_commit": "f8b687eefd25c84cbf20fdb6c5259fe5fa1b3b66",
+  "scenarios": [
+    {
+      "invocation": "node --test tests/gates/task-06-happy.test.mjs tests/gates/task-06-failure.test.mjs",
+      "observable": "18 passed, 0 failed"
+    },
+    {
+      "invocation": "node scripts/validate_workflow_security_fixture.mjs tests/fixtures/workflow-security/negative/payload-conflict.json",
+      "observable": "REJECTED / PAYLOAD_CONFLICT"
+    },
+    {
+      "invocation": "git diff --check 08ae1434a674e3f59452fca624a95613f..HEAD",
+      "observable": "exit 0"
+    }
+  ],
+  "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-6-stop-hook-verify-2.txt"
+}

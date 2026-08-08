@@ -1,0 +1,8 @@
+{
+  "candidate_head": "886bf000b25acb84463cf9a04f50dac08302f5cf",
+  "candidate_tree": "a5d80d21771e60bc8911e6110a97cac66066c5a7",
+  "candidate_parent": "2e9dd1d2059e72f9d2a63cb8a152d853c5fb9cd9",
+  "branch": "codex/todo10-postintegration-fix-v2",
+  "binding_scope": "implementation candidate; evidence commit may be a descendant only",
+  "no_worktree_placeholder": true
+}

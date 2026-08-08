@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "task": 10,
+  "command_id": "task-10-happy",
+  "argv": ["node", "--test", "tests/gates/task-10-happy.test.mjs"],
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "f506d513c2e2ac2361bbbe865e463c8b078d1143",
+    "tested_tree": "d70660ec9bd6352ed5f261659fe90af4ba05c922"
+  },
+  "scope": "Local deterministic detail-route contract: canonical in-app sheet pushState, direct and reload full-screen entry, canonical official-place sharing, and the complete 288-combination state matrix.",
+  "browser_capability": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "Visual/browser approval is withheld: Todo 11 design primitives are outside this Todo and the inherited local dev runtime emits 11 file: font-load console errors from app/layout.tsx, which is outside J ownership.",
+    "local_observation": "The local route returned HTTP 200 for /places/alpha at 390x844, 430x932, 900x900, and 1616x923 with the expected semantic detail surface; this is not a visual PASS."
+  }
+}

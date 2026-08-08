@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "locked_at": "2026-08-07T03:17:39+09:00",
+  "authority": {
+    "approval_basis": "User explicitly approved safe local implementation in isolated worktrees while retaining all owner-controlled external-action gates.",
+    "repository_url": "https://github.com/yangduhi/seoul_gaja",
+    "default_branch": "main",
+    "base_commit": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
+    "base_tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
+    "preparation_branch": "codex/prep-v4-1",
+    "implementation_candidate": {
+      "preparation_head": "be7b09c3dd49b65933fc856ba1a795c1bf1c3c7d",
+      "preparation_tree": "6fedf63e9c5497540c48e521f3641eda817cd45f"
+    },
+    "plan": {
+      "path": ".omo/plans/seoul-gaja-v4-plan-review.md",
+        "sha256": "c16a70431c9ece882844a05be9fc38dd1ee61a0e8553800857605061e892094f"
+    },
+    "amendment": {
+      "path": "docs/execution/AMENDMENT-v4.1.md",
+      "sha256": "b0da4eb07ddfe8a8be341a636085751cebc6967d57db726d7ff9219fa5592be1"
+    },
+    "agents": {
+      "path": "AGENTS.md",
+      "sha256": "ba2f44cd4277f63ca896551cce954c9fb17bf5d259593fa12257ec55758788c3"
+    },
+    "operations_runbook": {
+      "path": ".omo/OPERATIONS_RUNBOOK.md",
+      "sha256": "c328595eea8858d3ba296757f8bae8b20143110b50c3ea06b2060c2feb1ab180"
+    },
+    "command_map": {
+      "path": "docs/execution/contracts/execution-command-map.json",
+      "sha256": "81fddc70d55c5294d5883854269c2af3f762f97a2874219c6968a704f83767ba",
+      "authority_validator_sha256": "a0193de2d5932bda52a8329de416e9422952e16a3e8e3d86c8c80bb16a080689",
+      "validator_sha256": "6cadd5886383462e1b0f01c404a04a04f96080e3f3f4bf17c34034e784a778d1",
+      "runner_sha256": "fc13d3ec7df9373e867ddfb2643e52817d165e7148bb775349e9ec940b8984a3",
+      "checkout_checker_sha256": "fbe441e6394153271a4c5992acfa786b7cb907facdd86bbc256ad9162688b947",
+      "immutable_packet_validator_sha256": "45e10d2ca22ed2750258e18f6b6e0e30cb802692d0bfd220dd835d3c9269580c"
+    }
+  },
+  "audit_packet_v4_0_0": {
+    "status": "AUDIT_ONLY_IMMUTABLE",
+    "source_zip": "D:\\vscode\\seoul_gaja\\project_reference\\assets\\seoul-gaja-chatgpt-sites-only-v4.0.0.zip",
+    "zip_sha256": "af2ea053fe540e62e886ffb107434bc89f370e6242210afa25cc73f24d470e83",
+    "content_root_sha256": "9d70c004be12e2f5da5685074714bcb48c8dc1bef1560c035d31a4ea99ad34e6",
+    "extracted_manifest_sha256": "91de32a795a8800c65190c03f0f504e8ab81feb637051ab1723097691783190f",
+    "validator_result": "STRUCTURAL_PASS_ONLY: 106 files, 9 phases, 4 AI boards, 5 deterministic mockups",
+    "semantic_pass": false
+  },
+  "starter": {
+    "manifest": "package.json",
+    "manifest_sha256": "409bb6e4714c4952f5799d9a7628c041f0b3b4c7d699c37ae3e604c3218e5203",
+    "lockfile": "package-lock.json",
+    "lockfile_sha256": "508e5e494cb77250db352459ed25e92614886e7f38c5739334649616976d9439",
+    "hosting_config": ".openai/hosting.json",
+    "hosting_config_sha256": "6cbfc847564fd439312bc7ba9b5b84e385eddfaaf6fb4c3a0eca682fb02eea83"
+  },
+  "lifecycle": {
+    "implementation_allowed": true,
+    "implementation_approval": "EXPLICIT_USER_IMPLEMENTATION_APPROVED",
+    "external_actions_allowed": false,
+    "thread_transport": "THREAD_TOOL_UNAVAILABLE"
+  }
+}

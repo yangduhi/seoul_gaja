@@ -1,0 +1,332 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/app/globals.css" data-rsc-css-href="/app/globals.css" data-precedence="vite-rsc/importer-resources"><title>서울 가자 — 인파 레이더</title><meta name="description" content="서울 공식 장소의 현재 혼잡도와 원천 기반 다음 시간을 살펴봅니다."><link rel="shortcut icon" href="/favicon.svg"><link rel="icon" href="/favicon.svg"><meta name="codex-preview" content="product"><script>self.__VINEXT_RSC_PARAMS__={}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/","searchParams":[["visualFixture","ready-v1"]]}</script><link rel="modulepreload" href="/@id/__x00__virtual:vite-rsc/entry-browser">
+<style type="text/css" data-vite-dev-id="D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/places/[areaCode]/PlaceDetail.module.css">._surface_giq0j_1 { min-height: 100dvh; padding: var(--sg-space-md); background: var(--sg-gradient-page); color: var(--sg-text-primary); }
+._panel_giq0j_3 { width: min(100%, 720px); margin: 0 auto; padding: var(--sg-space-xl); border: 1px solid var(--sg-glass-border-strong); border-radius: var(--sg-radius-sheet); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); backdrop-filter: blur(var(--sg-glass-strong-blur)) saturate(var(--sg-glass-strong-saturation)); }
+._sheet_giq0j_5 { width: min(100%, 720px); margin: 0 auto; }
+._header_giq0j_7 { display: flex; align-items: start; justify-content: space-between; gap: 14px; }
+._eyebrow_giq0j_9 { margin: 0; color: var(--sg-brand-blue); font-size: var(--sg-type-eyebrow); font-weight: var(--sg-typography-strong-weight); letter-spacing: var(--sg-typography-eyebrow-tracking); text-transform: uppercase; }
+._title_giq0j_11 { margin: var(--sg-space-xs) 0 0; font-size: clamp(26px, 4vw, 38px); line-height: 1.1; letter-spacing: var(--sg-typography-title-tracking); }
+._subtitle_giq0j_13, ._caption_giq0j_13, ._notice_giq0j_13 { color: var(--sg-text-secondary); font-size: var(--sg-type-caption); line-height: var(--sg-typography-body-line-height); }
+._subtitle_giq0j_13 { margin: 8px 0 0; }
+._caption_giq0j_13 { margin: 5px 0 0; }
+._close_giq0j_19, ._share_giq0j_19, ._retry_giq0j_19, ._back_giq0j_19, ._mapLink_giq0j_19 { min-height: var(--sg-touch-target); border: 0; border-radius: var(--sg-radius-sm); padding: 0 var(--sg-space-md); font: inherit; cursor: pointer; }
+._close_giq0j_19, ._back_giq0j_19, ._mapLink_giq0j_19 { display: inline-flex; align-items: center; justify-content: center; color: var(--sg-text-strong); background: var(--sg-glass-floating); border: 1px solid var(--sg-border-subtle); text-decoration: none; }
+._share_giq0j_19, ._retry_giq0j_19 { color: var(--sg-text-inverse); background: var(--sg-gradient-decision); box-shadow: var(--sg-shadow-control); }
+._close_giq0j_19:focus-visible, ._share_giq0j_19:focus-visible, ._retry_giq0j_19:focus-visible, ._back_giq0j_19:focus-visible, ._mapLink_giq0j_19:focus-visible { outline: var(--sg-focus-ring); outline-offset: 2px; }
+._statusCard_giq0j_27 { display: grid; gap: var(--sg-space-sm); margin-top: var(--sg-radius-card); padding: var(--sg-space-lg); border-radius: var(--sg-radius-card); background: var(--sg-gradient-detail-warning); }
+._statusLine_giq0j_29 { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+._badge_giq0j_31 { display: inline-flex; width: fit-content; padding: 5px var(--sg-space-sm); border-radius: var(--sg-radius-pill); color: var(--sg-semantic-relaxed-text); background: var(--sg-semantic-relaxed-fill); font-size: var(--sg-type-eyebrow); font-weight: 800; }
+._badge_giq0j_31[data-level="BUSY"], ._badge_giq0j_31[data-level="CROWDED"] { color: var(--sg-semantic-busy-text); background: var(--sg-semantic-busy-fill); }
+._range_giq0j_35 { margin: 0; font-size: clamp(28px, 7vw, 48px); font-variant-numeric: tabular-nums; letter-spacing: -.05em; }
+._section_giq0j_37 { margin-top: var(--sg-space-lg); padding: var(--sg-space-lg); border: 1px solid var(--sg-glass-border-content); border-radius: var(--sg-radius-card); background: var(--sg-glass-floating); }
+._section_giq0j_37 h2 { margin: 0; font-size: 18px; letter-spacing: -.03em; }
+._sectionHeader_giq0j_41 { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+._notice_giq0j_13 { margin: 10px 0 0; }
+._notice_giq0j_13[data-tone="warning"] { color: var(--sg-semantic-warning-text); }
+._metricGrid_giq0j_47 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sg-space-xs); margin-top: var(--sg-space-md); }
+._metric_giq0j_47 { min-width: 0; padding: var(--sg-space-sm); border: 1px solid var(--sg-glass-border-content); border-radius: var(--sg-radius-control); background: color-mix(in srgb, var(--sg-surface) 76%, var(--sg-glass-floating)); }
+._metric_giq0j_47 dt { color: var(--sg-text-secondary); font-size: 11px; }
+._metric_giq0j_47 dd { margin: 4px 0 0; color: var(--sg-text-strong); font-size: 13px; font-weight: 760; }
+._forecast_giq0j_55 { position: relative; display: grid; gap: var(--sg-space-sm); margin-top: var(--sg-space-md); padding: var(--sg-space-md); border-radius: var(--sg-radius-control); background: var(--sg-gradient-forecast); }
+._chart_giq0j_57 { display: block; width: 100%; height: 120px; overflow: visible; }
+._chart_giq0j_57 path { fill: none; stroke: var(--sg-brand-blue); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+._chart_giq0j_57 circle { fill: var(--sg-text-inverse); stroke: var(--sg-brand-blue); stroke-width: 2; }
+._forecastTable_giq0j_63 { width: 100%; border-collapse: collapse; font-size: 12px; }
+._forecastTable_giq0j_63 th, ._forecastTable_giq0j_63 td { padding: 7px 4px; border-bottom: 1px solid var(--sg-border-soft); text-align: left; }
+._forecastTable_giq0j_63 th { color: var(--sg-text-secondary); font-weight: 650; }
+._heatmap_giq0j_69 { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; margin-top: 14px; }
+._cell_giq0j_71 { min-height: 26px; border-radius: calc(var(--sg-radius-small) / 2); background: var(--sg-semantic-history-fill); }
+._cell_giq0j_71[data-missing="true"] { background: var(--sg-gradient-history-missing); }
+._cellLabel_giq0j_75 { display: block; color: var(--sg-text-secondary); font-size: 10px; text-align: center; }
+._actions_giq0j_77 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sg-space-xs); margin-top: var(--sg-space-lg); }
+._actions_giq0j_77 ._share_giq0j_19 { grid-column: 1 / -1; }
+._actions_giq0j_77 ._back_giq0j_19 { grid-column: 1 / -1; }
+._srOnly_giq0j_83 { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+._announcement_giq0j_85 { min-height: 20px; margin: var(--sg-space-xs) 0 0; color: var(--sg-semantic-success-text); font-size: var(--sg-type-caption); }
+
+@media (max-width: 560px) {
+  ._surface_giq0j_1 { padding: 0 0 calc(var(--sg-nav-height) + var(--sg-space-sm)); }
+  ._panel_giq0j_3 { padding: var(--sg-space-lg); border-radius: var(--sg-radius-sheet) var(--sg-radius-sheet) 0 0; }
+  ._title_giq0j_11 { font-size: clamp(26px, 7vw, 32px); }
+  ._statusCard_giq0j_27 { margin-top: var(--sg-space-lg); padding: var(--sg-space-lg); }
+  ._range_giq0j_35 { font-size: clamp(28px, 8vw, 36px); }
+  ._section_giq0j_37 { margin-top: var(--sg-space-md); padding: var(--sg-space-md); }
+  ._forecast_giq0j_55 { min-height: 190px; }
+  ._chart_giq0j_57 { height: 104px; }
+  ._metricGrid_giq0j_47 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  ._metric_giq0j_47 { padding: var(--sg-space-xs) 4px; text-align: center; }
+  ._metric_giq0j_47 dt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  ._metric_giq0j_47 dd { font-size: 12px; }
+  ._surfaceHint_giq0j_115 { display: none; }
+  ._header_giq0j_7 { align-items: stretch; }
+  ._close_giq0j_19 { padding-inline: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ._surface_giq0j_1 * { scroll-behavior: auto; transition: none; }
+}
+
+._surfaceHint_giq0j_115 { margin-top: var(--sg-space-sm); color: var(--sg-text-secondary); font-size: 12px; }
+
+@media (min-width: 768px) {
+  ._surface_giq0j_1 { display: flex; align-items: center; justify-content: center; min-height: 100dvh; padding: var(--sg-space-md); }
+  ._panel_giq0j_3 { width: min(100%, 720px); max-height: calc(100dvh - (var(--sg-space-md) * 2)); margin: 0; overflow-y: auto; border-radius: var(--sg-radius-sheet); }
+  ._sheet_giq0j_5 { width: min(var(--sg-desktop-detail), 100%); align-self: stretch; margin-left: auto; }
+  ._surface_giq0j_1 .sg-navigation { display: none; }
+}
+
+@media (max-width: 767px) {
+  ._surface_giq0j_1 { min-height: 100dvh; padding: 0 0 calc(var(--sg-nav-height) + var(--sg-space-sm)); }
+  ._panel_giq0j_3 { width: 100%; min-height: calc(100dvh - var(--sg-nav-height)); margin: 0; padding: var(--sg-space-lg); border-radius: var(--sg-radius-sheet) var(--sg-radius-sheet) 0 0; }
+  ._sheet_giq0j_5 { position: fixed; z-index: 10; right: 0; bottom: var(--sg-nav-height); left: 0; max-height: calc(100dvh - var(--sg-nav-height)); overflow-y: auto; }
+  ._surface_giq0j_1 .sg-navigation { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; display: block; padding: var(--sg-space-xs) var(--sg-space-md) calc(var(--sg-space-xs) + env(safe-area-inset-bottom)); border-top: 1px solid var(--sg-glass-border-content); background: color-mix(in srgb, var(--sg-glass-strong) 96%, transparent); backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation)); }
+  ._surface_giq0j_1 .sg-navigation__list { justify-content: space-around; }
+  ._surface_giq0j_1 .sg-navigation__item { border: 0; border-radius: var(--sg-radius-sm); color: var(--sg-text-secondary); background: transparent; font: inherit; padding-inline: 14px; }
+  ._surface_giq0j_1 .sg-navigation__item[aria-current="page"] { color: var(--sg-brand-blue); font-weight: 760; }
+}
+</style><style type="text/css" data-vite-dev-id="D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/_catalog/CatalogSurface.module.css">._surface_hyux9_1 {
+  min-height: 100dvh;
+  padding: var(--sg-layout-padding);
+  background: var(--sg-gradient-page);
+}
+
+._shell_hyux9_13 {
+  display: grid;
+  grid-template-columns: var(--sg-desktop-explorer) minmax(var(--sg-desktop-map-min), 1fr) var(--sg-desktop-detail);
+  gap: var(--sg-layout-gap);
+  max-width: 1588px;
+  height: calc(100dvh - (var(--sg-space-md) * 2));
+  margin: 0 auto;
+}
+
+._explorer_hyux9_31,
+._mapPane_hyux9_33,
+._statusBanner_hyux9_35,
+._recommendation_hyux9_37 {
+  border: 1px solid var(--sg-glass-border-content);
+  border-radius: var(--sg-radius-sheet);
+  background: var(--sg-glass-content);
+  box-shadow: var(--sg-shadow-glass);
+  backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation));
+}
+
+._explorer_hyux9_31 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sg-space-md);
+  min-width: 0;
+  padding: var(--sg-space-xl);
+}
+
+._eyebrow_hyux9_69 {
+  margin: 0;
+  color: var(--sg-semantic-teal);
+  font-size: var(--sg-type-eyebrow);
+  font-weight: var(--sg-typography-strong-weight);
+  letter-spacing: var(--sg-typography-eyebrow-tracking);
+  text-transform: uppercase;
+}
+
+._title_hyux9_87 {
+  margin: 4px 0 0;
+  color: var(--sg-text-primary);
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  letter-spacing: var(--sg-typography-title-tracking);
+}
+
+._subtitle_hyux9_103,
+._caption_hyux9_105,
+._source_hyux9_107 {
+  color: var(--sg-text-secondary);
+  font-size: var(--sg-type-caption);
+  line-height: var(--sg-typography-body-line-height);
+}
+
+._subtitle_hyux9_103 { margin: 10px 0 0; overflow-wrap: normal; word-break: keep-all; }
+._caption_hyux9_105 { margin: 0; }
+._source_hyux9_107 { margin: 4px 0 0; }
+
+._search_hyux9_127 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--sg-control-height);
+  padding: 0 12px 0 16px;
+  border: 1px solid var(--sg-border-control);
+  border-radius: var(--sg-radius-control);
+  background: color-mix(in srgb, var(--sg-surface-elevated) 76%, transparent);
+}
+
+._search_hyux9_127:focus-within { outline: var(--sg-focus-ring); outline-offset: 2px; }
+._searchIcon_hyux9_151 { color: var(--sg-semantic-teal); font-size: 20px; }
+._searchInput_hyux9_153 { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: var(--sg-text-primary); font: inherit; }
+._searchInput_hyux9_153:focus-visible { border-radius: var(--sg-radius-small); outline: var(--sg-focus-ring); outline-offset: 2px; }
+._clearButton_hyux9_157,
+._retryButton_hyux9_159,
+._geoButton_hyux9_161,
+._placeButton_hyux9_163,
+._chip_hyux9_165 { min-height: var(--sg-touch-target); min-width: var(--sg-touch-target); border: 0; border-radius: var(--sg-radius-sm); font: inherit; cursor: pointer; }
+._clearButton_hyux9_157 { color: var(--sg-text-secondary); background: transparent; }
+._clearButton_hyux9_157:hover { background: var(--sg-semantic-hover-blue); }
+
+._chipRow_hyux9_173 { display: flex; gap: 8px; overflow-x: auto; padding: 4px; scrollbar-width: thin; }
+._chip_hyux9_165 { flex: 0 0 auto; padding: 0 var(--sg-space-md); color: var(--sg-text-strong); background: color-mix(in srgb, var(--sg-surface-elevated) 72%, transparent); border: 1px solid var(--sg-border-soft); }
+._chip_hyux9_165[data-selected="true"] { color: var(--sg-text-inverse); background: var(--sg-brand-blue); border-color: var(--sg-brand-blue); }
+._chip_hyux9_165:focus,
+._retryButton_hyux9_159:focus-visible,
+._geoButton_hyux9_161:focus-visible,
+._externalMap_hyux9_185:focus-visible { outline: var(--sg-focus-ring); outline-offset: 2px; }
+
+._statusBanner_hyux9_35 { display: grid; gap: 6px; padding: 14px 16px; }
+._statusLine_hyux9_191 { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+._statusPill_hyux9_193 { display: inline-flex; align-items: center; gap: 6px; color: var(--sg-semantic-success-text); font-size: var(--sg-type-eyebrow); font-weight: 800; }
+._statusPill_hyux9_193[data-state="UNAVAILABLE"] { color: var(--sg-semantic-warning-text); }
+._statusDot_hyux9_197 { width: var(--sg-space-xs); height: var(--sg-space-xs); border-radius: var(--sg-radius-pill); background: var(--sg-semantic-ready-dot); }
+._statusPill_hyux9_193[data-state="UNAVAILABLE"] ._statusDot_hyux9_197 { background: var(--sg-semantic-unavailable-dot); }
+
+._listHeader_hyux9_203 { display: flex; align-items: end; justify-content: space-between; gap: 8px; }
+._sectionTitle_hyux9_205 { margin: 0; color: var(--sg-text-primary); font-size: var(--sg-type-card-title); letter-spacing: -.02em; }
+._placeList_hyux9_207 { display: grid; flex: 1; gap: var(--sg-space-xs); min-height: 0; overflow: auto; }
+._placeButton_hyux9_163 { display: grid; grid-template-columns: 1fr auto; gap: 4px var(--sg-space-md); width: 100%; padding: 13px var(--sg-space-md); text-align: left; color: var(--sg-text-primary); background: var(--sg-glass-floating); border: 1px solid transparent; }
+._placeButton_hyux9_163:hover,
+._placeButton_hyux9_163:focus-visible { border-color: var(--sg-semantic-focus-blue); outline: var(--sg-focus-ring); outline-offset: 2px; box-shadow: var(--sg-shadow-interactive); }
+._placeButton_hyux9_163[data-selected="true"] { border-color: var(--sg-semantic-selected-blue); background: var(--sg-semantic-selected-fill); }
+._placeName_hyux9_217 { min-width: 0; overflow: hidden; font-size: 15px; font-weight: 760; text-overflow: ellipsis; white-space: nowrap; }
+._placeMeta_hyux9_219 { color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); }
+._placeLevel_hyux9_221 { align-self: start; padding: 4px var(--sg-space-xs); border-radius: var(--sg-radius-pill); color: var(--sg-semantic-relaxed-text); background: var(--sg-semantic-relaxed-fill); font-size: 11px; font-weight: 800; white-space: nowrap; }
+._placeLevel_hyux9_221[data-level="BUSY"], ._placeLevel_hyux9_221[data-level="CROWDED"] { color: var(--sg-semantic-busy-text); background: var(--sg-semantic-busy-fill); }
+._placeLevel_hyux9_221[data-level="UNKNOWN"] { color: var(--sg-text-secondary); background: var(--sg-semantic-unknown-fill); }
+._placeRange_hyux9_227 { color: var(--sg-text-primary); font-variant-numeric: tabular-nums; font-size: var(--sg-type-caption); }
+._placeUnavailable_hyux9_229 { color: var(--sg-semantic-unavailable-text); font-size: var(--sg-type-eyebrow); }
+._empty_hyux9_231 { padding: var(--sg-radius-panel) var(--sg-space-xs); color: var(--sg-text-secondary); font-size: var(--sg-type-body); text-align: center; }
+
+._main_hyux9_235 {
+  display: grid;
+  grid-template-rows: minmax(360px, 1fr) auto;
+  gap: var(--sg-space-md);
+  min-width: 0;
+  min-height: 0;
+}
+
+._mapPane_hyux9_33 { position: relative; min-height: 360px; overflow: hidden; padding: var(--sg-space-xl); background: var(--sg-gradient-map); }
+._mapGrid_hyux9_253 { position: absolute; inset: 0; opacity: .72; overflow: hidden; background-image: var(--sg-gradient-map-roads); background-size: 64px 64px, 64px 64px, auto, auto; transform: rotate(-5deg) scale(1.14); }
+._mapGrid_hyux9_253::before { position: absolute; top: 43%; right: -12%; left: -12%; height: 13%; border-radius: 50%; background: var(--sg-gradient-map-river); box-shadow: 0 0 0 var(--sg-space-xs) color-mix(in srgb, var(--sg-surface-elevated) 34%, transparent); transform: rotate(8deg); content: ""; }
+._mapGrid_hyux9_253::after { position: absolute; top: -28%; left: 28%; width: 38%; height: 154%; border: 2px solid var(--sg-semantic-map-road); border-radius: 50%; transform: rotate(-8deg); content: ""; }
+._mapMarkers_hyux9_259 { position: absolute; z-index: 2; inset: 0; pointer-events: none; }
+._mapMarker_hyux9_259 { position: absolute; width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; pointer-events: auto; }
+._mapMarker_hyux9_259 span { display: block; width: 22px; height: 22px; margin: auto; border: 3px solid var(--sg-surface-elevated); border-radius: var(--sg-radius-pill); background: var(--sg-crowd-normal); box-shadow: var(--sg-shadow-control); transition: transform var(--sg-motion-fast) var(--sg-motion-easing); }
+._mapMarker_hyux9_259[data-level="RELAXED"] span { background: var(--sg-crowd-relaxed); }
+._mapMarker_hyux9_259[data-level="BUSY"] span { background: var(--sg-crowd-busy); }
+._mapMarker_hyux9_259[data-level="CROWDED"] span { background: var(--sg-crowd-crowded); }
+._mapMarker_hyux9_259[data-level="UNKNOWN"] span { background: var(--sg-crowd-unknown); }
+._mapMarker_hyux9_259[data-selected="true"] span { transform: scale(1.08); outline: var(--sg-focus-ring); outline-offset: 2px; }
+._mapMarker_hyux9_259:focus-visible { outline: var(--sg-focus-ring); outline-offset: 2px; border-radius: var(--sg-radius-pill); }
+._mapMarker_hyux9_259[data-index="0"] { top: 38%; left: 25%; }
+._mapMarker_hyux9_259[data-index="1"] { top: 55%; left: 61%; }
+._mapMarker_hyux9_259[data-index="2"] { top: 68%; left: 42%; }
+._mapMarker_hyux9_259[data-index="3"] { top: 30%; left: 72%; }
+._mapMarker_hyux9_259[data-index="4"] { top: 74%; left: 75%; }
+._mapMarker_hyux9_259[data-index="5"] { top: 46%; left: 48%; }
+._mapContent_hyux9_289 { position: relative; z-index: 3; display: grid; align-content: space-between; height: 100%; min-height: 312px; pointer-events: none; }
+._mapHeading_hyux9_291 { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
+._mapHeading_hyux9_291 h2 { margin: 0; color: var(--sg-text-primary); font-size: var(--sg-type-screen-title); letter-spacing: -.04em; }
+._mapHeading_hyux9_291 p { max-width: 260px; margin: 7px 0 0; color: var(--sg-text-secondary); font-size: var(--sg-type-caption); line-height: 1.5; }
+._mapNotice_hyux9_297 { max-width: 360px; padding: var(--sg-space-md); border: 1px solid var(--sg-glass-border-content); border-radius: var(--sg-radius-card); background: var(--sg-glass-floating); box-shadow: var(--sg-shadow-glass); backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation)); pointer-events: auto; }
+._mapNotice_hyux9_297 strong { display: block; margin-bottom: 4px; color: var(--sg-text-strong); }
+._mapNotice_hyux9_297 p { margin: 0; color: var(--sg-text-secondary); font-size: 13px; line-height: 1.5; }
+._mapLegend_hyux9_303 { position: absolute; bottom: var(--sg-space-xl); left: 50%; display: flex; width: fit-content; gap: var(--sg-space-md); padding: var(--sg-space-sm) var(--sg-space-md); border: 1px solid var(--sg-glass-border-floating); border-radius: var(--sg-radius-pill); background: var(--sg-glass-floating); box-shadow: var(--sg-shadow-glass); transform: translateX(-50%); backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation)); pointer-events: auto; }
+._mapLegend_hyux9_303 span { display: inline-flex; align-items: center; gap: var(--sg-space-xs); color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); white-space: nowrap; }
+._mapLegend_hyux9_303 span::before { width: var(--sg-space-xs); height: var(--sg-space-xs); border-radius: var(--sg-radius-pill); background: var(--sg-crowd-normal); content: ""; }
+._mapLegend_hyux9_303 span[data-level="RELAXED"]::before { background: var(--sg-crowd-relaxed); }
+._mapLegend_hyux9_303 span[data-level="BUSY"]::before { background: var(--sg-crowd-busy); }
+._mapActions_hyux9_313 { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+._retryButton_hyux9_159 { padding: 0 var(--sg-space-md); color: var(--sg-text-inverse); background: var(--sg-gradient-decision); box-shadow: var(--sg-shadow-control); }
+._geoButton_hyux9_161 { padding: 0 var(--sg-space-md); color: var(--sg-text-primary); background: var(--sg-glass-floating); border: 1px solid var(--sg-border-subtle); }
+._externalMap_hyux9_185 { display: inline-flex; flex: 0 0 auto; align-items: center; min-height: var(--sg-touch-target); padding: 0 var(--sg-space-md); border: 1px solid var(--sg-border-subtle); border-radius: var(--sg-radius-sm); color: var(--sg-text-primary); background: var(--sg-glass-floating); font: inherit; text-decoration: none; white-space: nowrap; }
+._recommendations_hyux9_321 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sg-space-md); }
+._recommendation_hyux9_37 { min-width: 0; padding: 18px; }
+._recommendation_hyux9_37 h2 { margin: 0; color: var(--sg-text-primary); font-size: 17px; }
+._recommendation_hyux9_37 p { margin: var(--sg-space-xs) 0 0; color: var(--sg-text-secondary); font-size: var(--sg-type-caption); line-height: 1.5; }
+._recommendationStatus_hyux9_329 { margin-top: var(--sg-space-md); color: var(--sg-text-strong); font-size: var(--sg-type-eyebrow); font-weight: 760; }
+._recommendationReason_hyux9_331 { margin-top: 4px; color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); }
+._recommendationDetails_hyux9_333 { margin-top: var(--sg-space-sm); color: var(--sg-text-secondary); font-size: var(--sg-type-caption); }
+._recommendationDetails_hyux9_333 summary { min-height: 44px; padding-block: 12px; color: var(--sg-text-strong); cursor: pointer; }
+._recommendationDetails_hyux9_333 ul { margin: 0; padding-left: 18px; }
+._recommendationDetails_hyux9_333 p { display: grid; gap: 2px; }
+
+._detailPane_hyux9_343 { display: flex; flex-direction: column; gap: var(--sg-space-lg); min-width: 0; padding: var(--sg-space-xl); }
+._detailPaneHeader_hyux9_345 { display: flex; align-items: start; justify-content: space-between; gap: var(--sg-space-md); }
+._detailPaneHeader_hyux9_345 h2 { margin: var(--sg-space-xs) 0 0; color: var(--sg-text-primary); font-size: 24px; letter-spacing: -.04em; }
+._detailRange_hyux9_349 { margin: 0; color: var(--sg-text-primary); font-size: var(--sg-type-detail-range); font-variant-numeric: tabular-nums; letter-spacing: -.05em; }
+._detailStatusCard_hyux9_351 { display: grid; gap: var(--sg-space-sm); padding: var(--sg-space-lg); border-radius: var(--sg-radius-card); background: var(--sg-gradient-detail-status); }
+._detailStatusCard_hyux9_351 strong { color: var(--sg-text-primary); font-size: 28px; letter-spacing: -.05em; }
+._badge_hyux9_355 { display: inline-flex; width: fit-content; padding: 5px var(--sg-space-sm); border-radius: var(--sg-radius-pill); color: var(--sg-semantic-relaxed-text); background: var(--sg-semantic-relaxed-fill); font-size: var(--sg-type-eyebrow); font-weight: 800; }
+._badge_hyux9_355[data-level="BUSY"], ._badge_hyux9_355[data-level="CROWDED"] { color: var(--sg-semantic-busy-text); background: var(--sg-semantic-busy-fill); }
+._badge_hyux9_355[data-level="UNKNOWN"] { color: var(--sg-text-secondary); background: var(--sg-semantic-unknown-fill); }
+._detailMeta_hyux9_361 { display: grid; grid-template-columns: 1fr auto; gap: var(--sg-space-sm) var(--sg-space-md); padding-block: var(--sg-space-md); border-top: 1px solid var(--sg-border-soft); border-bottom: 1px solid var(--sg-border-soft); color: var(--sg-text-secondary); font-size: var(--sg-type-eyebrow); }
+._detailMeta_hyux9_361 strong { color: var(--sg-text-primary); font-size: 13px; }
+._detailAction_hyux9_365 { min-height: var(--sg-control-height); margin-top: auto; border: 0; border-radius: var(--sg-radius-control); color: var(--sg-text-primary); background: var(--sg-glass-floating); font: inherit; font-weight: var(--sg-typography-emphasis-weight); cursor: pointer; }
+._detailAction_hyux9_365.sg-current-decision-cta { color: var(--sg-text-inverse); background: var(--sg-gradient-decision); }
+._detailAction_hyux9_365:focus-visible { outline: var(--sg-focus-ring); outline-offset: 2px; }
+
+._surface_hyux9_1 .sg-navigation { display: none; }
+._surface_hyux9_1 .sg-navigation__item { display: none; }
+
+._srOnly_hyux9_379 { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 1460px) {
+  ._shell_hyux9_13 { grid-template-columns: minmax(280px, 390px) minmax(0, 1fr); }
+  ._detailPane_hyux9_343 { display: none; }
+  ._detailPane_hyux9_343 ._detailAction_hyux9_365 { display: none; }
+}
+
+@media (max-width: 900px) {
+  ._surface_hyux9_1 { min-height: 100dvh; padding: 0; overflow: hidden; }
+  ._shell_hyux9_13 { position: relative; display: block; height: 100dvh; min-height: 0; }
+  ._explorer_hyux9_31 { display: contents; }
+  ._main_hyux9_235 { position: absolute; inset: 0; display: block; margin: 0; }
+  ._mapPane_hyux9_33 { height: 100%; min-height: 100%; padding: 0; border: 0; border-radius: 0; }
+  ._mapContent_hyux9_289 { min-height: 100%; }
+  ._mapHeading_hyux9_291 { display: none; }
+  ._detailPane_hyux9_343 { display: none; }
+  ._recommendations_hyux9_321 { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 156px); right: var(--sg-space-lg); bottom: calc(var(--sg-nav-height) + 272px); left: var(--sg-space-lg); grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: repeat(2, minmax(0, 1fr)); overflow-x: visible; scroll-snap-type: none; }
+  ._recommendation_hyux9_37 { display: flex; flex-direction: column; min-height: 0; padding: var(--sg-space-sm) var(--sg-space-md); overflow-y: auto; }
+  ._recommendations_hyux9_321 { pointer-events: none; }
+  ._recommendation_hyux9_37 :is(button, summary) { pointer-events: auto; }
+  ._recommendation_hyux9_37 ._detailAction_hyux9_365 { position: sticky; bottom: 0; flex-shrink: 0; }
+  ._recommendationDetails_hyux9_333[open] { position: relative; z-index: 6; max-height: 180px; overflow: auto; padding: var(--sg-space-sm); border-radius: var(--sg-radius-sm); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); }
+  ._explorer_hyux9_31 > header { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + var(--sg-space-xl)); left: var(--sg-space-lg); right: var(--sg-space-lg); pointer-events: none; }
+  ._explorer_hyux9_31 > header > * { pointer-events: auto; }
+  ._title_hyux9_87 { max-width: 260px; font-size: clamp(28px, 8vw, 36px); }
+  ._subtitle_hyux9_103 { display: none; }
+  ._search_hyux9_127 { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 112px); left: var(--sg-space-lg); right: var(--sg-space-lg); }
+  ._mapLegend_hyux9_303 { z-index: 4; bottom: calc(var(--sg-nav-height) + 272px); }
+  ._statusBanner_hyux9_35 { position: absolute; z-index: 4; top: calc(env(safe-area-inset-top) + 292px); left: var(--sg-space-lg); right: var(--sg-space-lg); padding: var(--sg-space-sm) var(--sg-space-md); border-radius: var(--sg-radius-control); background: var(--sg-glass-floating); }
+  ._statusBanner_hyux9_35 ._caption_hyux9_105 { display: none; }
+  ._listHeader_hyux9_203 { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: calc(var(--sg-nav-height) + 212px); left: var(--sg-space-sm); padding: var(--sg-space-md) var(--sg-space-lg) 0; border-radius: var(--sg-radius-sheet) var(--sg-radius-sheet) 0 0; background: var(--sg-glass-strong); }
+  ._listHeader_hyux9_203 { pointer-events: none; }
+  ._placeList_hyux9_207 { position: absolute; z-index: 5; right: var(--sg-space-sm); bottom: var(--sg-nav-height); left: var(--sg-space-sm); display: grid; max-height: 212px; padding: var(--sg-space-sm) var(--sg-space-lg) var(--sg-space-md); border-radius: 0 0 var(--sg-radius-sheet) var(--sg-radius-sheet); background: var(--sg-glass-strong); box-shadow: var(--sg-shadow-glass); backdrop-filter: blur(var(--sg-glass-strong-blur)) saturate(var(--sg-glass-strong-saturation)); }
+  ._placeButton_hyux9_163 { min-height: 60px; padding-block: var(--sg-space-sm); background: transparent; border-radius: var(--sg-radius-sm); }
+  ._mapNotice_hyux9_297 { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top) + 400px); left: var(--sg-space-lg); right: var(--sg-space-lg); max-width: none; }
+  ._surface_hyux9_1 .sg-navigation { position: fixed; z-index: 20; right: 0; bottom: 0; left: 0; display: block; padding: var(--sg-space-xs) var(--sg-space-md) calc(var(--sg-space-xs) + env(safe-area-inset-bottom)); border-top: 1px solid var(--sg-glass-border-content); background: color-mix(in srgb, var(--sg-glass-strong) 96%, transparent); backdrop-filter: blur(var(--sg-glass-floating-blur)) saturate(var(--sg-glass-floating-saturation)); }
+  ._surface_hyux9_1 .sg-navigation__list { justify-content: space-around; }
+  ._surface_hyux9_1 .sg-navigation__item { display: inline-flex; border: 0; border-radius: var(--sg-radius-sm); color: var(--sg-text-secondary); background: transparent; font: inherit; padding-inline: 14px; }
+  ._surface_hyux9_1 .sg-navigation__item[aria-current="page"] { color: var(--sg-brand-blue); font-weight: 760; }
+}
+
+@media (max-width: 560px) {
+  ._explorer_hyux9_31 > header { top: calc(env(safe-area-inset-top) + var(--sg-space-lg)); }
+  ._search_hyux9_127 { top: calc(env(safe-area-inset-top) + 98px); }
+  ._recommendations_hyux9_321 { top: calc(env(safe-area-inset-top) + 144px); }
+  ._statusBanner_hyux9_35 { top: calc(env(safe-area-inset-top) + 280px); }
+  ._mapNotice_hyux9_297 { top: calc(env(safe-area-inset-top) + 400px); }
+}
+
+@media (max-width: 400px) {
+  ._mapNotice_hyux9_297 { top: calc(env(safe-area-inset-top) + 380px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ._placeButton_hyux9_163 { transition: none; }
+}
+</style></head><body class="antialiased"><main class="_surface_hyux9_1"><div class="_shell_hyux9_13"><section class="_explorer_hyux9_31" aria-label="서울 공식 장소 탐색"><header><p class="_eyebrow_hyux9_69">SEOUL / LIVE CITY PULSE</p><h1 class="_title_hyux9_87">오늘, 어디가<br><span>편안할까요?</span></h1><p class="_subtitle_hyux9_103">서울 곳곳의 혼잡도와 공식 예측을 한눈에 보고 가족의 다음 시간을 천천히 고르세요.</p></header><label class="_search_hyux9_127" for="place-search"><span class="_searchIcon_hyux9_151" aria-hidden="true">⌕</span><span class="_srOnly_hyux9_379">공식 장소 검색</span><input id="place-search" class="_searchInput_hyux9_153" placeholder="명소나 동네를 찾아보세요" value="" style=""></label><p class="_srOnly_hyux9_379" aria-live="polite">공식 장소 2곳을 표시합니다.<!-- --> </p><div aria-live="polite" class="sg-glass-panel sg-glass-panel--floating _statusBanner_hyux9_35"><div class="_statusLine_hyux9_191"><span class="_statusPill_hyux9_193" data-state="READY"><span class="_statusDot_hyux9_197" aria-hidden="true"></span>서울 전체 분위기</span><strong>2곳 확인</strong></div><div class="_chipRow_hyux9_173" aria-label="공식 장소 필터와 위치 도구"><button class="_chip_hyux9_165" data-selected="false" type="button">데이터 있는 곳</button><button class="_chip_hyux9_165" type="button">내 주변</button><a aria-label="주소 검색은 외부 지도에서 열기" class="_externalMap_hyux9_185" href="https://map.kakao.com/?q=%EC%84%9C%EC%9A%B8" target="_blank" rel="noreferrer">주소 검색</a></div><p class="_caption_hyux9_105">오전 09:00 · 원천 시각 기준</p></div><div class="_listHeader_hyux9_203"><h2 class="_sectionTitle_hyux9_205">공식 장소 둘러보기</h2><p class="_caption_hyux9_105">2<!-- -->곳</p></div><div id="catalog-list" class="_placeList_hyux9_207" aria-label="공식 장소 목록"><button id="place-alpha" class="_placeButton_hyux9_163" data-selected="false" type="button" aria-label="Alpha Place 상세 보기"><span class="_placeName_hyux9_217">Alpha Place</span><span class="_placeLevel_hyux9_221" data-level="NORMAL">보통</span><span class="_placeRange_hyux9_227">10~20명</span><span class="_placeMeta_hyux9_219">오전 09:00 · 원천 시각 기준</span></button><button id="place-beta" class="_placeButton_hyux9_163" data-selected="false" type="button" aria-label="Beta Place 상세 보기"><span class="_placeName_hyux9_217">Beta Place</span><span class="_placeLevel_hyux9_221" data-level="BUSY">혼잡</span><span class="_placeRange_hyux9_227">30~40명</span><span class="_placeMeta_hyux9_219">오전 09:00 · 원천 시각 기준</span></button></div></section><section class="_main_hyux9_235" aria-label="서울 지도와 추천" data-selected-area-code="alpha"><div aria-label="서울 한눈에 보기" class="sg-glass-panel sg-glass-panel--content _mapPane_hyux9_33"><div class="_mapGrid_hyux9_253" aria-hidden="true"></div><div class="_mapMarkers_hyux9_259" aria-label="지도 장소 표식"><button class="_mapMarker_hyux9_259" data-index="0" data-level="NORMAL" data-selected="true" type="button" aria-label="Alpha Place 지도 표식 선택"><span aria-hidden="true"></span></button><button class="_mapMarker_hyux9_259" data-index="1" data-level="BUSY" data-selected="false" type="button" aria-label="Beta Place 지도 표식 선택"><span aria-hidden="true"></span></button></div><div class="_mapContent_hyux9_289"><div class="_mapHeading_hyux9_291"><div><p class="_eyebrow_hyux9_69">LIVE MAP</p><h2>서울 한눈에 보기</h2><p>공식 장소 목록과 같은 선택 상태를 공유합니다.</p></div><span class="_caption_hyux9_105">실제 데이터 연결 전 미리보기</span></div><div class="_mapLegend_hyux9_303" aria-label="혼잡도 범례"><span data-level="RELAXED">여유</span><span data-level="NORMAL">보통</span><span data-level="BUSY">약간 붐빔</span></div></div></div><div class="_recommendations_hyux9_321 sg-recommendations" aria-label="공식 혼잡도 기반 시간 안내" aria-live="polite"><div class="sg-glass-panel sg-glass-panel--content _recommendation_hyux9_37 sg-recommendation"><h2>NOW</h2><p class="_recommendationStatus_hyux9_329">기본 · 현재와 공식 예보</p><p><strong>Alpha Place</strong> · <time datetime="2026-08-06T01:00:00Z">8. 6. 오전 10:00</time></p><section aria-label="NOW 추천 근거" class="sg-chart-alternative"><h3>NOW 추천 근거</h3><p class="sg-chart-alternative__summary">추천에 사용된 원천별 기준 시각입니다. 수치 점수는 표시하지 않습니다.</p><table data-source-backed="true"><caption>NOW 추천 근거<!-- --> data table</caption><thead><tr><th scope="col">Source</th><th scope="col">Time</th></tr></thead><tbody><tr><th scope="row">같은 시각의 현재 혼잡도 비교</th><td>8. 6. 오전 09:00</td></tr><tr><th scope="row">같은 예보 구간의 공식 혼잡도 비교</th><td>8. 6. 오전 09:00</td></tr></tbody></table></section><button class="_detailAction_hyux9_365 sg-current-decision-cta" data-current-decision="true" type="button">추천 장소 자세히 보기</button></div><div class="sg-glass-panel sg-glass-panel--content _recommendation_hyux9_37 sg-recommendation"><h2>NEXT</h2><p class="_recommendationStatus_hyux9_329">기본 · 현재와 공식 예보</p><p><strong>Alpha Place</strong> · <time datetime="2026-08-06T01:00:00Z">8. 6. 오전 10:00</time></p><section aria-label="NEXT 추천 근거" class="sg-chart-alternative"><h3>NEXT 추천 근거</h3><p class="sg-chart-alternative__summary">추천에 사용된 원천별 기준 시각입니다. 수치 점수는 표시하지 않습니다.</p><table data-source-backed="true"><caption>NEXT 추천 근거<!-- --> data table</caption><thead><tr><th scope="col">Source</th><th scope="col">Time</th></tr></thead><tbody><tr><th scope="row">같은 시각의 현재 혼잡도 비교</th><td>8. 6. 오전 09:00</td></tr><tr><th scope="row">같은 예보 구간의 공식 혼잡도 비교</th><td>8. 6. 오전 09:00</td></tr></tbody></table></section><button class="_detailAction_hyux9_365" type="button">추천 장소 자세히 보기</button></div></div></section><div aria-label="선택한 장소 상세" class="sg-glass-panel sg-glass-panel--strong _detailPane_hyux9_343"><div class="_detailPaneHeader_hyux9_345"><div><p class="_eyebrow_hyux9_69">PLACE DETAIL</p><h2>Alpha Place</h2></div><span class="_placeLevel_hyux9_221" data-level="NORMAL">보통</span></div><div class="_detailStatusCard_hyux9_351"><span class="_badge_hyux9_355" data-level="NORMAL">보통</span><strong>10~20명</strong><p class="_caption_hyux9_105">오전 09:00 · 원천 시각 기준</p></div><div class="_detailMeta_hyux9_361"><span>공식 예측</span><strong>연결 대기</strong><span>히스토리 인사이트</span><strong>UNAVAILABLE</strong></div><button class="_detailAction_hyux9_365" type="button">상세 열기</button></div></div><nav aria-label="주요 화면" class="sg-navigation"><ul class="sg-navigation__list"><li><button aria-current="page" class="sg-navigation__item" type="button">지도</button></li><li><button class="sg-navigation__item" type="button">목록</button></li></ul></nav></main><script id="_R_">import("/@id/__x00__virtual:vite-rsc/entry-browser")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push(":N1786127099591\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("10:I[\"/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js$$cache=bkmp4toa6bn\",[],\"Children\",1]\n1f:I[\"/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Flayout-segment-context.js$$cache=bkmp4toa6bn\",[],\"LayoutSegmentProvider\",1]\n21:I[\"/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js$$cache=bkmp4toa6bn\",[],\"Slot\",1]\n23:I[\"/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Ferror-boundary.js$$cache=bkmp4toa6bn\",[],\"RedirectBoundary\",1]\n2:{\"name\":\"AwaitAppRenderDependencies\",\"key\":null,\"env\":\"Server\",\"stack\":[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]],\"props\":{}}\n6:I[\"/@id/__x00__virtual:vite-rsc/client-in-server-package-proxy/D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Fprep-v4-1%2Fnode_modules%2Fvinext%2Fdist%2Fshims%2Fslot.js$$cache=bkmp4toa6bn\",[],\"Children\",1]\n7:{}\n8:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n4:{\"name\":\"default\",\"key\":null,\"env\":\"Server\",\"stack\":[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]],\"props\":{\"params\":\"$@5\",\"children\":[\"$\",\"$L6\",null,\"$7\",null,\"$8\",1]}}\na:{\"name\":\"\",\"key\":null,\"env\":\"Server\",\"owner\":\"$4\",\"stack\":[[\"default\",\"D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/layout.tsx\",46,26,42,3,false]],\"props\":{}}\nc:{\"name\":\"RootLayout\",\"key\":null,\"env\":\"Server\",\"owner\":\"$4\",\"stack\":[[\"default\",\"D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/layout.tsx\",50,26,42,3,false]],\"props\":{\"params\":\"$@5\",\"children\":\"$4:props:children\"}}\nd:[[\"RootLayout\",\"D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/layout.tsx\",18,25,17,1,false]]\ne:[[\"RootLayout\",\"D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/layout.tsx\",20,29,17,1,false]]\nf:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n12:{\"name\":\"ReleaseAppRenderDependency\",\"key\":null,\"env\":\"Server\",\"stack\":[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]],\"props\":{}}\n13:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n15:{\"name\":\"MetadataHead\",\"key\":null,\"env\":\"Server\",\"stack\":[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]],\"props\":{\"metadata\":{\"description\":\"서울 공식 장소의 현재 혼잡도와 원천 기반 다음 시간을 살펴봅니다.\",\"icons\":{\"icon\":\"/favicon.svg\",\"shortcut\":\"/favicon.svg\"},\"title\":\"서울 가자 — 인파 레이더\",\"robots\":\"$undefined\",\"other\":{\"codex-preview\":\"product\"}}}}\n16:[]\n17:[]\n18:[]\n19:[]\n1a:[]\n1c:{\"name\":\"ViewportHead\",\"key\":null,\"env\":\"Server\",\"stack\":[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]],\"props\":{\"viewport\":{\"width\":\"device-width\",\"initialScale\":1}}}\n1d:[]\n1e:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n20:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n22:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n24:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n25:[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]]\n1:D{\"time\":0}\n1:D\"$2\"\n3:D{\"time\":0}\n3:D\"$4\"\n3:D{\"time\":1}\n9:D{\"time\":1}\n9:D\"$a\"\nb:D{\"time\":1}\nb:D\"$c\"\nb:D{\"time\":1}\nb:[\"$\",\"html\",null,{\"lang\":\"ko\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased\",\"children\":[\"$\",\"$L10\",null,{},null,\"$f\",1]},\"$c\",\"$e\",1]},\"$c\",\"$d\",1]\n3:[\"$L9\",\"$b\"]\n11:D{\"time\":1}\n11:D\"$12\"\n11:D{\"time\":1}\n11:null\n14:D{\"time\":1}\n14:D\"$15\"\n14:D{\"time\":2}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("14:[[\"$\",\"title\",\"0\",{\"children\":\"서울 가자 — 인파 레이더\"},\"$15\",\"$16\",0],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"서울 공식 장소의 현재 혼잡도와 원천 기반 다음 시간을 살펴봅니다.\"},\"$15\",\"$17\",0],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"},\"$15\",\"$18\",0],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"},\"$15\",\"$19\",0],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"product\"},\"$15\",\"$1a\",0]]\n1b:D{\"time\":2}\n1b:D\"$1c\"\n1b:D{\"time\":2}\n1b:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"},\"$1c\",\"$1d\",0]]\n0:{\"__route\":\"route:/\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/\":\"$L1\",\"layout:/\":[\"$3\",\"$11\"],\"route:/\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"},null,\"$13\",1],\"$14\",\"$1b\"],[\"$\",\"$L1f\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L21\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L23\",null,{\"children\":[\"$\",\"$L1f\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L21\",null,{\"id\":\"page:/\"},null,\"$25\",1]},null,\"$24\",1]},null,\"$22\",1]},null,\"$20\",1]},null,\"$1e\",1]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:4uhn5s1wvoptc\",\"deploymentVersion\":\"0a39e2b8-3bb6-4a14-8e0b-4d169b75404b\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n5:{}\n26:{\"name\":\"Home\",\"key\":null,\"env\":\"Server\",\"stack\":[[\"maybeCaptureError\",\"file:///Z:/workers/runner-worker/index.js\",51,10,48,1,true]],\"props\":{\"params\":\"$@27\",\"searchParams\":\"$@28\"}}\n1:D{\"time\":2}\n1:D\"$26\"\n2a:I[\"/app/_catalog/CatalogSurface.tsx$$cache=bkmp4toa6bn\",[],\"CatalogSurface\",1]\n27:{}\n28:{\"visualFixture\":\"ready-v1\"}\n29:[[\"Home\",\"D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/page.tsx\",87,25,28,1,false]]\n1:D{\"time\":3}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"$L2a\",null,{\"status\":\"READY\",\"catalog\":[{\"areaCode\":\"alpha\",\"areaName\":\"Alpha Place\",\"availability\":\"available\",\"crowdLevel\":\"NORMAL\",\"populationMin\":10,\"populationMax\":20,\"sourceUpdatedAt\":\"2026-08-06T00:00:00Z\",\"fetchedAt\":\"2026-08-06T00:05:00Z\",\"freshness\":\"fresh\",\"freshnessBasis\":\"source_updated_at\"},{\"areaCode\":\"beta\",\"areaName\":\"Beta Place\",\"availability\":\"carried_forward\",\"crowdLevel\":\"BUSY\",\"populationMin\":30,\"populationMax\":40,\"sourceUpdatedAt\":\"2026-08-06T00:00:00Z\",\"fetchedAt\":\"2026-08-06T00:05:00Z\",\"freshness\":\"fresh\",\"freshnessBasis\":\"source_updated_at\"}],\"snapshotStatus\":\"READY\",\"sourceTime\":\"2026-08-06T00:00:00Z\",\"recommendations\":{\"now\":{\"mode\":\"NOW\",\"status\":\"READY\",\"results\":[{\"areaCode\":\"alpha\",\"variant\":\"base\",\"historyMaturity\":\"ACCUMULATING\",\"selectedTimestamp\":\"2026-08-06T01:00:00Z\",\"sourceTimestamps\":{\"activeSnapshot\":\"2026-08-06T00:00:00Z\",\"currentCrowd\":\"2026-08-06T00:00:00Z\",\"officialForecast\":\"2026-08-06T00:00:00Z\"},\"reasons\":[{\"kind\":\"current_crowd_percentile\",\"value\":0,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"},{\"kind\":\"official_forecast_percentile\",\"value\":0,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"}]},{\"areaCode\":\"beta\",\"variant\":\"base\",\"historyMaturity\":\"ACCUMULATING\",\"selectedTimestamp\":\"2026-08-06T01:00:00Z\",\"sourceTimestamps\":{\"activeSnapshot\":\"2026-08-06T00:00:00Z\",\"currentCrowd\":\"2026-08-06T00:00:00Z\",\"officialForecast\":\"2026-08-06T00:00:00Z\"},\"reasons\":[{\"kind\":\"current_crowd_percentile\",\"value\":1,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"},{\"kind\":\"official_forecast_percentile\",\"value\":1,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"}]}]},\"next\":{\"mode\":\"NEXT\",\"status\":\"READY\",\"results\":[{\"areaCode\":\"alpha\",\"variant\":\"base\",\"historyMaturity\":\"ACCUMULATING\",\"selectedTimestamp\":\"2026-08-06T01:00:00Z\",\"sourceTimestamps\":{\"activeSnapshot\":\"2026-08-06T00:00:00Z\",\"currentCrowd\":\"2026-08-06T00:00:00Z\",\"officialForecast\":\"2026-08-06T00:00:00Z\"},\"reasons\":[{\"kind\":\"current_crowd_percentile\",\"value\":0,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"},{\"kind\":\"official_forecast_percentile\",\"value\":0,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"}]},{\"areaCode\":\"beta\",\"variant\":\"base\",\"historyMaturity\":\"ACCUMULATING\",\"selectedTimestamp\":\"2026-08-06T02:00:00Z\",\"sourceTimestamps\":{\"activeSnapshot\":\"2026-08-06T00:00:00Z\",\"currentCrowd\":\"2026-08-06T00:00:00Z\",\"officialForecast\":\"2026-08-06T00:00:00Z\"},\"reasons\":[{\"kind\":\"current_crowd_percentile\",\"value\":1,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"},{\"kind\":\"official_forecast_percentile\",\"value\":0,\"sourceTimestamp\":\"2026-08-06T00:00:00Z\"}]}]}},\"initialSelectedAreaCode\":\"$undefined\",\"placeNotFound\":false},\"$26\",\"$29\",1]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2e:I[\"/@id/__x00__virtual:vite-rsc/remove-duplicate-server-css$$cache=bkmp4toa6bn\",[],\"default\",1]\n:HL[\"/app/globals.css\",\"style\"]\n2b:{\"name\":\"Resources\",\"key\":null,\"env\":\"Server\",\"owner\":\"$a\",\"stack\":[[\"\",\"D:/vscode/seoul_gaja-worktrees/todo11-integrated-design-fix/app/layout.tsx\",48,41,46,40,false]],\"props\":{}}\n2c:[[\"\",\"\\u0000virtual:vite-rsc/css?type=rsc\u0026id=D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Ftodo11-integrated-design-fix%2Fapp%2Flayout.tsx\u0026lang.js\",11,86,11,70,false],[\"Resources\",\"\\u0000virtual:vite-rsc/css?type=rsc\u0026id=D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Ftodo11-integrated-design-fix%2Fapp%2Flayout.tsx\u0026lang.js\",11,66,10,10,false]]\n2d:[[\"Resources\",\"\\u0000virtual:vite-rsc/css?type=rsc\u0026id=D%3A%2Fvscode%2Fseoul_gaja-worktrees%2Ftodo11-integrated-design-fix%2Fapp%2Flayout.tsx\u0026lang.js\",17,43,10,10,false]]\n9:D{\"time\":10}\n9:D\"$2b\"\n9:D{\"time\":10}\n9:[[\"$\",\"link\",\"css:/app/globals.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/app/globals.css\",\"data-rsc-css-href\":\"/app/globals.css\"},\"$2b\",\"$2c\",0],[\"$\",\"$L2e\",\"remove-duplicate-css\",{},\"$2b\",\"$2d\",0]]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script></body></html>

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "task": 4,
+  "phase": "00",
+  "observed_at": "2026-08-07T00:00:00+09:00",
+  "verdict": "PASS",
+  "binding": {
+    "implementation_commit": "2a8815643a7cd780b1ac80567e6ebad14fce53f5",
+    "implementation_tree": "6b2f95b946dab3ae8de1a19a9af414a314bb5151"
+  },
+  "red": {
+    "command": "node --test tests/gates/task-04-route.test.mjs",
+    "exit": 1,
+    "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-4-route-red-v3.txt",
+    "observed": "The route test failed at module instantiation because createCapabilityProbeRouteHandlers was not exported."
+  },
+  "tests": [
+    {
+      "command": "node --test tests/gates/task-04-route.test.mjs",
+      "exit": 0,
+      "summary": "6 route-level assertions pass: SQL-backed POST lifecycle and cleanup, health, malformed/auth rejection, unavailable D1, and disabled state."
+    },
+    {
+      "command": "node --test tests/gates/task-04-happy.test.mjs tests/gates/task-04-failure.test.mjs tests/gates/task-04-route.test.mjs",
+      "exit": 0,
+      "summary": "17 focused Phase 00 assertions pass."
+    },
+    {
+      "command": "repeat focused Phase 00 Node suite",
+      "exit": 0,
+      "summary": "17 assertions pass on the repeat run."
+    }
+  ],
+  "manual_qa": {
+    "surface": "local route factory with native node:sqlite D1-compatible fixture",
+    "observable": "POST returns 202 with probe/cleanup, D1 read after cleanup is null; cleanup state returns 404 for GET and POST.",
+    "artifact": "tests/gates/task-04-route.test.mjs"
+  },
+  "ultraqa": {
+    "malformed_input": "PASS invalid JSON and missing authorization return 400/401",
+    "prompt_injection": "PASS token-like payload cannot replace the authorization header",
+    "cancel_resume": "NOT_APPLICABLE one-shot route lifecycle has no resumable state",
+    "stale_state": "PASS cleanup state and expired credentials are rejected",
+    "dirty_worktree": "PASS unrelated verifier artifacts were preserved",
+    "hung_or_long_commands": "PASS lifecycle timeout test aborts a hung D1 health operation and cleanup runs",
+    "flaky_tests": "PASS focused suite repeated with identical 17/17 result",
+    "misleading_success_output": "PASS direct Node exit and structured assertions were used",
+    "repeated_interruptions": "PASS no local server/process/row remains after fixture teardown"
+  },
+  "external_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "owner_action": "Approve the Phase 00 external capability probe in ChatGPT Sites.",
+    "secret_values": 0,
+    "external_calls": 0
+  },
+  "cleanup": {
+    "servers": 0,
+    "ports": 0,
+    "temporary_databases": 0,
+    "temporary_files": 0,
+    "pycache": 0
+  }
+}

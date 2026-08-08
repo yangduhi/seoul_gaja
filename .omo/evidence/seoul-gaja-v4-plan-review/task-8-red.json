@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "phase": "RED",
+  "base_commit": "688f0437f0b6bf3c1d8ae5448a30f3181f2ad3b5",
+  "base_tree": "0c327269efb149634fcd6674b3e0effca874efa2",
+  "command": "node --test tests/gates/task-08-happy.test.mjs tests/gates/task-08-failure.test.mjs",
+  "exit_code": 1,
+  "observable": "ERR_MODULE_NOT_FOUND: server/provenance-cadence.mjs",
+  "tests_passed": 0,
+  "tests_failed": 2
+}

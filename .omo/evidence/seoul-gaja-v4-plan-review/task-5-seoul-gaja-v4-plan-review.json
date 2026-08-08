@@ -1,0 +1,52 @@
+{
+  "schema_version": 3,
+  "task": "Todo 5 Phase 02 candidate-bound gate repair",
+  "verdict": "PASS_LOCAL_EXTERNAL_NOT_RUN_BLOCKED",
+  "implementation_candidate": {
+    "commit": "8f07c3db5ee991437360e603591363a519ef194b",
+    "tree": "9fbe2a5b5901a7bac6443f712b2bd6cc094be840",
+    "plan_sha256": "d2181390558878fa615bc2d44f593e7ca0ee7e62ad9b61b06b458641f51fe4c7"
+  },
+  "baseline_red": ".omo/evidence/seoul-gaja-v4-plan-review/task-5-baseline-fail-open.json",
+  "manual_qa": {
+    "static_template": {
+      "command": "node docs/execution/scripts/evaluate_phase02_candidate_gate.mjs tests/fixtures/task-05/happy.json",
+      "expected_exit": 3,
+      "observable": "NOT_RUN_BLOCKED / CANDIDATE_SHA_PLACEHOLDER"
+    },
+    "candidate_bound_fixture": {
+      "command": "node docs/execution/scripts/evaluate_phase02_candidate_gate.mjs .omo/evidence/seoul-gaja-v4-plan-review/task-5-bound-local.json",
+      "expected_exit": 3,
+      "observable": "branch-local identity is exact; complete local gate is NOT_RUN_BLOCKED / OWNER_AUTHORIZED_EXTERNAL_RUN_REQUIRED"
+    },
+    "command_map": [
+      "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-05-happy",
+      "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-05-failure"
+    ]
+  },
+  "external_default_branch": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "owner_action": "Approve the exact candidate merge to main and provide the resulting default-branch workflow run and receipt bound to that merge.",
+    "external_invocation": "NONE"
+  },
+  "ultraqa": {
+    "malformed_input": "PASS: malformed-record.json returns MALFORMED_RECORD with exit 3.",
+    "stale_state": "PASS: stale candidate, default branch, workflow head, and workflow tree return named blockers.",
+    "dirty_worktree": "PASS: task started from a clean isolated worktree; parent peer state was not edited.",
+    "misleading_success_output": "PASS: static mutually-consistent placeholders are rejected by the real CLI; full local gate is blocked without injected authorization.",
+    "flaky_tests": "PASS: the focused suite is run twice against the same implementation candidate.",
+    "prompt_injection": "N/A: the evaluator consumes structured JSON only and no untrusted prose channel is in scope.",
+    "cancel_resume": "N/A: the evaluator is a one-shot local CLI with no resumable operation.",
+    "hung_or_long": "N/A: no long-running process is started by this bounded local evaluator.",
+    "repeated_interruptions": "N/A: no interrupt or resume trigger occurred."
+  },
+  "cleanup": {
+    "external_calls": 0,
+    "secrets": 0,
+    "push": 0,
+    "merge": 0,
+    "deploy": 0,
+    "temporary_processes": 0,
+    "isolated_worktree": "retained pending parent integration disposition"
+  }
+}

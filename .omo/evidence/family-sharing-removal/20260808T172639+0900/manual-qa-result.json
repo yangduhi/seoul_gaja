@@ -1,0 +1,89 @@
+{
+  "verdict": "PASS",
+  "browserVersion": "150.0.7871.187",
+  "observations": [
+    {
+      "viewport": "390x844",
+      "route": "/places/alpha?visualFixture=ready-v1",
+      "shareButtonCount": 0,
+      "mapLinks": 2,
+      "backLink": true,
+      "surface": "FULL_SCREEN",
+      "horizontalOverflow": false,
+      "minTarget": 44,
+      "familyGuidance": true,
+      "screenshot": "390x844-detail.png"
+    },
+    {
+      "viewport": "430x932",
+      "route": "/places/alpha?visualFixture=ready-v1",
+      "shareButtonCount": 0,
+      "mapLinks": 2,
+      "backLink": true,
+      "surface": "FULL_SCREEN",
+      "horizontalOverflow": false,
+      "minTarget": 44,
+      "familyGuidance": true,
+      "screenshot": "430x932-detail.png"
+    },
+    {
+      "viewport": "768x1024",
+      "route": "/places/alpha?visualFixture=ready-v1",
+      "shareButtonCount": 0,
+      "mapLinks": 2,
+      "backLink": true,
+      "surface": "FULL_SCREEN",
+      "horizontalOverflow": false,
+      "minTarget": 44,
+      "familyGuidance": true,
+      "screenshot": "768x1024-detail.png"
+    },
+    {
+      "viewport": "1616x923",
+      "route": "/places/alpha?visualFixture=ready-v1",
+      "shareButtonCount": 0,
+      "mapLinks": 2,
+      "backLink": true,
+      "surface": "FULL_SCREEN",
+      "horizontalOverflow": false,
+      "minTarget": 44,
+      "familyGuidance": true,
+      "screenshot": "1616x923-detail.png"
+    },
+    {
+      "viewport": "390x844",
+      "route": "/places/alpha",
+      "unavailableRetry": "clicked and reloaded",
+      "ariaLive": "polite",
+      "acknowledgement": "현재 데이터 연결 대기"
+    },
+    {
+      "viewport": "430x932",
+      "route": "/?visualFixture=ready-v1",
+      "now": true,
+      "next": true,
+      "familyPlanningCopy": true,
+      "historyState": {
+        "entry": "sheet"
+      },
+      "escapeRestoredPath": "/",
+      "focusRestored": "place-alpha"
+    },
+    {
+      "ultraqa": "prompt-injection-like search",
+      "input": "redacted hostile markup fixture",
+      "result": "inert no-results state"
+    },
+    {
+      "ultraqa": "stale transient history state",
+      "result": "reload remained FULL_SCREEN"
+    },
+    {
+      "route": "/",
+      "mapUnavailableRetry": "clicked",
+      "acknowledgement": "다시 시도했습니다",
+      "role": "status"
+    }
+  ],
+  "consoleErrors": []
+}

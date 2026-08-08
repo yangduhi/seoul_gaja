@@ -1,0 +1,25 @@
+{
+  "phase": "08",
+  "verdict": "PASS",
+  "commit": "1111111111111111111111111111111111111111",
+  "tree": "2222222222222222222222222222222222222222",
+  "base_commit": "3333333333333333333333333333333333333333",
+  "base_tree": "4444444444444444444444444444444444444444",
+  "tests": [{ "command": "npm test", "exitCode": 0 }],
+  "evidence": [{ "path": "docs/evidence/phase-08/check.json", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }],
+  "blockers": [],
+  "phase_proof": { "release_checklist": "completed" },
+  "release": {
+    "saved_version_id": "sites-version-redacted",
+    "deployment_url": "https://release.example.test",
+    "deployment_time": "2026-08-04T12:00:00Z",
+    "deployed_commit": "1111111111111111111111111111111111111111",
+    "deployed_tree": "2222222222222222222222222222222222222222",
+    "workflow_run_ids": ["github-run-redacted"],
+    "workflow_head_sha": "1111111111111111111111111111111111111111",
+    "approval_reference": "owner-approval-redacted",
+    "migration_id": "0003_snapshot_revision_and_provenance",
+    "rollback_version_id": "sites-rollback-version-redacted"
+  },
+  "secret_status": "REDACTED"
+}

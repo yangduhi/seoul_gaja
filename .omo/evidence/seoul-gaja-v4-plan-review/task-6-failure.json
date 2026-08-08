@@ -1,0 +1,13 @@
+{
+  "task": 6,
+  "command_id": "task-06-failure",
+  "branch": "codex/prep-v4-1",
+  "implementation_commit": "61ed6c4885e36e1d3556727392a1de54f5a541f8",
+  "implementation_tree": "ebc1d411d3da76aa98eff0b76da6486c71a532dd",
+  "plan_sha256": "b1df025a2dd42b3156a5bb3bb2b9373ba2aed708feb4111f93b4102c85a70d98",
+  "exit": 0,
+  "verdict": "PASS",
+  "tests": 12,
+  "fixture_policy_evaluation": "REJECTED codes asserted independently of fixture expected_result or reason",
+  "secret_output": "REDACTED"
+}

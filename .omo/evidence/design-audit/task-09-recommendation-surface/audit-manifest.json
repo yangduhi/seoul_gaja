@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "audit_id": "task-09-recommendation-surface",
+  "status": "PASS_100",
+  "binding": {
+    "head_sha": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tree_sha": "d1661589ab32c4b977517db74c850d4560f7c828",
+    "plan_sha256": "4b608ffbbb4164a7fc7bef925dab6e36ca773534cdc1e04f58ada19a80aa581d",
+    "authority_lock_sha256": "42573e57d1220bbf573335a6cec30ccb303adeefd0bc9efae8a429ccefa1d0f3",
+    "route": "/?visualFixture=ready-v1",
+    "surface": "NOW/NEXT recommendation cards"
+  },
+  "changed_paths": [
+    "app/page.tsx",
+    "app/_catalog/CatalogSurface.tsx",
+    "app/_catalog/CatalogSurface.module.css"
+  ],
+  "artifacts": ["mengto-recommendation.json", "contract-matrix.json", "scorecard.json", "improvement-plan.json", "loop-ledger.json", "findings.json", "verdict.json", "390x844.png", "390x844-expanded.png", "430x932.png", "768x1024.png", "1616x923.png"]
+}

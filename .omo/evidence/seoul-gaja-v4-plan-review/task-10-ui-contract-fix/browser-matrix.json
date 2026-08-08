@@ -1,0 +1,443 @@
+{
+  "status": "PASS",
+  "baseUrl": "http://localhost:53666",
+  "port": 53666,
+  "observations": [
+    {
+      "scenario": "in-app-entry",
+      "pass": 1,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "BOTTOM_SHEET",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 1,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "BOTTOM_SHEET",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 1,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "DETAIL_PANE",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 1,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "DETAIL_PANE",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 2,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "BOTTOM_SHEET",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 2,
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "BOTTOM_SHEET",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 2,
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "DETAIL_PANE",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "in-app-entry",
+      "pass": 2,
+      "viewport": {
+        "width": 1616,
+        "height": 923
+      },
+      "before": {
+        "path": "/",
+        "scrollY": 0,
+        "state": null
+      },
+      "opened": {
+        "path": "/places/alpha",
+        "state": {
+          "entry": "sheet"
+        },
+        "surface": "DETAIL_PANE",
+        "detailExists": true
+      },
+      "restored": {
+        "path": "/",
+        "focusId": "place-alpha",
+        "scrollY": 0,
+        "selected": "false"
+      }
+    },
+    {
+      "scenario": "direct-reload",
+      "path": "/places/alpha",
+      "surface": "FULL_SCREEN"
+    },
+    {
+      "scenario": "invalid-route",
+      "path": "/",
+      "copy": "선택한 공식 장소를 더 이상 찾을 수 없습니다.현재 공식 카탈로그에서 다른 장소를 선택해 주세요.",
+      "robots": "noindex, nofollow",
+      "shareCount": 0
+    },
+    {
+      "scenario": "hostile-search",
+      "inert": true
+    },
+    {
+      "scenario": "map-retry",
+      "retryHit": true,
+      "beforeRetry": "목록과 장소 상세는 유지됩니다. 연결이 되면 자동으로 갱신됩니다.",
+      "afterRetry": "목록과 장소 상세는 유지됩니다. 연결이 되면 다시 시도했습니다."
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/places/alpha?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/places/alpha?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/places/alpha?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/places/alpha?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/places/alpha?visualFixture=ready-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/places/alpha?visualFixture=ready-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?placeNotFound=1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?placeNotFound=1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?placeNotFound=1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=ready-v1&q=%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=ready-v1&q=%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=ready-v1&q=%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "url": "http://localhost:53666/?visualFixture=unavailable-v1"
+    },
+    {
+      "type": "debug",
+      "text": "[vite] connected.",
+      "url": "http://localhost:53666/?visualFixture=unavailable-v1"
+    },
+    {
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "url": "http://localhost:53666/?visualFixture=unavailable-v1"
+    }
+  ],
+  "failedResponses": []
+}

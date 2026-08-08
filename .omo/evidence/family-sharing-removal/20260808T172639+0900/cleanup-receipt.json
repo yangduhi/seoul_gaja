@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "tracked_server_session": 86852,
+  "tracked_port": 55238,
+  "browser": "closed by manual-qa.mjs finally block",
+  "server": "terminated with Ctrl+C; tunnel closed",
+  "port_listener_count_after_cleanup": 0,
+  "node_modules_junction_exists_after_cleanup": false,
+  "python_cache_exists_after_cleanup": false,
+  "temporary_directories_remaining": []
+}
+

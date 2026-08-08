@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "verdict": "confirmed",
+  "scope": "final reverify of raw-history provenance and quarter-hour-grid remediation only",
+  "binding": {
+    "implementation_commit": "6b30a1bd0a33cd8ecd76763819be2fff4693317a",
+    "implementation_tree": "26706aab79d4d6f66e07e89b92e8422ae1f40714",
+    "executor_evidence_commit": "003e1922b187cb171f3daa33ba344198339c629b",
+    "executor_evidence_tree": "32d0b5ffd4674f45ce57596fc1049f3506887ab1",
+    "product_delta_from_implementation_to_executor_evidence": "none"
+  },
+  "authority_audit": {
+    "raw_history_sql": "PASS: server/product-read-model.ts:131 explicitly projects r.snapshot_id and s.status AS snapshot_status, joins raw_observation_15m AS r to snapshot_runs AS s on snapshot_id, and filters s.status to accepted/replayed.",
+    "parser_defense_in_depth": "PASS: server/product-read-model-parsers.ts:130-135 independently requires non-empty snapshot_id, accepted/replayed snapshot_status, timestamp <= now, UTC minute 00/15/30/45, and zero seconds/milliseconds before Korea half-hour grouping.",
+    "forbidden_reads": "PASS: scoped production source contains neither SELECT * nor weekday_hour_profile read."
+  },
+  "independent_parser_probe": {
+    "invocation": "PowerShell here-string piped to node --experimental-strip-types --input-type=module; imports parseRawHistory and asserts every case directly",
+    "actual_exit": 0,
+    "observable": {
+      "accepted": "READY",
+      "replayed": "READY",
+      "rejected": "UNAVAILABLE",
+      "missing_snapshot_id": "UNAVAILABLE",
+      "future": "UNAVAILABLE",
+      "quarter_00": "READY",
+      "quarter_15": "READY",
+      "quarter_30": "READY",
+      "quarter_45": "READY",
+      "off_grid": "UNAVAILABLE",
+      "seconds": "UNAVAILABLE",
+      "milliseconds": "UNAVAILABLE"
+    }
+  },
+  "route_and_command_verification": [
+    {
+      "invocation": "node --test tests/product/data/recommendation-route-model.test.mjs",
+      "actual_exit": 0,
+      "observable": "7/7 passed, including raw observations without accepted snapshot provenance, future input, and off-grid input fail closed to base history."
+    },
+    {
+      "invocation": "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/product-read-model.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+      "actual_exit": 0,
+      "observable": "34/34 passed."
+    },
+    {
+      "invocation": "$env:PYTHONUTF8='1'; python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy; then --id task-09-failure",
+      "actual_exit": 0,
+      "observable": "happy 7/7 PASS; failure 8/8 PASS; direct process exits inspected."
+    },
+    {
+      "invocation": "inspect committed task-9-raw-provenance-grid-fix.json; compare implementation commit to executor evidence commit over server app tests db",
+      "actual_exit": 0,
+      "observable": "executor evidence reports build exit 0 and focused exit 0; direct git comparison confirms evidence-only delta."
+    },
+    {
+      "invocation": "git diff --check 24dfe3f..6b30a1b; python docs/execution/scripts/validate_authority_lock.py",
+      "actual_exit": 0,
+      "observable": "both PASS."
+    }
+  ],
+  "manual_qa": {
+    "status": "NOT_RUN_BY_SCOPE",
+    "reason": "caller explicitly prohibited browser and broad expansion; this is a data-shaped parser/read-model reverify with direct production-seam and route execution as the primary surface."
+  },
+  "cleanup": {
+    "port_3199": "CLOSED",
+    "created_server_or_browser": false,
+    "preexisting_untracked_receipt_preserved": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-current-head-final-verification.json",
+    "worktree_before_receipt": "only the named pre-existing untracked receipt"
+  },
+  "external_actions": "NOT_RUN_BLOCKED: no migration, live D1/API, secret, deploy, push, or merge was invoked."
+}

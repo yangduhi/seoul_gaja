@@ -1,0 +1,136 @@
+candidate_head=2e9dd1d2059e72f9d2a63cb8a152d853c5fb9cd9
+candidate_tree=fa3b8fd1f4b95a294c53a127566db12bcdbfa562
+✔ detail route is bound to the truthful D1 read model (1.6091ms)
+✔ detail surface exposes source-backed forecast, history, and recovery controls (0.4185ms)
+✔ invalid or removed places are excluded from indexing (0.2116ms)
+✔ invalid or removed places resolve to the catalog fallback surface (0.1754ms)
+✔ Given a malformed direct area code, When the read model is unavailable, Then the server resolves the catalog fallback before rendering detail (0.3007ms)
+✔ full-screen detail is centered on desktop while in-app detail remains a drawer dialog (0.2286ms)
+✔ detail material and hierarchy consume canonical design tokens (0.3111ms)
+✔ catalog selection renders a real transient detail sheet and restores the prior selection (0.2414ms)
+✔ Given a transient sheet, When close and Back replay overlap, Then close replaces the sheet entry once and replays catalog restoration idempotently (0.3536ms)
+✖ Given a closed transient detail, When browser Back replays the catalog, Then a capture-phase catalog sentinel prevents route-data navigation (2.4869ms)
+✔ Given a desktop detail pane, When Escape is pressed, Then the same idempotent close path restores the catalog (0.1981ms)
+✔ transient detail sheet traps keyboard focus and makes the background inert (0.113ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.0381
+
+✖ failing tests:
+
+test at tests\product\detail-history\detail-contract.test.mjs:88:1
+✖ Given a closed transient detail, When browser Back replays the catalog, Then a capture-phase catalog sentinel prevents route-data navigation (2.4869ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /export function ensureCatalogHistorySentinel/. Input:
+  
+  '"use client";\r\n' +
+    '\r\n' +
+    'import Link from "next/link";\r\n' +
+    'import { GlassPanel } from "../../_design/GlassPanel";\r\n' +
+    'import { Navigation } from "../../_design/Navigation";\r\n' +
+    'import { useEffect, useRef, useState, useSyncExternalStore } from "react";\r\n' +
+    'import type { KeyboardEvent as ReactKeyboardEvent } from "react";\r\n' +
+    'import styles from "./PlaceDetail.module.css";\r\n' +
+    '\r\n' +
+    'type DetailSurface = "BOTTOM_SHEET" | "DETAIL_PANE" | "FULL_SCREEN";\r\n' +
+    'type RestoreContext = Readonly<{ selection: string | null; scrollY: number; focusTarget: string | null; returnPath?: string }>;\r\n' +
+    'type Snapshot = Readonly<{ areaName: string; availability: string; crowdLevel: string; populationMin: number | null; populationMax: number | null; sourceUpdatedAt: string | null; fetchedAt: string; freshness: string | null; freshnessBasis: string }>;\r\n' +
+    'type ForecastPoint = Readonly<{ timestamp: string; crowdLevel: string; populationMin: number | null; populationMax: number | null; sourceUpdatedAt: string }>;\r\n' +
+    'type HistoryProfile = Readonly<{ weekday: number; hour: number; maturity: string; crowdRankMedian: number | null; sampleCount: number; missingCount: number; coverage: number }>;\r\n' +
+    'export type DetailPayload = Readonly<{ status: "READY" | "UNAVAILABLE" | "NOT_FOUND"; areaCode: string; areaName: string | null; snapshot: Snapshot | null; forecast: readonly ForecastPoint[]; history: readonly HistoryProfile[]; reason?: string }>;\r\n' +
+    '\r\n' +
+    'const restoreKey = "seoul-gaja.detail.restore";\r\n' +
+    'const closeEvent = "seoul-gaja:detail-close";\r\n' +
+    'const safeAreaCode = /^[A-Za-z0-9_]+$/;\r\n' +
+    '\r\n' +
+    'function navigationType(): string { const entry = performance.getEntriesByType("navigation")[0]; return entry instanceof PerformanceNavigationTiming ? entry.type : "navigate"; }\r\n' +
+    'function sheetSurface(): DetailSurface { return window.innerWidth >= 768 ? "DETAIL_PANE" : "BOTTOM_SHEET"; }\r\n' +
+    'function currentSurface(): DetailSurface { return navigationType() !== "reload" && window.history.state?.entry === "sheet" ? sheetSurface() : "FULL_SCREEN"; }\r\n' +
+    'function subscribeToSurface(onStoreChange: () => void): () => void { const onRestore = () => { restorePriorPlaceContext(); onStoreChange(); }; window.addEventListener("resize", onStoreChange); window.addEventListener("popstate", onRestore); window.addEventListener(closeEvent, onRestore); return () => { window.removeEventListener("resize", onStoreChange); window.removeEventListener("popstate", onRestore); window.removeEventListener(closeEvent, onRestore); }; }\r\n' +
+    `function dialogFocusableElements(container: HTMLElement): HTMLElement[] { return Array.from(container.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter((element) => element.tabIndex >= 0 && !element.hasAttribute("disabled")); }\r\n` +
+    'function isRestoreContext(value: unknown): value is RestoreContext { if (typeof value !== "object" || value === null) return false; const selection = Reflect.get(value, "selection"); const scrollY = Reflect.get(value, "scrollY"); const focusTarget = Reflect.get(value, "focusTarget"); return (typeof selection === "string" || selection === null) && typeof scrollY === "number" && (typeof focusTarget === "string" || focusTarget === null); }\r\n' +
+    'function readRestoreContext(): RestoreContext | null { const value = sessionStorage.getItem(restoreKey); if (value === null) return null; try { const parsed: unknown = JSON.parse(value); return isRestoreContext(parsed) ? parsed : null; } catch (error) { if (error instanceof SyntaxError) return null; throw error; } }\r\n' +
+    'export function openInAppPlaceDetail(areaCode: string, restore: RestoreContext): void { const path = `/places/${encodeURIComponent(areaCode)}`; const storedRestore = { ...restore, returnPath: `${window.location.pathname}${window.location.search}` }; sessionStorage.setItem(restoreKey, JSON.stringify(storedRestore)); window.history.pushState({ entry: "sheet" }, "", path); window.dispatchEvent(new CustomEvent("seoul-gaja:detail-selection", { detail: { areaCode, restore: storedRestore } })); }\r\n' +
+    'export function closeInAppPlaceDetail(): boolean { if (window.history.state?.entry !== "sheet") return false; const returnPath = readRestoreContext()?.returnPath ?? "/"; window.history.replaceState(null, "", returnPath); window.dispatchEvent(new CustomEvent(closeEvent)); return true; }\r\n' +
+    'export function restorePriorPlaceContext(): RestoreContext | null { const restore = readRestoreContext(); if (restore === null) return null; window.scrollTo({ top: restore.scrollY, behavior: "instant" }); if (restore.focusTarget !== null) requestAnimationFrame(() => document.getElementById(restore.focusTarget ?? "")?.focus()); window.dispatchEvent(new CustomEvent("seoul-gaja:detail-restored", { detail: restore })); return restore; }\r\n' +
+    '\r\n' +
+    'function range(snapshot: Snapshot | null): string { if (snapshot === null || snapshot.populationMin === null || snapshot.populationMax === null) return "인구 범위 확인 불가"; return `${snapshot.populationMin.toLocaleString("ko-KR")}~${snapshot.populationMax.toLocaleString("ko-KR")}명`; }\r\n' +
+    'function level(level: string): string { return { RELAXED: "여유", NORMAL: "보통", BUSY: "혼잡", CROWDED: "매우 혼잡", UNKNOWN: "정보 없음" }[level] ?? "정보 없음"; }\r\n' +
+    'function source(snapshot: Snapshot): string { const value = snapshot.sourceUpdatedAt ?? snapshot.fetchedAt; const basis = snapshot.freshnessBasis === "fetched_at_degraded" ? "수집 시각 기준" : "원천 시각 기준"; return `${new Intl.DateTimeFormat("ko-KR", { dateStyle: "short", timeStyle: "short" }).format(new Date(value))} · ${basis}`; }\r\n' +
+    'function chartPath(points: readonly ForecastPoint[]): string { if (points.length < 2) return ""; const values = points.map((point) => point.populationMax ?? point.populationMin ?? 0); const max = Math.max(...values, 1); return values.map((value, index) => `${index === 0 ? "M" : "L"}${(index / (values.length - 1)) * 100},${100 - (value / max) * 80}`).join(" "); }\r\n' +
+    '\r\n' +
+    'export function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: string; payload: DetailPayload }>) {\r\n' +
+    '  const isSafe = safeAreaCode.test(areaCode);\r\n' +
+    '  const surface = useSyncExternalStore(subscribeToSurface, currentSurface, () => "FULL_SCREEN");\r\n' +
+    '  const closeRef = useRef<HTMLButtonElement>(null);\r\n' +
+    '  const [announcement, setAnnouncement] = useState("");\r\n' +
+    '  useEffect(() => { const prior = document.activeElement instanceof HTMLElement ? document.activeElement : null; closeRef.current?.focus(); return () => { if (prior?.isConnected) prior.focus(); }; }, []);\r\n' +
+    '  useEffect(() => { const onKey = (event: KeyboardEvent) => { if (event.key === "Escape" && currentSurface() !== "FULL_SCREEN") window.history.back(); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, []);\r\n' +
+    '  function handleDialogKeyDown(event: ReactKeyboardEvent<HTMLElement>): void {\r\n' +
+    '    if (event.key !== "Tab") return;\r\n' +
+    '    const focusable = dialogFocusableElements(event.currentTarget);\r\n' +
+    '    const first = focusable[0];\r\n' +
+    '    const last = focusable.at(-1);\r\n' +
+    '    if (first === undefined || last === undefined) return;\r\n' +
+    '    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }\r\n' +
+    '    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }\r\n' +
+    '  }\r\n' +
+    '  if (!isSafe || payload.status === "NOT_FOUND") return <main className={styles.surface}><section className={styles.panel} aria-live="polite"><h1 className={styles.title}>공식 장소를 찾을 수 없습니다</h1><p className={styles.notice}>현재 공식 목록에서 사라진 장소입니다. 최신 카탈로그에서 다시 선택해 주세요.</p><Link className={styles.back} href="/">공식 장소 목록으로</Link></section></main>;\r\n' +
+    '  const snapshot = payload.snapshot;\r\n' +
+    '  const isUnavailable = payload.status !== "READY" || snapshot === null || snapshot.availability === "unavailable" || snapshot.availability === "expired";\r\n' +
+    '  const forecast = isUnavailable ? [] : payload.forecast;\r\n' +
+    '  const history = payload.history;\r\n' +
+    '  const panelClass = surface === "FULL_SCREEN" ? styles.panel : `${styles.panel} ${styles.sheet}`;\r\n' +
+    '  async function copyCanonicalUrl(url: string): Promise<boolean> {\r\n' +
+    '    if (navigator.clipboard === undefined) return false;\r\n' +
+    '    try {\r\n' +
+    '      await navigator.clipboard.writeText(url);\r\n' +
+    '      return true;\r\n' +
+    '    } catch (error) {\r\n' +
+    '      if (error instanceof DOMException) return false;\r\n' +
+    '      throw error;\r\n' +
+    '    }\r\n' +
+    '  }\r\n' +
+    '  async function share() {\r\n' +
+    '    const url = new URL(`/places/${encodeURIComponent(areaCode)}`, window.location.origin).toString();\r\n' +
+    '    if (navigator.share === undefined) {\r\n' +
+    '      setAnnouncement(await copyCanonicalUrl(url) ? "공식 장소 링크를 복사했습니다." : "공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요.");\r\n' +
+    '      return;\r\n' +
+    '    }\r\n' +
+    '    try {\r\n' +
+    '      await navigator.share({ title: payload.areaName ?? "서울 공식 장소", url });\r\n' +
+    '      setAnnouncement("공식 장소 링크를 공유했습니다.");\r\n' +
+    '    } catch (error) {\r\n' +
+    '      if (error instanceof DOMException && error.name === "AbortError") {\r\n' +
+    '        setAnnouncement("공유를 취소했습니다.");\r\n' +
+    '        return;\r\n' +
+    '      }\r\n' +
+    '      setAnnouncement(await copyCanonicalUrl(url) ? "공유 대신 공식 장소 링크를 복사했습니다." : "공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요.");\r\n' +
+    '    }\r\n' +
+    '  }\r\n' +
+    '  function closeDetail(): void {\r\n' +
+    '    if (surface === "FULL_SCREEN") window.location.assign("/");\r\n' +
+    '    else window.history.back();\r\n' +
+    '  }\r\n' +
+    '  return <main className={styles.surface} data-detail-surface={surface} data-area-code={areaCode} aria-live="polite"><section className={panelClass} role={surface === "FULL_SCREEN" ? undefined : "dialog"} aria-modal={surface === "FULL_SCREEN" ? undefined : true} aria-label={`${payload.areaName ?? areaCode} 상세`} onKeyDown={surface === "FULL_SCREEN" ? undefined : handleDialogKeyDown}>\r\n' +
+    '    <header className={styles.header}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h1 className={styles.title}>{payload.areaName ?? areaCode}</h1><p className={styles.subtitle}>{snapshot === null ? "원천 데이터 연결 대기" : source(snapshot)}</p></div><button ref={closeRef} className={styles.close} type="button" onClick={closeDetail}>{surface === "FULL_SCREEN" ? "목록으로" : "닫기"}</button></header>\r\n' +
+    '    <p className={styles.announcement} aria-live="polite">{announcement}'... 4215 more characters
+  
+      at TestContext.<anonymous> (file:///D:/vscode/seoul_gaja-worktrees/todo10-postintegration-fix-v2/tests/product/detail-history/detail-contract.test.mjs:89:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '"use client";\r\n\r\nimport Link from "next/link";\r\nimport { GlassPanel } from "../../_design/GlassPanel";\r\nimport { Navigation } from "../../_design/Navigation";\r\nimport { useEffect, useRef, useState, useSyncExternalStore } from "react";\r\nimport type { KeyboardEvent as ReactKeyboardEvent } from "react";\r\nimport styles from "./PlaceDetail.module.css";\r\n\r\ntype DetailSurface = "BOTTOM_SHEET" | "DETAIL_PANE" | "FULL_SCREEN";\r\ntype RestoreContext = Readonly<{ selection: string | null; scrollY: number; focusTarget: string | null; returnPath?: string }>;\r\ntype Snapshot = Readonly<{ areaName: string; availability: string; crowdLevel: string; populationMin: number | null; populationMax: number | null; sourceUpdatedAt: string | null; fetchedAt: string; freshness: string | null; freshnessBasis: string }>;\r\ntype ForecastPoint = Readonly<{ timestamp: string; crowdLevel: string; populationMin: number | null; populationMax: number | null; sourceUpdatedAt: string }>;\r\ntype HistoryProfile = Readonly<{ weekday: number; hour: number; maturity: string; crowdRankMedian: number | null; sampleCount: number; missingCount: number; coverage: number }>;\r\nexport type DetailPayload = Readonly<{ status: "READY" | "UNAVAILABLE" | "NOT_FOUND"; areaCode: string; areaName: string | null; snapshot: Snapshot | null; forecast: readonly ForecastPoint[]; history: readonly HistoryProfile[]; reason?: string }>;\r\n\r\nconst restoreKey = "seoul-gaja.detail.restore";\r\nconst closeEvent = "seoul-gaja:detail-close";\r\nconst safeAreaCode = /^[A-Za-z0-9_]+$/;\r\n\r\nfunction navigationType(): string { const entry = performance.getEntriesByType("navigation")[0]; return entry instanceof PerformanceNavigationTiming ? entry.type : "navigate"; }\r\nfunction sheetSurface(): DetailSurface { return window.innerWidth >= 768 ? "DETAIL_PANE" : "BOTTOM_SHEET"; }\r\nfunction currentSurface(): DetailSurface { return navigationType() !== "reload" && window.history.state?.entry === "sheet" ? sheetSurface() : "FULL_SCREEN"; }\r\nfunction subscribeToSurface(onStoreChange: () => void): () => void { const onRestore = () => { restorePriorPlaceContext(); onStoreChange(); }; window.addEventListener("resize", onStoreChange); window.addEventListener("popstate", onRestore); window.addEventListener(closeEvent, onRestore); return () => { window.removeEventListener("resize", onStoreChange); window.removeEventListener("popstate", onRestore); window.removeEventListener(closeEvent, onRestore); }; }\r\nfunction dialogFocusableElements(container: HTMLElement): HTMLElement[] { return Array.from(container.querySelectorAll<HTMLElement>(\'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])\')).filter((element) => element.tabIndex >= 0 && !element.hasAttribute("disabled")); }\r\nfunction isRestoreContext(value: unknown): value is RestoreContext { if (typeof value !== "object" || value === null) return false; const selection = Reflect.get(value, "selection"); const scrollY = Reflect.get(value, "scrollY"); const focusTarget = Reflect.get(value, "focusTarget"); return (typeof selection === "string" || selection === null) && typeof scrollY === "number" && (typeof focusTarget === "string" || focusTarget === null); }\r\nfunction readRestoreContext(): RestoreContext | null { const value = sessionStorage.getItem(restoreKey); if (value === null) return null; try { const parsed: unknown = JSON.parse(value); return isRestoreContext(parsed) ? parsed : null; } catch (error) { if (error instanceof SyntaxError) return null; throw error; } }\r\nexport function openInAppPlaceDetail(areaCode: string, restore: RestoreContext): void { const path = `/places/${encodeURIComponent(areaCode)}`; const storedRestore = { ...restore, returnPath: `${window.location.pathname}${window.location.search}` }; sessionStorage.setItem(restoreKey, JSON.stringify(storedRestore)); window.history.pushState({ entry: "sheet" }, "", path); window.dispatchEvent(new CustomEvent("seoul-gaja:detail-selection", { detail: { areaCode, restore: storedRestore } })); }\r\nexport function closeInAppPlaceDetail(): boolean { if (window.history.state?.entry !== "sheet") return false; const returnPath = readRestoreContext()?.returnPath ?? "/"; window.history.replaceState(null, "", returnPath); window.dispatchEvent(new CustomEvent(closeEvent)); return true; }\r\nexport function restorePriorPlaceContext(): RestoreContext | null { const restore = readRestoreContext(); if (restore === null) return null; window.scrollTo({ top: restore.scrollY, behavior: "instant" }); if (restore.focusTarget !== null) requestAnimationFrame(() => document.getElementById(restore.focusTarget ?? "")?.focus()); window.dispatchEvent(new CustomEvent("seoul-gaja:detail-restored", { detail: restore })); return restore; }\r\n\r\nfunction range(snapshot: Snapshot | null): string { if (snapshot === null || snapshot.populationMin === null || snapshot.populationMax === null) return "인구 범위 확인 불가"; return `${snapshot.populationMin.toLocaleString("ko-KR")}~${snapshot.populationMax.toLocaleString("ko-KR")}명`; }\r\nfunction level(level: string): string { return { RELAXED: "여유", NORMAL: "보통", BUSY: "혼잡", CROWDED: "매우 혼잡", UNKNOWN: "정보 없음" }[level] ?? "정보 없음"; }\r\nfunction source(snapshot: Snapshot): string { const value = snapshot.sourceUpdatedAt ?? snapshot.fetchedAt; const basis = snapshot.freshnessBasis === "fetched_at_degraded" ? "수집 시각 기준" : "원천 시각 기준"; return `${new Intl.DateTimeFormat("ko-KR", { dateStyle: "short", timeStyle: "short" }).format(new Date(value))} · ${basis}`; }\r\nfunction chartPath(points: readonly ForecastPoint[]): string { if (points.length < 2) return ""; const values = points.map((point) => point.populationMax ?? point.populationMin ?? 0); const max = Math.max(...values, 1); return values.map((value, index) => `${index === 0 ? "M" : "L"}${(index / (values.length - 1)) * 100},${100 - (value / max) * 80}`).join(" "); }\r\n\r\nexport function PlaceDetailClient({ areaCode, payload }: Readonly<{ areaCode: string; payload: DetailPayload }>) {\r\n  const isSafe = safeAreaCode.test(areaCode);\r\n  const surface = useSyncExternalStore(subscribeToSurface, currentSurface, () => "FULL_SCREEN");\r\n  const closeRef = useRef<HTMLButtonElement>(null);\r\n  const [announcement, setAnnouncement] = useState("");\r\n  useEffect(() => { const prior = document.activeElement instanceof HTMLElement ? document.activeElement : null; closeRef.current?.focus(); return () => { if (prior?.isConnected) prior.focus(); }; }, []);\r\n  useEffect(() => { const onKey = (event: KeyboardEvent) => { if (event.key === "Escape" && currentSurface() !== "FULL_SCREEN") window.history.back(); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, []);\r\n  function handleDialogKeyDown(event: ReactKeyboardEvent<HTMLElement>): void {\r\n    if (event.key !== "Tab") return;\r\n    const focusable = dialogFocusableElements(event.currentTarget);\r\n    const first = focusable[0];\r\n    const last = focusable.at(-1);\r\n    if (first === undefined || last === undefined) return;\r\n    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }\r\n    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }\r\n  }\r\n  if (!isSafe || payload.status === "NOT_FOUND") return <main className={styles.surface}><section className={styles.panel} aria-live="polite"><h1 className={styles.title}>공식 장소를 찾을 수 없습니다</h1><p className={styles.notice}>현재 공식 목록에서 사라진 장소입니다. 최신 카탈로그에서 다시 선택해 주세요.</p><Link className={styles.back} href="/">공식 장소 목록으로</Link></section></main>;\r\n  const snapshot = payload.snapshot;\r\n  const isUnavailable = payload.status !== "READY" || snapshot === null || snapshot.availability === "unavailable" || snapshot.availability === "expired";\r\n  const forecast = isUnavailable ? [] : payload.forecast;\r\n  const history = payload.history;\r\n  const panelClass = surface === "FULL_SCREEN" ? styles.panel : `${styles.panel} ${styles.sheet}`;\r\n  async function copyCanonicalUrl(url: string): Promise<boolean> {\r\n    if (navigator.clipboard === undefined) return false;\r\n    try {\r\n      await navigator.clipboard.writeText(url);\r\n      return true;\r\n    } catch (error) {\r\n      if (error instanceof DOMException) return false;\r\n      throw error;\r\n    }\r\n  }\r\n  async function share() {\r\n    const url = new URL(`/places/${encodeURIComponent(areaCode)}`, window.location.origin).toString();\r\n    if (navigator.share === undefined) {\r\n      setAnnouncement(await copyCanonicalUrl(url) ? "공식 장소 링크를 복사했습니다." : "공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요.");\r\n      return;\r\n    }\r\n    try {\r\n      await navigator.share({ title: payload.areaName ?? "서울 공식 장소", url });\r\n      setAnnouncement("공식 장소 링크를 공유했습니다.");\r\n    } catch (error) {\r\n      if (error instanceof DOMException && error.name === "AbortError") {\r\n        setAnnouncement("공유를 취소했습니다.");\r\n        return;\r\n      }\r\n      setAnnouncement(await copyCanonicalUrl(url) ? "공유 대신 공식 장소 링크를 복사했습니다." : "공유할 수 없습니다. 주소창의 공식 링크를 사용해 주세요.");\r\n    }\r\n  }\r\n  function closeDetail(): void {\r\n    if (surface === "FULL_SCREEN") window.location.assign("/");\r\n    else window.history.back();\r\n  }\r\n  return <main className={styles.surface} data-detail-surface={surface} data-area-code={areaCode} aria-live="polite"><section className={panelClass} role={surface === "FULL_SCREEN" ? undefined : "dialog"} aria-modal={surface === "FULL_SCREEN" ? undefined : true} aria-label={`${payload.areaName ?? areaCode} 상세`} onKeyDown={surface === "FULL_SCREEN" ? undefined : handleDialogKeyDown}>\r\n    <header className={styles.header}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h1 className={styles.title}>{payload.areaName ?? areaCode}</h1><p className={styles.subtitle}>{snapshot === null ? "원천 데이터 연결 대기" : source(snapshot)}</p></div><button ref={closeRef} className={styles.close} type="button" onClick={closeDetail}>{surface === "FULL_SCREEN" ? "목록으로" : "닫기"}</button></header>\r\n    <p className={styles.announcement} aria-live="polite">{announcement}'... 4215 more characters,
+    expected: /export function ensureCatalogHistorySentinel/,
+    operator: 'match',
+    diff: 'simple'
+  }

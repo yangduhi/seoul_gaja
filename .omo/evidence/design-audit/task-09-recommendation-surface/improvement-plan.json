@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "audit_id": "task-09-recommendation-surface",
+  "iteration": 1,
+  "baseline_binding": {
+    "head_sha": "57cf39a2289c1dd7947eab3a8c89c9750e7fe97b",
+    "tree_sha": "a0c9cf7de3e68507c360479b3ac7ace81f772c96",
+    "plan_sha256": "4b608ffbbb4164a7fc7bef925dab6e36ca773534cdc1e04f58ada19a80aa581d",
+    "target_route": "/",
+    "target_surface": "NOW/NEXT recommendation cards"
+  },
+  "baseline_score": 60,
+  "target_score": 100,
+  "resolved_binding": {
+    "head_sha": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tree_sha": "d1661589ab32c4b977517db74c850d4560f7c828",
+    "status": "PASS_100"
+  },
+  "improvement_plan_id": "task09-ui-iteration-1",
+  "findings": [
+    {
+      "finding_id": "T09-UI-001",
+      "status": "OMISSION",
+      "severity": "P1",
+      "source_contract": ".omo/plans/seoul-gaja-v4-plan-review.md:150-155",
+      "improvement": "Remove purpose preset controls and render mode, variant, selected timestamp, source timestamps, and up to three fixed source-backed reasons.",
+      "changed_paths": ["app/page.tsx", "app/_catalog/CatalogSurface.tsx"],
+      "acceptance": "The actual route receives recommendation results from the product read model and exposes no raw score or forbidden purpose claim.",
+      "expected_score_delta": 30
+    },
+    {
+      "finding_id": "T09-UI-002",
+      "status": "UNVERIFIED",
+      "severity": "P1",
+      "source_contract": "docs/execution/contracts/design-audit-contract.json",
+      "improvement": "Build and observe the route at 390x844, 430x932, 768x1024, and 1616x923 with browser artifacts.",
+      "changed_paths": [],
+      "acceptance": "No recommendation-card clipping or overflow and source detail remains readable.",
+      "expected_score_delta": 10
+    }
+  ],
+  "scope_guard": "No token, layout, route, Todo 10 detail-state, or Todo 11 visual-system changes are authorized."
+}

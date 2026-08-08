@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:45:22+09:00",
+  "inventory": "D:\\vscode\\seoul_gaja\\project_reference\\assets\\generated-concept-images\\INVENTORY.json",
+  "checkout_assets": "docs/codex-pack-v4/design",
+  "verdict": "PASS",
+  "matched": 9,
+  "mismatched": [],
+  "input_images_required": false
+}

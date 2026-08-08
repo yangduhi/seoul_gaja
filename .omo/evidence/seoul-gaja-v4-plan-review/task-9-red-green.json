@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "red": [
+    "forbidden incidentScore was accepted and returned READY",
+    "valid Seoul 30-minute history bucket returned ZERO_ELIGIBLE",
+    "real ProductViewModel route adapter returned ZERO_ELIGIBLE because percentiles were undefined"
+  ],
+  "green": "The same boundaries now pass in task-09-failure, task-09-happy, and recommendation-route-model tests at commit 899757490fc571c5b939b5b2aef6321f53d8caf1.",
+  "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-verification.json"
+}

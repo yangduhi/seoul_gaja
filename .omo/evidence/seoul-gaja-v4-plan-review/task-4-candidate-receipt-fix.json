@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "report_type": "Todo4CandidateReceiptFix",
+  "task": 4,
+  "verdict": "PASS_LOCAL_REBIND",
+  "parent_base": {
+    "branch": "codex/prep-v4-1",
+    "commit": "2e541bc01f50ad1e1f547084ce03cee325b41ad2",
+    "tree": "464869267e78a0172c94e95550c3bdcf6b30bb01"
+  },
+  "implementation_candidate": {
+    "branch": "codex/todo4-candidate-receipt-fix",
+    "commit": "1a0c5c1dad9be3ba04c6f0ee303d99d952a7e50d",
+    "tree": "e6225795867ca666141ae2d0223e32ecb827112c",
+    "receipt_binding": "docs/evidence/phase-00/phase-receipt.json commit/tree equal the implementation candidate; later evidence-only commit does not replace this binding"
+  },
+  "red_reproduction": {
+    "receipt_validator": {
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 2e541bc01f50ad1e1f547084ce03cee325b41ad2 --expected-tree 464869267e78a0172c94e95550c3bdcf6b30bb01",
+      "exit": 1,
+      "observable": "receipt commit/tree did not match the exact parent candidate"
+    },
+    "literal_runner": {
+      "command": "python docs/codex-pack-v4/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
+      "exit": 2,
+      "observable": "runner path was absent before the wrapper was added"
+    }
+  },
+  "changed_paths": [
+    "docs/codex-pack-v4/scripts/run_command_map.py",
+    "docs/evidence/phase-00/phase-receipt.json",
+    "tests/gates/task-04-failure.test.mjs",
+    "tests/gates/task-04-route.test.mjs",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-4-candidate-receipt-fix.json",
+    ".omo/evidence/seoul-gaja-v4-plan-review/task-4-candidate-receipt-fix.doneclaim.json"
+  ],
+  "manual_qa": {
+    "wrapper_happy": {
+      "command": "python docs/codex-pack-v4/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
+      "exit": 0,
+      "observable": "PASS JSON with actual_exit 0"
+    },
+    "wrapper_failure": {
+      "command": "python docs/codex-pack-v4/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-failure",
+      "exit": 0,
+      "observable": "PASS JSON with actual_exit 0 after dynamic candidate identity assertions"
+    },
+    "canonical_happy": {
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
+      "exit": 0,
+      "observable": "PASS JSON; wrapper delegates to the canonical path"
+    },
+    "focused_suite": {
+      "command": "node --test tests/gates/task-04-happy.test.mjs tests/gates/task-04-failure.test.mjs tests/gates/task-04-route.test.mjs",
+      "runs": 2,
+      "tests_per_run": 17,
+      "exits": [0, 0],
+      "observable": "17 pass, 0 fail on each run"
+    }
+  },
+  "validators": {
+    "receipt": {
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 1a0c5c1dad9be3ba04c6f0ee303d99d952a7e50d --expected-tree e6225795867ca666141ae2d0223e32ecb827112c",
+      "exit": 0
+    },
+    "authority": {
+      "command": "python docs/execution/scripts/validate_authority_lock.py",
+      "exit": 0
+    },
+    "command_map": {
+      "command": "python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json",
+      "exit": 0,
+      "observable": "30 command entries validated"
+    },
+    "diff_check": {
+      "command": "git diff --check",
+      "exit": 0
+    },
+    "secret_scan": {
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json",
+      "exit": 0,
+      "observable": "receipt schema and semantic secret scan passed; no secret value entered"
+    }
+  },
+  "tracked_artifact_sha256_from_git_show": [
+    {"path": "server/phase-00-capability-probe.mjs", "sha256": "4fe52488e2268043c06cb4c913e22498ebf872ca289ee4c6d463f5789cebf2f3"},
+    {"path": "app/api/internal/capability-probe/ingest/route.js", "sha256": "9b7f385e6222c38418d81f94655a32fec00d29308364cc9cba0f3eb27a49d1d9"},
+    {"path": "app/api/internal/capability-probe/health/route.js", "sha256": "b47e1fc33982f215848542b6b1aaef8c1b657cd7a22ce3c8a7e555b16cd00394"},
+    {"path": "migrations/0004_phase_00_capability_probe.sql", "sha256": "bd066c9b14b0836138127596e42a2b6f12e8f2e9bbf80e4cb2a9e35a37ae7b75"},
+    {"path": "db/schema.ts", "sha256": "6fc0c3c010450439573f9268097c10f9885de8985c8e413f08d387cdbb4e7852"}
+  ],
+  "ultraqa": {
+    "malformed_input": {"status": "PASS", "observable": "task-04-failure suite covers missing, invalid, expired, malformed JSON, and token-like payloads"},
+    "stale_state": {"status": "PASS", "observable": "receipt validator accepts only the implementation candidate identity; the replaced worker identity is absent from active assertions"},
+    "dirty_worktree": {"status": "PASS", "observable": "isolated worktree began clean and parent peer changes were untouched"},
+    "misleading_success_output": {"status": "PASS", "observable": "wrapper and canonical actual exits parsed as 0; receipt and tracked artifact hashes independently recomputed"},
+    "flaky_tests": {"status": "PASS", "observable": "focused 17-test suite passed twice"},
+    "hung_or_long_commands": {"status": "PASS", "observable": "bounded 5 ms health timeout and cleanup assertion passed"},
+    "repeated_interruptions": {"status": "N/A", "reason": "no resumable flow exists in this local fixture"},
+    "cancel_resume": {"status": "N/A", "reason": "no cancellable long-running process was started"},
+    "prompt_injection": {"status": "N/A", "reason": "no untrusted external prose is consumed; token-like payload handling is local and covered"}
+  },
+  "external_owner_gates": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "reason": "Sites secret entry, Save, Deploy, live capability probe, and cleanup approval remain owner-controlled and were not attempted",
+    "external_calls": 0,
+    "secrets_entered": 0
+  },
+  "cleanup": {
+    "temporary_servers": 0,
+    "temporary_ports": 0,
+    "temporary_processes_remaining": 0,
+    "parent_files_modified": 0,
+    "status": "PASS"
+  }
+}

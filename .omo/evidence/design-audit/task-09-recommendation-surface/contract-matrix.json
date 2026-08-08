@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "audit_id": "task-09-recommendation-surface",
+  "checks": [
+    {"contract": "source-backed NOW/NEXT fields", "status": "MATCH", "evidence": "Two rendered cards expose mode, variant, maturity, selected time, fixed reasons, and source times."},
+    {"contract": "forbidden purpose presets and claims", "status": "MATCH", "evidence": "purposePresetCount=0 and rawScoreVisible=false on the real route."},
+    {"contract": "responsive geometry", "status": "MATCH", "evidence": "documentWidth equals bodyWidth at 390x844, 430x932, 768x1024, and 1616x923."},
+    {"contract": "interaction and accessibility", "status": "MATCH", "evidence": "details summary is at least 44px, opens by direct interaction, aria-live remains present, and expanded content is bounded/scrollable."},
+    {"contract": "Korean content hierarchy", "status": "MATCH", "evidence": "Korean reason labels and source timestamps remain readable without clipped primary content."}
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "initial_after_click": {
+    "detail": {
+      "top": 284.5,
+      "bottom": 464.5,
+      "clientHeight": 180,
+      "scrollHeight": 410,
+      "scrollTop": 0
+    },
+    "sourceRows": [
+      {
+        "text": "activeSnapshot: 8. 6. ���� 09:00",
+        "top": 522,
+        "bottom": 561,
+        "visibleWithinDetail": false
+      },
+      {
+        "text": "currentCrowd: 8. 6. ���� 09:00",
+        "top": 563,
+        "bottom": 602,
+        "visibleWithinDetail": false
+      },
+      {
+        "text": "officialForecast: 8. 6. ���� 09:00",
+        "top": 604,
+        "bottom": 643,
+        "visibleWithinDetail": false
+      },
+      {
+        "text": "history: 8. 6. ���� 09:10",
+        "top": 645,
+        "bottom": 684,
+        "visibleWithinDetail": false
+      }
+    ]
+  },
+  "after_internal_scroll_to_source_times": {
+    "detail": {
+      "top": 284.5,
+      "bottom": 464.5,
+      "clientHeight": 180,
+      "scrollHeight": 410,
+      "scrollTop": 230
+    },
+    "sourceRows": [
+      {
+        "text": "activeSnapshot: 8. 6. ���� 09:00",
+        "top": 292,
+        "bottom": 331,
+        "visibleWithinDetail": true
+      },
+      {
+        "text": "currentCrowd: 8. 6. ���� 09:00",
+        "top": 333,
+        "bottom": 372,
+        "visibleWithinDetail": true
+      },
+      {
+        "text": "officialForecast: 8. 6. ���� 09:00",
+        "top": 374,
+        "bottom": 413,
+        "visibleWithinDetail": true
+      },
+      {
+        "text": "history: 8. 6. ���� 09:10",
+        "top": 415,
+        "bottom": 454,
+        "visibleWithinDetail": true
+      }
+    ]
+  }
+}

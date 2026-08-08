@@ -1,0 +1,9 @@
+{
+  "kind": "expired_token",
+  "token_id": "ingest-token-expired-redacted",
+  "issued_at": "2026-08-06T00:00:00Z",
+  "expires_at": "2026-08-06T00:10:00Z",
+  "requested_at": "2026-08-06T00:11:00Z",
+  "token_state": "expired",
+  "secret_status": "REDACTED"
+}

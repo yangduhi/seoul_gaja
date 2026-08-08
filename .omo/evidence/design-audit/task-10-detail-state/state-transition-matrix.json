@@ -1,0 +1,18 @@
+{
+  "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+  "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+  "worktree_snapshot_sha256": "d8041b950ebf51001a12661a1f1ee706ec0d3fc4b9129ec3479bca3c8361409d",
+  "rows": [
+    {
+      "surface_id": "detail-sheet",
+      "trigger": "official place selection",
+      "precondition": "catalog open",
+      "visible_result": "transient sheet or desktop pane",
+      "focus_target": "sheet close control",
+      "live_announcement": "detail state changes announced",
+      "history_effect": "one push; expansion none; close/back one pop",
+      "recovery_or_exit": "catalog focus restored",
+      "evidence_id": "browser-observations.raw.json"
+    }
+  ]
+}

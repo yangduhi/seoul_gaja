@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "task": "Todo 4 post-integration receipt rebind",
+  "verdict": "PASS_LOCAL_REBIND",
+  "external_gate": {
+    "verdict": "NOT_RUN_BLOCKED",
+    "redacted_token_id": "NOT_ENTERED",
+    "reason": "No owner-controlled Sites secret entry, Save, Deploy, or live capability probe was authorized or performed."
+  },
+  "parent_evidence_identity": {
+    "commit": "bdeff63c6629448475ad640a121dfcc0c347d3a8",
+    "tree": "0f1d9367b6603d79bd0347d62f443a47c9f7d601",
+    "role": "Separate evidence commit; never used as a HEAD^ receipt substitute."
+  },
+  "integrated_implementation_identity": {
+    "branch": "codex/prep-v4-1",
+    "commit": "2a8815643a7cd780b1ac80567e6ebad14fce53f5",
+    "tree": "6b2f95b946dab3ae8de1a19a9af414a314bb5151",
+    "subject": "fix(phase-00): expose capability route handlers"
+  },
+  "replaced_worker_identity": {
+    "branch": "codex/todo4-phase00",
+    "commit": "2ee3e43559c3cac19036c35644dce030688c9a7a",
+    "tree": "11cfaffcdbcd1219bbb3b48e8df76a452882be7e"
+  },
+  "bindings_changed": {
+    "receipt": "docs/evidence/phase-00/phase-receipt.json",
+    "task_4_evidence": [
+      "task-4-executor.json",
+      "task-4-failure.json",
+      "task-4-happy.json",
+      "task-4-owner-gate-blocked.json",
+      "task-4-route.json",
+      "task-4-seoul-gaja-v4-plan-review.json"
+    ],
+    "identity_assertions": [
+      "tests/gates/task-04-failure.test.mjs",
+      "tests/gates/task-04-route.test.mjs"
+    ]
+  },
+  "commands": [
+    {
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 2a8815643a7cd780b1ac80567e6ebad14fce53f5 --expected-tree 6b2f95b946dab3ae8de1a19a9af414a314bb5151",
+      "phase": "pre_rebind_red",
+      "actual_exit": 1,
+      "result": "PASS stale receipt rejection: commit and tree did not match the integrated implementation."
+    },
+    {
+      "command": "python docs/execution/scripts/validate_phase_receipts.py docs/execution/contracts/phase-receipt.schema.json docs/evidence/phase-00/phase-receipt.json --expected-commit 2a8815643a7cd780b1ac80567e6ebad14fce53f5 --expected-tree 6b2f95b946dab3ae8de1a19a9af414a314bb5151",
+      "phase": "post_rebind_manual_qa",
+      "actual_exit": 0,
+      "result": "PASS current receipt binds the integrated implementation."
+    },
+    {
+      "command": "node --test tests/gates/task-04-happy.test.mjs tests/gates/task-04-failure.test.mjs tests/gates/task-04-route.test.mjs",
+      "phase": "post_rebind_manual_qa_repeat_1",
+      "actual_exit": 0,
+      "result": "PASS: 17 tests."
+    },
+    {
+      "command": "node --test tests/gates/task-04-happy.test.mjs tests/gates/task-04-failure.test.mjs tests/gates/task-04-route.test.mjs",
+      "phase": "post_rebind_manual_qa_repeat_2",
+      "actual_exit": 0,
+      "result": "PASS: 17 tests."
+    },
+    {
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-happy",
+      "actual_exit": 0,
+      "result": "PASS."
+    },
+    {
+      "command": "python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-04-failure",
+      "actual_exit": 0,
+      "result": "PASS."
+    },
+    {
+      "command": "python docs/execution/scripts/validate_authority_lock.py && python docs/execution/scripts/validate_command_map.py docs/execution/contracts/execution-command-map.json",
+      "actual_exit": 0,
+      "result": "PASS authority lock; PASS 30 command entries."
+    },
+    {
+      "command": "git diff --check",
+      "actual_exit": 0,
+      "result": "PASS."
+    }
+  ],
+  "cp949_warning": {
+    "observed": true,
+    "impact": "The command-map runner emitted Python subprocess reader UnicodeDecodeError messages for CP949 decoding of byte 0xe2 after each command-map invocation, while each runner result reported actual_exit 0 and verdict PASS.",
+    "disposition": "Recorded separately; not changed because decoding behavior is outside this bounded identity-rebind scope."
+  },
+  "scope": {
+    "allowed_changed_paths": [
+      "docs/evidence/phase-00/phase-receipt.json",
+      ".omo/evidence/seoul-gaja-v4-plan-review/task-4-*.json",
+      "tests/gates/task-04-failure.test.mjs",
+      "tests/gates/task-04-route.test.mjs"
+    ],
+    "forbidden_paths_unchanged": [
+      "route/service/schema/migration code",
+      "plan",
+      "ledger",
+      "authority",
+      "readiness",
+      "unrelated evidence",
+      "external systems"
+    ]
+  },
+  "ultraqa": {
+    "stale_state": "PASS: old worker identity was rejected before rebind and is absent from active Todo 4 receipt/evidence/tests after rebind.",
+    "dirty_worktree": "PASS: isolated worktree began clean at bdeff63; no parent dirty changes were copied.",
+    "malformed_prompt_injection_timeout": "PASS existing 17-test suite covers malformed input, token-like payload injection, unavailable D1, bounded hung-D1 timeout, cleanup, and fail-closed behavior; no semantics changed.",
+    "hung_or_long_commands": "PASS: node suite completed twice within the bounded manual-QA invocation.",
+    "flaky_repeat": "PASS: 17 of 17 passed twice.",
+    "misleading_output": "PASS: direct receipt validator exit and command-map parsed verdict/actual_exit were recorded separately.",
+    "repeated_interruptions": "PASS: no partial staged state existed before staging; no server, port, worker, or temporary runtime resource was created.",
+    "cancel_resume": "NOT_APPLICABLE: single-shot receipt/evidence rebind."
+  },
+  "cleanup": {
+    "resources_created": 0,
+    "resources_remaining": 0,
+    "status": "PASS"
+  }
+}

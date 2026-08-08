@@ -1,0 +1,75 @@
+{
+  "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9",
+  "head_tree_sha": "210ee06ea41925f70ae207f0e83d0b9f0d29abf3",
+  "worktree_snapshot_sha256": "d8041b950ebf51001a12661a1f1ee706ec0d3fc4b9129ec3479bca3c8361409d",
+  "captures": [
+    {
+      "capture_id": "todo10-390x844",
+      "route": "/?visualFixture=ready-v1",
+      "state": "in-app detail sheet",
+      "viewport": "390x844",
+      "dpr": 1,
+      "browser": "Chrome 150.0.7871.187",
+      "candidate_snapshot": {
+        "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9"
+      },
+      "evidence_kind": "real_surface",
+      "evidence_sha256": "25a975b311c99dc1fdd9ba364b758a5ec0b22303e7a88b33d32875bb4d349191",
+      "source_anchors": [
+        "app/_catalog/CatalogSurface.tsx",
+        "app/_design/PlaceDetailSheet.tsx"
+      ]
+    },
+    {
+      "capture_id": "todo10-430x932",
+      "route": "/?visualFixture=ready-v1",
+      "state": "in-app detail sheet",
+      "viewport": "430x932",
+      "dpr": 1,
+      "browser": "Chrome 150.0.7871.187",
+      "candidate_snapshot": {
+        "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9"
+      },
+      "evidence_kind": "real_surface",
+      "evidence_sha256": "c63bc57fbfcb8ec226c8017421311f0d44252f1d80f0e2fef1e7216ac9555660",
+      "source_anchors": [
+        "app/_catalog/CatalogSurface.tsx",
+        "app/_design/PlaceDetailSheet.tsx"
+      ]
+    },
+    {
+      "capture_id": "todo10-768x1024",
+      "route": "/?visualFixture=ready-v1",
+      "state": "in-app detail sheet",
+      "viewport": "768x1024",
+      "dpr": 1,
+      "browser": "Chrome 150.0.7871.187",
+      "candidate_snapshot": {
+        "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9"
+      },
+      "evidence_kind": "real_surface",
+      "evidence_sha256": "47f898b86192978988cae5e23b79113746e2f30355cadf44f81670c9c472386e",
+      "source_anchors": [
+        "app/_catalog/CatalogSurface.tsx",
+        "app/_design/PlaceDetailSheet.tsx"
+      ]
+    },
+    {
+      "capture_id": "todo10-1616x923",
+      "route": "/?visualFixture=ready-v1",
+      "state": "desktop detail pane",
+      "viewport": "1616x923",
+      "dpr": 1,
+      "browser": "Chrome 150.0.7871.187",
+      "candidate_snapshot": {
+        "head_sha": "7d23a6b3fda936ee38dabce93420ba9030f3bba9"
+      },
+      "evidence_kind": "real_surface",
+      "evidence_sha256": "753e570eb84a0d43f0570e0f961f663927148228b55c78b90b61cce19fa566f3",
+      "source_anchors": [
+        "app/_catalog/CatalogSurface.tsx",
+        "app/_design/PlaceDetailSheet.tsx"
+      ]
+    }
+  ]
+}

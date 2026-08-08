@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "task": 9,
+  "AdversarialVerify": {
+    "verdict": "confirmed",
+    "confidence": "high",
+    "scope": "Todo 9 provenance remediation only"
+  },
+  "binding": {
+    "implementation_commit": "c9befa736e02a7f15f9b38661c198264cc715dc5",
+    "implementation_tree": "fda3f8bb69801138dfdafe174c6dfd01cf48b97f",
+    "semantic_evidence_commit": "d860960ec519e64b08ecce1f94d7ea6d58a0373b",
+    "semantic_evidence_commit_2": "2abdc4a72f56e5d5e9216ec1cabb7b30d2cc7764",
+    "semantic_evidence_tree": "5220194e9836c1fc02ba2adbbdd79b11b04e9c5b",
+    "visual_evidence_commit": "3cf88f66cc20f37b3c06d8601adb92d728f3dfed",
+    "visual_evidence_tree": "76210bae6e8e22a4bc082a8b0e3dde8dc6900cd4",
+    "verified_head": "3cf88f66cc20f37b3c06d8601adb92d728f3dfed",
+    "implementation_and_semantic_evidence_are_ancestors": true
+  },
+  "semantic_verification": {
+    "invocation": "node --input-type=module (stdin probe importing readProductViewModel and buildRecommendationSurface)",
+    "observable": {
+      "valid_09_30_elapsed_7_coverage_70_sample_4": "history-enhanced with three fixed reasons",
+      "missing_or_mismatched_half_hour": "base",
+      "missing_or_6_elapsed_days": "base",
+      "coverage_69": "base",
+      "sample_counts_0_and_3": "base",
+      "sample_count_4": "history-enhanced",
+      "stale_history": "ZERO_ELIGIBLE",
+      "schema_columns_absent": "base",
+      "recursive_public_score_key": false
+    },
+    "exit": 0
+  },
+  "automated_verification": {
+    "commands": [
+      "PYTHONUTF8=1 python docs/execution/scripts/validate_authority_lock.py",
+      "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy",
+      "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-failure",
+      "node --test tests/gates/task-09-baseline-probe.test.mjs tests/gates/task-09-happy.test.mjs tests/gates/task-09-failure.test.mjs tests/product/data/product-read-model.test.mjs tests/product/data/recommendation-route-model.test.mjs",
+      "node tests/gates/task-09-repeat-probe.mjs",
+      "node tests/gates/task-09-surface-probe.mjs",
+      "npx tsc --noEmit",
+      "npm run lint",
+      "npm run build",
+      "git diff --check 4a7ff7167522356a9f1042e430c93d83009e031e 2abdc4a72f56e5d5e9216ec1cabb7b30d2cc7764"
+    ],
+    "observable": "All commands exited 0; focused suite reported 30 passing tests; lint had four inherited Todo 8 warnings and zero errors."
+  },
+  "fresh_visual_verification": {
+    "primary_artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-history-provenance-visual-qa.json",
+    "artifact_parse": "PASS",
+    "artifact_binding": "semantic implementation c9befa7 and semantic evidence tree 5220194 are recorded; stale 8997574 is rejected.",
+    "http_statuses": [200, 200, 200, 200],
+    "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+    "observables": "Each viewport records exactly two NOW/NEXT cards, zero raw aggregate score/purpose preset, no horizontal overflow, and no clipped primary actions. Pointer and keyboard details interaction opened the panel; summary target was 44px; product/page console errors were empty apart from explicitly classified local file:// font-load errors.",
+    "screenshot_integrity": "PASS: all seven referenced PNGs were non-empty and independently matched recorded byte count, SHA-256, PNG signature, and dimensions.",
+    "visual_spot_check": "PASS: independently viewed 390x844 expanded and 1616x923 images; they visibly show source-backed NOW/NEXT cards without raw score/purpose controls."
+  },
+  "adversarial_matrix": {
+    "stale_evidence": "PASS: rejected 899757490fc571c5b939b5b2aef6321f53d8caf1; current visual evidence is commit 3cf88f66cc20f37b3c06d8601adb92d728f3dfed.",
+    "dirty_worktree": "PASS: clean before verifier artifact.",
+    "hung_or_long_commands": "PASS: bounded automated commands and visual navigations completed.",
+    "flaky_repeat": "PASS: repeat probe exited 0.",
+    "misleading_success": "PASS: direct exits, parsed primary QA artifact, screenshot hashes/dimensions, port state, and current Git ancestry were checked.",
+    "repeated_interruption_cleanup": "PASS: current port 3199 was closed; fresh artifact records Playwright context and server cleanup.",
+    "cancel_resume": "NOT_APPLICABLE: recommendation evaluation has no resumable flow.",
+    "raw_browser_observations": "NONAUTHORITATIVE: browser-observations.raw.json is malformed JSON and was not used as proof; primary QA, source-visibility, cleanup, auxiliary assertions, and screenshots were independently checked."
+  },
+  "cleanup": {
+    "port_3199_closed": true,
+    "browser_context_closed_by_visual_qa": true,
+    "verifier_temp_probes": "stdin-only; none retained"
+  }
+}

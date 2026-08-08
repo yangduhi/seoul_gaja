@@ -1,0 +1,97 @@
+{
+    "head_sha":  "2249655c56594b01ae0512ffb6283569c8f11a7b",
+    "head_tree_sha":  "e2d483cf262e9279b02712be898e24c0fe8bf89d",
+    "worktree_snapshot_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "algorithm":  "sha256-path-manifest-v1",
+    "aggregate_sha256":  "b26fbd711cca98162a4edda3f58ce00efdada67969a4ef536707bcadef67b50c",
+    "entries":  [
+                    {
+                        "path":  ".omo/authority-lock.json",
+                        "sha256":  "db939f67b3f85438fb9e472d89825fd37c1bbad11992c82450253c7e31e078f5"
+                    },
+                    {
+                        "path":  ".omo/plans/seoul-gaja-v4-plan-review.md",
+                        "sha256":  "7974ee83ac2f4bfedbb37b3e9c29e8d92978f7f8edaca80c1a439f255c8510b9"
+                    },
+                    {
+                        "path":  "docs/execution/AMENDMENT-v4.1.md",
+                        "sha256":  "a0a0af6191dc6b67cf479456d8683769f7487b38a373605061a2812910b1670d"
+                    },
+                    {
+                        "path":  "docs/execution/contracts/design-audit-contract.json",
+                        "sha256":  "7b5e6ec2b77bcd5ac3738e64e484687052bf8b97f01ba1721605222da900fa0f"
+                    },
+                    {
+                        "path":  "docs/execution/contracts/design-system-contract.json",
+                        "sha256":  "34d34d43c03a046eef6bee7eb726c06a6c77fd0b0200ba86304707cf92613fa4"
+                    },
+                    {
+                        "path":  "design/design-tokens.json",
+                        "sha256":  "78d430102f237a96db0d76dc861dabd8aa6abd483271771b86ac17beeb4da823"
+                    },
+                    {
+                        "path":  "docs/codex-pack-v4/design/design.md",
+                        "sha256":  "5d7360ed063537596e9719358adf31915e9f35f4565f7700dfd75f14903d91b7"
+                    },
+                    {
+                        "path":  "docs/codex-pack-v4/design/component-contracts.md",
+                        "sha256":  "13d85870bcc065538326e5056a1746861e32a2d995da8803524f9c3e8ebe543c"
+                    },
+                    {
+                        "path":  "docs/codex-pack-v4/design/screen-specs.md",
+                        "sha256":  "7fa888b4efa30d3b93ed6c69955dc4f7c488f20258e0f72f430325a090955689"
+                    },
+                    {
+                        "path":  "app/design-tokens.generated.css",
+                        "sha256":  "eb980254a02187f9130da5734dd720220e0225f37e233e0bdec79024e8e839a9"
+                    },
+                    {
+                        "path":  "app/globals.css",
+                        "sha256":  "36367a4c5c0c7560299ece0a006cbf5d4ed652ba0052c9f45df492aad7974612"
+                    },
+                    {
+                        "path":  "app/_catalog/CatalogSurface.tsx",
+                        "sha256":  "42b65c7910023fee8085ce21dde9fc05eec4c0307142d0343a05cd52c7f43c2d"
+                    },
+                    {
+                        "path":  "app/_catalog/CatalogSurface.module.css",
+                        "sha256":  "2236b5f4fb084c8d72aed23e04de1d55de177c405cf3e4af84e82fbf73dd5a5c"
+                    },
+                    {
+                        "path":  "app/_design/PrimitiveShowcase.tsx",
+                        "sha256":  "53fe3f07e42b45458872a1a9002d3e7affacce1287ca2a0fbc0fb6bc9fe8a41d"
+                    },
+                    {
+                        "path":  "app/_design/Navigation.tsx",
+                        "sha256":  "424dc776fd519640c9f9421fd098cb3fc2522477f18d604a51cf31699c3f81c1"
+                    },
+                    {
+                        "path":  "app/_design/PlaceDetailSheet.tsx",
+                        "sha256":  "fd4bed763207e2af200f5e196a80960751fb10f58b68ff49a9b9391546780f0c"
+                    },
+                    {
+                        "path":  "app/_design/ChartAlternatives.tsx",
+                        "sha256":  "3251096f915258699bb8e306e0ce8fd307be4e9fbb3bacc78b37698dd7fd43b2"
+                    },
+                    {
+                        "path":  "app/places/[areaCode]/PlaceDetailClient.tsx",
+                        "sha256":  "bbb229858211e73dc443e3c91729a81b2830a3acd4ced27aca7c6ee5279afcc7"
+                    },
+                    {
+                        "path":  "tests/gates/task-11-happy.test.mjs",
+                        "sha256":  "cdb4a0337770622429708ff305dfa54223bdfc7ee253fd94775faaf8be5499f9"
+                    },
+                    {
+                        "path":  "tests/gates/task-11-failure.test.mjs",
+                        "sha256":  "3b8eb7383e47a14b29f46d9a4476f69bdf67585800b7971dbc35ae3aab22bc66"
+                    },
+                    {
+                        "path":  "tests/gates/task-11-cta-semantics.test.mjs",
+                        "sha256":  "5700c8014952a28261c11d971a40be9e1b2306436558a0e6934a7438cf672f2e"
+                    },
+                    {
+                        "path":  "tests/gates/task-10-map-retry-layout.test.mjs",
+                        "sha256":  "49119bb8f697a125659e4950691b9b7c93990e48e396abd47e64054ecf843821"
+                    }
+                ]
+}

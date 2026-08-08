@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-08-04T14:54:27+09:00",
+  "auditor": {
+    "type": "independent read-only subagent",
+    "agent_id": "019fcb49-7203-7a11-9a6c-dadcb3db71ef",
+    "durable_team_member": false
+  },
+  "binding": {
+    "branch": "codex/prep-v4-1",
+    "head": "23b4023870c47e1280f15f4dd5abcce7bcadcbd9",
+    "tree": "323a2481592e4351c95f2985e2955a1a9a1d2550",
+    "authority_lock_sha256": "2db06cf33be43f90bc4c13b2507dda4087aee37c211d3907a9eb5fced031b987",
+    "readiness_sha256": "9311706e77b0bdc2498c6a99138f0b626d6b797122de1ee5cd34ac0b55f0e7ef",
+    "runbook_sha256": "c328595eea8858d3ba296757f8bae8b20143110b50c3ea06b2060c2feb1ab180"
+  },
+  "verdict": "APPROVE",
+  "p0_p1_blockers": [],
+  "validator_results": {
+    "authority": "PASS: exit 0",
+    "command_map": "PASS: 30 entries, exit 0"
+  },
+  "notes": [
+    "Product implementation has not started.",
+    "implementation_allowed=false and explicit user approval remains pending.",
+    "THREAD_TOOL_UNAVAILABLE is recorded fail-closed.",
+    "Standing task-bootstrap authority is limited to pre-implementation A/B task creation and does not grant product implementation or external actions.",
+    "A later explicit implementation approval grants only isolated local commits and local candidate integration; push, PR/default-branch merge, deploy, secrets, live APIs, and migration execution remain owner gates."
+  ]
+}

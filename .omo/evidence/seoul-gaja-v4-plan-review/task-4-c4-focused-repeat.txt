@@ -1,0 +1,25 @@
+✔ Given a missing, invalid, or unavailable token, when authorization is checked, then the probe fails closed (4.701ms)
+✔ Given an expired server-side token, when an otherwise matching bearer token is checked, then the probe rejects it (1.6204ms)
+✔ Given malformed or token-like synthetic input, when the probe payload is parsed, then it cannot override header authentication (0.4396ms)
+✔ Given the local D1 migration path, when the capability table contract is inspected, then SQL-backed lifecycle storage is declared (9.1059ms)
+✔ Given the Phase 00 owner checklist, when activation is reviewed, then state and expiry settings are explicit (1.5754ms)
+✔ Given a matching candidate receipt, when its identity is checked, then it binds the current exact commit and tree (1.2078ms)
+✔ Given a hung D1 health operation, when the disposable lifecycle runs, then it times out and reaches cleanup (11.3787ms)
+✔ Given an unconfirmed rollback, when the lifecycle fails, then cleanup still runs and the failure is surfaced (1.5521ms)
+✔ Given the source-backed probe routes, when the server boundary is inspected, then the secret stays server-only (2.1355ms)
+✔ Given a matching server-side bearer token, when the disposable lifecycle runs, then health through cleanup succeeds (4.1327ms)
+✔ Given the disposable Phase 00 migration, when the SQL-backed D1 lifecycle runs, then rollback and cleanup leave no synthetic row (9.2277ms)
+✔ Given the route factory, when a valid synthetic POST is handled, then D1 lifecycle success is observable (59.7396ms)
+✔ Given a probe-enabled route, when health is requested, then the SQL-backed adapter reports healthy (2.6295ms)
+✔ Given a probe-enabled route, when auth or JSON is malformed, then the boundary rejects it (3.9287ms)
+✔ Given a valid request and an unavailable D1 binding, when POST is handled, then the route fails closed (3.1472ms)
+✔ Given cleanup state, when health and POST are handled, then both routes are disabled (2.5082ms)
+✔ Given the parent integration identity, when the canonical receipt is checked, then it must be regenerated instead of using HEAD^ (1.1893ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 216.3094

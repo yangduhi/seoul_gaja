@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "canonical_route": "/places/{areaCode}",
+  "entry_modes": {
+    "in_app": {
+      "history_state": { "entry": "sheet" },
+      "mobile_surface": "BOTTOM_SHEET",
+      "desktop_surface": "DETAIL_PANE"
+    },
+    "direct_reload_shared": { "surface": "FULL_SCREEN" }
+  },
+  "sharing": {
+    "url": "/places/{areaCode}",
+    "forbids": ["history.state", "user coordinates"],
+    "disclosure": "This link identifies only the official place and does not include your current location."
+  },
+  "invalid_place": {
+    "fallback_path": "/",
+    "robots": "noindex,nofollow"
+  },
+  "state_axes": {
+    "snapshot": ["available", "carried_forward", "unavailable", "expired"],
+    "map": ["ready", "unavailable"],
+    "history": ["ACCUMULATING", "PROVISIONAL", "STABLE", "MATURE"],
+    "geolocation": ["idle", "denied", "timeout"],
+    "selection": ["none", "valid", "invalid"]
+  },
+  "precedence": ["invalid selection", "expired or unavailable snapshot", "map unavailable", "geolocation failure", "history maturity"],
+  "search": {
+    "official_place": "explicit",
+    "address": "navigation_only",
+    "no_results": "show clear action and catalog browse",
+    "forbidden_routes": ["/settings", "/help", "/saved"]
+  }
+}

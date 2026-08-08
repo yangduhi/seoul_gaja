@@ -1,0 +1,1 @@
+docs\evidence\phase-00\phase-receipt.json: 'tests/gates/task-04-route.test.mjs' should not be valid under {'pattern': '(?i)(bearer\\s+[^\\s]+|site_ingest_token\\s*=|sk-[a-z0-9_-]{8,}|api[_-]?key\\s*=)'}

@@ -1,0 +1,7 @@
+HTTP/1.1 404 Not Found
+vary: RSC, Accept, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch, Next-Url, X-Vinext-Interception-Context, X-Vinext-Mounted-Slots, X-Vinext-Rsc-Render-Mode
+content-length: 9
+content-type: text/plain;charset=UTF-8
+Date: Thu, 06 Aug 2026 11:56:05 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5

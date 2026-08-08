@@ -1,0 +1,24 @@
+{
+  "schema_version": 2,
+  "task": "Todo 7 snapshot-truth happy gate",
+  "observed_at": "2026-08-07T03:42:36.1964052+09:00",
+  "candidate_commit": "6b1b41d8840f42ce29343054a1ed2ca6b1a576b1",
+  "candidate_tree": "95ddfa2db19ff3750cc675b494034218d7b7aad0",
+  "plan_sha256": "3e08229b13e5420c968240a7f75953317ce379a255782f62bd1d9bd41df5b5d1",
+  "command": {
+    "argv": ["python", "docs/execution/scripts/run_command_map.py", "--map", "docs/execution/contracts/execution-command-map.json", "--id", "task-07-happy"],
+    "actual_exit": 0,
+    "inner_test_exit": 0,
+    "tests": 7,
+    "verdict": "PASS"
+  },
+  "observables": [
+    "exact 121-identity first activation and 97 threshold pass",
+    "one refreshed-fresh plus 96 non-expired carried replacement activates",
+    "immediately prior partial recovery with explicit supersession is accepted",
+    "explicit fetched_at_degraded basis is recorded",
+    "30/90/180 minute UTC boundaries classify deterministically",
+    "legacy SQLite fixture remains readable after migration 0003 and accepts a new revision write"
+  ],
+  "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-7-happy.json"
+}

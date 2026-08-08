@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "task": 9,
+  "command_id": "task-09-happy",
+  "invocation": "PYTHONUTF8=1 python docs/execution/scripts/run_command_map.py --map docs/execution/contracts/execution-command-map.json --id task-09-happy",
+  "binary_observable": "actual_exit=0; 7 tests passed; NOW/NEXT available, partial, provisional, stable, and mature scenarios remained source-backed",
+  "actual_exit": 0,
+  "verdict": "PASS",
+  "binding": {
+    "tested_commit": "899757490fc571c5b939b5b2aef6321f53d8caf1",
+    "tested_tree": "d1661589ab32c4b977517db74c850d4560f7c828",
+    "plan_sha256": "4b608ffbbb4164a7fc7bef925dab6e36ca773534cdc1e04f58ada19a80aa581d"
+  },
+  "artifact": ".omo/evidence/seoul-gaja-v4-plan-review/task-9-happy.json"
+}

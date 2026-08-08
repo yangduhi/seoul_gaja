@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "report_type": "Todo10EvidenceRebindVerification",
+  "verdict": "PASS",
+  "scope": "Evidence-only rebind; no product or test files changed.",
+  "candidate": {
+    "branch": "codex/todo10-ui-contract-fix",
+    "implementation_head": "2ffed69d9360579eca3efe173cf4b888f778298e",
+    "implementation_tree": "e077facfd6389b01f33a784b1f715d8af90e4b52",
+    "plan_sha256": "f5359c2a91169a66195383ac935259b56780c8069d1e0fd85de641141138dc3e",
+    "authority_lock_sha256": "af138ab215937fb8737f690073eee8c8f27ecd777d506f4aed8badfb7cfb91d3"
+  },
+  "evidence_commit": {
+    "kind": "single_evidence_only_follow_up",
+    "self_reference": false,
+    "sha256": "reported by git after commit; intentionally not embedded in this receipt"
+  },
+  "identity": {
+    "invocation": "git rev-parse HEAD; git rev-parse HEAD^{tree}; git status --short --branch",
+    "observable": "HEAD/tree equal the implementation binding; only evidence/receipt paths are dirty before this commit",
+    "artifact": "exact-head-binding.json"
+  },
+  "stale_state_rebind": {
+    "invocation": "parse verification-summary.json and exact-head-binding.json; assert implementation_head/tree equal the candidate",
+    "observable": "stale base_head/base_tree were replaced by implementation_head/implementation_tree; evidence_commit is explicitly non-self-referential",
+    "artifact": "verification-summary.json"
+  },
+  "source_test_unchanged": {
+    "invocation": "git diff --name-only 2ffed69d9360579eca3efe173cf4b888f778298e -- app tests",
+    "observable": "0 paths",
+    "artifact": "third-stop-hook-verification.json"
+  },
+  "focused_suite": {
+    "invocation": "node --test tests/gates/task-10-happy.test.mjs tests/gates/task-10-failure.test.mjs tests/product/detail-history/detail-contract.test.mjs tests/gates/task-10-map-retry-hit-test.test.mjs",
+    "observable": "21 pass, 0 fail, exit 0",
+    "artifact": "stop-hook-focused-tests.log"
+  },
+  "build": {
+    "invocation": "npm run build",
+    "observable": "Vinext five build stages complete, exit 0",
+    "artifact": "stop-hook-build.log"
+  },
+  "browser_matrix": {
+    "invocation": "Node JSON/PNG verifier over browser-matrix.json and *.png",
+    "observable": {
+      "two_passes_x_four_viewports": true,
+      "viewports": ["390x844", "430x932", "768x1024", "1616x923"],
+      "in_app_entries": 8,
+      "direct_reload_surface": "FULL_SCREEN",
+      "invalid_route": {"path": "/", "robots": "noindex, nofollow", "shareCount": 0},
+      "hostile_search_inert": true,
+      "map_retry_hit": true,
+      "failed_responses": 0,
+      "png_count": 10,
+      "png_dimensions_valid": true
+    },
+    "artifact": "browser-matrix.json"
+  },
+  "cleanup": {
+    "port": 53666,
+    "port_free": true,
+    "owned_runtime_processes": 0,
+    "playwright_mcp_probe": "Get-CimInstance Win32_Process; Playwright MCP + task markers; self excluded",
+    "task_owned_playwright_mcp_processes": 0,
+    "artifact": "cleanup-receipt.json"
+  },
+  "adversarial": {
+    "preserved_record": "adversarial-classes.json",
+    "malformed_input": "PASS",
+    "prompt_injection": "PASS",
+    "stale_state": "PASS",
+    "dirty_worktree": "PASS",
+    "hung_or_long_commands": "PASS",
+    "flaky_tests": "PASS",
+    "misleading_success_output": "PASS",
+    "repeated_interruptions": "PASS",
+    "cancel_resume": "NOT_APPLICABLE: no resumable operation"
+  },
+  "artifact_hashes": {
+    "browser-matrix.json": "f8b09d17bf7e3644bdc00aa80e88c3e69a5e17f0b417fea737131a6d6b2a8598",
+    "invalid-fallback.png": "296e3e6b498b8d6fab2e3726a8e55fbcf6a39398cd13d72010243850a62d3819",
+    "unavailable-retry.png": "0a545e0e9f769d92deec207cfe280db78a18e9c3133cc0378b6d8f82d06f70ec",
+    "pass-1-390x844-sheet.png": "73b3394dd9996db7153503d8da6499cf5b4fb30e2b0805d9a6bcfd2820edc27f",
+    "pass-1-430x932-sheet.png": "8c2c6b7dce7e0333a3af743208669a27e82ee35f6ad14dd7b0e3ec0f762a90f9",
+    "pass-1-768x1024-sheet.png": "f9f90d1a9cbca65023501328cb38714e02ee7dce48d5b5ceba48cc31b0fb2f0d",
+    "pass-1-1616x923-sheet.png": "12c3151fa1c957501423d64ce5a9fa04f8d7b934e1f595d5aa454a50e43f19d4",
+    "pass-2-390x844-sheet.png": "b7f20480b5908f1c036b407908b63b070f5e84958dfaf243d98484d12faf4743",
+    "pass-2-430x932-sheet.png": "0467e1e040d359c0c2077bb144501f1a0f6125c5ec77e74c8a5777ca8143e0d9",
+    "pass-2-768x1024-sheet.png": "449c7f7f004eff07eddbe75075a54a755c658befb236434fdbdd3cc71fe08500",
+    "pass-2-1616x923-sheet.png": "a7e969951c74e03ece7b8ff0a1f6240f076f7630578e9bf413684ba2337b3b7c",
+    "cleanup-receipt.json": "6849048f4a3f3006189fa48dd6f23b12c6aded7da8c04ec95cfbd9a2ec3d34fc",
+    "adversarial-classes.json": "b12524aef5f59f22c198fec55b166c5cf4334eb13a3ea9133fbe0ada1dca5e49",
+    "verification-summary.json": "f7438934826fd2cb9eb11af751d580e43e87ce13cf3e7bc09b61d5939ecdfc41",
+    "exact-head-binding.json": "0d9fc11456ddb282794b7d5a631cab83e34819e85fada48dea0c97fe4d5d6492",
+    "second-stop-hook-verification.json": "f99f68f667aaf37d2ba52ea622b69729d0defc45939ea8691b4edc850f1c3239",
+    "stop-hook-verification.json": "c43c5d08849ec4060850b694c3243b61141b5243aaa289e7d8495a20616cfd4d",
+    "third-stop-hook-verification.json": "f451ec80908bfb3ee70fd5cb150db7f7865f81f97b6d90865fce2554b7dfb163"
+  },
+  "hash_manifest": "hashes.sha256"
+}

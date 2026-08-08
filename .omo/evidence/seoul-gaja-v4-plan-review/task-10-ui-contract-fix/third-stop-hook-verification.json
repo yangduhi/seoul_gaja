@@ -1,0 +1,24 @@
+{
+  "verdict": "PASS",
+  "verified_head": "2ffed69d9360579eca3efe173cf4b888f778298e",
+  "verified_tree": "e077facfd6389b01f33a784b1f715d8af90e4b52",
+  "git_object_proof": {
+    "commit_type": "commit",
+    "tree_type": "tree",
+    "source_test_drift_count": 0,
+    "committed_browser_matrix_blob": "4557352e305a701dfca281ab8b72fae4bcd1a41a",
+    "worktree_browser_matrix_blob": "4557352e305a701dfca281ab8b72fae4bcd1a41a",
+    "browser_matrix_sha256": "f8b09d17bf7e3644bdc00aa80e88c3e69a5e17f0b417fea737131a6d6b2a8598",
+    "committed_png_count": 10
+  },
+  "cross_checks": {
+    "second_receipt_artifact_hashes": "all six matched",
+    "owned_runtime_processes": 0
+  },
+  "failed_attempt": {
+    "classification": "tooling-only",
+    "error": "Windows PowerShell runtime lacks System.Security.Cryptography.SHA256.HashData",
+    "replacement": "git hash-object compared the committed and worktree browser-matrix blobs"
+  },
+  "judgment": "PASS is supported by Git object identity, zero source/test drift, committed browser evidence equality, committed PNG blob sizes, prior verifier artifact hashes, and zero owned runtime processes."
+}
