@@ -53,7 +53,7 @@
     "lockfile": "package-lock.json",
     "lockfile_sha256": "508e5e494cb77250db352459ed25e92614886e7f38c5739334649616976d9439",
     "hosting_config": ".openai/hosting.json",
-    "hosting_config_sha256": "89610cb100afd3db32d865423a69a3fe2de1da54150570ea979a63143a6d5bdd"
+    "hosting_config_sha256": "6cbfc847564fd439312bc7ba9b5b84e385eddfaaf6fb4c3a0eca682fb02eea83"
   },
   "lifecycle": {
     "implementation_allowed": true,
