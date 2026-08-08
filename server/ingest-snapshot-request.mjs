@@ -4,6 +4,7 @@ import {
   persistProvenanceReceipt,
   ProvenancePolicyError,
 } from "./provenance-cadence.mjs";
+import { RequestBodyTooLargeError, readJsonBodyWithinLimit } from "./request-body.mjs";
 
 const MAX_PAYLOAD_BYTES = 1024 * 1024;
 const CATALOG_SIZE = 121;
@@ -53,13 +54,11 @@ export async function handleIngestSnapshot(request, expectedToken, database) {
   if (typeof expectedToken !== "string" || expectedToken.length === 0) return jsonError("ingest_unavailable", 503);
   if (request.headers.get("authorization") !== `Bearer ${expectedToken}`) return jsonError("unauthorized", 401);
 
-  const contentLength = Number(request.headers.get("content-length") ?? "0");
-  if (!Number.isSafeInteger(contentLength) || contentLength < 0 || contentLength > MAX_PAYLOAD_BYTES) return jsonError("payload_too_large", 413);
-
   let payload;
   try {
-    payload = await request.json();
+    payload = await readJsonBodyWithinLimit(request, MAX_PAYLOAD_BYTES);
   } catch (error) {
+    if (error instanceof RequestBodyTooLargeError) return jsonError("payload_too_large", 413);
     if (error instanceof SyntaxError) return jsonError("invalid_json", 400);
     throw error;
   }

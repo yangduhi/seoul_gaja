@@ -3,6 +3,8 @@ export const CAPABILITY_PROBE_PATH = "/api/internal/capability-probe/ingest";
 export const CAPABILITY_PROBE_STATE = "probe";
 const MAX_SYNTHETIC_PAYLOAD_BYTES = 4096;
 
+import { RequestBodyTooLargeError, readJsonBodyWithinLimit } from "./request-body.mjs";
+
 class CapabilityLifecycleError extends Error {
   constructor(message) {
     super(message);
@@ -149,10 +151,32 @@ export function createCapabilityProbeRouteHandlers(environment, options = {}) {
   const timeoutMs = options.timeoutMs;
   const createProbeId = options.createProbeId ?? (() => crypto.randomUUID());
 
-  async function GET() {
+  function authorizeRequest(request) {
+    const authorization = authorizeCapabilityProbe(
+      request.headers.get("authorization"),
+      environment.SITE_INGEST_TOKEN,
+      environment.SITE_INGEST_TOKEN_EXPIRES_AT,
+      now,
+    );
+    if (authorization.kind === "unavailable") {
+      return Response.json({ error: "capability_probe_unavailable" }, { status: 503 });
+    }
+    if (authorization.kind === "rejected") {
+      return Response.json({ error: "unauthorized" }, { status: 401 });
+    }
+    if (authorization.kind === "expired") {
+      return Response.json({ error: "token_expired" }, { status: 401 });
+    }
+    return null;
+  }
+
+  async function GET(request) {
     if (!isCapabilityProbeEnabled(environment.PHASE_00_CAPABILITY_PROBE_STATE)) {
       return Response.json({ error: "capability_probe_disabled" }, { status: 404 });
     }
+
+    const rejected = authorizeRequest(request);
+    if (rejected) return rejected;
 
     try {
       await createD1CapabilityAdapter(environment.DB).health();
@@ -170,31 +194,16 @@ export function createCapabilityProbeRouteHandlers(environment, options = {}) {
       return Response.json({ error: "capability_probe_disabled" }, { status: 404 });
     }
 
-    const authorization = authorizeCapabilityProbe(
-      request.headers.get("authorization"),
-      environment.SITE_INGEST_TOKEN,
-      environment.SITE_INGEST_TOKEN_EXPIRES_AT,
-      now,
-    );
-    if (authorization.kind === "unavailable") {
-      return Response.json({ error: "capability_probe_unavailable" }, { status: 503 });
-    }
-    if (authorization.kind === "rejected") {
-      return Response.json({ error: "unauthorized" }, { status: 401 });
-    }
-    if (authorization.kind === "expired") {
-      return Response.json({ error: "token_expired" }, { status: 401 });
-    }
-
-    const length = Number(request.headers.get("content-length") ?? "0");
-    if (!Number.isSafeInteger(length) || length < 0 || length > MAX_SYNTHETIC_PAYLOAD_BYTES) {
-      return Response.json({ error: "payload_too_large" }, { status: 413 });
-    }
+    const rejected = authorizeRequest(request);
+    if (rejected) return rejected;
 
     let payload;
     try {
-      payload = await request.json();
+      payload = await readJsonBodyWithinLimit(request, MAX_SYNTHETIC_PAYLOAD_BYTES);
     } catch (error) {
+      if (error instanceof RequestBodyTooLargeError) {
+        return Response.json({ error: "payload_too_large" }, { status: 413 });
+      }
       if (error instanceof SyntaxError) {
         return Response.json({ error: "invalid_json" }, { status: 400 });
       }

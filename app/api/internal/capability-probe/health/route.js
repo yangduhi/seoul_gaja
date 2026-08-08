@@ -6,6 +6,6 @@ import { createCapabilityProbeRouteHandlers } from "../../../../../server/phase-
 
 const handlers = createCapabilityProbeRouteHandlers(env);
 
-export function GET() {
-  return handlers.GET();
+export function GET(request) {
+  return handlers.GET(request);
 }

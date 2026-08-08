@@ -55,7 +55,9 @@ test("Given a probe-enabled route, when health is requested, then the SQL-backed
   const database = await createLocalD1CapabilityDatabase();
   try {
     const handlers = createCapabilityProbeRouteHandlers(makeEnvironment(database));
-    const response = await handlers.GET();
+    const response = await handlers.GET(new Request("https://local.test/api/internal/capability-probe/health", {
+      headers: { authorization: `Bearer ${AUTH_TOKEN}` },
+    }));
 
     assert.equal(response.status, 200);
     assert.deepEqual(await response.json(), {
