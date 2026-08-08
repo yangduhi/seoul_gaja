@@ -6,7 +6,6 @@ import test from 'node:test';
 import {
   closeSheet,
   createDetailNavigation,
-  createShareRequest,
   resolveDetailEntry,
 } from '../../server/detail-state.mjs';
 import * as detailState from '../../server/detail-state.mjs';
@@ -28,7 +27,6 @@ test('Given an invalid or removed area code, When detail navigation resolves, Th
     message: 'This official place is no longer available. Browse the current catalog.',
     announcement: 'Place not found. The current official catalog is available.',
   });
-  assert.equal(createShareRequest({ catalog: record.catalog, areaCode: 'removed', origin: record.origin }), null);
 });
 
 test('Given an open sheet, When it closes, Then it goes back once and restores selection, scroll, and focus without a new history entry', async () => {
@@ -76,12 +74,4 @@ test('Given no official-place results and hostile text, When search resolves, Th
     clearAvailable: true,
     announcement: 'No official places found. Clear search to browse the catalog.',
   });
-});
-
-test('Given every share outcome, When it resolves, Then success, cancellation, clipboard fallback, and retry are explicit', () => {
-  assert.equal(typeof detailState.resolveShareOutcome, 'function');
-  assert.deepEqual(detailState.resolveShareOutcome('shared'), { status: 'SUCCESS', announcement: 'Canonical place link shared.', retryTarget: 'none' });
-  assert.deepEqual(detailState.resolveShareOutcome('cancelled'), { status: 'CANCELLED', announcement: 'Sharing cancelled.', retryTarget: 'share' });
-  assert.deepEqual(detailState.resolveShareOutcome('clipboard'), { status: 'SUCCESS', announcement: 'Canonical place link copied.', retryTarget: 'none' });
-  assert.deepEqual(detailState.resolveShareOutcome('failed'), { status: 'FAILED', announcement: 'Sharing failed. Copy the canonical URL from the address bar.', retryTarget: 'share' });
 });

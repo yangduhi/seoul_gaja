@@ -95,23 +95,6 @@ export function closeSheet(restore) {
   return { kind: 'HISTORY_BACK', restore };
 }
 
-export function createShareRequest(input) {
-  const place = catalogPlace(input.catalog, input.areaCode);
-  if (place === null || typeof input.origin !== 'string') return null;
-  let url;
-  try {
-    url = new URL(canonicalPath(place.areaCode), input.origin).toString();
-  } catch (error) {
-    if (error instanceof TypeError) return null;
-    throw error;
-  }
-  return {
-    kind: 'SHARE',
-    url,
-    disclosure: 'This link identifies only the official place and does not include your current location.',
-  };
-}
-
 export function resolveOfficialSearch(catalog, input) {
   const places = Array.isArray(catalog) ? catalog : [];
   const query = typeof input === 'string' ? input.trim() : '';
@@ -157,25 +140,11 @@ export function toggleDetailExpansion(expanded) {
   return { expanded: !expanded, historyCommand: 'NONE' };
 }
 
-export function resolveShareOutcome(outcome) {
-  switch (outcome) {
-    case 'shared':
-      return { status: 'SUCCESS', announcement: 'Canonical place link shared.', retryTarget: 'none' };
-    case 'clipboard':
-      return { status: 'SUCCESS', announcement: 'Canonical place link copied.', retryTarget: 'none' };
-    case 'cancelled':
-      return { status: 'CANCELLED', announcement: 'Sharing cancelled.', retryTarget: 'share' };
-    default:
-      return { status: 'FAILED', announcement: 'Sharing failed. Copy the canonical URL from the address bar.', retryTarget: 'share' };
-  }
-}
-
 function stateEntry(snapshot, map, history, geolocation, selection) {
   const availability = detailAvailability(snapshot);
   const disabledActions = [...availability.disabledActions];
   if (map === 'unavailable') disabledActions.push('map');
   if (geolocation === 'denied') disabledActions.push('near-me-sort');
-  if (selection !== 'valid') disabledActions.push('share');
   if (selection === 'invalid') disabledActions.push('detail');
 
   const warnings = [availability.warningCopy];

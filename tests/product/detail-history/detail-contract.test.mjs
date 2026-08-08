@@ -16,7 +16,8 @@ test("detail route is bound to the truthful D1 read model", () => {
 });
 
 test("detail surface exposes source-backed forecast, history, and recovery controls", () => {
-  for (const token of ["공식 예측", "히스토리 인사이트", "가족과 공유", "최근 데이터가 만료", "결측값은 0으로 대체하지 않습니다", "Escape"]) assert.match(route, new RegExp(token));
+  for (const token of ["공식 예측", "히스토리 인사이트", "최근 데이터가 만료", "결측값은 0으로 대체하지 않습니다", "Escape"]) assert.match(route, new RegExp(token));
+  assert.doesNotMatch(route, /가족과 공유|navigator\.share|navigator\.clipboard/);
   assert.match(route, /forecast\.length >= 6/);
   assert.match(route, /window\.history\.back/);
   assert.match(route, /seoul-gaja:detail-restored/);

@@ -253,10 +253,9 @@ export function CatalogSurface({ status, catalog, snapshotStatus, sourceTime, re
       {sheetOpen && compactDetail && selectedRow && <PlaceDetailSheet label={`${selectedRow.areaName} 상세`} onRequestClose={closePlace} surface={detailSurface}>
         <div className={styles.detailPaneHeader}><div><p className={styles.eyebrow}>OFFICIAL PLACE DETAIL</p><h2>{selectedRow.areaName}</h2></div><span className={styles.placeLevel} data-level={selectedRow.crowdLevel}>{displayLevel(selectedRow.crowdLevel)}</span></div>
         <div className={styles.detailStatusCard}><strong>{displayRange(selectedRow)}</strong><p className={styles.caption}>{displaySource(selectedRow)}</p></div>
-        <p className={styles.caption}>{selectedRow.availability === "expired" ? "최근 데이터가 만료되어 공식 예보와 다음 시간 안내를 숨깁니다." : selectedRow.availability === "unavailable" ? "현재 혼잡 데이터를 확인할 수 없습니다." : "공식 장소 링크에는 현재 위치가 포함되지 않습니다."}</p>
+        <p className={styles.caption}>{selectedRow.availability === "expired" ? "최근 데이터가 만료되어 공식 예보와 다음 시간 안내를 숨깁니다." : selectedRow.availability === "unavailable" ? "현재 혼잡 데이터를 확인할 수 없습니다." : "현재 혼잡도와 공식 예측을 함께 확인합니다."}</p>
         <button className={styles.detailAction} type="button" aria-expanded={expanded} onClick={() => setExpanded((value) => !value)}>{expanded ? "간단히 보기" : "상세 정보 펼치기"}</button>
         {expanded && <div className={styles.detailMeta}><span>공식 예보</span><strong>{selectedRow.availability === "available" ? "원천 데이터 기준" : "사용 불가"}</strong><span>히스토리</span><strong>축적 상태 확인</strong></div>}
-        <a className={styles.externalMap} href={`/places/${encodeURIComponent(selectedRow.areaCode)}`}>공유 가능한 전체 화면 링크</a>
       </PlaceDetailSheet>}
       <Navigation activeId={activeNavigationId} items={[{ id: "map", label: "지도" }, { id: "list", label: "목록" }]} label="주요 화면" onSelect={(item) => { setActiveNavigationId(item.id); if (item.id === "list") document.getElementById("catalog-list")?.scrollIntoView({ behavior: "smooth", block: "start" }); }} />
     </main>
