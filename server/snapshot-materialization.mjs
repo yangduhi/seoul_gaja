@@ -2,6 +2,29 @@ import { ProvenancePolicyError } from "./provenance-cadence.mjs";
 
 const FORECAST_TTL_MS = 180 * 60 * 1000;
 
+const IMMUTABLE_PROVENANCE_TRIGGER_STATEMENTS = Object.freeze([
+  `CREATE TRIGGER IF NOT EXISTS provenance_receipts_no_update
+BEFORE UPDATE ON provenance_receipts
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
+END;`,
+  `CREATE TRIGGER IF NOT EXISTS provenance_receipts_no_delete
+BEFORE DELETE ON provenance_receipts
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
+END;`,
+  `CREATE TRIGGER IF NOT EXISTS provenance_source_bindings_no_update
+BEFORE UPDATE ON provenance_source_bindings
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
+END;`,
+  `CREATE TRIGGER IF NOT EXISTS provenance_source_bindings_no_delete
+BEFORE DELETE ON provenance_source_bindings
+BEGIN
+  SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
+END;`,
+]);
+
 export class SnapshotMaterializationError extends Error {
   constructor(code) {
     super(code);
@@ -262,10 +285,21 @@ function immutableStorageConflictCode(error) {
   return null;
 }
 
+async function installImmutableProvenanceTriggers(database) {
+  try {
+    for (const statement of IMMUTABLE_PROVENANCE_TRIGGER_STATEMENTS) {
+      await database.prepare(statement).run();
+    }
+  } catch {
+    throw new ProvenancePolicyError("PROVENANCE_TRIGGER_BOOTSTRAP_FAILED");
+  }
+}
+
 export async function persistAcceptedSnapshot(database, snapshot, receipt) {
   if (database === null || database === undefined || typeof database.prepare !== "function" || typeof database.batch !== "function") {
     throw new ProvenancePolicyError("PROVENANCE_STORAGE_UNAVAILABLE");
   }
+  await installImmutableProvenanceTriggers(database);
   try {
     await database.batch(materializationStatements(database, snapshot, receipt));
   } catch (error) {
