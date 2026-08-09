@@ -59,6 +59,10 @@ export function createD1Mock() {
     bindings,
     prepare(sql) {
       return {
+        async run() {
+          statements.push({ sql, args: [] });
+          return boundStatement(sql, []).run();
+        },
         bind(...args) {
           statements.push({ sql, args });
           return boundStatement(sql, args);

@@ -59,20 +59,6 @@ CREATE TABLE provenance_receipts (
 );
 --> statement-breakpoint
 
-CREATE TRIGGER provenance_receipts_no_update
-BEFORE UPDATE ON provenance_receipts
-BEGIN
-  SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
-END;
---> statement-breakpoint
-
-CREATE TRIGGER provenance_receipts_no_delete
-BEFORE DELETE ON provenance_receipts
-BEGIN
-  SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
-END;
---> statement-breakpoint
-
 CREATE TABLE provenance_source_bindings (
   derived_kind TEXT NOT NULL CHECK(derived_kind IN ('materialization', 'profile')),
   derived_key TEXT NOT NULL,
@@ -83,20 +69,6 @@ CREATE TABLE provenance_source_bindings (
   FOREIGN KEY(source_receipt_id, source_receipt_version)
     REFERENCES provenance_receipts(receipt_id, receipt_version)
 );
---> statement-breakpoint
-
-CREATE TRIGGER provenance_source_bindings_no_update
-BEFORE UPDATE ON provenance_source_bindings
-BEGIN
-  SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
-END;
---> statement-breakpoint
-
-CREATE TRIGGER provenance_source_bindings_no_delete
-BEFORE DELETE ON provenance_source_bindings
-BEGIN
-  SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
-END;
 --> statement-breakpoint
 
 -- Fixture backfill only: one revision per legacy snapshot, preserving the old snapshot_id.

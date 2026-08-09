@@ -84,7 +84,7 @@ function request(payload) {
   });
 }
 
-test("Given the Sites migration source, when a fresh D1-shaped database applies it, then executable storage tables exist", async () => {
+test("Given the Sites migration package, when a semicolon-only D1-shaped executor applies it, then executable storage tables exist without immutable trigger bodies", async () => {
   // Given
   const database = createSqliteD1();
 
@@ -102,6 +102,7 @@ test("Given the Sites migration source, when a fresh D1-shaped database applies 
       "provenance_receipts",
       "phase_00_capability_probe",
     ]) assert.equal(await database.count(table), 0);
+    assert.equal(await database.countTriggers(), 0);
   } finally {
     database.close();
   }
@@ -130,19 +131,18 @@ test("Given a complete 121-place official-shaped payload, when canonical ingest 
     assert.equal(await database.count("raw_observation_15m"), 121);
     assert.equal(await database.count("detail_cache"), 121);
     assert.equal(await database.count("snapshot_runs"), 1);
+    assert.equal(await database.countTriggers(), 4);
+    assert.deepEqual(await database.triggerNames(), [
+      "provenance_receipts_no_delete",
+      "provenance_receipts_no_update",
+      "provenance_source_bindings_no_delete",
+      "provenance_source_bindings_no_update",
+    ]);
     assert.equal((await database.prepare("SELECT payload_sha256 FROM snapshot_runs").first()).payload_sha256, payload.payloadSha256);
-    let everyForecastHasSixFuturePoints = false;
-    let everyForecastMatchesSnapshot = false;
     if (product.status === "READY") {
       assert.equal(Object.keys(product.data.officialForecast.byAreaCode).length, 121);
       assert.equal(product.data.officialForecast.status, "READY");
       const forecasts = Object.values(product.data.officialForecast.byAreaCode);
-      everyForecastHasSixFuturePoints = forecasts.every((forecast) =>
-        forecast.points.filter((point) => Date.parse(point.timestamp) > Date.parse(now)).length >= 6,
-      );
-      everyForecastMatchesSnapshot = forecasts.every((forecast) =>
-        forecast.points.every((point) => point.snapshotId === payload.snapshotId),
-      );
       for (const forecast of forecasts) {
         assert.ok(forecast.points.filter((point) => Date.parse(point.timestamp) > Date.parse(now)).length >= 6);
         assert.ok(forecast.points.every((point) => point.snapshotId === payload.snapshotId));
@@ -154,16 +154,44 @@ test("Given a complete 121-place official-shaped payload, when canonical ingest 
     if (process.env.REALDATA_MANUAL_QA === "1") {
       process.stdout.write(`${JSON.stringify({
         firstStatus: response.status,
-        replayStatus: replay.status,
         readiness: product.status,
+        triggerCount: await database.countTriggers(),
         catalogCount: await database.count("place_catalog"),
         currentCount: await database.count("current_snapshot"),
         forecastCount: await database.count("detail_cache"),
-        everyForecastHasSixFuturePoints,
-        everyForecastMatchesSnapshot,
-        zeroFabricatedRecommendationValues,
       })}\n`);
     }
+  } finally {
+    database.close();
+  }
+});
+
+test("Given an accepted snapshot, when a stale receipt attempts to replace its immutable source bindings, then ingest returns 409 without mutation", async () => {
+  // Given
+  const database = createSqliteD1();
+  const firstPayload = await completeSnapshot();
+  const stalePayload = await completeSnapshot();
+  stalePayload.provenanceReceipt = {
+    ...stalePayload.provenanceReceipt,
+    receipt_id: "fixture:realdata-d1-materialization:stale",
+    workflow_run_id: "fixture-run-realdata-d1-stale",
+  };
+
+  try {
+    await applyDrizzleMigrations(database, migrationRoot);
+    const first = await handleIngestSnapshot(request(firstPayload), "local-token", database);
+
+    // When
+    const stale = await handleIngestSnapshot(request(stalePayload), "local-token", database);
+
+    // Then
+    assert.equal(first.status, 202);
+    assert.equal(stale.status, 409);
+    assert.deepEqual(await stale.json(), { error: "provenance_conflict" });
+    assert.equal(await database.count("provenance_receipts"), 1);
+    assert.equal(await database.count("provenance_source_bindings"), 2);
+    assert.equal(await database.count("snapshot_runs"), 1);
+    assert.equal(await database.count("current_snapshot"), 121);
   } finally {
     database.close();
   }
@@ -201,9 +229,32 @@ test("Given a payload with a missing or malformed official forecast, when canoni
   }
 });
 
+test("Given an accepted payload and a trigger-bootstrap D1 failure, when ingest begins persistence, then it returns the documented storage failure with no accepted snapshot writes", async () => {
+  // Given
+  const database = createSqliteD1({ failTriggerBootstrap: true });
+  const payload = await completeSnapshot();
+
+  try {
+    await applyDrizzleMigrations(database, migrationRoot);
+
+    // When
+    const response = await handleIngestSnapshot(request(payload), "local-token", database);
+
+    // Then
+    assert.equal(response.status, 503);
+    assert.deepEqual(await response.json(), { error: "provenance_storage_unavailable" });
+    assert.equal(await database.countTriggers(), 0);
+    for (const table of ["provenance_receipts", "provenance_source_bindings", "snapshot_runs", "place_catalog", "current_snapshot", "raw_observation_15m", "detail_cache"]) {
+      assert.equal(await database.count(table), 0);
+    }
+  } finally {
+    database.close();
+  }
+});
+
 test("Given a forced materialization write failure, when canonical ingest batches acceptance with the read model, then no partial state remains", async () => {
   // Given
-  const database = createSqliteD1({ failAtWrite: 8 });
+  const database = createSqliteD1({ failAtWrite: 13 });
   const payload = await completeSnapshot();
 
   try {

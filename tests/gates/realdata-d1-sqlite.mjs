@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
 
-export function createSqliteD1({ failAtWrite = null } = {}) {
+export function createSqliteD1({ failAtWrite = null, failTriggerBootstrap = false } = {}) {
   const sqlite = new DatabaseSync(":memory:");
   let writeCount = 0;
 
@@ -13,6 +13,9 @@ export function createSqliteD1({ failAtWrite = null } = {}) {
         return statement(sql, boundValues);
       },
       async run() {
+        if (failTriggerBootstrap && /^\s*CREATE\s+TRIGGER\s+IF\s+NOT\s+EXISTS\s+provenance_/i.test(sql)) {
+          throw new Error("TASK_FORCED_TRIGGER_BOOTSTRAP_FAILURE");
+        }
         if (failAtWrite !== null && writeCount === failAtWrite) {
           throw new Error("TASK_FORCED_WRITE_FAILURE");
         }
@@ -50,6 +53,12 @@ export function createSqliteD1({ failAtWrite = null } = {}) {
     async count(table) {
       return Number(sqlite.prepare(`SELECT COUNT(*) AS count FROM ${table}`).get().count);
     },
+    async countTriggers() {
+      return Number(sqlite.prepare("SELECT COUNT(*) AS count FROM sqlite_master WHERE type = 'trigger'").get().count);
+    },
+    async triggerNames() {
+      return sqlite.prepare("SELECT name FROM sqlite_master WHERE type = 'trigger' ORDER BY name").all().map(({ name }) => name);
+    },
     close() {
       sqlite.close();
     },
@@ -67,6 +76,8 @@ export async function applyDrizzleMigrations(database, migrationRoot) {
       throw new Error("MALFORMED_DRIZZLE_MIGRATION_JOURNAL");
     }
     const migration = await readFile(join(migrationRoot, `${entry.tag}.sql`), "utf8");
-    database.exec(migration);
+    for (const statement of migration.split(";")) {
+      if (statement.trim().length > 0) database.exec(statement);
+    }
   }
 }
