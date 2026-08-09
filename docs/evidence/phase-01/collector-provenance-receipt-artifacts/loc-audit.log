@@ -1,0 +1,4 @@
+﻿collector/cli.py pure_loc=187
+collector/tests/fixture_snapshot.py pure_loc=52
+tests/gates/collector-provenance-receipt.test.mjs pure_loc=99
+tests/gates/collector-provenance-manual.mjs pure_loc=57

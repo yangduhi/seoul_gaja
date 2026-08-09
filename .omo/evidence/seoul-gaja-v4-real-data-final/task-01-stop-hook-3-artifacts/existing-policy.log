@@ -1,0 +1,28 @@
+﻿✔ Given malformed-input.json, When provenance or capacity proof is unsafe, Then policy fails closed (5.5328ms)
+✔ Given manual-backfill-overlap.json, When provenance or capacity proof is unsafe, Then policy fails closed (1.1321ms)
+✔ Given missing-live-cadence.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.8833ms)
+✔ Given missing-owner-quota.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.6864ms)
+✔ Given missing-provenance.json, When provenance or capacity proof is unsafe, Then policy fails closed (1.1125ms)
+✔ Given prompt-injection.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.8787ms)
+✔ Given scheduled-overlap.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.6649ms)
+✔ Given single-canary.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.7105ms)
+✔ Given stale-state.json, When provenance or capacity proof is unsafe, Then policy fails closed (2.6769ms)
+✔ Given three-place-probe.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.8827ms)
+✔ Given unbounded-retry.json, When provenance or capacity proof is unsafe, Then policy fails closed (0.8038ms)
+✔ Given an immutable receipt key, When different content is appended, Then the ledger rejects the overwrite (1.1753ms)
+✔ Given an immutable D1 receipt key, When different content is persisted, Then storage rejects the overwrite (1.4767ms)
+✔ Given accepted input without a D1 binding, When ingest reaches storage, Then it fails closed (27.3461ms)
+✔ Given an accepted ingest, When provenance is persisted, Then its redacted canonical receipt remains queryable after the raw horizon (9.0191ms)
+✔ Given four local whole-catalog runs, When capacity is evaluated without owner/live authority, Then local structure passes but production capacity is blocked (1.5287ms)
+✔ Given accepted provenance metadata and a D1 binding, When the canonical ingest runs, Then it writes a durable receipt before accepting (30.8967ms)
+✔ Given an existing D1 receipt, When identical content is persisted and read, Then the row is idempotent and retained (1.5865ms)
+✔ Given migration 0003, When provenance storage is inspected, Then append-only receipt and derived source bindings are additive (1.3623ms)
+✔ Given the durable Todo 8 receipt, When observed D1 hashes are audited, Then canonical, persisted, and readback hashes are explicit and equal (1.4429ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 155.829

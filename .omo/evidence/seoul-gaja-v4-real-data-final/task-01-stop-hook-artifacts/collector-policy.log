@@ -1,0 +1,13 @@
+﻿✔ Given a deterministic official collector run, When canonical ingest evaluates it, Then the emitted provenance receipt is accepted (506.3084ms)
+✔ Given the collector receipt, When its data relations are inspected, Then identity, counts, hashes, timestamps, and redaction are source-backed (366.349ms)
+✔ Given missing or stale provenance fields, When canonical ingest evaluates them, Then strict policy fails closed (344.3882ms)
+✔ Given a misleading caller-supplied canonical hash, When ingest accepts the payload, Then policy recomputes the hash from canonical content (330.2291ms)
+✔ Given malformed collector provenance, When canonical ingest evaluates it, Then strict policy rejects it (340.9157ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1986.7129

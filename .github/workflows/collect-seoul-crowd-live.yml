@@ -39,9 +39,11 @@ jobs:
           SITE_INGEST_URL: ${{ secrets.SITE_INGEST_URL }}
           SITE_INGEST_PATH: /api/internal/ingest/snapshot
           SITE_INGEST_TOKEN: ${{ secrets.SITE_INGEST_TOKEN }}
+          OAI_SITES_AUTHORIZATION: ${{ secrets.OAI_SITES_AUTHORIZATION }}
         run: >-
           python -m collector.cli push
           --input "$RUNNER_TEMP/snapshot.json"
           --url "$SITE_INGEST_URL"
           --path "$SITE_INGEST_PATH"
           --token-env SITE_INGEST_TOKEN
+          --machine-header-env OAI_SITES_AUTHORIZATION

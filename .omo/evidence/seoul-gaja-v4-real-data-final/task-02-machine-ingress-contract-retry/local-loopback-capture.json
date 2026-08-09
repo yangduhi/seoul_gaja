@@ -1,0 +1,18 @@
+{
+  "kind": "task_owned_local_https_loopback_capture",
+  "network_scope": "127.0.0.1 only",
+  "live_external_mutation": "not_attempted",
+  "request_count": 1,
+  "returncode": 0,
+  "path": "/api/internal/ingest/snapshot",
+  "authorization_preserved": true,
+  "machine_header_count": 1,
+  "source_header_name": "OAI-Sites-Authorization",
+  "machine_header_name_on_wire": "Oai-Sites-Authorization",
+  "http_header_case_insensitive_match": true,
+  "machine_header_value_redacted": true,
+  "stdout_empty": true,
+  "stderr_empty": true,
+  "listener_shutdown": true,
+  "ephemeral_certificate_cleanup": true
+}

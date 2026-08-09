@@ -1,0 +1,11 @@
+﻿{
+  "verdict": "PASS",
+  "observed": {
+    "repository_root": "D:\\vscode\\seoul_gaja-worktrees\\realdata-provenance-receipt",
+    "remote": "https://github.com/yangduhi/seoul_gaja",
+    "branch": "codex/realdata-provenance-receipt",
+    "head": "2c4d4f6fb2cd25385edce729d6f26df42f99d3ab",
+    "tree": "d74ab9d301ead723305ba1792fa42b3cd13d18a4"
+  },
+  "failures": []
+}

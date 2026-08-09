@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS",
+  "manual_deletion_commands": 0,
+  "old_retry_worktree_touched": false,
+  "task_owned_cache_cleanup_required": false,
+  "task_owned_cache_artifacts_remaining": 0,
+  "task_owned_listener_remaining": 0,
+  "task_owned_process_remaining": 0,
+  "ephemeral_loopback_resources": {
+    "certificate_material": "temporary-directory lifecycle completed",
+    "snapshot_input": "temporary-directory lifecycle completed",
+    "listener": "shutdown and joined"
+  },
+  "external_actions": {
+    "sites": "not_attempted",
+    "github": "not_attempted",
+    "d1": "not_attempted",
+    "deploy": "not_attempted",
+    "push": "not_attempted"
+  }
+}

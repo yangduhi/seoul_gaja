@@ -1,0 +1,25 @@
+{
+  "precondition": {
+    "PYTHONDONTWRITEBYTECODE": "1 for every Python invocation",
+    "PYTHONPYCACHEPREFIX": "unset",
+    "pytest_cache_provider": "disabled with -p no:cacheprovider",
+    "ruff_cache": "disabled with --no-cache"
+  },
+  "post_run_inventory": {
+    "pytest_cache_files": 0,
+    "ruff_cache_files": 0,
+    "python_bytecode_files": 0,
+    "task_temp_directories_in_worktree": 0,
+    "task_listener_processes": 0,
+    "task_processes": 0
+  },
+  "changed_source_loc_before_evidence": {
+    "production_additions": 3,
+    "production_deletions": 0,
+    "test_additions": 27,
+    "paths": [
+      "collector/cli.py",
+      "collector/tests/test_machine_ingress.py"
+    ]
+  }
+}
