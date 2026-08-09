@@ -66,7 +66,7 @@ test('Given the collector receipt, When its data relations are inspected, Then i
   assert.equal(snapshot.rows.length, 121);
   assert.equal(new Set(snapshot.rows.map(({ areaCode }) => areaCode)).size, 121);
   assert.equal(provenance.catalog_version, snapshot.catalogVersion);
-  assert.equal(provenance.parser_version, sourceRegistry.citydata.parserVersion);
+  assert.equal(provenance.parser_version, sourceRegistry.citydata_ppltn.parserVersion);
   assert.equal(Object.values(provenance.per_place_outcome_counts).reduce((sum, count) => sum + count, 0), 121);
   assert.deepEqual(provenance.source_times, snapshot.rows.map(({ sourceUpdatedAt }) => sourceUpdatedAt));
   assert.deepEqual(provenance.fetch_times, snapshot.rows.map(({ fetchedAt }) => fetchedAt));

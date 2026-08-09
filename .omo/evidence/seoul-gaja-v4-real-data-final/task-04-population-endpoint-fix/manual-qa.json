@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "contract": {
+    "service_key": "SeoulRtd.citydata_ppltn",
+    "endpoint_template": "http://openapi.seoul.go.kr:8088/{SEOUL_OPEN_DATA_KEY}/json/citydata_ppltn/1/5/{AREA_NM}",
+    "required_result_code": "INFO-000"
+  },
+  "public_sample": {
+    "command": "curl.exe --fail --silent --show-error --max-time 30 'http://openapi.seoul.go.kr:8088/sample/json/citydata_ppltn/1/5/%EA%B4%91%ED%99%94%EB%AC%B8%C2%B7%EB%8D%95%EC%88%98%EA%B6%81'",
+    "source_url": "http://openapi.seoul.go.kr:8088/sample/json/citydata_ppltn/1/5/%EA%B4%91%ED%99%94%EB%AC%B8%C2%B7%EB%8D%95%EC%88%98%EA%B6%81",
+    "http_status": 200,
+    "top_level": ["SeoulRtd.citydata_ppltn", "RESULT"],
+    "result_code": "INFO-000",
+    "row_count": 1,
+    "forecast_count": 12,
+    "owner_key_used": false
+  },
+  "collector_seam": {
+    "status": "PASS",
+    "mode": "faithful redacted fixture bound to the public shape above",
+    "evidence": "collector/tests/test_seoul_api.py decodes the official envelope; collector/tests/test_normalize.py and collector/tests/test_cli_collection.py normalize and collect it; final collector suite was run twice",
+    "not_mock_call_only": "the public curl independently proved the official response envelope, one row, result code, and nonempty forecast before the fixture seam was accepted"
+  },
+  "live_python_transient": {
+    "status": "FAIL_CLOSED",
+    "observation": "one direct urllib sample probe returned a non-JSON/empty transient response after a successful curl probe; fetch_population_data raised SourceDataError and did not yield a row",
+    "interpretation": "this is not recorded as a live seam success and does not enable a fallback"
+  }
+}

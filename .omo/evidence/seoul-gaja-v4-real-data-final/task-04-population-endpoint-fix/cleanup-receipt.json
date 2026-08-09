@@ -1,0 +1,26 @@
+{
+  "status": "NOT_RUN_BLOCKED",
+  "scope": "cleanup only; implementation and verification remain PASS",
+  "task_servers": [],
+  "temporary_directories": [
+    {
+      "owner": "manual misleading-success probe",
+      "status": "cleaned automatically by TemporaryDirectory"
+    },
+    {
+      "owner": "Node gate runners",
+      "status": "runner-owned temporary directories clean up internally"
+    }
+  ],
+  "verified_literal_cleanup_targets": [
+    "D:\\vscode\\seoul_gaja-worktrees\\realdata-population-endpoint-fix\\collector\\__pycache__",
+    "D:\\vscode\\seoul_gaja-worktrees\\realdata-population-endpoint-fix\\collector\\domain\\__pycache__",
+    "D:\\vscode\\seoul_gaja-worktrees\\realdata-population-endpoint-fix\\collector\\source\\__pycache__",
+    "D:\\vscode\\seoul_gaja-worktrees\\realdata-population-endpoint-fix\\collector\\tests\\__pycache__"
+  ],
+  "attempted_cleanup": "PowerShell Remove-Item -LiteralPath with resolved-path containment checks",
+  "blocker": "execution policy rejected the recursive deletion command before it ran",
+  "alternative_deletion_attempted": false,
+  "reason": "the task contract requires stopping alternative deletion attempts after a cleanup-policy refusal for verified literal targets",
+  "other_task_artifacts": "no task server, browser, build output, cache install, or worktree removal was created"
+}

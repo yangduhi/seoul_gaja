@@ -1,4 +1,4 @@
 from collector.source.normalize import normalize_current, normalize_forecast
-from collector.source.seoul_api import citydata_url, fetch_citydata
+from collector.source.seoul_api import fetch_population_data, population_url
 
-__all__ = ["citydata_url", "fetch_citydata", "normalize_current", "normalize_forecast"]
+__all__ = ["fetch_population_data", "normalize_current", "normalize_forecast", "population_url"]

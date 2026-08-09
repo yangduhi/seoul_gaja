@@ -20,20 +20,21 @@ def normalize_current(
     raw: Mapping[str, object], place: CatalogPlace, fetched_at: datetime
 ) -> CurrentObservation:
     _validate_identity(raw, place)
-    section = _single_mapping(raw.get("LIVE_PPLTN_STTS"), "missing current section")
-    population_min, population_max = _population_range(section, "AREA_PPLTN_MIN", "AREA_PPLTN_MAX")
+    population_min, population_max = _population_range(raw, "AREA_PPLTN_MIN", "AREA_PPLTN_MAX")
     return CurrentObservation(
         area_code=place.area_code,
         area_name=place.area_name,
-        crowd_level=_crowd_level(section.get("AREA_CONGEST_LVL")),
+        crowd_level=_crowd_level(raw.get("AREA_CONGEST_LVL")),
         population_min=population_min,
         population_max=population_max,
-        source_updated_at=_parse_time(section.get("PPLTN_TIME"), "current observation time"),
+        source_updated_at=_parse_time(raw.get("PPLTN_TIME"), "current observation time"),
         fetched_at=fetched_at,
     )
 
 
 def normalize_forecast(raw: Mapping[str, object], now: datetime) -> list[ForecastPoint]:
+    if raw.get("FCST_YN") != "Y":
+        raise SourceDataError("official forecast unavailable")
     rows = raw.get("FCST_PPLTN")
     if not isinstance(rows, list):
         raise SourceDataError("missing forecast section")
@@ -41,8 +42,6 @@ def normalize_forecast(raw: Mapping[str, object], now: datetime) -> list[Forecas
     for row in rows:
         if not isinstance(row, dict):
             raise SourceDataError("forecast row must be an object")
-        if row.get("FCST_YN") != "Y":
-            continue
         time = _parse_time(row.get("FCST_TIME"), "forecast time")
         if time <= now:
             continue
@@ -72,12 +71,6 @@ def _validate_identity(raw: Mapping[str, object], place: CatalogPlace) -> None:
         raise SourceDataError("area code mismatch")
     if area_name != place.area_name:
         raise SourceDataError("area name mismatch")
-
-
-def _single_mapping(value: object, missing_reason: str) -> Mapping[str, object]:
-    if not isinstance(value, list) or len(value) != 1 or not isinstance(value[0], dict):
-        raise SourceDataError(missing_reason)
-    return value[0]
 
 
 def _crowd_level(value: object) -> CrowdLevel:

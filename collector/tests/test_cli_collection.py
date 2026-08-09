@@ -10,7 +10,7 @@ from pytest import MonkeyPatch
 from collector import cli
 from collector.domain.models import CatalogPlace
 from collector.source.normalize import CROWD_LEVELS
-from collector.source.seoul_api import CityDataResponse
+from collector.source.seoul_api import PopulationResponse
 
 
 FIXED_FETCHED_AT = datetime(2026, 8, 8, 9, 0, tzinfo=UTC)
@@ -22,25 +22,21 @@ class FixedDateTime(datetime):
         return FIXED_FETCHED_AT
 
 
-def _citydata_response(_api_key: str, place: CatalogPlace) -> CityDataResponse:
+def _population_response(_api_key: str, place: CatalogPlace) -> PopulationResponse:
     crowd_level = next(iter(CROWD_LEVELS))
-    return CityDataResponse(
+    return PopulationResponse(
         raw_sha256=hashlib.sha256(place.area_code.encode()).hexdigest(),
         raw_size=1,
         payload={
             "AREA_CD": place.area_code,
             "AREA_NM": place.area_name,
-            "LIVE_PPLTN_STTS": [
-                {
-                    "AREA_CONGEST_LVL": crowd_level,
-                    "AREA_PPLTN_MIN": "100",
-                    "AREA_PPLTN_MAX": "200",
-                    "PPLTN_TIME": "2026-08-08 17:55",
-                }
-            ],
+            "AREA_CONGEST_LVL": crowd_level,
+            "AREA_PPLTN_MIN": "100",
+            "AREA_PPLTN_MAX": "200",
+            "PPLTN_TIME": "2026-08-08 17:55",
+            "FCST_YN": "Y",
             "FCST_PPLTN": [
                 {
-                    "FCST_YN": "Y",
                     "FCST_TIME": forecast_time,
                     "FCST_CONGEST_LVL": crowd_level,
                     "FCST_PPLTN_MIN": "100",
@@ -62,7 +58,7 @@ def _citydata_response(_api_key: str, place: CatalogPlace) -> CityDataResponse:
 def test_collect_emits_source_backed_future_official_forecasts(
     monkeypatch: MonkeyPatch, tmp_path: Path
 ) -> None:
-    # Given: all 121 official catalog identities and one complete CITYDATA response per place.
+    # Given: all 121 official catalog identities and one complete population-only response per place.
     output = tmp_path / "snapshot.json"
     receipt = tmp_path / "receipt.json"
     monkeypatch.setenv("SEOUL_OPEN_DATA_KEY", "fixture-redacted")
@@ -70,7 +66,7 @@ def test_collect_emits_source_backed_future_official_forecasts(
     monkeypatch.setenv("GITHUB_RUN_ATTEMPT", "1")
     monkeypatch.setenv("GITHUB_SHA", "fixture-collector-sha")
     monkeypatch.setattr(cli, "datetime", FixedDateTime)
-    monkeypatch.setattr(cli, "fetch_citydata", _citydata_response)
+    monkeypatch.setattr(cli, "fetch_population_data", _population_response)
 
     # When: the collector creates its canonical snapshot.
     result = cli._collect(Path("data/seoul-places.json"), output, receipt)
