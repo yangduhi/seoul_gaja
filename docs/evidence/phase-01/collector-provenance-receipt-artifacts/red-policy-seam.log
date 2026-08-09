@@ -1,0 +1,37 @@
+﻿✖ Given a deterministic official collector run, When canonical ingest evaluates it, Then the emitted provenance receipt is accepted (413.5402ms)
+✖ Given the collector receipt, When its data relations are inspected, Then identity, counts, hashes, timestamps, and redaction are source-backed (495.1267ms)
+✔ Given malformed collector provenance, When canonical ingest evaluates it, Then strict policy rejects it (676.1941ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1698.4331
+
+✖ failing tests:
+
+test at tests\gates\collector-provenance-receipt.test.mjs:36:1
+✖ Given a deterministic official collector run, When canonical ingest evaluates it, Then the emitted provenance receipt is accepted (413.5402ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  422 !== 202
+
+      at TestContext.<anonymous> (file:///D:/vscode/seoul_gaja-worktrees/realdata-provenance-receipt/tests/gates/collector-provenance-receipt.test.mjs:45:10)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 422,
+    expected: 202,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\gates\collector-provenance-receipt.test.mjs:53:1
+✖ Given the collector receipt, When its data relations are inspected, Then identity, counts, hashes, timestamps, and redaction are source-backed (495.1267ms)
+  TypeError: Cannot read properties of undefined (reading 'catalog_version')
+      at TestContext.<anonymous> (file:///D:/vscode/seoul_gaja-worktrees/realdata-provenance-receipt/tests/gates/collector-provenance-receipt.test.mjs:64:27)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
