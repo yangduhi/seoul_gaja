@@ -1,0 +1,65 @@
+{
+  "status": "PASS_WITH_CLEANUP_BLOCKED_ONLY",
+  "checks": [
+    {
+      "name": "malformed_envelope",
+      "verdict": "PASS",
+      "evidence": "test_fetch_population_data_rejects_invalid_population_envelopes rejects a non-object envelope"
+    },
+    {
+      "name": "result_code_failure_and_no_row",
+      "verdict": "PASS",
+      "evidence": "the same decoder test rejects missing RESULT, non-INFO-000, zero rows, and two rows"
+    },
+    {
+      "name": "retired_integrated_shape",
+      "verdict": "PASS",
+      "evidence": "a RESULT plus legacy CITYDATA shape is rejected because the population service key is absent"
+    },
+    {
+      "name": "missing_insufficient_or_duplicate_forecast",
+      "verdict": "PASS",
+      "evidence": "decoder rejects absent FCST_PPLTN; normalizer rejects disabled flag, fewer than six unique future points, and duplicate times"
+    },
+    {
+      "name": "unexpected_identity",
+      "verdict": "PASS",
+      "evidence": "normalizer tests reject mismatched AREA_CD and AREA_NM"
+    },
+    {
+      "name": "missing_owner_key",
+      "verdict": "PASS",
+      "evidence": "collector/tests/test_quota_probe.py is included in the final collector suite and observes blocked exit 3 without a key"
+    },
+    {
+      "name": "stale_run_conflict",
+      "verdict": "PASS",
+      "evidence": "realdata-d1-materialization.test.mjs observed stale provenance replacement return 409 with no mutation"
+    },
+    {
+      "name": "dirty_worktree_preservation",
+      "verdict": "PASS",
+      "evidence": "a fresh isolated worktree began clean at the specified base; no parent-worktree files were edited"
+    },
+    {
+      "name": "repeated_collector_run",
+      "verdict": "PASS",
+      "evidence": "collector/tests passed in two consecutive final runs"
+    },
+    {
+      "name": "misleading_success_output",
+      "verdict": "PASS",
+      "evidence": "a SourceDataError at the collector seam returned exit 1, wrote neither snapshot nor receipt, had empty stdout, and contained no success word"
+    },
+    {
+      "name": "long_or_hung_http",
+      "verdict": "PASS",
+      "evidence": "test_fetch_population_data_uses_a_bounded_http_timeout observed urlopen timeout=30; public curl also used --max-time 30"
+    },
+    {
+      "name": "external_mutation",
+      "verdict": "PASS_LOCAL_ONLY",
+      "evidence": "only the public sample GET was used; no owner key, secret retrieval, push, PR, merge, workflow dispatch, D1 write, or deployment was attempted"
+    }
+  ]
+}

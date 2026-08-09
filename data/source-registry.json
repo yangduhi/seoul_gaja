@@ -13,8 +13,8 @@
     "fetchedAt": "2026-08-08T12:06:40Z",
     "identityFields": ["AREA_CD", "AREA_NM"]
   },
-  "citydata": {
-    "endpointTemplate": "http://openapi.seoul.go.kr:8088/{SEOUL_OPEN_DATA_KEY}/json/citydata/1/5/{AREA_NM}",
+  "citydata_ppltn": {
+    "endpointTemplate": "http://openapi.seoul.go.kr:8088/{SEOUL_OPEN_DATA_KEY}/json/citydata_ppltn/1/5/{AREA_NM}",
     "parserVersion": "1.0.0",
     "identityFields": ["AREA_CD", "AREA_NM"]
   }

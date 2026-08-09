@@ -14,18 +14,14 @@ FETCHED_AT = datetime(2026, 8, 8, 9, 0, tzinfo=UTC)
 
 
 def test_normalize_current_preserves_official_population_and_time() -> None:
-    # Given: one valid CITYDATA current-observation section.
+    # Given: one valid population-only city-data row.
     raw = {
         "AREA_CD": "POI001",
         "AREA_NM": "강남 MICE 관광특구",
-        "LIVE_PPLTN_STTS": [
-            {
-                "AREA_CONGEST_LVL": "보통",
-                "AREA_PPLTN_MIN": "100",
-                "AREA_PPLTN_MAX": "200",
-                "PPLTN_TIME": "2026-08-08 17:55",
-            }
-        ],
+        "AREA_CONGEST_LVL": "보통",
+        "AREA_PPLTN_MIN": "100",
+        "AREA_PPLTN_MAX": "200",
+        "PPLTN_TIME": "2026-08-08 17:55",
     }
 
     # When: the official response is normalized.
@@ -43,27 +39,28 @@ def test_normalize_current_preserves_official_population_and_time() -> None:
     ("raw", "reason"),
     [
         ({}, "missing area identity"),
-        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "LIVE_PPLTN_STTS": []}, "missing current section"),
-        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "LIVE_PPLTN_STTS": [{"AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "-1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}]}, "negative population"),
-        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "LIVE_PPLTN_STTS": [{"AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "3", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}]}, "reversed population"),
-        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "LIVE_PPLTN_STTS": [{"AREA_CONGEST_LVL": "알 수 없음", "AREA_PPLTN_MIN": "1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}]}, "unknown crowd level"),
-        ({"AREA_CD": "POI999", "AREA_NM": "강남 MICE 관광특구", "LIVE_PPLTN_STTS": [{"AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}]}, "area code mismatch"),
+        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "AREA_PPLTN_MIN": "1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}, "unknown crowd level"),
+        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "-1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}, "negative population"),
+        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "3", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}, "reversed population"),
+        ({"AREA_CD": "POI001", "AREA_NM": "강남 MICE 관광특구", "AREA_CONGEST_LVL": "??", "AREA_PPLTN_MIN": "1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}, "unknown crowd level"),
+        ({"AREA_CD": "POI999", "AREA_NM": "강남 MICE 관광특구", "AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}, "area code mismatch"),
+        ({"AREA_CD": "POI001", "AREA_NM": "unexpected identity", "AREA_CONGEST_LVL": "보통", "AREA_PPLTN_MIN": "1", "AREA_PPLTN_MAX": "2", "PPLTN_TIME": "2026-08-08 17:55"}, "area name mismatch"),
     ],
 )
-def test_normalize_current_rejects_untrusted_citydata_shapes(raw: dict[str, object], reason: str) -> None:
-    # Given: a malformed or identity-conflicting CITYDATA response.
+def test_normalize_current_rejects_untrusted_population_shapes(raw: dict[str, object], reason: str) -> None:
+    # Given: a malformed or identity-conflicting population-only response row.
     # When / Then: it is rejected before it can become a snapshot row.
     with pytest.raises(SourceDataError, match=reason):
         normalize_current(raw, PLACE, FETCHED_AT)
 
 
 def test_normalize_forecast_keeps_only_valid_future_official_points() -> None:
-    # Given: six official future CITYDATA forecast rows in reverse order.
+    # Given: six official future population-only forecast rows in reverse order.
     now = FETCHED_AT
     raw = {
+        "FCST_YN": "Y",
         "FCST_PPLTN": [
             {
-                "FCST_YN": "Y",
                 "FCST_TIME": (now + timedelta(minutes=offset)).astimezone(ZoneInfo("Asia/Seoul")).strftime("%Y-%m-%d %H:%M"),
                 "FCST_CONGEST_LVL": "여유",
                 "FCST_PPLTN_MIN": "10",
@@ -87,14 +84,34 @@ def test_normalize_forecast_rejects_duplicate_or_insufficient_official_points() 
     # Given: malformed official forecast rows that cannot satisfy the contract.
     now = FETCHED_AT
     point = {
-        "FCST_YN": "Y",
         "FCST_TIME": "2026-08-08 20:00",
         "FCST_CONGEST_LVL": "보통",
         "FCST_PPLTN_MIN": "10",
         "FCST_PPLTN_MAX": "20",
     }
-    raw = {"FCST_PPLTN": [point] * 6}
+    raw = {"FCST_YN": "Y", "FCST_PPLTN": [point] * 6}
 
     # When / Then: duplicate timestamps are rejected instead of fabricated.
     with pytest.raises(SourceDataError, match="duplicate forecast time"):
         normalize_forecast(raw, now)
+
+    insufficient = [
+        {
+            **point,
+            "FCST_TIME": (now + timedelta(hours=offset))
+            .astimezone(ZoneInfo("Asia/Seoul"))
+            .strftime("%Y-%m-%d %H:%M"),
+        }
+        for offset in range(1, 6)
+    ]
+    with pytest.raises(SourceDataError, match="fewer than six future official forecast points"):
+        normalize_forecast({"FCST_YN": "Y", "FCST_PPLTN": insufficient}, now)
+
+
+def test_normalize_forecast_rejects_a_missing_or_disabled_official_forecast() -> None:
+    # Given: a population-only row without an eligible official forecast flag.
+    raw = {"FCST_YN": "N", "FCST_PPLTN": []}
+
+    # When / Then: it fails closed instead of inventing a forecast.
+    with pytest.raises(SourceDataError, match="official forecast unavailable"):
+        normalize_forecast(raw, FETCHED_AT)

@@ -16,7 +16,7 @@ from urllib.request import Request, urlopen
 from collector.catalog import load_catalog
 from collector.domain.models import CurrentObservation, ForecastPoint, SourceDataError
 from collector.source.normalize import normalize_current, normalize_forecast
-from collector.source.seoul_api import fetch_citydata
+from collector.source.seoul_api import fetch_population_data
 
 
 BLOCKED_EXIT = 3
@@ -72,7 +72,7 @@ def _collect(catalog_path: Path, output: Path, receipt: Path) -> int:
         raw_hashes: list[str] = []
         for place in catalog.places:
             fetched_at = datetime.now(UTC)
-            response = fetch_citydata(api_key, place)
+            response = fetch_population_data(api_key, place)
             observation = normalize_current(response.payload, place, fetched_at)
             forecast = normalize_forecast(response.payload, fetched_at)
             rows.append(_snapshot_row(observation, forecast, response.raw_sha256))
@@ -170,7 +170,7 @@ def _quota_probe(sample_size: int) -> int:
         sizes: list[int] = []
         for place in catalog.places[:sample_size]:
             started_at = time.perf_counter()
-            response = fetch_citydata(api_key, place)
+            response = fetch_population_data(api_key, place)
             durations.append(time.perf_counter() - started_at)
             sizes.append(response.raw_size)
     except SourceDataError as error:
