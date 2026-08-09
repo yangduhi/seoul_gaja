@@ -142,55 +142,132 @@ export async function readProvenanceReceipt(database, key) {
   return receiptFromRow(row);
 }
 
-export async function persistProvenanceReceipt(database, receipt) {
-  requireDatabase(database);
-  await database.prepare(`INSERT OR IGNORE INTO provenance_receipts (
+function receiptValues(receipt) {
+  return [
+    receipt.receipt_id,
+    receipt.receipt_version,
+    receipt.workflow_run_id,
+    receipt.collector_version,
+    receipt.parser_version,
+    receipt.catalog_version,
+    receipt.raw_response_sha256,
+    JSON.stringify(canonicalize(receipt.per_place_outcome_counts)),
+    JSON.stringify(receipt.source_times),
+    JSON.stringify(receipt.fetch_times),
+    receipt.canonical_payload_sha256,
+    receipt.accepted_at,
+    receipt.retained_until,
+  ];
+}
+
+function receiptInsertStatement(database, receipt) {
+  return database.prepare(`INSERT OR IGNORE INTO provenance_receipts (
     receipt_id, receipt_version, workflow_run_id, collector_version, parser_version,
     catalog_version, raw_response_sha256, per_place_outcome_counts, source_times,
     fetch_times, canonical_payload_sha256, accepted_at, retained_until
   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-    .bind(
-      receipt.receipt_id,
-      receipt.receipt_version,
-      receipt.workflow_run_id,
-      receipt.collector_version,
-      receipt.parser_version,
-      receipt.catalog_version,
-      receipt.raw_response_sha256,
-      JSON.stringify(canonicalize(receipt.per_place_outcome_counts)),
-      JSON.stringify(receipt.source_times),
-      JSON.stringify(receipt.fetch_times),
-      receipt.canonical_payload_sha256,
-      receipt.accepted_at,
-      receipt.retained_until,
-    )
-    .run();
+    .bind(...receiptValues(receipt));
+}
+
+function receiptConflictGuardStatement(database, receipt) {
+  return database.prepare(`UPDATE provenance_receipts
+    SET accepted_at = accepted_at
+    WHERE receipt_id = ? AND receipt_version = ?
+      AND NOT (workflow_run_id = ? AND collector_version = ? AND parser_version = ?
+        AND catalog_version = ? AND raw_response_sha256 = ? AND per_place_outcome_counts = ?
+        AND source_times = ? AND fetch_times = ? AND canonical_payload_sha256 = ?
+        AND accepted_at = ? AND retained_until = ?)`)
+    .bind(...receiptValues(receipt));
+}
+
+async function verifyPersistedReceipt(database, receipt) {
   const persisted = await readProvenanceReceipt(database, receipt);
   if (persisted === null) throw new ProvenancePolicyError('PROVENANCE_STORAGE_FAILED');
   if (JSON.stringify(canonicalize(persisted)) !== JSON.stringify(canonicalize(receipt))) throw new ProvenancePolicyError('IMMUTABLE_RECEIPT_CONFLICT');
   return persisted;
 }
 
-export async function persistDerivedSourceBinding(database, binding) {
+export async function persistProvenanceReceipt(database, receipt) {
   requireDatabase(database);
+  await receiptInsertStatement(database, receipt).run();
+  return verifyPersistedReceipt(database, receipt);
+}
+
+function normalizeDerivedSourceBinding(binding) {
   if (!['materialization', 'profile'].includes(binding.derived_kind) || typeof binding.derived_key !== 'string' || binding.derived_key.length === 0) {
     throw new ProvenancePolicyError('INVALID_SOURCE_BINDING');
   }
-  const source = bindDerivedRow(binding.receipt);
-  await database.prepare(`INSERT OR IGNORE INTO provenance_source_bindings (
+  return {
+    derived_kind: binding.derived_kind,
+    derived_key: binding.derived_key,
+    source: bindDerivedRow(binding.receipt),
+    bound_at: binding.receipt.accepted_at,
+  };
+}
+
+function sourceBindingInsertStatement(database, binding) {
+  return database.prepare(`INSERT OR IGNORE INTO provenance_source_bindings (
     derived_kind, derived_key, source_receipt_id, source_receipt_version, bound_at
   ) VALUES (?, ?, ?, ?, ?)`)
-    .bind(binding.derived_kind, binding.derived_key, source.source_receipt_id, source.source_receipt_version, binding.receipt.accepted_at)
-    .run();
+    .bind(binding.derived_kind, binding.derived_key, binding.source.source_receipt_id, binding.source.source_receipt_version, binding.bound_at);
+}
+
+function sourceBindingConflictGuardStatement(database, binding) {
+  return database.prepare(`UPDATE provenance_source_bindings
+    SET bound_at = bound_at
+    WHERE derived_kind = ? AND derived_key = ?
+      AND (source_receipt_id <> ? OR source_receipt_version <> ?)`)
+    .bind(binding.derived_kind, binding.derived_key, binding.source.source_receipt_id, binding.source.source_receipt_version);
+}
+
+async function verifyPersistedSourceBinding(database, binding) {
   const persisted = await database.prepare(`SELECT source_receipt_id, source_receipt_version
     FROM provenance_source_bindings WHERE derived_kind = ? AND derived_key = ?`)
     .bind(binding.derived_kind, binding.derived_key)
     .first();
   if (persisted === null) throw new ProvenancePolicyError('SOURCE_BINDING_STORAGE_FAILED');
-  if (persisted.source_receipt_id !== source.source_receipt_id || persisted.source_receipt_version !== source.source_receipt_version) {
+  if (persisted.source_receipt_id !== binding.source.source_receipt_id || persisted.source_receipt_version !== binding.source.source_receipt_version) {
     throw new ProvenancePolicyError('IMMUTABLE_SOURCE_BINDING_CONFLICT');
   }
-  return source;
+  return binding.source;
+}
+
+export async function persistDerivedSourceBinding(database, binding) {
+  requireDatabase(database);
+  const normalized = normalizeDerivedSourceBinding(binding);
+  await sourceBindingInsertStatement(database, normalized).run();
+  return verifyPersistedSourceBinding(database, normalized);
+}
+
+function immutableStorageConflictCode(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  if (message.includes('PROVENANCE_RECEIPT_IMMUTABLE')) return 'IMMUTABLE_RECEIPT_CONFLICT';
+  if (message.includes('PROVENANCE_SOURCE_BINDING_IMMUTABLE')) return 'IMMUTABLE_SOURCE_BINDING_CONFLICT';
+  return null;
+}
+
+export async function persistProvenanceReceiptAndBindings(database, receipt, bindings) {
+  requireDatabase(database);
+  if (typeof database.batch !== 'function') throw new ProvenancePolicyError('PROVENANCE_STORAGE_UNAVAILABLE');
+  if (!Array.isArray(bindings) || bindings.length === 0) throw new ProvenancePolicyError('INVALID_SOURCE_BINDING');
+  const normalizedBindings = bindings.map(normalizeDerivedSourceBinding);
+
+  try {
+    await database.batch([
+      receiptConflictGuardStatement(database, receipt),
+      ...normalizedBindings.map((binding) => sourceBindingConflictGuardStatement(database, binding)),
+      receiptInsertStatement(database, receipt),
+      ...normalizedBindings.map((binding) => sourceBindingInsertStatement(database, binding)),
+    ]);
+  } catch (error) {
+    const code = immutableStorageConflictCode(error);
+    if (code) throw new ProvenancePolicyError(code);
+    throw error;
+  }
+
+  const persisted = await verifyPersistedReceipt(database, receipt);
+  for (const binding of normalizedBindings) await verifyPersistedSourceBinding(database, binding);
+  return persisted;
 }
 
 function failed(code, math) {

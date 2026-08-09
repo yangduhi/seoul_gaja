@@ -1,7 +1,6 @@
 import {
   createProvenanceReceipt,
-  persistDerivedSourceBinding,
-  persistProvenanceReceipt,
+  persistProvenanceReceiptAndBindings,
   ProvenancePolicyError,
 } from "./provenance-cadence.mjs";
 import { RequestBodyTooLargeError, readJsonBodyWithinLimit } from "./request-body.mjs";
@@ -79,17 +78,10 @@ export async function handleIngestSnapshot(request, expectedToken, database) {
   }
 
   try {
-    await persistProvenanceReceipt(database, receipt);
-    await persistDerivedSourceBinding(database, {
-      derived_kind: "materialization",
-      derived_key: snapshot.snapshotId,
-      receipt,
-    });
-    await persistDerivedSourceBinding(database, {
-      derived_kind: "profile",
-      derived_key: snapshot.snapshotId,
-      receipt,
-    });
+    await persistProvenanceReceiptAndBindings(database, receipt, [
+      { derived_kind: "materialization", derived_key: snapshot.snapshotId, receipt },
+      { derived_kind: "profile", derived_key: snapshot.snapshotId, receipt },
+    ]);
   } catch (error) {
     if (error instanceof ProvenancePolicyError && /CONFLICT$/.test(error.code)) return jsonError("provenance_conflict", 409);
     if (error instanceof ProvenancePolicyError) return jsonError("provenance_storage_unavailable", 503);
