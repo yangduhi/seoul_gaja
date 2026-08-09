@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "retry_base": {
+    "commit": "1b22ea06743e670ec1bd40cc6526cde808a9c853",
+    "tree": "1d372f589b050c8439b7ad279f1d58cf9eb236bb"
+  },
+  "checks": [
+    {
+      "name": "crlf_header_injection",
+      "verdict": "PASS",
+      "evidence": "returns exit 3 before any HTTP request and writes only a generic error"
+    },
+    {
+      "name": "blank_and_missing_machine_environment",
+      "verdict": "PASS",
+      "evidence": "both return exit 3 before HTTP with generic required-value output"
+    },
+    {
+      "name": "safe_machine_header_regression",
+      "verdict": "PASS",
+      "evidence": "one header, canonical path, preserved application authorization, and empty CLI output"
+    },
+    {
+      "name": "timeout_or_hung_process",
+      "verdict": "PASS",
+      "evidence": "child CLI bound to 10 seconds and loopback listener joins within five seconds"
+    },
+    {
+      "name": "retry_or_flaky",
+      "verdict": "PASS",
+      "evidence": "four machine-ingress tests passed in three consecutive cache-free runs"
+    },
+    {
+      "name": "redaction",
+      "verdict": "PASS",
+      "evidence": "test-only marker absent from stdout, stderr, CLI source, and evidence; no literal production credential found"
+    },
+    {
+      "name": "stale_base",
+      "verdict": "PASS",
+      "evidence": "fresh worktree created directly from the adversarially rejected commit and exact tree"
+    },
+    {
+      "name": "external_mutation",
+      "verdict": "PASS_LOCAL_ONLY",
+      "evidence": "no live service, secret retrieval, deployment, push, or workflow execution attempted"
+    }
+  ]
+}

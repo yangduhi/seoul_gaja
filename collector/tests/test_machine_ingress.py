@@ -198,3 +198,30 @@ def test_push_blocks_before_http_when_declared_machine_header_is_blank() -> None
     assert result.stdout == ""
     assert result.stderr == "OAI_SITES_AUTHORIZATION is required\n"
     assert capture == {}
+
+
+def test_push_blocks_before_http_when_machine_header_contains_crlf() -> None:
+    # Given: a declared machine header that contains an HTTP line break.
+    marker = "crlf-machine-header-marker"
+    unsafe_machine_authorization = f"{marker}{chr(13)}{chr(10)}Injected-Header: blocked"
+    with TemporaryDirectory() as temporary_directory:
+        temporary_path = Path(temporary_directory)
+        snapshot = temporary_path / "snapshot.json"
+        snapshot.write_text("{}", encoding="utf-8")
+
+        with _local_https_capture() as (base_url, certificate, capture):
+            # When: push receives the unsafe machine authorization value.
+            result = _run_push(
+                snapshot,
+                base_url,
+                _push_environment(certificate, unsafe_machine_authorization),
+                machine_header_env="OAI_SITES_AUTHORIZATION",
+            )
+
+    # Then: it blocks before HTTP without writing the marker to either output stream.
+    returncode = result.returncode
+    assert returncode == 3
+    assert result.stdout == ""
+    assert marker not in result.stderr
+    assert result.stderr == "OAI_SITES_AUTHORIZATION is invalid\n"
+    assert capture == {}

@@ -129,6 +129,9 @@ def _push(input_path: Path, base_url: str, path: str, token_env: str, machine_he
         if not machine_authorization or not machine_authorization.strip():
             print(f"{machine_header_env} is required", file=sys.stderr)
             return BLOCKED_EXIT
+        if "\r" in machine_authorization or "\n" in machine_authorization:
+            print(f"{machine_header_env} is invalid", file=sys.stderr)
+            return BLOCKED_EXIT
         headers["OAI-Sites-Authorization"] = machine_authorization
     parsed = urlparse(base_url)
     if parsed.scheme != "https" or not parsed.netloc or not path.startswith("/"):

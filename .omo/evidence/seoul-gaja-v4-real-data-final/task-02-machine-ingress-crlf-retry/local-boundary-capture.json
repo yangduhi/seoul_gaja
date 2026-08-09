@@ -1,0 +1,37 @@
+{
+  "kind": "task_owned_local_https_loopback_capture",
+  "network_scope": "127.0.0.1 only",
+  "live_external_mutation": "not_attempted",
+  "normal": {
+    "returncode": 0,
+    "http_request_count": 1,
+    "path": "/api/internal/ingest/snapshot",
+    "authorization_preserved": true,
+    "machine_header_count": 1,
+    "machine_header_name_case_insensitive_match": true,
+    "stdout_empty": true,
+    "stderr_empty": true
+  },
+  "blank": {
+    "returncode": 3,
+    "http_request_count": 0,
+    "stdout_empty": true,
+    "stderr_is_generic": true
+  },
+  "missing": {
+    "returncode": 3,
+    "http_request_count": 0,
+    "stdout_empty": true,
+    "stderr_is_generic": true
+  },
+  "crlf": {
+    "returncode": 3,
+    "http_request_count": 0,
+    "stdout_empty": true,
+    "stderr_is_generic": true,
+    "marker_in_stdout": false,
+    "marker_in_stderr": false
+  },
+  "listener_shutdown": true,
+  "ephemeral_certificate_cleanup": true
+}
