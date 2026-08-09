@@ -5,10 +5,15 @@
 -- later forward migration and retain revision/provenance rows for audit.
 
 ALTER TABLE snapshot_runs ADD COLUMN run_id TEXT;
+--> statement-breakpoint
 ALTER TABLE snapshot_runs ADD COLUMN attempt_no INTEGER;
+--> statement-breakpoint
 ALTER TABLE snapshot_runs ADD COLUMN revision_id TEXT;
+--> statement-breakpoint
 ALTER TABLE snapshot_runs ADD COLUMN supersedes_revision_id TEXT;
+--> statement-breakpoint
 ALTER TABLE snapshot_runs ADD COLUMN clock_skew_clamped INTEGER NOT NULL DEFAULT 0;
+--> statement-breakpoint
 
 CREATE TABLE snapshot_revisions (
   revision_id TEXT PRIMARY KEY,
@@ -20,6 +25,7 @@ CREATE TABLE snapshot_revisions (
   created_at TEXT NOT NULL,
   UNIQUE(run_id, attempt_no)
 );
+--> statement-breakpoint
 
 CREATE TABLE snapshot_revision_provenance (
   revision_id TEXT PRIMARY KEY REFERENCES snapshot_revisions(revision_id),
@@ -33,6 +39,7 @@ CREATE TABLE snapshot_revision_provenance (
   unavailable_count INTEGER NOT NULL,
   expired_count INTEGER NOT NULL
 );
+--> statement-breakpoint
 
 CREATE TABLE provenance_receipts (
   receipt_id TEXT NOT NULL,
@@ -50,18 +57,21 @@ CREATE TABLE provenance_receipts (
   retained_until TEXT NOT NULL,
   PRIMARY KEY(receipt_id, receipt_version)
 );
+--> statement-breakpoint
 
 CREATE TRIGGER provenance_receipts_no_update
 BEFORE UPDATE ON provenance_receipts
 BEGIN
   SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
 END;
+--> statement-breakpoint
 
 CREATE TRIGGER provenance_receipts_no_delete
 BEFORE DELETE ON provenance_receipts
 BEGIN
   SELECT RAISE(ABORT, 'PROVENANCE_RECEIPT_IMMUTABLE');
 END;
+--> statement-breakpoint
 
 CREATE TABLE provenance_source_bindings (
   derived_kind TEXT NOT NULL CHECK(derived_kind IN ('materialization', 'profile')),
@@ -73,18 +83,21 @@ CREATE TABLE provenance_source_bindings (
   FOREIGN KEY(source_receipt_id, source_receipt_version)
     REFERENCES provenance_receipts(receipt_id, receipt_version)
 );
+--> statement-breakpoint
 
 CREATE TRIGGER provenance_source_bindings_no_update
 BEFORE UPDATE ON provenance_source_bindings
 BEGIN
   SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
 END;
+--> statement-breakpoint
 
 CREATE TRIGGER provenance_source_bindings_no_delete
 BEFORE DELETE ON provenance_source_bindings
 BEGIN
   SELECT RAISE(ABORT, 'PROVENANCE_SOURCE_BINDING_IMMUTABLE');
 END;
+--> statement-breakpoint
 
 -- Fixture backfill only: one revision per legacy snapshot, preserving the old snapshot_id.
 INSERT OR IGNORE INTO snapshot_revisions (revision_id, run_id, attempt_no, payload_sha256, supersedes_revision_id, status, created_at)

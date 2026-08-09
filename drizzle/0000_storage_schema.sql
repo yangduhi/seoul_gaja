@@ -7,6 +7,7 @@ CREATE TABLE place_catalog (
   catalog_version TEXT NOT NULL,
   active INTEGER NOT NULL DEFAULT 1
 );
+--> statement-breakpoint
 
 CREATE TABLE snapshot_runs (
   snapshot_id TEXT PRIMARY KEY,
@@ -21,6 +22,7 @@ CREATE TABLE snapshot_runs (
   payload_sha256 TEXT NOT NULL,
   status TEXT NOT NULL CHECK(status IN ('accepted','replayed','rejected'))
 );
+--> statement-breakpoint
 
 CREATE TABLE current_snapshot (
   area_code TEXT PRIMARY KEY REFERENCES place_catalog(area_code),
@@ -37,6 +39,7 @@ CREATE TABLE current_snapshot (
   CHECK ((population_min IS NULL AND population_max IS NULL) OR
          (population_min >= 0 AND population_max >= population_min))
 );
+--> statement-breakpoint
 
 CREATE TABLE raw_observation_15m (
   area_code TEXT NOT NULL REFERENCES place_catalog(area_code),
@@ -49,6 +52,7 @@ CREATE TABLE raw_observation_15m (
   source_updated_at TEXT,
   PRIMARY KEY(area_code, observation_bucket)
 );
+--> statement-breakpoint
 
 CREATE TABLE hourly_observation (
   area_code TEXT NOT NULL REFERENCES place_catalog(area_code),
@@ -60,6 +64,7 @@ CREATE TABLE hourly_observation (
   computed_at TEXT NOT NULL,
   PRIMARY KEY(area_code, hour_bucket)
 );
+--> statement-breakpoint
 
 CREATE TABLE daily_summary (
   area_code TEXT NOT NULL REFERENCES place_catalog(area_code),
@@ -72,6 +77,7 @@ CREATE TABLE daily_summary (
   computed_at TEXT NOT NULL,
   PRIMARY KEY(area_code, local_date)
 );
+--> statement-breakpoint
 
 CREATE TABLE weekday_hour_profile (
   area_code TEXT NOT NULL REFERENCES place_catalog(area_code),
@@ -87,6 +93,7 @@ CREATE TABLE weekday_hour_profile (
   computed_at TEXT NOT NULL,
   PRIMARY KEY(area_code, weekday, hour)
 );
+--> statement-breakpoint
 
 CREATE TABLE detail_cache (
   area_code TEXT NOT NULL REFERENCES place_catalog(area_code),
@@ -99,6 +106,7 @@ CREATE TABLE detail_cache (
   raw_hash TEXT,
   PRIMARY KEY(area_code, section_name)
 );
+--> statement-breakpoint
 
 CREATE TABLE job_receipts (
   job_name TEXT NOT NULL,
@@ -110,7 +118,10 @@ CREATE TABLE job_receipts (
   error_code TEXT,
   PRIMARY KEY(job_name, run_id)
 );
+--> statement-breakpoint
 
 CREATE INDEX idx_raw_observation_bucket ON raw_observation_15m(observation_bucket);
+--> statement-breakpoint
 CREATE INDEX idx_hourly_bucket ON hourly_observation(hour_bucket);
+--> statement-breakpoint
 CREATE INDEX idx_daily_date ON daily_summary(local_date);
