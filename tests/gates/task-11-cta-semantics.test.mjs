@@ -264,3 +264,27 @@ test("Given keyboard navigation, when the actual search input receives focus, th
   assert.notEqual(focus.outlineWidth, "0px");
   await page.close();
 });
+
+test("Given the ready fixture, when the live map renders, then it reflects official data without preview copy", async () => {
+  const page = await browser.newPage({ viewport: { width: 1616, height: 923 } });
+  await page.goto(`http://localhost:${serverPort}/?visualFixture=ready-v1`, { waitUntil: "networkidle" });
+
+  const map = page.getByLabel("서울 한눈에 보기");
+  assert.equal(await page.getByText("실제 데이터 연결 전 미리보기", { exact: true }).count(), 0);
+  await assert.doesNotReject(map.getByText("공식 데이터 반영", { exact: true }).waitFor({ state: "visible" }));
+  assert.equal(await map.getByText("공식 장소 목록과 같은 선택 상태를 공유합니다.", { exact: true }).count(), 1);
+
+  await page.close();
+});
+
+test("Given an unavailable fixture, when the map fails, then truthful fallback copy remains", async () => {
+  const page = await browser.newPage({ viewport: { width: 1616, height: 923 } });
+  await page.goto(`http://localhost:${serverPort}/?visualFixture=unavailable-v1`, { waitUntil: "networkidle" });
+
+  const map = page.getByLabel("서울 한눈에 보기");
+  await assert.doesNotReject(map.getByText("공식 데이터 연결 대기", { exact: true }).waitFor({ state: "visible" }));
+  await assert.doesNotReject(page.getByText("지도를 불러오지 못했습니다", { exact: true }).waitFor({ state: "visible" }));
+  assert.equal(await page.getByText("공식 데이터 반영", { exact: true }).count(), 0);
+
+  await page.close();
+});
