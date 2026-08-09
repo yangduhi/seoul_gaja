@@ -39,6 +39,23 @@ def _fake_fetch(_api_key: str, place: CatalogPlace) -> CityDataResponse:
                     "PPLTN_TIME": "2026-08-08 17:55",
                 }
             ],
+            "FCST_PPLTN": [
+                {
+                    "FCST_YN": "Y",
+                    "FCST_TIME": forecast_time,
+                    "FCST_CONGEST_LVL": next(iter(CROWD_LEVELS)),
+                    "FCST_PPLTN_MIN": "100",
+                    "FCST_PPLTN_MAX": "200",
+                }
+                for forecast_time in (
+                    "2026-08-08 19:00",
+                    "2026-08-08 20:00",
+                    "2026-08-08 21:00",
+                    "2026-08-08 22:00",
+                    "2026-08-08 23:00",
+                    "2026-08-09 00:00",
+                )
+            ],
         },
     )
 

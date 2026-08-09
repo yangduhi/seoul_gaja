@@ -1,3 +1,5 @@
+import { canonicalPayloadSha256 } from '../../server/provenance-cadence.mjs';
+
 export function createD1Mock() {
   const receipts = new Map();
   const bindings = new Map();
@@ -80,20 +82,41 @@ export function createD1Mock() {
 }
 
 export function createNormalizedSnapshot(provenanceReceipt) {
-  return {
+  const rows = Array.from({ length: 121 }, (_, index) => ({
+    areaCode: `AREA-${String(index + 1).padStart(3, '0')}`,
+    areaName: `Area ${index + 1}`,
+    availability: 'available',
+    provenance: 'refreshed',
+    crowdLevel: 'NORMAL',
+    populationMin: 100,
+    populationMax: 200,
+    sourceUpdatedAt: '2026-08-04T00:00:00Z',
+    fetchedAt: '2026-08-04T00:00:05Z',
+    rawHash: (index + 1).toString(16).padStart(64, '0'),
+    officialForecast: {
+      authority: 'official',
+      sourceUpdatedAt: '2026-08-04T00:00:00Z',
+      fetchedAt: '2026-08-04T00:00:05Z',
+      rawHash: (index + 1).toString(16).padStart(64, '0'),
+      points: Array.from({ length: 6 }, (_, pointIndex) => ({
+        timestamp: new Date(Date.parse('2026-08-04T00:00:05Z') + (pointIndex + 1) * 60 * 60 * 1000).toISOString(),
+        crowdLevel: 'NORMAL',
+        populationMin: 100,
+        populationMax: 200,
+        sourceUpdatedAt: '2026-08-04T00:00:00Z',
+      })),
+    },
+  }));
+  const canonicalPayload = {
     contractVersion: '1.0.0',
     snapshotId: 'snapshot-local-0001',
     catalogVersion: 'catalog-v1',
-    rows: Array.from({ length: 121 }, (_, index) => ({
-      areaCode: `AREA-${String(index + 1).padStart(3, '0')}`,
-      areaName: `Area ${index + 1}`,
-      availability: 'available',
-      provenance: 'refreshed',
-      crowdLevel: 'NORMAL',
-      sourceUpdatedAt: '2026-08-04T00:00:00Z',
-      fetchedAt: '2026-08-04T00:00:05Z',
-    })),
+    rows,
     meta: { attempted: 121, refreshed: 121, carriedForward: 0, unavailable: 0 },
+  };
+  return {
+    ...canonicalPayload,
+    payloadSha256: canonicalPayloadSha256(canonicalPayload),
     provenanceReceipt,
   };
 }

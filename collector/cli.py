@@ -14,8 +14,8 @@ from urllib.parse import urljoin, urlparse
 from urllib.request import Request, urlopen
 
 from collector.catalog import load_catalog
-from collector.domain.models import CurrentObservation, SourceDataError
-from collector.source.normalize import normalize_current
+from collector.domain.models import CurrentObservation, ForecastPoint, SourceDataError
+from collector.source.normalize import normalize_current, normalize_forecast
 from collector.source.seoul_api import fetch_citydata
 
 
@@ -74,7 +74,8 @@ def _collect(catalog_path: Path, output: Path, receipt: Path) -> int:
             fetched_at = datetime.now(UTC)
             response = fetch_citydata(api_key, place)
             observation = normalize_current(response.payload, place, fetched_at)
-            rows.append(_snapshot_row(observation))
+            forecast = normalize_forecast(response.payload, fetched_at)
+            rows.append(_snapshot_row(observation, forecast, response.raw_sha256))
             raw_hashes.append(response.raw_sha256)
     except SourceDataError as error:
         print(f"collection failed: {error}", file=sys.stderr)
@@ -187,7 +188,14 @@ def _api_key_or_block() -> str | None:
     return api_key
 
 
-def _snapshot_row(observation: CurrentObservation) -> dict[str, JsonValue]:
+def _snapshot_row(
+    observation: CurrentObservation, forecast: list[ForecastPoint], raw_hash: str
+) -> dict[str, JsonValue]:
+    source_updated_at = observation.source_updated_at
+    if source_updated_at is None:
+        raise SourceDataError("missing current source timestamp")
+    source_timestamp = source_updated_at.isoformat()
+    fetched_timestamp = observation.fetched_at.isoformat()
     return {
         "areaCode": observation.area_code,
         "areaName": observation.area_name,
@@ -196,8 +204,25 @@ def _snapshot_row(observation: CurrentObservation) -> dict[str, JsonValue]:
         "crowdLevel": observation.crowd_level,
         "populationMin": observation.population_min,
         "populationMax": observation.population_max,
-        "sourceUpdatedAt": observation.source_updated_at.isoformat() if observation.source_updated_at else None,
-        "fetchedAt": observation.fetched_at.isoformat(),
+        "sourceUpdatedAt": source_timestamp,
+        "fetchedAt": fetched_timestamp,
+        "rawHash": raw_hash,
+        "officialForecast": {
+            "authority": "official",
+            "sourceUpdatedAt": source_timestamp,
+            "fetchedAt": fetched_timestamp,
+            "rawHash": raw_hash,
+            "points": [
+                {
+                    "timestamp": point.time.isoformat(),
+                    "crowdLevel": point.crowd_level,
+                    "populationMin": point.population_min,
+                    "populationMax": point.population_max,
+                    "sourceUpdatedAt": source_timestamp,
+                }
+                for point in forecast
+            ],
+        },
     }
 
 
