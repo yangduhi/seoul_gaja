@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "scope": "local machine-ingress header contract only",
+  "base": {
+    "commit": "eb839d65869fe938ce5887aa07a0c3e7a967d112",
+    "tree": "bc35d8e126dc35a478ff003ede8414d24cda1ace"
+  },
+  "checks": [
+    {
+      "name": "malformed_or_blank_machine_environment",
+      "verdict": "PASS",
+      "evidence": "all-whitespace declared OAI_SITES_AUTHORIZATION returns BLOCKED_EXIT before the listener observes HTTP"
+    },
+    {
+      "name": "stale_base",
+      "verdict": "PASS",
+      "evidence": "retry worktree was created directly at the required base commit and tree"
+    },
+    {
+      "name": "dirty_root",
+      "verdict": "PASS",
+      "evidence": "prep-v4-1 had 227 pre-existing dirty entries; it was read-only and retry worktree was clean before edits"
+    },
+    {
+      "name": "secret_value_scan",
+      "verdict": "PASS",
+      "evidence": "changed workflow and CLI contain no literal credential; only the protected secret expression and environment-name indirection are present"
+    },
+    {
+      "name": "timeout_or_hung_process",
+      "verdict": "PASS",
+      "evidence": "CLI subprocess has a 10-second test bound, local listener joins within five seconds, and post-run task process inventory is zero"
+    },
+    {
+      "name": "repeat_or_flaky",
+      "verdict": "PASS",
+      "evidence": "three consecutive cache-free runs of the three machine-ingress tests passed"
+    },
+    {
+      "name": "misleading_green_output",
+      "verdict": "PASS",
+      "evidence": "local capture asserted exact path, preserved application authorization, one machine header, and empty CLI stdout/stderr"
+    },
+    {
+      "name": "prompt_injection",
+      "verdict": "NOT_APPLICABLE",
+      "evidence": "no user-controlled prompt or instruction stream exists in this CLI request boundary"
+    },
+    {
+      "name": "cancellation",
+      "verdict": "NOT_APPLICABLE",
+      "evidence": "no cancellation or resume protocol exists in this bounded one-request local capture"
+    },
+    {
+      "name": "repeated_interruption",
+      "verdict": "PASS",
+      "evidence": "no retry was performed; all task-owned local listeners and subprocesses exited"
+    },
+    {
+      "name": "live_external_mutation",
+      "verdict": "PASS_LOCAL_ONLY",
+      "evidence": "no Sites, GitHub, D1, network host, secret retrieval, deployment, push, or workflow execution was attempted"
+    }
+  ]
+}

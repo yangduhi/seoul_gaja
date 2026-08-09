@@ -37,13 +37,14 @@ def main() -> int:
     push.add_argument("--url", required=True)
     push.add_argument("--path", required=True)
     push.add_argument("--token-env", required=True)
+    push.add_argument("--machine-header-env")
     probe = subparsers.add_parser("quota-probe")
     probe.add_argument("--sample-size", required=True, type=int)
     arguments = parser.parse_args()
     if arguments.command == "collect":
         return _collect(arguments.catalog, arguments.output, arguments.receipt)
     if arguments.command == "push":
-        return _push(arguments.input, arguments.url, arguments.path, arguments.token_env)
+        return _push(arguments.input, arguments.url, arguments.path, arguments.token_env, arguments.machine_header_env)
     return _quota_probe(arguments.sample_size)
 
 
@@ -117,11 +118,18 @@ def _collect(catalog_path: Path, output: Path, receipt: Path) -> int:
     return 0
 
 
-def _push(input_path: Path, base_url: str, path: str, token_env: str) -> int:
+def _push(input_path: Path, base_url: str, path: str, token_env: str, machine_header_env: str | None = None) -> int:
     token = os.environ.get(token_env)
     if not token:
         print(f"{token_env} is required", file=sys.stderr)
         return BLOCKED_EXIT
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    if machine_header_env is not None:
+        machine_authorization = os.environ.get(machine_header_env)
+        if not machine_authorization or not machine_authorization.strip():
+            print(f"{machine_header_env} is required", file=sys.stderr)
+            return BLOCKED_EXIT
+        headers["OAI-Sites-Authorization"] = machine_authorization
     parsed = urlparse(base_url)
     if parsed.scheme != "https" or not parsed.netloc or not path.startswith("/"):
         print("push target must be an HTTPS base URL and absolute path", file=sys.stderr)
@@ -130,7 +138,7 @@ def _push(input_path: Path, base_url: str, path: str, token_env: str) -> int:
     request = Request(
         urljoin(base_url.rstrip("/") + "/", path.lstrip("/")),
         data=body,
-        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        headers=headers,
         method="POST",
     )
     try:
