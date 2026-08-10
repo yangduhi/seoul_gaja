@@ -61,7 +61,7 @@ function displayLevel(level: string): string {
 function displaySource(row: CatalogRow): string {
   const value = row.sourceUpdatedAt ?? row.fetchedAt;
   const basis = row.freshnessBasis === "fetched_at_degraded" ? "수집 시각 기준" : "원천 시각 기준";
-  return `${new Intl.DateTimeFormat("ko-KR", { hour: "2-digit", minute: "2-digit" }).format(new Date(value))} · ${basis}`;
+  return `${new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", hour: "2-digit", minute: "2-digit" }).format(new Date(value))} · ${basis}`;
 }
 
 function displayRecommendationTime(timestamp: string): string {
